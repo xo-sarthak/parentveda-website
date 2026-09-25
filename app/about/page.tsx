@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Art from "@/components/Art";
-import Icon from "@/components/Icon";
+import Mark from "@/components/Mark";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
@@ -98,17 +98,17 @@ export default function AboutPage() {
           </header>
           <div className="cards3">
             <div className="rv rv-d1">
-              <span className="ic"><Icon name="book" /></span>
+              <Mark glyph="book" hue={36} index={0} size={64} />
               <h3>We explain</h3>
               <p>What a trigger shot does, why a scan is booked, what a word on your report means.</p>
             </div>
             <div className="rv rv-d2">
-              <span className="ic"><Icon name="calendar" /></span>
+              <Mark glyph="bell" hue={150} index={1} size={64} />
               <h3>We remind</h3>
               <p>The medicine, the appointment, the test your doctor asked for.</p>
             </div>
             <div className="rv rv-d3">
-              <span className="ic"><Icon name="x" /></span>
+              <Mark glyph="noCalc" hue={345} index={2} size={64} />
               <h3>We don’t recalculate</h3>
               <p>If a scan set your due date, it’s the scan’s date. If a clinic runs your cycle, we stop predicting it.</p>
             </div>

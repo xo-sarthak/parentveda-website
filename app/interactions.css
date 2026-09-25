@@ -367,3 +367,48 @@ html.lenis body {
     opacity: 1;
   }
 }
+
+/* ═════════════════════════ DRAWN MARKS ═════════════════════════
+   components/Mark.tsx — the accent dot or heart takes the glyph's ink. */
+.mark {
+  flex: none;
+  display: block;
+  overflow: visible;
+}
+.mark__glyph [data-f] {
+  fill: currentColor;
+  stroke: none;
+}
+.mark__orbit {
+  transform-box: view-box;
+  transform-origin: 48px 48px;
+  transition: transform 1.1s var(--ease-out);
+}
+/* on hover the orbit turns a little further; the glyph stays still */
+:is(.promise, .pillars li, .bento__tile, .cards3 > *, .contact__ways li):hover .mark__orbit {
+  transform: rotate(var(--turn-more, 38deg));
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark__orbit {
+    transition: none;
+  }
+}
+
+/* the birth-clubs tile is as tall as the keepsake photo beside it, so its
+   mark grows to fill the space instead of sitting over an empty field */
+.bento__tile--7 .bento__icon {
+  margin: auto;
+}
+.bento__tile--7 .mark {
+  width: 160px;
+  height: 160px;
+}
+@media (max-width: 900px) {
+  .bento__tile--7 .mark {
+    width: 68px;
+    height: 68px;
+  }
+  .bento__tile--7 .bento__icon {
+    margin: -6px 0 18px -6px;
+  }
+}

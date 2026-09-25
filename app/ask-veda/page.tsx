@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Art from "@/components/Art";
 import Icon from "@/components/Icon";
+import Mark from "@/components/Mark";
 import AskVedaDemo from "@/components/home/AskVedaDemo";
 import CtaBand from "@/components/CtaBand";
 
@@ -96,7 +97,7 @@ export default function AskVedaPage() {
           </header>
           <div className="cards3">
             <div className="rv rv-d1">
-              <span className="ic"><Icon name="book" /></span>
+              <Mark glyph="book" hue={265} index={0} size={64} />
               <h3>Grounded, not guessed</h3>
               <p>
                 Answers come from ParentVeda’s own library. If there’s nothing there, it checks only a short list of trusted public health
@@ -104,7 +105,7 @@ export default function AskVedaPage() {
               </p>
             </div>
             <div className="rv rv-d2">
-              <span className="ic"><Icon name="flag" /></span>
+              <Mark glyph="flag" hue={352} index={1} size={64} />
               <h3>Red flags go to a person</h3>
               <p>
                 Urgent symptoms never get an AI answer. They get a calm instruction to call your doctor or hospital, and a button that
@@ -112,7 +113,7 @@ export default function AskVedaPage() {
               </p>
             </div>
             <div className="rv rv-d3">
-              <span className="ic"><Icon name="users" /></span>
+              <Mark glyph="voices" hue={200} index={2} size={64} />
               <h3>Community is not a source</h3>
               <p>
                 Other parents’ stories are shown as stories, clearly marked. They never feed the medical part of an answer.

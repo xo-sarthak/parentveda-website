@@ -121,13 +121,16 @@ const glyphs = {
       <circle cx="24" cy="18.5" r="2.2" data-f />
     </>
   ),
-  // a steel thali with three katoris
+  // a steel thali seen from the side: the plate, a katori of dal with its
+  // steam, a folded roti standing up. Drawn from the side on purpose — seen
+  // from above, round bowls in a round plate read as a face, and the app's
+  // glyphs never draw faces.
   thali: (
     <>
-      <circle cx="24" cy="24" r="17" {...S} />
-      <circle cx="17.5" cy="19.5" r="4.6" {...T} />
-      <circle cx="30.5" cy="19.5" r="4.6" {...T} />
-      <circle cx="24" cy="31" r="4.6" {...T} />
+      <ellipse cx="24" cy="31" rx="19" ry="6" {...S} />
+      <path d="M8.5 20h15c-.9 4.8-3.8 7-7.5 7s-6.6-2.2-7.5-7z" {...S} />
+      <path d="M13.5 15c0-2 2-2 2-4.2M19 15c0-2 2-2 2-4.2" {...T} />
+      <path d="M25.5 27.5a9.5 9.5 0 0 1 19 0z" data-f />
     </>
   ),
   // a small bowl of kheer and its spoon — annaprashan
@@ -167,10 +170,10 @@ const glyphs = {
     <>
       <path d="M12 8h21a4 4 0 0 1 4 4v29H16a4 4 0 0 1-4-4z" {...S} />
       <path d="M16.5 8v33" {...T} />
-      <ellipse cx="27" cy="28" rx="3.6" ry="5.4" data-f />
-      <circle cx="24.4" cy="19.8" r="1.3" data-f />
-      <circle cx="27" cy="19" r="1.4" data-f />
-      <circle cx="29.6" cy="19.8" r="1.3" data-f />
+      <path d="M27.2 20.5c3.6 0 5.2 3.4 4.6 7.8-.6 4.6-2.4 7.2-5 7.2-2.8 0-4.2-2.8-3.8-6.8.4-4.6 1.4-8.2 4.2-8.2z" data-f />
+      <circle cx="23.6" cy="16.6" r="1.7" data-f />
+      <circle cx="27.4" cy="15.4" r="1.9" data-f />
+      <circle cx="31.2" cy="16.8" r="1.6" data-f />
     </>
   ),
   // a month on a calendar, with a heart on it — birth clubs
@@ -255,9 +258,9 @@ const glyphs = {
   // the fixed label — sponsored says so
   label: (
     <>
-      <rect x="6" y="14" width="36" height="20" rx="10" {...S} />
-      <path d="M14 24h12" {...T} />
-      <circle cx="33" cy="24" r="2.8" data-f />
+      <path d="M9 14h25l9 10-9 10H9a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" {...S} />
+      <path d="M11.5 21h14M11.5 27h9" {...T} />
+      <circle cx="34.5" cy="24" r="2.4" data-f />
     </>
   ),
   // everything, cleared in one tap
@@ -351,13 +354,16 @@ export default function Mark({
           <stop offset="1" stopColor={mid} />
         </radialGradient>
       </defs>
-      <g className="mark__orbit" transform={`rotate(${turn} 48 48)`} fill="none" stroke={deep} strokeLinecap="round">
-        <circle cx="48" cy="48" r="36" fill={`url(#${id})`} stroke="none" />
-        <circle cx="48" cy="48" r="43" strokeWidth={hair} strokeOpacity="0.22" />
-        <path d="M5 48A43 43 0 0 1 75 14.5" strokeWidth={hair * 1.15} strokeOpacity="0.34" />
-        <circle cx={d[0]} cy={d[1]} r="4.5" fill={deep} fillOpacity="0.5" stroke="none" />
-        <circle cx={d[2]} cy={d[3]} r="2.6" fill={deep} fillOpacity="0.36" stroke="none" />
-        <circle cx={d[4]} cy={d[5]} r="1.6" fill={deep} fillOpacity="0.28" stroke="none" />
+      <g transform={`rotate(${turn} 48 48)`} fill="none" stroke={deep} strokeLinecap="round">
+        {/* the inner group is the one hover turns further; the outer holds the resting angle */}
+        <g className="mark__orbit">
+          <circle cx="48" cy="48" r="36" fill={`url(#${id})`} stroke="none" />
+          <circle cx="48" cy="48" r="43" strokeWidth={hair} strokeOpacity="0.22" />
+          <path d="M5 48A43 43 0 0 1 75 14.5" strokeWidth={hair * 1.15} strokeOpacity="0.34" />
+          <circle cx={d[0]} cy={d[1]} r="4.5" fill={deep} fillOpacity="0.5" stroke="none" />
+          <circle cx={d[2]} cy={d[3]} r="2.6" fill={deep} fillOpacity="0.36" stroke="none" />
+          <circle cx={d[4]} cy={d[5]} r="1.6" fill={deep} fillOpacity="0.28" stroke="none" />
+        </g>
       </g>
       <g
         className="mark__glyph"

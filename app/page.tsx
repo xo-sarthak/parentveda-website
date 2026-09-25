@@ -2,6 +2,7 @@ import Link from "next/link";
 import Art, { hasImage, findVideo, imageSrc } from "@/components/Art";
 import LoopVideo from "@/components/LoopVideo";
 import Icon from "@/components/Icon";
+import Mark, { type Glyph } from "@/components/Mark";
 import { Phone, WeekScreen } from "@/components/Phone";
 import Journey from "@/components/home/Journey";
 import AskVedaDemo from "@/components/home/AskVedaDemo";
@@ -14,64 +15,71 @@ import { getArticles } from "@/lib/articles";
 import { getAppHref } from "@/lib/site";
 
 const promises = [
-  { icon: "doctor", title: "Never a diagnosis", body: "If your doctor said something different, your doctor is right." },
-  { icon: "phone", title: "No account needed to start", body: "Open it, pick your stage, and your home is ready." },
-  { icon: "lock", title: "Stays in your family", body: "Saved on your phone first. Never sold. Deleted in one tap." },
+  { glyph: "note", hue: 268, title: "Never a diagnosis", body: "If your doctor said something different, your doctor is right." },
+  { glyph: "door", hue: 345, title: "No account needed to start", body: "Open it, pick your stage, and your home is ready." },
+  { glyph: "home", hue: 150, title: "Stays in your family", body: "Saved on your phone first. Never sold. Deleted in one tap." },
 ];
 
 const pillars = [
-  { icon: "sound", name: "Shravan", line: "Sacred listening — calm ragas, chosen for each trimester." },
-  { icon: "message", name: "Samvad", line: "Cards to read aloud to your baby, and your own voice, recorded." },
-  { icon: "breath", name: "Kriya", line: "Breath and grounding, a few minutes at a time." },
-  { icon: "sun", name: "Buddhi", line: "A few quiet minutes that are only yours." },
+  { glyph: "notes", name: "Shravan", line: "Sacred listening — calm ragas, chosen for each trimester." },
+  { glyph: "talk", name: "Samvad", line: "Cards to read aloud to your baby, and your own voice, recorded." },
+  { glyph: "breath", name: "Kriya", line: "Breath and grounding, a few minutes at a time." },
+  { glyph: "diya", name: "Buddhi", line: "A few quiet minutes that are only yours." },
 ];
 
 const homes = [
   {
     slot: "indian-kitchen",
-    icon: "bowl",
+    glyph: "thali",
+    hue: 36,
     title: "An Indian kitchen, not a translated one",
     body: "Trimester diet charts built on dal, roti and sabzi. Around 40 pregnancy recipes, Jain options, and what to do on fasting days.",
     tone: "#E8D9C0",
   },
   {
     slot: "traditions",
-    icon: "sprout",
+    glyph: "kheer",
+    hue: 345,
     title: "Traditions, held up honestly",
     body: "Annaprashan, mundan, malish, naming. What each one means, and what the evidence says about it.",
     tone: "#E8C4CE",
   },
   {
     slot: null,
-    icon: "shield",
+    glyph: "shield",
+    hue: 118,
     title: "The IAP vaccine schedule",
     body: "Every vaccine on the Indian schedule, why it’s given and what to do after. Reminders so none slips.",
     tone: "#C5D6C4",
   },
   {
     slot: null,
-    icon: "tag",
+    glyph: "rupee",
+    hue: 265,
     title: "Tests, with Indian prices",
     body: "Scans and blood tests explained in plain words, with what they roughly cost here.",
     tone: "#D8CCE8",
   },
   {
     slot: null,
-    icon: "language",
+    glyph: "voice",
+    hue: 40,
     title: "Hindi, when you want it",
     body: "Much of pregnancy is written in Hindi, in Devanagari, with narration you can listen to instead of read.",
     tone: "#F7ECD4",
   },
   {
     slot: "keepsake",
-    icon: "bookmark",
+    glyph: "journal",
+    hue: 16,
     title: "Keepsakes that stay",
     body: "A journal, letters to your baby, a bump-photo flipbook and a booklet of the whole journey.",
     tone: "#D9A08A",
   },
   {
     slot: null,
-    icon: "users",
+    glyph: "month",
+    hue: 330,
     title: "Birth clubs, by due month",
     body: "Talk to parents due the same month as you. Stories stay stories: they’re never used as medical advice.",
     tone: "#E8C4CE",
@@ -136,7 +144,7 @@ export default function Home() {
         <div className="wrap promises__row">
           {promises.map((p, i) => (
             <div key={p.title} className={`promise rv rv-d${i + 1}`}>
-              <span className="promise__icon"><Icon name={p.icon} /></span>
+              <Mark glyph={p.glyph as Glyph} hue={p.hue} index={i} size={64} />
               <div>
                 <p className="promise__title">{p.title}</p>
                 <p className="promise__body">{p.body}</p>
@@ -240,7 +248,7 @@ export default function Home() {
             <ul className="pillars">
               {pillars.map((p, i) => (
                 <li key={p.name} className={`rv rv-d${i + 1}`}>
-                  <span className="pillars__icon"><Icon name={p.icon} /></span>
+                  <Mark glyph={p.glyph as Glyph} hue={36} index={i + 1} size={60} />
                   <span>
                     <b>{p.name}</b>
                     {p.line}
@@ -273,7 +281,7 @@ export default function Home() {
                     <Art slot={h.slot} alt="" sizes="(max-width: 700px) 92vw, 400px" />
                   </span>
                 )}
-                <span className="bento__icon"><Icon name={h.icon} /></span>
+                <span className="bento__icon"><Mark glyph={h.glyph as Glyph} hue={h.hue} index={i} size={68} /></span>
                 <h3>{h.title}</h3>
                 <p>{h.body}</p>
               </li>

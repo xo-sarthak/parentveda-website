@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Icon from "@/components/Icon";
+import Mark, { type Glyph } from "@/components/Mark";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 const points = [
   { icon: "phone", t: "Your phone first", d: "What you enter is saved on your phone before anything else. ParentVeda works without an account, and a lost connection never loses your data." },
   { icon: "lock", t: "Sync only if you sign in", d: "If you choose to sign in, your data is backed up to your account so a new phone doesn’t mean starting again." },
-  { icon: "x", t: "Never sold", d: "Not to an advertiser, not to an employer, not to an insurer." },
-  { icon: "users", t: "Your partner sees what you share", d: "A paired partner can read what you choose to share, and can never change it. While you’re trying, your raw cycle stays yours." },
-  { icon: "tag", t: "Sponsored is always labelled", d: "Anything a brand paid for says so, in the same place, every time." },
-  { icon: "trash", t: "Delete everything in one tap", d: "From your profile, one tap deletes everything ParentVeda holds for you." },
+  { icon: "unsold", t: "Never sold", d: "Not to an advertiser, not to an employer, not to an insurer." },
+  { icon: "rings", t: "Your partner sees what you share", d: "A paired partner can read what you choose to share, and can never change it. While you’re trying, your raw cycle stays yours." },
+  { icon: "label", t: "Sponsored is always labelled", d: "Anything a brand paid for says so, in the same place, every time." },
+  { icon: "clear", t: "Delete everything in one tap", d: "From your profile, one tap deletes everything ParentVeda holds for you." },
 ];
 
 export default function PrivacyPage() {
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           <div className="cards3">
             {points.map((p, i) => (
               <div key={p.t} className={`rv rv-d${(i % 3) + 1}`}>
-                <span className="ic"><Icon name={p.icon} /></span>
+                <Mark glyph={p.icon as Glyph} hue={140} index={i} size={64} />
                 <h3>{p.t}</h3>
                 <p>{p.d}</p>
               </div>

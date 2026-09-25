@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Art from "@/components/Art";
 import Icon from "@/components/Icon";
+import Mark, { type Glyph } from "@/components/Mark";
 import { getAppHref } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -12,10 +13,10 @@ export const metadata: Metadata = {
 
 const gets = [
   { icon: "sun", t: "A daily moment", d: "One thing worth knowing today, in a minute. Not a feed." },
-  { icon: "calendar", t: "A page for every week", d: "Thirty-seven weeks, each with what’s changing for her, for the baby, and what he can do about it." },
+  { icon: "week", t: "A page for every week", d: "Thirty-seven weeks, each with what’s changing for her, for the baby, and what he can do about it." },
   { icon: "book", t: "Read-aloud", d: "Short pieces to read to the bump. Babies start hearing voices mid-pregnancy, and his counts." },
-  { icon: "check", t: "What to do next", d: "Hospital bag, paperwork, the birth plan: practical jobs, in order, so she doesn’t have to hand them out." },
-  { icon: "bookmark", t: "His own journal", d: "Somewhere to write it down, for the child who’ll read it one day." },
+  { icon: "list", t: "What to do next", d: "Hospital bag, paperwork, the birth plan: practical jobs, in order, so she doesn’t have to hand them out." },
+  { icon: "journal", t: "His own journal", d: "Somewhere to write it down, for the child who’ll read it one day." },
   { icon: "sprout", t: "While you’re trying", d: "His side of it: sperm health, when a test is worth doing, and how to be useful in the long months." },
 ];
 
@@ -59,7 +60,7 @@ export default function FathersPage() {
           <div className="cards3">
             {gets.map((g, i) => (
               <div key={g.t} className={`rv rv-d${(i % 3) + 1}`}>
-                <span className="ic"><Icon name={g.icon} /></span>
+                <Mark glyph={g.icon as Glyph} hue={36} index={i} size={64} />
                 <h3>{g.t}</h3>
                 <p>{g.d}</p>
               </div>

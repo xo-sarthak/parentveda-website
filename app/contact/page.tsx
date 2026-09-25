@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/Icon";
+import Mark, { type Glyph } from "@/components/Mark";
 
 export const metadata: Metadata = {
   title: "Contact us",
@@ -10,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const ways = [
-  { icon: "heart", t: "Parents and families", d: "Questions, feedback, or something in the app that didn’t feel right. We read every message." },
-  { icon: "doctor", t: "Doctors and clinics", d: "ParentVeda+ for your practice, or a correction to anything clinical we’ve written." },
-  { icon: "users", t: "Employers and brands", d: "Sponsored access for your team, or a partnership that’s happy to be labelled." },
+  { icon: "heart", hue: 345, t: "Parents and families", d: "Questions, feedback, or something in the app that didn’t feel right. We read every message." },
+  { icon: "note", hue: 150, t: "Doctors and clinics", d: "ParentVeda+ for your practice, or a correction to anything clinical we’ve written." },
+  { icon: "case", hue: 265, t: "Employers and brands", d: "Sponsored access for your team, or a partnership that’s happy to be labelled." },
 ];
 
 export default function ContactPage() {
@@ -29,9 +30,7 @@ export default function ContactPage() {
             <ul className="contact__ways">
               {ways.map((w, i) => (
                 <li key={w.t} className={`rv rv-d${i + 2}`}>
-                  <span className="contact__ic">
-                    <Icon name={w.icon} />
-                  </span>
+                  <Mark glyph={w.icon as Glyph} hue={w.hue} index={i} size={56} />
                   <span>
                     <b>{w.t}</b>
                     {w.d}
