@@ -1,0 +1,324 @@
+/* ═════════════════════════════ CONTACT ═════════════════════════════ */
+.contact {
+  padding-bottom: clamp(72px, 9vw, 120px);
+}
+.contact__grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.contact__intro {
+  display: grid;
+  gap: 22px;
+  justify-items: start;
+  position: sticky;
+  top: 110px;
+}
+.contact__title {
+  font-size: clamp(44px, 5.4vw, 76px);
+  white-space: nowrap;
+}
+.contact__ways {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+.contact__ways li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15.5px;
+}
+.contact__ways b {
+  display: block;
+  color: var(--ink);
+  font-size: 16.5px;
+}
+.contact__ic {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--purple);
+}
+.contact__care {
+  background: rgba(255, 255, 255, 0.7);
+}
+.contact__care p {
+  font-size: clamp(17px, 1.6vw, 19px);
+}
+
+.cform {
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  padding: clamp(22px, 3.4vw, 44px);
+  display: grid;
+  gap: 22px;
+}
+.cform--loading {
+  min-height: 640px;
+}
+.cform__topics {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.cform__topics legend {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  padding: 0;
+}
+.cform__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cchip {
+  position: relative;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hair);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  background: #fff;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.35s var(--ease-out);
+}
+.cchip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cchip:hover {
+  border-color: var(--ink);
+}
+.cchip:has(input:focus-visible) {
+  outline: 3px solid var(--purple);
+  outline-offset: 2px;
+}
+.cchip.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.cchip:active {
+  transform: scale(0.96);
+}
+
+.cform__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cfield {
+  display: grid;
+  gap: 8px;
+}
+.cfield__label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.cfield__label em {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--muted);
+}
+.cfield__count {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.cfield input,
+.cfield textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--quiet);
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  padding: 14px 16px;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.35s var(--ease-out);
+}
+.cfield textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.55;
+}
+.cfield input:hover,
+.cfield textarea:hover {
+  background: #eeebf2;
+}
+.cfield input:focus,
+.cfield textarea:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px var(--purple-50);
+}
+.cfield.has-error input,
+.cfield.has-error textarea {
+  border-color: #b3261e;
+  background: #fdf3f4;
+}
+.cform__err {
+  color: #b3261e;
+  font-size: 13.5px;
+  font-weight: 600;
+  animation: errin 0.35s var(--ease-out);
+}
+@keyframes errin {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.cform__hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.cform__consent {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  cursor: pointer;
+}
+.cform__consent input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--ink);
+}
+.cform__consent.has-error span {
+  color: #b3261e;
+}
+.cform__note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--purple-50);
+  color: var(--ink);
+  font-size: 15px;
+}
+.cform__note svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--purple);
+}
+.cform__note--err {
+  background: #fdecee;
+}
+.cform__note--err svg {
+  color: #b3261e;
+}
+.cform__submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+}
+.cform__submit .btn[disabled] {
+  opacity: 0.75;
+  cursor: progress;
+}
+.cform__spin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* sent */
+.cform--done {
+  justify-items: center;
+  text-align: center;
+  padding-block: clamp(48px, 7vw, 88px);
+  animation: donein 0.7s var(--ease-out);
+}
+@keyframes donein {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+.cform__tick svg {
+  width: 72px;
+  height: 72px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cform__tick circle {
+  stroke: var(--purple-100);
+  stroke-width: 3;
+}
+.cform__tick path {
+  stroke: var(--purple);
+  stroke-width: 4;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: tick 0.6s 0.25s var(--ease-out) forwards;
+}
+@keyframes tick {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+  .contact__intro {
+    position: static;
+  }
+}
+@media (max-width: 560px) {
+  .cform__row {
+    grid-template-columns: 1fr;
+  }
+  .cform__spacer {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cform__tick path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .cform--done,
+  .cform__err {
+    animation: none;
+  }
+}

@@ -1,0 +1,369 @@
+/* ═════════════════════════ THE FEEL LAYER ═════════════════════════
+   Pairs with components/Interactions.tsx. Every effect here answers a
+   touch or a pointer — nothing loops in the corner of the eye. */
+
+/* page arrival */
+.pagein {
+  animation: pagein 0.7s var(--ease-out) backwards;
+}
+@keyframes pagein {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* press: everything you can tap gives a little */
+.btn:active {
+  transform: scale(0.965) !important;
+  transition-duration: 0.08s;
+}
+.stagecard:active,
+.acard:active,
+.rmore a:active,
+.nextstage:active {
+  transform: scale(0.985) !important;
+  transition-duration: 0.1s;
+}
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ripple */
+.has-ripple {
+  overflow: hidden;
+  isolation: isolate;
+}
+/* `.has-ripple > .ripple` outranks any `.x > *` rule, so the ripple always
+   floats over its host and never joins the layout. */
+.has-ripple > .ripple,
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: currentColor;
+  opacity: 0.16;
+  transform: scale(0);
+  animation: ripple 0.7s var(--ease-out) forwards;
+  z-index: 0;
+}
+.btn--ink .ripple,
+.ask__tabs button.is-on .ripple,
+.afilter button[aria-pressed="true"] .ripple {
+  background: #fff;
+  opacity: 0.28;
+}
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+/* Content sits above the ripple. The ripple itself is excluded: it matched
+   this rule too, became position: relative, and swelled the button to twice
+   its width for the length of the animation. */
+.btn > :not(.ripple),
+.stagecard > :not(.ripple) {
+  position: relative;
+  z-index: 1;
+}
+
+/* magnetic buttons ease back when the pointer leaves */
+.btn--ink,
+.btn--light {
+  transition: transform 0.5s var(--ease-out), background 0.25s ease, box-shadow 0.35s var(--ease-out);
+}
+.btn--ink:hover,
+.btn--light:hover {
+  transition: transform 0.18s ease-out, background 0.25s ease, box-shadow 0.35s var(--ease-out);
+}
+.btn svg {
+  transition: transform 0.4s var(--ease-out);
+}
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* tilt cards: quick while following the pointer, slow settling back */
+[data-tilt] {
+  /* the ::after sheen below is inset: 0 — without this it would size itself
+     to the whole section, not the card */
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.rv.is-in[data-tilt],
+[data-tilt] {
+  transition: transform 0.7s var(--ease-out), box-shadow 0.5s var(--ease-out), opacity 0.9s ease;
+}
+.rv.is-in[data-tilt]:hover,
+[data-tilt]:hover {
+  transition: transform 0.14s linear, box-shadow 0.5s var(--ease-out);
+  box-shadow: var(--shadow);
+}
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.34), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+[data-tilt]:hover::after {
+  opacity: 1;
+}
+
+/* header tucks away on the way down, returns on the way up */
+.hdr {
+  transition: transform 0.55s var(--ease-out);
+}
+.hdr--tucked {
+  transform: translateY(-120%);
+}
+
+/* FAQ answers open with height, not a jump (Chromium 131+, a plain open elsewhere) */
+.faq__item {
+  interpolate-size: allow-keywords;
+}
+.faq__item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.5s var(--ease-out), content-visibility 0.5s allow-discrete;
+}
+.faq__item[open]::details-content {
+  block-size: auto;
+}
+.faq__item summary {
+  transition: color 0.2s ease, padding-left 0.4s var(--ease-out);
+}
+.faq__item summary:hover {
+  color: var(--purple);
+  padding-left: 6px;
+}
+
+/* stage tabs and filters: a sliding press state */
+.ask__tabs button,
+.afilter button {
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+.ask__tabs button:hover:not(.is-on),
+.afilter button:hover:not([aria-pressed="true"]) {
+  border-color: var(--ink);
+}
+
+/* the loop film fills its panel like the painting it replaces */
+.loopvideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* article cards and read-next lift the arrow */
+.rmore__m svg,
+.stagecard__go svg {
+  transition: transform 0.4s var(--ease-out);
+}
+.rmore a:hover .rmore__m svg {
+  transform: translateX(4px);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagein {
+    animation: none;
+  }
+  .ripple {
+    display: none;
+  }
+  .hdr--tucked {
+    transform: none;
+  }
+  [data-tilt] {
+    transform: none !important;
+  }
+  .faq__item::details-content {
+    transition: none;
+  }
+}
+
+/* ═════════════════════════ HERO — leaves as you scroll ═════════════════════════ */
+.hero__copy {
+  transform: translate3d(0, calc(var(--p, 0) * -60px), 0);
+  opacity: calc(1 - var(--p, 0) * 0.9);
+}
+.hero__panel {
+  transform: translate3d(0, calc(var(--p, 0) * 70px), 0) scale(calc(1 - var(--p, 0) * 0.08));
+  transform-origin: 60% 30%;
+}
+.hero__panel img,
+.hero__panel video {
+  transform: scale(calc(1.02 + var(--p, 0) * 0.12));
+}
+.hero__phone {
+  transform: translate3d(0, calc(var(--p, 0) * -150px), 0) rotate(calc(var(--p, 0) * -4deg));
+}
+
+/* ═════════════════════════ STATEMENT — lit word by word ═════════════════════════ */
+.statement {
+  padding-block: clamp(60px, 9vw, 130px) clamp(20px, 3vw, 40px);
+}
+.swords {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.3vw, 60px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  max-width: 22em;
+  color: var(--ink);
+}
+.swords span {
+  opacity: 0.16;
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+.swords span.is-lit {
+  opacity: 1;
+}
+.swords__accent {
+  font-style: italic;
+}
+.swords__accent.is-lit {
+  color: var(--purple);
+}
+
+/* ═════════════════════════ QUESTION DRIFT ═════════════════════════ */
+.askband__drift {
+  margin-top: clamp(48px, 6vw, 88px);
+  display: grid;
+  gap: 14px;
+}
+.askband__driftlabel {
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12.5px;
+  color: var(--purple);
+}
+.qdrift {
+  display: grid;
+  gap: 12px;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.qdrift__row {
+  overflow: hidden;
+}
+.qdrift__track {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: drift 70s linear infinite;
+}
+.qdrift__row--rev .qdrift__track {
+  animation-direction: reverse;
+  animation-duration: 80s;
+}
+.qdrift__row:hover .qdrift__track,
+.qdrift__row:focus-within .qdrift__track {
+  animation-play-state: paused;
+}
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.qchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 13px 20px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--hair);
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15.5px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+.qchip:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.qchip__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--purple);
+  flex: none;
+}
+.qchip:hover .qchip__dot {
+  background: #ffbdca;
+}
+
+/* ═════════════════════════ NEVER — cards that stack ═════════════════════════ */
+.never__grid header {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+.never__list li {
+  position: sticky;
+  top: calc(120px + var(--i, 0) * 18px);
+  margin-bottom: 14vh;
+  padding: 26px 28px;
+  border-radius: 24px;
+  border-top: 0;
+  background: color-mix(in srgb, var(--deep) 82%, #6a30b6);
+  box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, 0.55);
+}
+.never__list li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .never__grid header {
+    position: static;
+  }
+  .never__list li {
+    top: calc(90px + var(--i, 0) * 12px);
+    margin-bottom: 8vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qdrift__track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .qdrift__track li[aria-hidden="true"] {
+    display: none;
+  }
+  .swords span {
+    opacity: 1;
+  }
+}
