@@ -51,6 +51,10 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 96px;
+  /* The page scroller is <html>, not <body>: a clip on body alone let the
+     hero's off-edge glow add 10vw of sideways scroll. `clip`, not `hidden`,
+     because hidden would make <html> a scroll container and break sticky. */
+  overflow-x: clip;
 }
 
 body {
@@ -322,14 +326,14 @@ p {
 
 /* shared section rhythm */
 .section {
-  padding-block: clamp(72px, 10vw, 140px);
+  padding-block: clamp(56px, 7vw, 96px);
   position: relative;
 }
 .section-head {
   display: grid;
   gap: 18px;
   max-width: 760px;
-  margin-bottom: clamp(36px, 5vw, 64px);
+  margin-bottom: clamp(28px, 3.6vw, 48px);
 }
 .section-head--center {
   margin-inline: auto;

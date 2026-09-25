@@ -129,6 +129,13 @@ export default function AskVedaDemo() {
         <div className="ask__sections">
           {d.sections.map((s, k) => (
             <div key={s.label} className={`ask__sec${d.flag && k === 0 ? " ask__sec--flag" : ""}${k < shown ? " is-in" : ""}`}>
+              {/* placeholder lines hold the answer's shape until it arrives, so the
+                  card is never an empty box and nothing jumps when the text lands */}
+              <span className="ask__skel" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
               <span className="ask__label">
                 {d.flag && k === 0 && <Icon name="flag" size={15} />} {s.label}
               </span>

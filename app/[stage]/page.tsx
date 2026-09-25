@@ -30,6 +30,12 @@ function Title({ text }: { text: string }) {
   );
 }
 
+// How many columns the closing tile should span at 4, 3 and 2 columns.
+function spanVars(n: number) {
+  const span = (c: number) => (n % c === 0 ? c : c - (n % c));
+  return { ["--s4" as string]: span(4), ["--s3" as string]: span(3), ["--s2" as string]: span(2) };
+}
+
 export default async function StagePage({ params }: { params: Promise<{ stage: string }> }) {
   const s = getStage((await params).stage);
   if (!s) notFound();
@@ -82,6 +88,20 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
                 </div>
               </li>
             ))}
+            {/* Closes the grid at every width: it spans whatever the last row
+                leaves open (a whole row when the doors divide evenly), so a
+                stage never ends on empty cells. */}
+            <li className="door-more rv" style={spanVars(s.doors.length)}>
+              <Link href="/ask-veda" className="door door--more">
+                <div>
+                  <h3>Something else on your mind?</h3>
+                  <p>Ask Veda in your own words. If it isn’t in our library, it says so, and never guesses.</p>
+                </div>
+                <span className="door--more__go">
+                  Ask Veda <Icon name="arrow" size={18} />
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
       </section>
@@ -112,6 +132,7 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
             <h2 id="tools-title" className="display-m rv rv-d1">
               {s.toolsTitle}
             </h2>
+            <p className="rv rv-d2">Each one saves to your phone first, and none of them needs an account to start.</p>
           </header>
           <div style={{ display: "grid", gap: 28 }}>
             <ul className="tools">

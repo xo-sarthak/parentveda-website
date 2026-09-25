@@ -506,7 +506,7 @@
 /* ═════════════════════════════ JOURNEY — the thread ═════════════════════════════ */
 .jny {
   position: relative;
-  padding-block: clamp(40px, 6vw, 80px) clamp(80px, 10vw, 140px);
+  padding-block: clamp(24px, 3vw, 40px) clamp(48px, 6vw, 80px);
 }
 .jny__thread {
   position: absolute;
@@ -546,7 +546,7 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(28px, 5vw, 64px);
   align-items: center;
-  padding-block: clamp(48px, 7vw, 96px);
+  padding-block: clamp(36px, 5vw, 64px);
 }
 .act--wide {
   grid-template-columns: 0.9fr 1.1fr;
@@ -556,7 +556,7 @@
   position: absolute;
   /* thread centre sits 28px inside the wrap; content starts gutter + 44px in */
   left: calc(-27px - var(--gutter));
-  top: clamp(56px, 7.4vw, 104px);
+  top: clamp(44px, 5.4vw, 72px);
   width: 22px;
   height: 22px;
   border-radius: 50%;
@@ -1183,7 +1183,7 @@
 .fathers {
   background: var(--slate);
   color: rgba(255, 255, 255, 0.78);
-  padding-block: clamp(72px, 10vw, 140px);
+  padding-block: clamp(56px, 7vw, 96px);
   position: relative;
   overflow: hidden;
 }
@@ -1539,8 +1539,88 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
+}
+.door-more {
+  grid-column: span var(--s4, 4);
+  /* the tile's own width decides its layout, not the screen's — it can span
+     one cell or a whole row depending on how many doors a stage has */
+  container-type: inline-size;
+}
+@container (max-width: 440px) {
+  .door-more .door.door--more {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+.door.door--more {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.door.door--more:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.door.door--more > div {
+  display: grid;
+  gap: 6px;
+}
+.door.door--more h3 {
+  color: #fff;
+}
+.door.door--more p {
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+.door--more__go {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14.5px;
+}
+@media (max-width: 1100px) {
+  .doors {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .door-more {
+    grid-column: span var(--s3, 3);
+  }
+}
+@media (max-width: 800px) {
+  .doors {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .door-more {
+    grid-column: span var(--s2, 2);
+  }
+}
+@media (max-width: 560px) {
+  .doors {
+    grid-template-columns: 1fr;
+  }
+  .door-more {
+    grid-column: auto;
+  }
+  .door.door--more {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .door {
   height: 100%;

@@ -86,13 +86,41 @@ const homes = [
   },
 ];
 
+// Kept for revert — the one-line version these cards replaced (2026-09-25):
+// the headline asked the reader to work out that this was a list of promises.
+// const never = [
+//   "Tell you your ‘chance this month’, or any other personalised odds.",
+//   "Diagnose you or your child, or contradict your doctor.",
+//   "Guilt you with streaks, points or scores.",
+//   "Sell what you tell us, or show it to an employer, insurer or advertiser.",
+//   "Hide an advertisement. Anything sponsored says so, in the same place, every time.",
+//   "Show a product in a moment of crisis. Those screens show help, and only help.",
+// ];
 const never = [
-  "Tell you your ‘chance this month’, or any other personalised odds.",
-  "Diagnose you or your child, or contradict your doctor.",
-  "Guilt you with streaks, points or scores.",
-  "Sell what you tell us, or show it to an employer, insurer or advertiser.",
-  "Hide an advertisement. Anything sponsored says so, in the same place, every time.",
-  "Show a product in a moment of crisis. Those screens show help, and only help.",
+  {
+    t: "Tell you your odds",
+    d: "No “your chance this month”, no success rates. Only facts that are true for everyone, and only when they take pressure off.",
+  },
+  {
+    t: "Diagnose you or your child",
+    d: "We explain and help you prepare. Your doctor decides, and if they’ve said something different, they’re right.",
+  },
+  {
+    t: "Guilt you into opening the app",
+    d: "No streaks, points or scores. Miss a week and nothing turns red.",
+  },
+  {
+    t: "Sell what you tell us",
+    d: "Not to advertisers, employers or insurers. It’s saved on your phone first.",
+  },
+  {
+    t: "Hide an advertisement",
+    d: "Anything a brand paid for carries the same “Presented by” label, in the same place, every time.",
+  },
+  {
+    t: "Sell to you in a hard moment",
+    d: "Screens about bleeding, loss or feeling low show help. Never a product.",
+  },
 ];
 
 export default function Home() {
@@ -320,19 +348,29 @@ export default function Home() {
       <section className="section never" aria-labelledby="never-title">
         <div className="wrap never__grid">
           <header>
-            <span className="eyebrow eyebrow--plain rv">What we will never do</span>
+            <span className="eyebrow eyebrow--plain rv">Our promises</span>
             <h2 id="never-title" className="display-l rv rv-d1">
-              Calm is a feature. <em>So is saying no.</em>
+              Six things ParentVeda <em>will never do.</em>
             </h2>
             <p className="lede rv rv-d2">
-              These aren’t marketing lines. Each one is built into the app, so a future feature can’t quietly break it.
+              Most apps like this make money by worrying you, scoring you or selling what you tell them. We’ve ruled all of that
+              out, and the rules are built into the app itself, so no future update can quietly bend them.
             </p>
+            <p className="never__sign rv rv-d3">Calm is a feature. So is saying no.</p>
           </header>
           <ol className="never__list">
             {never.map((n, i) => (
-              <li key={n} style={{ ["--i" as string]: i }}>
-                <Icon name="x" size={18} />
-                <span>{n}</span>
+              <li key={n.t} style={{ ["--i" as string]: i }}>
+                <span className="never__top">
+                  <span className="never__no">
+                    <Icon name="x" size={14} /> Never
+                  </span>
+                  <span className="never__count">
+                    {i + 1} of {never.length}
+                  </span>
+                </span>
+                <h3>{n.t}</h3>
+                <p>{n.d}</p>
               </li>
             ))}
           </ol>
