@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Doctors, employers and brands",
-  description: "Work with ParentVeda — as a clinic, as an employer supporting working parents, or as a brand that is happy to be labelled.",
+  description: "Work with ParentVeda as a clinic, as an employer supporting working parents, or as a brand that’s happy to be labelled.",
 };
 
 const blocks = [

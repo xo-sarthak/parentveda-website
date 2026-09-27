@@ -79,7 +79,7 @@ export function CycleScreen() {
       </svg>
       <div className="scr__card">
         <span className="scr__eyebrow">Today</span>
-        <p>Your fertile days are likely around now. Likely — not certain. Here’s why.</p>
+        <p>Your fertile days are likely around now. Likely, not certain. Here’s why.</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 ---
 title: "Reading a report without panicking"
 description: "One reading is one moment. What a range really means, why labs disagree, and why a single number is not a verdict."
-standfirst: "Most reports that frighten people at 11pm are read as reassuring by a doctor at 10am. That is not because the doctor is being kind — it is because a report is a set of measurements, and measurements only mean something next to your history, your dates and each other."
+standfirst: "Most reports that frighten people at 11pm are read as reassuring by a doctor at 10am. That is not because the doctor is being kind. It is because a report is a set of measurements, and measurements only mean something next to your history, your dates and each other."
 stage: pregnancy
 category: "Scans & tests"
 author: "ParentVeda editorial"
@@ -11,11 +11,11 @@ A scan or blood report is written for your doctor, not for you. That is not secr
 
 So a line noting that the placenta is low sits in exactly the same typeface as a line noting the baby's heartbeat, and reads to you as though it carries the same weight. It does not. One of those is a finding that resolves on its own in the large majority of pregnancies; the other is a fact.
 
-The habit worth building is to read a report twice — once for what it says, and once for what it does not. Reports are usually longer about normal things than about anything else, because normal has more parts.
+The habit worth building is to read a report twice: once for what it says, and once for what it does not. Reports are usually longer about normal things than about anything else, because normal has more parts.
 
 ## What a "normal range" actually is
 
-A reference range is not the boundary between healthy and ill. It is the middle stretch of what was measured in a group of people the lab considered typical — usually the middle ninety or ninety-five per cent of them.
+A reference range is not the boundary between healthy and ill. It is the middle stretch of what was measured in a group of people the lab considered typical, usually the middle ninety or ninety-five per cent of them.
 
 Read that carefully and something follows immediately. If the range holds the middle ninety-five per cent, then one healthy person in twenty sits outside it, by definition, on any given test. Run eight tests on a completely well person and it is more likely than not that one comes back flagged.
 
@@ -30,7 +30,7 @@ If you have had the same test at two centres and got two answers, nothing has go
 
 It matters most for thyroid, for haemoglobin, and for anything reported in units you have to squint at. A thyroid result from one lab is not directly comparable to one from another, which is why doctors ask you to stay with one lab through a pregnancy where they are tracking a value.
 
-Scans have their own version of this. An estimated foetal weight is calculated from three or four measurements using a formula, and different centres use different formulas. The honest margin on that estimate is around ten to fifteen per cent in either direction — so a baby estimated at 2.5 kilograms could reasonably be anywhere from about 2.1 to 2.9. It is an estimate wearing the clothes of a measurement.
+Scans have their own version of this. An estimated foetal weight is calculated from three or four measurements using a formula, and different centres use different formulas. The honest margin on that estimate is around ten to fifteen per cent in either direction, so a baby estimated at 2.5 kilograms could reasonably be anywhere from about 2.1 to 2.9. It is an estimate wearing the clothes of a measurement.
 
 ## What to do with a report tonight
 
@@ -43,7 +43,7 @@ Four things, in order, and they are deliberately small.
 
 ## When a report genuinely does change things
 
-*Some findings do need a plan — and they still need your doctor, not a search.*
+*Some findings do need a plan, and they still need your doctor, not a search.*
 
 None of this is an argument for ignoring a report. Some findings really do change what happens next: a placenta lying over the exit late in pregnancy changes how you are delivered, a high sugar result changes what you eat and how closely you are watched, and a baby measuring consistently small changes how often you are seen.
 
@@ -61,7 +61,7 @@ And if the finding is one your app can explain, read the explanation before the 
 
 ### My report says "cannot be excluded". What does that mean?
 
-It is honest hedging, not a warning. It means the images did not show something and also could not completely rule it out — often because of the baby's position or the quality of the view. It usually leads to a repeat look rather than to anything else.
+It is honest hedging, not a warning. It means the images did not show something and also could not completely rule it out, often because of the baby's position or the quality of the view. It usually leads to a repeat look rather than to anything else.
 
 ### Should I get a second opinion on a scan?
 

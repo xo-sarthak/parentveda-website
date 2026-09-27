@@ -6,7 +6,7 @@ import { stages, getStage } from "@/lib/stages";
 export const metadata: Metadata = {
   title: "Articles",
   description:
-    "Plain-language reads for Indian families — scans, tests, food, feelings and the things nobody explains — from trying to conceive to the school years.",
+    "Plain-language reads for Indian families about scans, tests, food, feelings and the things nobody explains, from trying to conceive to the school years.",
 };
 
 export default function ArticlesPage() {

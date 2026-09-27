@@ -6,7 +6,7 @@ import AskVedaDemo from "@/components/home/AskVedaDemo";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Ask Veda — answers from our library, never improvised",
+  title: "Ask Veda: calm answers, never made up",
   description:
     "Ask Veda answers pregnancy and parenting questions from ParentVeda's own library, in a clear shape, and routes red flags straight to your doctor.",
 };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const anatomy = [
   { t: "Veda’s answer", d: "The short, direct answer, first." },
   { t: "What this means", d: "The why, in plain words, so the answer makes sense for you." },
-  { t: "What you can do", d: "Small, practical next steps — including when to call your doctor." },
+  { t: "What you can do", d: "Small, practical next steps, including when to call your doctor." },
   { t: "Read more in ParentVeda", d: "The page in the app that goes deeper." },
   { t: "What other parents say", d: "Experiences from the community, clearly marked. Never used as a medical source.", quiet: true },
   { t: "Things that may help", d: "Products, only where relevant and always labelled if sponsored.", quiet: true },
@@ -34,7 +34,7 @@ export default function AskVedaPage() {
               <span className="hl"><span><em>Get a calm answer.</em></span></span>
             </h1>
             <p className="lede rv rv-d2">
-              Ask Veda is the question box at the heart of ParentVeda. It answers from our own library, in the same clear shape every
+              Ask Veda is where your questions go, whatever the hour. It answers from our own library, in the same clear shape every
               time, and tells you plainly when it doesn’t know. It is never a doctor, and it never pretends to be.
             </p>
           </div>
@@ -49,11 +49,11 @@ export default function AskVedaPage() {
           <header>
             <span className="eyebrow rv">See it answer</span>
             <h2 id="try-title" className="display-l rv rv-d1">
-              Three questions. <em>One it refuses.</em>
+              Three questions. <em>One it hands to your doctor.</em>
             </h2>
             <p className="lede rv rv-d2">
-              When a question is a red flag — bleeding, severe pain, your baby moving less — Ask Veda doesn’t try to answer. It skips the
-              AI completely and tells you to call your doctor. That refusal is the most important thing it does.
+              Some questions shouldn’t be answered by an app: bleeding, severe pain, your baby moving less. For those, Ask Veda doesn’t
+              try. It skips the AI completely and tells you, calmly, to call your doctor. It’s the most important thing it does.
             </p>
           </header>
           <div className="rv rv-d2">
@@ -114,7 +114,7 @@ export default function AskVedaPage() {
             </div>
             <div className="rv rv-d3">
               <Mark glyph="voices" hue={200} index={2} size={64} />
-              <h3>Community is not a source</h3>
+              <h3>Other parents’ stories stay stories</h3>
               <p>
                 Other parents’ stories are shown as stories, clearly marked. They never feed the medical part of an answer.
               </p>
@@ -129,7 +129,7 @@ export default function AskVedaPage() {
             <Icon name="whatsapp" size={28} />
             <div style={{ display: "grid", gap: 8 }}>
               <h2 id="wa-title" className="display-m">
-                One Veda, two doors.
+                Soon, on WhatsApp too.
               </h2>
               <p style={{ fontFamily: "var(--font-body)", fontSize: 17 }}>
                 The same Ask Veda is being built for WhatsApp too, so you can ask a question at 3 a.m. without opening another app. Same

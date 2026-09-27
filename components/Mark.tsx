@@ -322,7 +322,79 @@ const glyphs = {
       <rect x="21" y="23" width="6" height="6" rx="1.5" data-f />
     </>
   ),
+  // ── added for trying, parenting and skilling ──
+  // a crescent and one star — sleep
+  moon: (
+    <>
+      <path d="M29 7a17 17 0 1 0 12 29A14 14 0 0 1 29 7z" {...S} />
+      <circle cx="37" cy="12" r="2" data-f />
+    </>
+  ),
+  // a bottle — feeding
+  bottle: (
+    <>
+      <path d="M19 13h10v4l3 5v16a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V22l3-5z" {...S} />
+      <path d="M21 7h6v6" {...S} />
+      <path d="M16 29h16" {...T} />
+    </>
+  ),
+  // two small footprints — first steps
+  steps: (
+    <>
+      <path d="M17 12c3.4 0 5 3.4 4.5 7.8-.5 4.6-2.2 7-4.8 7-2.7 0-4-2.8-3.6-6.8.4-4.6 1.3-8 3.9-8z" data-f />
+      <path d="M31 22c3.4 0 5 3.4 4.5 7.8-.5 4.6-2.2 7-4.8 7-2.7 0-4-2.8-3.6-6.8.4-4.6 1.3-8 3.9-8z" data-f />
+      <path d="M8 42h32" {...T} />
+    </>
+  ),
+  // an abacus — maths
+  abacus: (
+    <>
+      <rect x="7" y="7" width="34" height="34" rx="5" {...S} />
+      <path d="M7 17h34M7 24.5h34M7 32h34" {...T} />
+      <circle cx="15" cy="17" r="2.8" data-f />
+      <circle cx="21" cy="17" r="2.8" data-f />
+      <circle cx="31" cy="24.5" r="2.8" data-f />
+      <circle cx="17" cy="32" r="2.8" data-f />
+      <circle cx="34" cy="32" r="2.8" data-f />
+    </>
+  ),
+  // code brackets — the language of machines
+  code: (
+    <>
+      <path d="M16 14l-9 10 9 10" {...S} />
+      <path d="M32 14l9 10-9 10" {...S} />
+      <path d="M27 10l-6 28" {...T} />
+    </>
+  ),
+  // a jigsaw piece — thinking
+  puzzle: (
+    <>
+      <path d="M9 17h8a4.5 4.5 0 1 1 9 0h8v8a4.5 4.5 0 1 1 0 9v7H9z" {...S} />
+    </>
+  ),
+  // a cycle, part-way round — trying
+  cycle: (
+    <>
+      <circle cx="24" cy="24" r="16" {...T} />
+      <path d="M24 8a16 16 0 0 1 16 16" {...S} />
+      <circle cx="40" cy="24" r="2.8" data-f />
+    </>
+  ),
+  // a microphone — speaking up
+  mic: (
+    <>
+      <rect x="18" y="6" width="12" height="22" rx="6" {...S} />
+      <path d="M12 22a12 12 0 0 0 24 0" {...S} />
+      <path d="M24 34v7M18 41h12" {...T} />
+    </>
+  ),
 } satisfies Record<string, React.ReactNode>;
+
+// Which look every mark on the site uses. "plain" is the glyph alone, in its
+// colour; "disc" puts it on the door-mark disc with its ring, arc and dots.
+// The disc was the first look (2026-09-25) and is kept for revert: flip this
+// one word to bring it back everywhere.
+const DEFAULT_VARIANT: "plain" | "disc" = "plain";
 
 export default function Mark({
   glyph,
@@ -330,13 +402,38 @@ export default function Mark({
   index = 0,
   size = 56,
   className,
+  variant = DEFAULT_VARIANT,
 }: {
   glyph: Glyph;
   hue?: number;
   index?: number;
   size?: number;
   className?: string;
+  variant?: "plain" | "disc";
 }) {
+  if (variant === "plain") {
+    // The glyph on its own reads larger than inside a disc, so it draws at
+    // about three quarters of the requested box, with a lighter line than the
+    // 8.5% the disc needed (see .mark--plain in interactions.css).
+    const deepPlain = deepOf(hue);
+    const box = Math.round(size * 0.74);
+    return (
+      <svg
+        className={`mark mark--plain ${className ?? ""}`}
+        width={box}
+        height={box}
+        viewBox="-2 -2 52 52"
+        aria-hidden="true"
+        focusable="false"
+        style={{ color: deepPlain }}
+      >
+        <g className="mark__glyph" fill="none" stroke={deepPlain} strokeLinecap="round" strokeLinejoin="round">
+          {glyphs[glyph]}
+        </g>
+      </svg>
+    );
+  }
+
   const light = hex(hsl(hue, 0.46, 0.93));
   const mid = hex(hsl(hue, 0.3, 0.82));
   const deep = deepOf(hue);

@@ -521,3 +521,97 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* ═════════════════════════ CONTENT PASS — small new lines ═════════════════════════ */
+.stagecard__promise {
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink);
+  opacity: 0.78;
+  margin-top: 2px;
+}
+.statement__eyebrow {
+  margin-bottom: 18px;
+}
+.scrub__lead {
+  font-size: 15px;
+  color: var(--ink);
+  opacity: 0.72;
+  max-width: 30em;
+}
+
+/* plain marks: the glyph alone, with a lighter line than the disc needed */
+.mark--plain [stroke-width="4"] {
+  stroke-width: 2.7;
+}
+.mark--plain [stroke-width="2.9"] {
+  stroke-width: 2;
+}
+.mark--plain .mark__glyph {
+  transition: transform 0.6s var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* on hover the glyph lifts a touch — the plain mark's version of the orbit turn */
+:is(.promise, .pillars li, .bento__tile, .cards3 > *, .contact__ways li, .spillar, .sday__line li):hover .mark--plain .mark__glyph {
+  transform: translateY(-2px) scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark--plain .mark__glyph {
+    transition: none;
+  }
+}
+/* the disc's layout offsets don't apply to a bare glyph */
+.spillar .mark--plain {
+  margin: 0 0 4px;
+}
+.bento__icon:has(.mark--plain) {
+  margin: 0 0 auto;
+}
+@media (max-width: 560px) {
+  .bento__icon:has(.mark--plain) {
+    margin-bottom: 18px;
+  }
+}
+.bento__tile--7 .mark--plain {
+  width: 120px;
+  height: 120px;
+}
+
+/* ═════════════════════════ THE WORDMARK ═════════════════════════
+   The logo’s own lettering, traced to a vector (public/brand/pv-wordmark.svg),
+   used as a mask so its colour comes from CSS. */
+.wordmark {
+  display: inline-block;
+  height: 21px;
+  aspect-ratio: 4110 / 585;
+  background: #6935b0; /* the purple sampled from the logo */
+  -webkit-mask: url("/brand/pv-wordmark.svg") center / contain no-repeat;
+  mask: url("/brand/pv-wordmark.svg") center / contain no-repeat;
+}
+.hdr--slate .wordmark,
+.ftr .wordmark {
+  background: #fff;
+}
+.ftr__brand .wordmark {
+  height: 22px;
+}
+/* the giant footer mark: the same lettering, full width, in a soft brand wash */
+.ftr__mark {
+  -webkit-text-stroke: 0;
+  padding-inline: var(--gutter);
+}
+.ftr__giant {
+  display: block;
+  width: min(100%, 1240px);
+  margin-inline: auto;
+  aspect-ratio: 4110 / 585;
+  background: linear-gradient(90deg, rgba(203, 182, 229, 0.3), rgba(255, 189, 202, 0.55));
+  -webkit-mask: url("/brand/pv-wordmark.svg") center / contain no-repeat;
+  mask: url("/brand/pv-wordmark.svg") center / contain no-repeat;
+}
+@media (max-width: 480px) {
+  .wordmark {
+    height: 18px;
+  }
+}

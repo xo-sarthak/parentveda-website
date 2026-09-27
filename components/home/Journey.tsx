@@ -21,10 +21,10 @@ function trimester(w: number) {
 }
 
 const parentMoments = [
-  { when: "Day one", what: "The first 40 days begin — for the baby, and for the mother’s own recovery." },
-  { when: "6 weeks", what: "The first round of vaccines on the IAP schedule, and very often the first real smile." },
+  { when: "Day one", what: "The first 40 days begin, for the baby and for the mother’s own recovery." },
+  { when: "6 weeks", what: "The first round of vaccines on the Indian schedule, and very often the first real smile." },
   { when: "6 months", what: "Annaprashan, first foods, and a kitchen that suddenly needs a second plan." },
-  { when: "1 year", what: "First steps for some, first words for others — and neither is a race." },
+  { when: "1 year", what: "First steps for some, first words for others, and neither is a race." },
   { when: "2 years", what: "Big feelings, big words, and the potty days." },
   { when: "3 to 5", what: "Early learning at home, habits, and getting ready for school." },
 ];
@@ -102,13 +102,15 @@ export default function Journey() {
 
       <div className="wrap jny__inner">
         <header className="section-head jny__head">
-          <span className="eyebrow rv">One companion, not four apps</span>
+          {/* Kept for revert — eyebrow "One companion, not four apps", headline "It starts
+              before the first test and doesn’t end at the delivery room." */}
+          <span className="eyebrow rv">One companion for all four</span>
           <h2 id="jny-title" className="display-l rv rv-d1">
-            It starts before the first test <em>and doesn’t end at the delivery room.</em>
+            It starts before the first test <em>and grows up with them.</em>
           </h2>
           <p className="lede rv rv-d2">
-            Everything you tell ParentVeda carries forward: the day it’s positive, the day you come home, the day they start
-            school. Nothing to re-enter, and no new app to learn. Follow the thread.
+            Each phase shapes your child in its own way, and each asks something different of you. Here is what matters most in
+            each, and how ParentVeda helps. Everything you tell it carries forward, so you never start again.
           </p>
         </header>
 
@@ -117,10 +119,14 @@ export default function Journey() {
           <span className="act__node" aria-hidden="true" />
           <div className="act__copy">
             <span className="act__tag rv">Trying to conceive</span>
-            <h3 className="display-m rv rv-d1">Understand your cycle. Know when to ask for help.</h3>
+            {/* Kept for revert — "Understand your cycle. Know when to ask for help." / "Seven
+                doors — fertile window, PCOS, IVF & IUI, getting ready, his side, after a loss,
+                mind & body. No countdowns, no scores, and never your ‘chance this month’." */}
+            <h3 className="display-m rv rv-d1">Become the best place for a baby to begin.</h3>
             <p className="rv rv-d2">
-              Seven doors — fertile window, PCOS, IVF &amp; IUI, getting ready, his side, after a loss, mind &amp; body. No
-              countdowns, no scores, and never your ‘chance this month’.
+              Trying is exciting, and it can be hard. It’s also the moment to get your body, your mind and the two of you ready:
+              better food, better sleep, less strain, the habits worth leaving behind, and knowing when it’s time to see a doctor.
+              ParentVeda walks you through it month by month, without countdowns or odds.
             </p>
             <Link href={`/${ttc.slug}`} className="link rv rv-d3">
               Inside trying to conceive
@@ -133,9 +139,9 @@ export default function Journey() {
               <circle cx="100" cy="100" r="78" fill="none" stroke="#6A30B6" strokeWidth="14" strokeDasharray="60 490" strokeDashoffset="-236" strokeLinecap="round" transform="rotate(-90 100 100)" />
             </svg>
             <ul className="act__facts">
-              <li><Icon name="check" size={18} /> Cycle, ovulation and symptom companions</li>
-              <li><Icon name="check" size={18} /> A test library with Indian prices</li>
-              <li><Icon name="check" size={18} /> Steps back when your clinic takes over</li>
+              <li><Icon name="check" size={18} /> Your cycle, read back to you in plain words</li>
+              <li><Icon name="check" size={18} /> Food, folic acid and the habits to change now</li>
+              <li><Icon name="check" size={18} /> When to see a doctor, and what to ask</li>
             </ul>
           </div>
         </article>
@@ -148,6 +154,7 @@ export default function Journey() {
             <span className="act__node act__node--pin" aria-hidden="true" />
             <div className="scrub__copy">
               <span className="act__tag">Pregnancy · {trimester(week)}</span>
+              <p className="scrub__lead">What you eat, feel and live around, your baby shares. This is what’s happening now.</p>
               <p className="scrub__week" aria-live="polite">
                 <span className="scrub__label">Week</span>
                 <span className="scrub__num">{week}</span>
@@ -168,7 +175,7 @@ export default function Journey() {
                   <span>40</span>
                 </span>
               </label>
-              {!reduce && <p className="scrub__hint small">Keep scrolling — every week has its own page.</p>}
+              {!reduce && <p className="scrub__hint small">Keep scrolling. Every week has its own page.</p>}
             </div>
             <div className="scrub__art" aria-hidden="true">
               <div className="scrub__disc" />
@@ -196,9 +203,12 @@ export default function Journey() {
           <span className="act__node" aria-hidden="true" />
           <div className="act__copy">
             <span className="act__tag rv">Parenting · birth to 5</span>
-            <h3 className="display-m rv rv-d1">Only what changes, when it changes.</h3>
+            {/* Kept for revert — "Only what changes, when it changes." / "ParentVeda knows your
+                child’s age and shows you what matters now — not a feed of everything at once." */}
+            <h3 className="display-m rv rv-d1">Be the parent they need, one day at a time.</h3>
             <p className="rv rv-d2">
-              ParentVeda knows your child’s age and shows you what matters now — not a feed of everything at once.
+              Nobody hands you a manual. ParentVeda knows your child’s age and shows what matters now: sleep, food, fevers, first
+              words, big feelings. It looks after you too, because a calm, rested parent is a child’s safest place.
             </p>
             <Link href={`/${pp.slug}`} className="link rv rv-d3">
               Inside parenting
@@ -219,10 +229,14 @@ export default function Journey() {
           <span className="act__node" aria-hidden="true" />
           <div className="act__copy">
             <span className="act__tag rv">Skilling · ages 6 to 14</span>
-            <h3 className="display-m rv rv-d1">Then, the skills school doesn’t grade.</h3>
+            {/* Kept for revert — "Then, the skills school doesn’t grade." / "Twelve doors of small
+                daily activities, planned for three age bands and done together at home. No points,
+                no streaks, no leaderboards." */}
+            <h3 className="display-m rv rv-d1">Skills for the world they’ll grow up in.</h3>
             <p className="rv rv-d2">
-              Twelve doors of small daily activities, planned for three age bands and done together at home. No points, no
-              streaks, no leaderboards.
+              Maths as a brain gym, not marks. Coding as the language we use to talk to AI. Speaking up, holding focus,
+              understanding feelings. A few minutes a day, done together at home, planned for their age. Three skills are open
+              today and more are on the way. Effort grows ability, so there are no scores and no labels.
             </p>
             <Link href={`/${sk.slug}`} className="link rv rv-d3">
               Inside skilling

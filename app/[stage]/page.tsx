@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import Art from "@/components/Art";
 import Icon from "@/components/Icon";
 import CtaBand from "@/components/CtaBand";
+import StageStory from "@/components/stage/StageStory";
+import { hueOf } from "@/lib/color";
 import { stages, getStage } from "@/lib/stages";
 import { getAppHref } from "@/lib/site";
 
@@ -48,7 +50,7 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
         <div className="wrap phero__grid">
           <div className="phero__copy">
             <span className="phero__range">{s.range}</span>
-            <h1 id="stage-title" className="display-xl">
+            <h1 id="stage-title" className={`display-xl${s.title.length > 42 ? " display-xl--long" : ""}`}>
               <span className="hl">
                 <span>
                   <Title text={s.title} />
@@ -71,84 +73,92 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
         </div>
       </section>
 
-      <section className="section" id="doors" aria-labelledby="doors-title" style={{ paddingTop: 24 }}>
-        <div className="wrap">
-          <header className="section-head">
-            <span className="eyebrow rv">The doors</span>
-            <h2 id="doors-title" className="display-l rv rv-d1">
-              {s.doorsTitle}
-            </h2>
-          </header>
-          <ul className="doors">
-            {s.doors.map((d, i) => (
-              <li key={d.name} className={`rv rv-d${(i % 4) + 1}`}>
-                <div className="door">
-                  <h3>{d.name}</h3>
-                  <p>{d.line}</p>
-                </div>
-              </li>
-            ))}
-            {/* Closes the grid at every width: it spans whatever the last row
-                leaves open (a whole row when the doors divide evenly), so a
-                stage never ends on empty cells. */}
-            <li className="door-more rv" style={spanVars(s.doors.length)}>
-              <Link href="/ask-veda" className="door door--more">
-                <div>
-                  <h3>Something else on your mind?</h3>
-                  <p>Ask Veda in your own words. If it isn’t in our library, it says so, and never guesses.</p>
-                </div>
-                <span className="door--more__go">
-                  Ask Veda <Icon name="arrow" size={18} />
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="hl-title" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <header className="section-head">
-            <span className="eyebrow rv">How it helps</span>
-            <h2 id="hl-title" className="display-l rv rv-d1">
-              What makes it <em>different.</em>
-            </h2>
-          </header>
-          <div className="feat">
-            {s.highlights.map((h, i) => (
-              <div key={h.title} className={`rv rv-d${(i % 3) + 1}`}>
-                <h3>{h.title}</h3>
-                <p>{h.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="tools-title" style={{ paddingTop: 0 }}>
-        <div className="wrap split">
-          <header>
-            <span className="eyebrow rv">Tools</span>
-            <h2 id="tools-title" className="display-m rv rv-d1">
-              {s.toolsTitle}
-            </h2>
-            <p className="rv rv-d2">Each one saves to your phone first, and none of them needs an account to start.</p>
-          </header>
-          <div style={{ display: "grid", gap: 28 }}>
-            <ul className="tools">
-              {s.tools.map((t) => (
-                <li key={t} className="rv">
-                  {t}
+      {s.story ? (
+        <StageStory stage={s} story={s.story} hue={hueOf(s.colour)} />
+      ) : (
+        // The list layout — every stage used it until its story was written, and
+        // a stage without `story` still does. Kept intact for revert.
+        <>
+        <section className="section" id="doors" aria-labelledby="doors-title" style={{ paddingTop: 24 }}>
+          <div className="wrap">
+            <header className="section-head">
+              <span className="eyebrow rv">The guides</span>
+              <h2 id="doors-title" className="display-l rv rv-d1">
+                {s.doorsTitle}
+              </h2>
+            </header>
+            <ul className="doors">
+              {s.doors.map((d, i) => (
+                <li key={d.name} className={`rv rv-d${(i % 4) + 1}`}>
+                  <div className="door">
+                    <h3>{d.name}</h3>
+                    <p>{d.line}</p>
+                  </div>
                 </li>
               ))}
+              {/* Closes the grid at every width: it spans whatever the last row
+                  leaves open (a whole row when the doors divide evenly), so a
+                  stage never ends on empty cells. */}
+              <li className="door-more rv" style={spanVars(s.doors.length)}>
+                <Link href="/ask-veda" className="door door--more">
+                  <div>
+                    <h3>Something else on your mind?</h3>
+                    <p>Ask Veda in your own words. If it isn’t in our library, it says so, and never guesses.</p>
+                  </div>
+                  <span className="door--more__go">
+                    Ask Veda <Icon name="arrow" size={18} />
+                  </span>
+                </Link>
+              </li>
             </ul>
-            <div className="care rv">
-              <Icon name="doctor" size={26} />
-              <p>{s.care}</p>
+          </div>
+        </section>
+
+        <section className="section" aria-labelledby="hl-title" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <header className="section-head">
+              <span className="eyebrow rv">How it helps</span>
+              <h2 id="hl-title" className="display-l rv rv-d1">
+                What makes it <em>different.</em>
+              </h2>
+            </header>
+            <div className="feat">
+              {s.highlights.map((h, i) => (
+                <div key={h.title} className={`rv rv-d${(i % 3) + 1}`}>
+                  <h3>{h.title}</h3>
+                  <p>{h.body}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="section" aria-labelledby="tools-title" style={{ paddingTop: 0 }}>
+          <div className="wrap split">
+            <header>
+              <span className="eyebrow rv">{s.toolsEyebrow ?? "Tools"}</span>
+              <h2 id="tools-title" className="display-m rv rv-d1">
+                {s.toolsTitle}
+              </h2>
+              <p className="rv rv-d2">{s.toolsNote ?? "Each one saves to your phone first, and none of them needs an account to start."}</p>
+            </header>
+            <div style={{ display: "grid", gap: 28 }}>
+              <ul className="tools">
+                {s.tools.map((t) => (
+                  <li key={t} className="rv">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <div className="care rv">
+                <Icon name="doctor" size={26} />
+                <p>{s.care}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        </>
+      )}
 
       {next && (
         <section className="section" style={{ paddingTop: 0 }} aria-label="The next stage">

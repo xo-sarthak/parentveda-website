@@ -1,7 +1,7 @@
 ---
 title: "Handling pregnancy sugar in India"
-description: "Rice, roti, festivals and a joint family kitchen — what actually shifts the numbers, and what only makes meals miserable."
-standfirst: "Most women with pregnancy sugar manage it on food and walking alone, and the majority deliver healthy babies without anything else changing. Needing tablets or insulin later is not a failure — for some people it is simply what their body needs, and it works."
+description: "Rice, roti, festivals and a joint family kitchen: what actually shifts the numbers, and what only makes meals miserable."
+standfirst: "Most women with pregnancy sugar manage it on food and walking alone, and the majority deliver healthy babies without anything else changing. Needing tablets or insulin later is not a failure. For some people it is simply what their body needs, and it works."
 stage: pregnancy
 category: "Complications & conditions"
 author: "ParentVeda editorial"
@@ -26,19 +26,19 @@ If you do nothing else, do these. They shift readings more than any list of forb
 
 Rice does not have to go. Which rice and how much of it matters, and so does what is beside it. Hand-pounded and parboiled varieties behave better than highly polished white rice, and a smaller portion of rice with a larger portion of dal and sabzi behaves better than either.
 
-Roti is generally kinder than white rice, and mixing the atta with besan, jowar or bajra is kinder still. Adding a spoon of ghee to the dough is not the problem it is often assumed to be — fat slows the meal down.
+Roti is generally kinder than white rice, and mixing the atta with besan, jowar or bajra is kinder still. Adding a spoon of ghee to the dough is not the problem it is often assumed to be, because fat slows the meal down.
 
-The things that genuinely need to go are the ones that arrive as sugar almost immediately: sweetened tea and coffee, packaged juices, colas, and mithai. Fruit is not in that group — whole fruit with the fibre intact is fine in sensible amounts, and it is fruit JUICE that behaves like a soft drink.
+The things that genuinely need to go are the ones that arrive as sugar almost immediately: sweetened tea and coffee, packaged juices, colas, and mithai. Fruit is not in that group: whole fruit with the fibre intact is fine in sensible amounts, and it is fruit JUICE that behaves like a soft drink.
 
 Curd, paneer, eggs, dal, nuts and seeds are all useful, and adding protein to a meal is more productive than removing carbohydrate from it.
 
 ## Testing, and what the numbers are for
 
-You will most likely be asked to check your sugar at home, fasting and after meals, and to write the readings down. The point of the record is not to grade you — it is to show your doctor which MEALS are the problem, which is information no single reading carries.
+You will most likely be asked to check your sugar at home, fasting and after meals, and to write the readings down. The point of the record is not to grade you. It is to show your doctor which MEALS are the problem, which is information no single reading carries.
 
 So write down what you ate beside the number. A high reading after one particular breakfast is a fixable thing; a column of numbers with no food beside them is just a column of numbers.
 
-Your doctor sets your targets, and they are not the same for everyone. If your readings are consistently above them despite the changes above, that is the information the plan needs — not a reason to eat less.
+Your doctor sets your targets, and they are not the same for everyone. If your readings are consistently above them despite the changes above, that is the information the plan needs, not a reason to eat less.
 
 ## If you are offered tablets or insulin
 
@@ -62,7 +62,7 @@ Book that test before you leave hospital if you can. In the first month with a n
 > You are going to be offered sweets, and refusing every time is exhausting. Eat the piece you actually want, after a proper meal rather than on an empty stomach, and walk afterwards. One planned sweet handled well beats three unplanned ones and a week of guilt.
 
 > [!urgent] Call your doctor if
-> You feel shaky, sweaty, confused or faint after starting medicine — this can mean your sugar has dropped too low and needs treating now. Also call if your readings stay high despite the changes, or if the baby is moving less than usual.
+> You feel shaky, sweaty, confused or faint after starting medicine. This can mean your sugar has dropped too low and needs treating now. Also call if your readings stay high despite the changes, or if the baby is moving less than usual.
 
 ## Questions people ask
 
@@ -72,7 +72,7 @@ No. Portion, variety and what is beside it matter far more than removing it. A s
 
 ### Can I fast during a festival?
 
-Ask your doctor before you decide, particularly if you are on any medicine — long gaps without food can send sugar too low. Many women find a modified observance is agreed easily once they ask.
+Ask your doctor before you decide, particularly if you are on any medicine, because long gaps without food can send sugar too low. Many women find a modified observance is agreed easily once they ask.
 
 ### Will my baby be very large?
 

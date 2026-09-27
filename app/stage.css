@@ -1,0 +1,692 @@
+/* ═════════════════════════ STAGE STORY ═════════════════════════
+   components/stage/StageStory.tsx — the stage page told in VOICE.md's order.
+   Colour carries meaning: each pillar sets --gtone / --gdeep, and everything
+   that belongs to it (its tile, its guides, its moment in the day) wears them. */
+
+/* where you are */
+.sfeel {
+  padding-top: clamp(24px, 3vw, 40px);
+}
+.sfeel__head {
+  display: grid;
+  gap: 18px;
+  max-width: 780px;
+}
+.sfeel__sub {
+  display: grid;
+  gap: 6px;
+  margin: clamp(36px, 4vw, 56px) 0 20px;
+}
+.sfeel__sub h3 {
+  font-size: clamp(24px, 2.4vw, 32px);
+}
+.sfeel__sub p {
+  font-size: 16px;
+}
+
+/* the four pillars: four places, four colours */
+.spillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.spillar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--gtone) 62%, white);
+  text-decoration: none;
+  color: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+  overflow: hidden;
+}
+.spillar .mark {
+  margin: -6px 0 4px -6px;
+}
+.spillar b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.spillar em {
+  margin-top: auto;
+  padding-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gdeep);
+}
+.spillar em svg {
+  transition: transform 0.4s var(--ease-out);
+}
+.spillar:hover em svg {
+  transform: translateY(3px);
+}
+
+/* where are you in it — the picker */
+.sstart {
+  padding-block: 0 clamp(16px, 2vw, 24px);
+}
+.snow {
+  display: grid;
+  grid-template-columns: 0.85fr 1.6fr;
+  gap: clamp(20px, 3vw, 44px);
+  padding: clamp(24px, 3vw, 40px);
+  border-radius: 32px;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+}
+.snow__head {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.snow__title {
+  color: #fff;
+  font-size: clamp(28px, 2.8vw, 38px);
+}
+.snow__lede {
+  font-size: 15.5px;
+}
+.snow__tabs {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.snow__tabs button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.snow__tabs button b {
+  font-size: 16px;
+}
+.snow__tabs button span {
+  font-size: 13px;
+  opacity: 0.7;
+}
+.snow__tabs button:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.snow__tabs button.is-on {
+  background: #fff;
+  border-color: #fff;
+  color: var(--ink);
+}
+.snow__panel {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(16px, 2.4vw, 32px);
+  align-items: center;
+  animation: snowin 0.55s var(--ease-out);
+}
+@keyframes snowin {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.snow__baby {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.snow__baby img {
+  position: relative;
+  width: min(100%, 230px);
+  height: auto;
+  aspect-ratio: 1;
+  grid-area: 1 / 1;
+}
+.snow__disc {
+  grid-area: 1 / 1;
+  width: min(86%, 200px);
+  aspect-ratio: 1;
+  align-self: center;
+  border-radius: 50%;
+  background: var(--disc);
+}
+.snow__baby figcaption {
+  display: grid;
+  gap: 6px;
+}
+.snow__week {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--tone) 80%, white);
+}
+.snow__baby q {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.35;
+  color: #fff;
+  quotes: "“" "”";
+}
+.snow__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.snow__items li {
+  animation: snowin 0.6s var(--ease-out) both;
+  animation-delay: calc(var(--k) * 0.07s + 0.05s);
+}
+.snow__items a {
+  display: grid;
+  gap: 3px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+  color: inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  transition: background 0.3s ease, transform 0.4s var(--ease-out);
+}
+.snow__items a:hover {
+  background: rgba(255, 255, 255, 0.13);
+  transform: translateX(4px);
+}
+.snow__items b {
+  color: #fff;
+  font-size: 16px;
+}
+.snow__items em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--tone) 80%, white);
+}
+
+/* the old start card — used by a stage that has no picker yet */
+.sstart__card {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+  padding: clamp(22px, 3vw, 36px);
+  border-radius: 28px;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+}
+.sstart__title {
+  color: #fff;
+  font-size: clamp(26px, 2.6vw, 36px);
+}
+.sstart__title em {
+  color: color-mix(in srgb, var(--tone) 70%, white);
+}
+.sstart__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.sstart__steps a {
+  height: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+  color: inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.sstart__steps b {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+.sstart__n {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--tone) 80%, white);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* a breather between groups: one line in the app's own words */
+.spause {
+  margin: clamp(40px, 5vw, 72px) auto clamp(28px, 3vw, 40px);
+  max-width: 820px;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+.spause blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--gdeep);
+}
+.spause blockquote::before {
+  content: "“";
+}
+.spause blockquote::after {
+  content: "”";
+}
+.spause figcaption {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* the guides */
+.sguides__group {
+  margin-top: clamp(32px, 3.4vw, 48px);
+  scroll-margin-top: 100px;
+}
+.sguides__group:first-of-type {
+  margin-top: 0;
+}
+.sguides__ghead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(22px, 2vw, 28px);
+  margin-bottom: 16px;
+}
+.sguides__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.guide {
+  display: flex;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--gtone) 85%, white);
+  overflow: hidden;
+  scroll-margin-top: 110px;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.guide:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.guide:target {
+  box-shadow: 0 0 0 3px var(--gdeep), var(--shadow);
+}
+.guide__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 24px 26px;
+}
+.guide--featured {
+  grid-column: span 2;
+  background: color-mix(in srgb, var(--gtone) 36%, white);
+}
+.guide--pic .guide__pic {
+  position: relative;
+  flex: 0 0 38%;
+  min-height: 100%;
+  background: var(--gtone);
+}
+.guide__name {
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gtone) 75%, white);
+  color: var(--gdeep);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.guide__q {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(22px, 1.9vw, 26px);
+  line-height: 1.22;
+  color: var(--ink);
+}
+.guide--featured .guide__q {
+  font-size: clamp(25px, 2.2vw, 31px);
+}
+.guide__why {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--body);
+}
+.guide__inside {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--hair);
+}
+.guide__label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.guide__inside ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+}
+.guide__inside li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.guide__inside svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--gdeep);
+}
+.sguides__ask {
+  margin-top: clamp(32px, 3.4vw, 48px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border-radius: 24px;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 15.5px;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.sguides__ask:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.sguides__ask b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+/* a day, on the thread — neutral ground, each moment in its pillar's colour */
+.sday {
+  background: linear-gradient(180deg, #fff, var(--quiet) 26%, var(--quiet) 74%, #fff);
+}
+.sday__line {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 5), 1fr);
+  gap: 18px;
+}
+.sday__line::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 70px;
+  border-top: 2px dashed rgba(32, 28, 36, 0.16);
+  z-index: 0;
+}
+.sday__line li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  justify-items: start;
+}
+.sday__when {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gdeep);
+  min-height: 18px;
+}
+.sday__line b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.sday__line p {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* things you'll do */
+.sdoing__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+}
+.sdoing__list li {
+  display: grid;
+  gap: 2px;
+  padding: 14px 0;
+  border-top: 1px solid var(--hair);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sdoing__list b {
+  color: var(--ink);
+  font-size: 15.5px;
+}
+
+@media (max-width: 1100px) {
+  .spillars {
+    grid-template-columns: 1fr 1fr;
+  }
+  .snow {
+    grid-template-columns: 1fr;
+  }
+  .snow__tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .snow__tabs button {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+@media (max-width: 1000px) {
+  .sday__line {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sday__line::before {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .sstart__card {
+    grid-template-columns: 1fr;
+  }
+  .sstart__steps {
+    grid-template-columns: 1fr;
+  }
+  .sguides__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .guide--featured {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 680px) {
+  .snow__panel {
+    grid-template-columns: 1fr;
+  }
+  .snow__tabs {
+    grid-template-columns: 1fr;
+  }
+  .snow__tabs button {
+    flex-direction: row;
+  }
+  .guide--pic {
+    flex-direction: column;
+  }
+  .guide--pic .guide__pic {
+    flex-basis: auto;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+}
+@media (max-width: 600px) {
+  .spillars,
+  .sguides__grid,
+  .sdoing__list,
+  .sday__line {
+    grid-template-columns: 1fr;
+  }
+  .guide--featured {
+    grid-column: auto;
+  }
+  .sguides__ask {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snow__panel,
+  .snow__items li {
+    animation: none;
+  }
+}
+
+/* the picker without a baby: a badge in the disc, or no figure at all */
+.snow__badge {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+  line-height: 1;
+  color: var(--ink);
+  position: relative;
+}
+.snow__badge b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(44px, 5vw, 64px);
+  letter-spacing: -0.03em;
+}
+.snow__badge span {
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.snow__baby--badge .snow__disc {
+  width: min(86%, 190px);
+}
+.snow__panel--solo {
+  grid-template-columns: 1fr;
+}
+
+/* where a guide stands in the app, said plainly */
+.guide__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.guide__status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--hair);
+  color: var(--muted);
+  background: #fff;
+}
+.guide__status--open {
+  border-color: transparent;
+  background: var(--gdeep);
+  color: #fff;
+}
+.guide__status--growing {
+  border-style: dashed;
+  color: var(--gdeep);
+}
+.guide--soon {
+  background: #fcfbfd;
+  border-style: dashed;
+}
+.guide--soon .guide__inside svg {
+  opacity: 0.45;
+}
+/* three pillars fill the row as well as four */
+.spillars {
+  grid-template-columns: repeat(var(--pc, 4), 1fr);
+}
+
+/* a longer stage headline steps down a size so it doesn't strand a word */
+.display-xl--long {
+  font-size: clamp(40px, 5.6vw, 76px);
+}

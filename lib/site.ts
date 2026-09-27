@@ -5,9 +5,9 @@
 export const site = {
   name: "ParentVeda",
   domain: "https://parentveda.in",
-  tagline: "A companion that stays.",
+  tagline: "Your child’s story starts with you.",
   description:
-    "ParentVeda is a calm, India-first family companion — from trying to conceive, through pregnancy, into parenting and the school years.",
+    "ParentVeda is a calm, India-first companion for the whole journey of raising a child: trying to conceive, pregnancy, parenting and the school years.",
   appLive: false,
   playUrl: "https://play.google.com/store/apps/details?id=com.parentveda.app",
   // Seen in the app repo; confirm before launch (DECISIONS.md).

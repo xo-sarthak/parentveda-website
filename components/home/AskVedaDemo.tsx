@@ -25,17 +25,17 @@ const demos: Demo[] = [
       { label: "What this means", text: "Green papaya contains latex, which is thought to be able to trigger contractions. Ripe fruit has very little of it." },
       { label: "What you can do", text: "Choose soft, fully ripe fruit. If your doctor has asked you to avoid papaya altogether, follow your doctor." },
     ],
-    source: "From ParentVeda’s library · Is it safe? door",
+    source: "From ParentVeda’s library · the Is it safe? guide",
   },
   {
     stage: "Pregnancy · week 32",
     q: "Baby is moving much less than usual today. Is that normal?",
     flag: true,
     sections: [
-      { label: "Please call your doctor now", text: "A change in your baby’s movements is something your doctor or hospital wants to hear about today — not tomorrow. Please call them now, or go in." },
+      { label: "Please call your doctor now", text: "A change in your baby’s movements is something your doctor or hospital wants to hear about today, not tomorrow. Please call them now, or go in." },
       { label: "Why we’re not answering this one", text: "Some questions shouldn’t be answered by an app. When it’s one of those, Ask Veda doesn’t guess. It points you to someone who can check." },
     ],
-    source: "Routed to care — no AI answer given",
+    source: "Sent straight to your doctor, not answered by AI",
   },
   {
     stage: "Trying · month 8",
@@ -45,7 +45,7 @@ const demos: Demo[] = [
       { label: "What this means", text: "Sooner is sensible if your periods are irregular, you have PCOS or thyroid issues, or either of you has a known health concern." },
       { label: "What you can do", text: "Book a visit together. The ‘Time to get help?’ check lists what to carry, and the tests a doctor may start with." },
     ],
-    source: "From ParentVeda’s library · IVF & IUI door",
+    source: "From ParentVeda’s library · the IVF & IUI guide",
   },
 ];
 

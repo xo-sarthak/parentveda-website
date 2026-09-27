@@ -5,7 +5,7 @@ import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
   title: "Why we built ParentVeda",
-  description: "One calm companion for an Indian family, from the first try to the school years — and the rules it keeps.",
+  description: "One calm companion for an Indian family, from the first try to the school years, and the rules it keeps.",
 };
 
 const order = [
@@ -28,11 +28,11 @@ export default function AboutPage() {
             <span className="phero__range">Why ParentVeda</span>
             <h1 id="ab-title" className="display-xl">
               <span className="hl"><span>Families don’t live</span></span>
-              <span className="hl"><span><em>in three apps.</em></span></span>
+              <span className="hl"><span><em>in four apps.</em></span></span>
             </h1>
             <p className="lede rv rv-d2">
-              A couple trying for a baby downloads one app. The positive test sends them to another. The birth, to a third. Each one starts
-              from zero, and most of them were written for somewhere else. ParentVeda is one companion that stays for the whole journey,
+              A couple trying for a baby downloads one app. The positive test sends them to another, the birth to a third, the school years
+              to a fourth. Each one starts from zero, and most of them were written for somewhere else. ParentVeda is one companion that stays for the whole journey,
               written for the way Indian families actually live.
             </p>
           </div>

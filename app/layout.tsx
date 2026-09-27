@@ -5,6 +5,7 @@ import "./site.css";
 import "./articles.css";
 import "./interactions.css";
 import "./contact.css";
+import "./stage.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
@@ -26,12 +27,12 @@ const body = Manrope({ subsets: ["latin"], variable: "--font-body", display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "ParentVeda — a calm companion for trying, pregnancy and parenting",
+    default: "ParentVeda · A calm companion for trying, pregnancy and parenting",
     template: "%s · ParentVeda",
   },
   description: site.description,
   openGraph: {
-    title: "ParentVeda — a companion that stays",
+    title: "ParentVeda · Your child’s story starts with you",
     description: site.description,
     url: site.domain,
     siteName: "ParentVeda",

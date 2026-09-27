@@ -56,9 +56,9 @@ export default function DownloadPage() {
       <section className="section" style={{ paddingTop: 16 }} aria-label="A look inside the app">
         <div className="wrap">
           <div className="phones">
-            <div className="rv rv-d1"><Phone><CycleScreen /></Phone><p>Trying — your cycle, in plain words</p></div>
-            <div className="rv rv-d2"><Phone><WeekScreen /></Phone><p>Pregnancy — every week has its own page</p></div>
-            <div className="rv rv-d3"><Phone><AskScreen /></Phone><p>Ask Veda — calm answers, never a diagnosis</p></div>
+            <div className="rv rv-d1"><Phone><CycleScreen /></Phone><p>Trying: your cycle, in plain words</p></div>
+            <div className="rv rv-d2"><Phone><WeekScreen /></Phone><p>Pregnancy: every week has its own page</p></div>
+            <div className="rv rv-d3"><Phone><AskScreen /></Phone><p>Ask Veda: calm answers, never a diagnosis</p></div>
           </div>
         </div>
       </section>

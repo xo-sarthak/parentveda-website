@@ -17,6 +17,10 @@ npm run build      # production build: every page prerendered
 npm run start
 ```
 
+**Writing copy? Read [VOICE.md](VOICE.md) first.** It holds the idea the whole site
+sells (your child's story starts with you), the three beats every section follows,
+and the words we use and never use.
+
 ## Where things live
 
 | Path | What it is |

@@ -21,10 +21,10 @@ const promises = [
 ];
 
 const pillars = [
-  { glyph: "notes", name: "Shravan", line: "Sacred listening — calm ragas, chosen for each trimester." },
+  { glyph: "notes", name: "Shravan", line: "Sacred listening: real raga and nature recordings, with the musicians named." }, // was "calm ragas, chosen for each trimester"
   { glyph: "talk", name: "Samvad", line: "Cards to read aloud to your baby, and your own voice, recorded." },
   { glyph: "breath", name: "Kriya", line: "Breath and grounding, a few minutes at a time." },
-  { glyph: "diya", name: "Buddhi", line: "A few quiet minutes that are only yours." },
+  { glyph: "diya", name: "Buddhi", line: "Puzzles and word games, a few minutes that are only yours." }, // was "A few quiet minutes that are only yours." — Buddhi is the puzzles pillar in the app
 ];
 
 const homes = [
@@ -48,8 +48,8 @@ const homes = [
     slot: null,
     glyph: "shield",
     hue: 118,
-    title: "The IAP vaccine schedule",
-    body: "Every vaccine on the Indian schedule, why it’s given and what to do after. Reminders so none slips.",
+    title: "The vaccine schedule", // was "The IAP vaccine schedule" — the app follows a government/IAP mix
+    body: "Every vaccine from birth to two, why it’s given and what to do after. Reminders so none slips.",
     tone: "#C5D6C4",
   },
   {
@@ -65,7 +65,7 @@ const homes = [
     glyph: "voice",
     hue: 40,
     title: "Hindi, when you want it",
-    body: "Much of pregnancy is written in Hindi, in Devanagari, with narration you can listen to instead of read.",
+    body: "Much of pregnancy is written in Hindi, in Devanagari, and it can be read aloud to you.", // was "…with narration you can listen to instead of read." — recorded narration is partial
     tone: "#F7ECD4",
   },
   {
@@ -132,14 +132,19 @@ export default function Home() {
       <section className="hero" data-progress aria-labelledby="hero-title">
         <div className="wrap hero__grid">
           <div className="hero__copy">
-            <span className="eyebrow">For the whole journey</span>
+            {/* Kept for revert — the first hero (2026-09-25):
+                eyebrow "For the whole journey", headline "A companion that stays.",
+                lede "From trying to conceive, through every week of pregnancy, into the
+                years of raising and growing a child. Calm, plain words, written for
+                Indian homes, kitchens and hospitals." */}
+            <span className="eyebrow">From the first try to the first school bag</span>
             <h1 id="hero-title" className="display-xl">
-              <span className="hl"><span>A companion</span></span>
-              <span className="hl"><span>that <em>stays.</em></span></span>
+              <span className="hl"><span>Your child’s story</span></span>
+              <span className="hl"><span><em>starts with you.</em></span></span>
             </h1>
             <p className="lede rv rv-d2">
-              From trying to conceive, through every week of pregnancy, into the years of raising and growing a child. Calm, plain
-              words, written for Indian homes, kitchens and hospitals.
+              Long before they arrive, the way you eat, rest, feel and live is already part of their start. ParentVeda shows you
+              the best you can do for your child at every step, and stays beside you while you do it.
             </p>
             <div className="hero__actions rv rv-d3">
               <Link href={getAppHref()} className="btn btn--ink">
@@ -182,15 +187,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* THE IDEA — lit word by word.
+          Kept for revert — the first statement: "Most apps in this space are a tracker
+          with articles stapled on, and they stop at the delivery room. ParentVeda
+          *stays* — from the first try, through *forty weeks,* into the *first steps*
+          and the *first school bag.*" */}
+      <section className="statement" aria-label="The idea behind ParentVeda">
+        <div className="wrap">
+          <span className="eyebrow statement__eyebrow">The idea</span>
+          <ScrollWords text="Everything you do reaches your child. What you eat while you’re trying. How calm you feel at twenty weeks. How you answer a question at bedtime. You won’t get it all right, and nobody does. ParentVeda is here so you can *do the best you can,* at every step, *for them.*" />
+        </div>
+      </section>
+
       {/* STAGE PICKER */}
       <section className="section stages" id="stages" aria-labelledby="stages-title">
         <div className="wrap">
           <header className="section-head section-head--center">
-            <span className="eyebrow eyebrow--plain rv">Four stages, one app</span>
+            <span className="eyebrow eyebrow--plain rv">Four phases, one child</span>
             <h2 id="stages-title" className="display-l rv rv-d1">
               Where are you <em>right now?</em>
             </h2>
-            <p className="lede rv rv-d2">Your home changes with you. Pick where you are, and change it whenever life does.</p>
+            <p className="lede rv rv-d2">
+              Each phase asks something different of you. Start with yours; ParentVeda moves with you when life moves on.
+            </p>
           </header>
           <ul className="stages__grid">
             {stages.map((s, i) => (
@@ -202,6 +221,7 @@ export default function Home() {
                   <span className="stagecard__body">
                     <span className="stagecard__range">{s.range}</span>
                     <span className="stagecard__name">{s.name}</span>
+                    <span className="stagecard__promise">{s.promise}</span>
                     <span className="stagecard__go">
                       See what’s inside <Icon name="arrow" size={18} />
                     </span>
@@ -213,13 +233,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATEMENT — lit word by word */}
-      <section className="statement" aria-label="Why ParentVeda">
-        <div className="wrap">
-          <ScrollWords text="Most apps in this space are a tracker with articles stapled on, and they stop at the delivery room. ParentVeda *stays* — from the first try, through *forty weeks,* into the *first steps* and the *first school bag.*" />
-        </div>
-      </section>
-
       {/* JOURNEY — the thread */}
       <Journey />
 
@@ -228,17 +241,20 @@ export default function Home() {
         <div className="wrap askband__grid">
           <div className="askband__copy">
             <span className="eyebrow rv">Ask Veda</span>
+            {/* Kept for revert — headline "The 2 a.m. question, answered calmly." and lede
+                "Ask anything in your own words. Veda answers from ParentVeda’s own library,
+                in the same clear shape every time, and tells you plainly when it doesn’t know." */}
             <h2 id="ask-title" className="display-l rv rv-d1">
-              The 2 a.m. question, <em>answered calmly.</em>
+              Like calling someone who’s been through it, <em>at any hour.</em>
             </h2>
             <p className="lede rv rv-d2">
-              Ask anything in your own words. Veda answers from ParentVeda’s own library, in the same clear shape every time, and
-              tells you plainly when it doesn’t know.
+              Questions don’t wait for the next appointment. Ask in your own words and get a calm answer: what it means for you
+              and your baby, and what to do next. When something needs a doctor, Veda says so straight away.
             </p>
             <ul className="ticks rv rv-d3">
-              <li><Icon name="check" size={18} /> Answers from our library, never improvised</li>
-              <li><Icon name="check" size={18} /> Red flags skip the AI and go straight to “call your doctor”</li>
-              <li><Icon name="check" size={18} /> Other parents’ experiences are never used as a medical source</li>
+              <li><Icon name="check" size={18} /> Answers from our own library, never made up</li>
+              <li><Icon name="check" size={18} /> Worrying signs get one answer: call your doctor</li>
+              <li><Icon name="check" size={18} /> Other parents’ stories are shared as stories, never as medical advice</li>
             </ul>
             <Link href="/ask-veda" className="link rv rv-d4">
               How Ask Veda works
@@ -266,12 +282,18 @@ export default function Home() {
           </div>
           <div className="garbh__copy">
             <span className="eyebrow rv">Garbh Sanskar</span>
+            {/* Kept for revert — headline "An old practice, offered gently." and lede
+                "Trimester-wise practice: sound, thought, conversation and breath. A few
+                minutes a day, never a pressure, never a promise about your baby." */}
             <h2 id="garbh-title" className="display-l rv rv-d1">
-              An old practice, <em>offered gently.</em>
+              Your calm is their <em>first lullaby.</em>
             </h2>
+            {/* The headline is the app's own line (lib/data/homeDailyContent.json). The honesty is
+                the Garbh door's too: "the one part with real evidence is your voice". */}
             <p className="lede rv rv-d2">
-              Trimester-wise practice: sound, thought, conversation and breath. A few minutes a day, never a pressure, never a
-              promise about your baby.
+              An old Indian practice, offered gently. The part science is clearest about is your voice: your baby comes to know
+              it. So there’s something to say aloud every day, something to listen to together, and quiet minutes for you. It
+              promises nothing about how clever your baby will be, and we say so.
             </p>
             <ul className="pillars">
               {pillars.map((p, i) => (
@@ -298,7 +320,7 @@ export default function Home() {
             </h2>
             <p className="lede rv rv-d2">
               Your mother-in-law’s advice, your doctor’s instructions and the internet rarely agree. ParentVeda starts from how
-              Indian families actually live, and is honest about the rest.
+              Indian families actually live, keeps what’s good for your child, and is honest about the rest.
             </p>
           </header>
           <ul className="bento">
@@ -327,8 +349,8 @@ export default function Home() {
               He gets his own app. <em>Not a copy of hers.</em>
             </h2>
             <p className="lede rv rv-d2">
-              A daily moment, a page for every week, things to read aloud to the bump, and a plain list of what to do next. He
-              joins with her code.
+              A baby has two parents from the very first day. His side of ParentVeda gives him a daily moment, a page for every
+              week, things to read aloud to the bump, and a plain list of what to do next. He joins with her code.
             </p>
             <ul className="ticks ticks--light rv rv-d3">
               <li><Icon name="check" size={18} /> He can read what she shares. He can never change it.</li>
@@ -353,8 +375,9 @@ export default function Home() {
               Six things ParentVeda <em>will never do.</em>
             </h2>
             <p className="lede rv rv-d2">
-              Most apps like this make money by worrying you, scoring you or selling what you tell them. We’ve ruled all of that
-              out, and the rules are built into the app itself, so no future update can quietly bend them.
+              We’ll always tell you what’s worth doing for your child, and why. What we won’t do is worry you, score you, sell
+              what you tell us, or promise outcomes nobody can promise. These rules are built into the app itself, so no future
+              update can quietly bend them.
             </p>
             <p className="never__sign rv rv-d3">Calm is a feature. So is saying no.</p>
           </header>

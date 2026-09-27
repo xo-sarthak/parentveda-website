@@ -1,13 +1,13 @@
 ---
 title: "Calm matters: stress and pregnancy"
 description: "Ordinary stress does not harm a baby. Sustained, unsupported stress can. Where the line is, what the studies measured, and what actually helps."
-standfirst: "Every pregnant woman is told to stay calm, usually by someone adding to her stress. The research is more useful than the advice: a bad week, a hard job, an argument — these do not reach the baby. Months of anxiety or depression without support are associated with real, modest effects, and every one of them is reduced by the same thing: help."
+standfirst: "Every pregnant woman is told to stay calm, usually by someone adding to her stress. The research is more useful than the advice: a bad week, a hard job, an argument: these do not reach the baby. Months of anxiety or depression without support are associated with real, modest effects, and every one of them is reduced by the same thing: help."
 stage: pregnancy
 category: "What the research says"
 author: "ParentVeda editorial"
 date: 2026-09-22
 ---
-Stress hormones — cortisol chiefly — cross the placenta in small amounts, and the placenta itself has an enzyme that breaks most of it down. The system is built to buffer ordinary life. What the large cohort studies find is that women with high anxiety or depression scores sustained across the pregnancy have babies who are, on average, born slightly earlier and slightly lighter, and who score a little higher on measures of emotional reactivity in early childhood. The effects are small, they are averages, and they are substantially reduced when the mother has social support.
+Stress hormones, chiefly cortisol, cross the placenta in small amounts, and the placenta itself has an enzyme that breaks most of it down. The system is built to buffer ordinary life. What the large cohort studies find is that women with high anxiety or depression scores sustained across the pregnancy have babies who are, on average, born slightly earlier and slightly lighter, and who score a little higher on measures of emotional reactivity in early childhood. The effects are small, they are averages, and they are substantially reduced when the mother has social support.
 
 ## What "stress" meant in the studies
 
@@ -19,7 +19,7 @@ Indian studies put antenatal depression at around one woman in six, higher than 
 
 ## What helps, with evidence
 
-- Exercise — thirty minutes of walking most days lowers anxiety scores in pregnant women in trial after trial.
+- Exercise: thirty minutes of walking most days lowers anxiety scores in pregnant women in trial after trial.
 - Sleep, protected. Antenatal insomnia is treatable and is itself a driver of low mood.
 - Yoga and breathing practice: modest but consistent reductions in anxiety in Indian and international trials.
 - Someone to talk to. Partner involvement, a mother or friend who visits, a peer group. Support is the variable that changes outcomes most.
@@ -31,13 +31,13 @@ Reading that stress can affect a baby produces, reliably, more stress. So: the e
 
 ## A word on the word "stress"
 
-Part of the confusion is that the same word covers a deadline, a bereavement and a diagnosis. The research uses validated questionnaires — the Edinburgh scale for depression, the state-trait inventory for anxiety — and those measure a sustained state, not a bad afternoon. When a headline says "stress in pregnancy affects the baby", it is reporting a study of women who scored in the clinical range for weeks, and it is reporting an average difference of days of gestation or grams of birth weight. Those are real and worth acting on. They are not what happens to a child because its mother had a hard week at work.
+Part of the confusion is that the same word covers a deadline, a bereavement and a diagnosis. The research uses validated questionnaires (the Edinburgh scale for depression, the state-trait inventory for anxiety), and those measure a sustained state, not a bad afternoon. When a headline says "stress in pregnancy affects the baby", it is reporting a study of women who scored in the clinical range for weeks, and it is reporting an average difference of days of gestation or grams of birth weight. Those are real and worth acting on. They are not what happens to a child because its mother had a hard week at work.
 
-The one measure that consistently blunts the effect is social support — a partner who helps, a family that does not add pressure, a friend who listens. That is the finding to carry: the stress that matters is the unsupported kind, and support is something other people can provide.
+The one measure that consistently blunts the effect is social support: a partner who helps, a family that does not add pressure, a friend who listens. That is the finding to carry: the stress that matters is the unsupported kind, and support is something other people can provide.
 
 ## Five minutes that count
 
-If a practice is wanted, the one with the most consistent evidence in pregnancy is slow breathing — four seconds in, six out, for five minutes, twice a day. It lowers heart rate and measured anxiety within the session, and it is the breathing that will be asked of you in labour, so the practice is not wasted. It is not a treatment for depression, and it is not a substitute for telling someone. It is five minutes that are yours.
+If a practice is wanted, the one with the most consistent evidence in pregnancy is slow breathing: four seconds in, six out, for five minutes, twice a day. It lowers heart rate and measured anxiety within the session, and it is the breathing that will be asked of you in labour, so the practice is not wasted. It is not a treatment for depression, and it is not a substitute for telling someone. It is five minutes that are yours.
 
 > [!urgent] Talk to your doctor this week if
 > You have felt low, flat or anxious most days for two weeks or more; you cannot sleep even when you have the chance; you have stopped enjoying things; you feel unsafe at home; or you have thoughts of harming yourself. Say it in the words you have. Antenatal depression and anxiety are common, treatable, and nothing to be ashamed of.

@@ -4,6 +4,14 @@ export type QA = { q: string; a: string };
 
 export const homeFaq: QA[] = [
   {
+    q: "What is ParentVeda, in a sentence?",
+    a: "A companion for the years when two people become a family: trying to conceive, pregnancy, parenting and the growing-up years. At each step it shows the best you can do for your child, in plain words, and answers your questions when they come.",
+  },
+  {
+    q: "Does following it guarantee anything?",
+    a: "No, and we’ll never claim it does. We share what’s worth doing for your child and why, from good guidance, and we don’t promise outcomes nobody can promise. Every child arrives, and grows, on their own schedule.",
+  },
+  {
     q: "Is ParentVeda free?",
     a: "You can start without an account and without paying. A few things, like classes and specialist consultations, will cost money, and they always say so before you tap.",
   },
@@ -17,7 +25,7 @@ export const homeFaq: QA[] = [
   },
   {
     q: "Is it in Hindi?",
-    a: "Much of the pregnancy journey is in Hindi, written in Devanagari, with narration you can listen to. The other stages are in English for now.",
+    a: "Much of the pregnancy journey is in Hindi, written in Devanagari, and it can be read aloud to you. The other stages are in English for now.",
   },
   {
     q: "Can my husband use it too?",

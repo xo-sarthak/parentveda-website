@@ -46,7 +46,7 @@ export default function PrivacyPage() {
             ))}
           </div>
           <p className="small" style={{ marginTop: 32 }}>
-            Questions about your data: <a className="link" href={`mailto:${site.email}?subject=Privacy`}>{site.email}</a>
+            Questions about your data? Write to us at <a className="link" href={`mailto:${site.email}?subject=Privacy`}>{site.email}</a>
           </p>
         </div>
       </section>

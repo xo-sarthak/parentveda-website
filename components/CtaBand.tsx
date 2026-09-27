@@ -5,7 +5,8 @@ import { getAppHref, site } from "@/lib/site";
 
 export default function CtaBand({
   title = "Start where you are.",
-  body = "No account needed to start. Tell ParentVeda which stage you’re in, and your home is ready in a minute.",
+  // Kept for revert — "No account needed to start. Tell ParentVeda which stage you’re in, and your home is ready in a minute."
+  body = "Trying, expecting or raising, your home is ready in a minute, set to the phase you’re in. No account needed to start, and we’re with you from there.",
 }: {
   title?: string;
   body?: string;

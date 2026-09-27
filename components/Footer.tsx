@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { stages } from "@/lib/stages";
 import { site } from "@/lib/site";
+import Wordmark from "./Wordmark";
 
 export default function Footer() {
   return (
@@ -10,9 +11,10 @@ export default function Footer() {
         <div className="ftr__about">
           <div className="ftr__brand">
             <Image src="/brand/pv-mark.png" alt="" width={40} height={40} />
-            <span>ParentVeda</span>
+            {/* Kept for revert — <span>ParentVeda</span> in Newsreader */}
+            <Wordmark />
           </div>
-          <p>A calm, India-first companion for the whole journey — trying, expecting, raising, growing.</p>
+          <p>A calm, India-first companion for the whole journey: trying, expecting, raising and growing.</p>
           <p className="ftr__care">
             ParentVeda explains and helps you prepare. It never diagnoses. If your doctor has told you something different, your
             doctor is right.
@@ -50,8 +52,10 @@ export default function Footer() {
           </ul>
         </div>
       </div>
+      {/* Kept for revert — the giant typed wordmark: <span className="rv">Parent<em>Veda</em></span>
+          (Newsreader, outlined "Parent", pink italic "Veda"). Now the logo's own lettering. */}
       <div className="ftr__mark" aria-hidden="true">
-        <span className="rv">Parent<em>Veda</em></span>
+        <span className="ftr__giant rv" />
       </div>
       <div className="wrap ftr__base">
         <span>© {new Date().getFullYear()} ParentVeda. Made in India.</span>

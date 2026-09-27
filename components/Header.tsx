@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, getAppHref } from "@/lib/site";
 import Icon from "./Icon";
+import Wordmark from "./Wordmark";
 
 export default function Header() {
   const pathname = usePathname();
@@ -31,7 +32,8 @@ export default function Header() {
       <div className="hdr__bar">
         <Link href="/" className="hdr__brand" aria-label="ParentVeda home">
           <Image src="/brand/pv-mark.png" alt="" width={34} height={34} priority />
-          <span>ParentVeda</span>
+          {/* Kept for revert — the name was typed in Newsreader: <span>ParentVeda</span> */}
+          <Wordmark />
         </Link>
         <nav className="hdr__nav" aria-label="Main">
           {nav.map((n) => (
