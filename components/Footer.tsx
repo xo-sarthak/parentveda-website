@@ -35,7 +35,7 @@ export default function Footer() {
           <ul>
             <li><Link href="/ask-veda">Ask Veda</Link></li>
             <li><Link href="/fathers">For fathers</Link></li>
-            <li><Link href="/articles">Articles</Link></li>
+            <li><Link href="/reads/">Reads</Link></li>
             <li><Link href="/about">Why we built it</Link></li>
             <li><Link href="/download">Get the app</Link></li>
           </ul>
@@ -47,7 +47,8 @@ export default function Footer() {
             <li><Link href="/partners#employers">Employers</Link></li>
             <li><Link href="/partners#brands">Brands</Link></li>
             <li><Link href="/contact">Contact us</Link></li>
-            <li><Link href="/privacy">Privacy</Link></li>
+            <li><Link href="/legal/">Policies</Link></li>
+            <li><Link href="/legal/delete-account/">Delete your account</Link></li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           </ul>
         </div>

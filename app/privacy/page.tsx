@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Mark, { type Glyph } from "@/components/Mark";
 import { site } from "@/lib/site";
 
@@ -28,8 +29,8 @@ export default function PrivacyPage() {
               <span className="hl"><span><em>stays in your family.</em></span></span>
             </h1>
             <p className="lede rv rv-d2">
-              This is the plain-language version. The full privacy policy will be published here before ParentVeda goes live on Google
-              Play.
+              This is the plain-language version. The full policy, with who we are, your rights and how to reach our Grievance
+              Officer, is in our <Link className="link" href="/legal/privacy/">Privacy Policy</Link>.
             </p>
           </div>
         </div>

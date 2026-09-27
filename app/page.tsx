@@ -10,8 +10,9 @@ import ScrollWords from "@/components/home/ScrollWords";
 import QuestionDrift from "@/components/home/QuestionDrift";
 import Faq, { homeFaq } from "@/components/Faq";
 import CtaBand from "@/components/CtaBand";
-import { stages, getStage } from "@/lib/stages";
-import { getArticles } from "@/lib/articles";
+import { stages } from "@/lib/stages";
+import { getFeaturedPosts } from "@/lib/guides";
+import PostCard from "@/components/reads/PostCard";
 import { getAppHref } from "@/lib/site";
 
 const promises = [
@@ -123,7 +124,10 @@ const never = [
   },
 ];
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const latest = await getFeaturedPosts(3);
   const heroFilm = findVideo("hero-loop");
   const garbhFilm = findVideo("garbh-loop");
   return (
@@ -403,35 +407,36 @@ export default function Home() {
       {/* LATEST ARTICLES */}
       <section className="section" aria-labelledby="latest-title" style={{ paddingBottom: 0 }}>
         <div className="wrap">
+          {/* Kept for revert — this strip listed the eight converted markdown
+              articles (getArticles) and linked to /articles. Reads, fed from
+              Directus, is the one articles section now. */}
           <div className="latest__head">
             <div>
-              <span className="eyebrow rv">Articles</span>
+              <span className="eyebrow rv">Reads</span>
               <h2 id="latest-title" className="display-l rv rv-d1">
                 Read something <em>calm.</em>
               </h2>
             </div>
-            <Link href="/articles" className="btn btn--ghost rv">
-              All articles <Icon name="arrow" />
+            <Link href="/reads/" className="btn btn--ghost rv">
+              All reads <Icon name="arrow" />
             </Link>
           </div>
-          <ul className="rmore">
-            {getArticles()
-              .slice(0, 3)
-              .map((a) => {
-                const s = getStage(a.stage);
-                return (
-                  <li key={a.slug} className="rv">
-                    <Link href={`/articles/${a.slug}`} style={{ ["--tone" as string]: s?.colour, ["--deep-tone" as string]: s?.deep }}>
-                      <span className="rmore__cat">{a.category}</span>
-                      <span className="rmore__t">{a.title}</span>
-                      <span className="rmore__m">
-                        {a.minutes} min read <Icon name="arrow" size={16} />
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
+          {latest.length ? (
+            <ul className="agrid agrid--three">
+              {latest.map((p) => (
+                <li key={`${p.category}/${p.slug}`} className="rv">
+                  <PostCard post={p} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="aempty rv">
+              <p className="display-m">New reads are on their way.</p>
+              <p>
+                Meanwhile, <Link className="link" href="/ask-veda/">Ask Veda</Link> can answer the question you came with.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

@@ -10,8 +10,9 @@ export const site = {
     "ParentVeda is a calm, India-first companion for the whole journey of raising a child: trying to conceive, pregnancy, parenting and the school years.",
   appLive: false,
   playUrl: "https://play.google.com/store/apps/details?id=com.parentveda.app",
-  // Seen in the app repo; confirm before launch (DECISIONS.md).
-  email: "partners@parentveda.com",
+  // The same mailbox the legal pages and the app use (lib/legal.ts ORG).
+  // Was "partners@parentveda.com", seen in an app-repo doc; kept for revert.
+  email: "hello@parentveda.in",
 } as const;
 
 export function getAppHref() {
@@ -24,5 +25,12 @@ export const nav = [
   { href: "/parenting", label: "Parenting" },
   { href: "/skilling", label: "Skilling" },
   { href: "/ask-veda", label: "Ask Veda" },
-  { href: "/articles", label: "Articles" },
+  { href: "/reads", label: "Reads" }, // was /articles, "Articles": Reads is the one articles section
 ];
+
+/* Named exports the carried-over files from the old site import (lib/care,
+   lib/legal pages, reads). Keep SITE_URL in sync with site.domain. */
+export const SITE_URL = site.domain;
+export const SITE_NAME = site.name;
+export const BASE_PATH = "";
+export const asset = (path: string) => `${BASE_PATH}${path}`;

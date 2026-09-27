@@ -4,6 +4,7 @@ import Art from "@/components/Art";
 import Icon from "@/components/Icon";
 import { Phone, WeekScreen, AskScreen, CycleScreen } from "@/components/Phone";
 import { site } from "@/lib/site";
+import Waitlist from "@/components/Waitlist";
 
 export const metadata: Metadata = {
   title: "Get the app",
@@ -37,14 +38,14 @@ export default function DownloadPage() {
                 <p className="notice rv rv-d3">
                   <Icon name="calendar" size={18} /> Android first · iPhone after
                 </p>
-                <div className="hero__actions rv rv-d4">
-                  <Link href="/contact?topic=launch" className="btn btn--ink">
-                    Tell me when it’s live <Icon name="arrow" />
-                  </Link>
-                  <Link href="/#stages" className="btn btn--ghost">
-                    See what’s inside
-                  </Link>
+                {/* Was a link to the contact form's launch topic; the waitlist is
+                    the real list now (Supabase waitlist_signups). */}
+                <div className="rv rv-d4" style={{ width: "100%", maxWidth: 520 }}>
+                  <Waitlist source="download" />
                 </div>
+                <Link href="/#stages" className="link rv rv-d4">
+                  See what’s inside each stage
+                </Link>
               </>
             )}
           </div>

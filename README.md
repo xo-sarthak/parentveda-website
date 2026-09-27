@@ -3,7 +3,9 @@
 The public website for ParentVeda, a calm, India-first family companion for
 trying to conceive, pregnancy, parenting (0–5) and skilling (6–14).
 
-Next.js 16 (App Router) · TypeScript · plain CSS · every page is static.
+Next.js 16 (App Router) · TypeScript · plain CSS · Supabase for Reads, the waitlist, /care
+and the employer portal. It replaces the older site (`C:\parentveda-web`), whose
+functional pages were carried over — see **Carried over from the old site** below.
 No UI framework and no animation library: the motion is one small observer
 (`components/MotionRoot.tsx`) and one scroll loop (`components/home/Journey.tsx`),
 which keeps the first load light on a mid-range Android phone on 4G.
@@ -27,8 +29,11 @@ and the words we use and never use.
 |---|---|
 | `app/page.tsx` | Home |
 | `app/[stage]/page.tsx` | The four stage pages, all from `lib/stages.ts` |
-| `app/articles/` | Article index and the reader |
-| `content/articles/*.md` | **The articles themselves**, one Markdown file each |
+| `app/reads/` | **Reads** — the articles section, live from Directus via Supabase |
+| `app/care/`, `app/invite/` | The doctor-QR and invite landing pages the app links to |
+| `app/legal/`, `app/confirmed/` | Policies (Play needs privacy + delete-account) and the email-confirmed page |
+| `app/portal/` | The employer (sponsor) portal |
+| `content/articles/*.md`, `app/_articles-kept/` | The eight converted app reads, **parked** (not served) |
 | `app/ask-veda`, `fathers`, `about`, `partners`, `privacy`, `download` | Inner pages |
 | `lib/site.ts` | Launch switch (`appLive`), Play Store link, contact email, nav |
 | `lib/stages.ts` | Every door, feature and tool listed per stage |
@@ -37,34 +42,31 @@ and the words we use and never use.
 | `public/weeks/` | The app's week 4–40 baby illustrations |
 | `public/images/` | **Drop the ChatGPT images here** (see below) |
 
-## Adding an article
+## Reads (articles)
 
-Create `content/articles/<slug>.md`:
+Articles are written and published in **Directus**, which stores them in Supabase
+(`content_posts`, `content_categories`). The site reads the published rows:
 
-```md
----
-title: "What the anomaly scan looks for"
-description: "One or two sentences for the card and for Google."
-standfirst: "Optional opening line, shown large above the body."
-stage: pregnancy            # trying-to-conceive | pregnancy | parenting | skilling
-category: "Scans & tests"
-author: "ParentVeda editorial"
-date: 2026-10-01
-related: [what-scans-cost-in-india]   # optional
----
+- `/reads/` — every read, filterable by stage; `/reads/<category>/` — one kind
+  (articles, research summaries, book summaries, recipes, parenting FAQ);
+  `/reads/<category>/<slug>/` — the article; `/reads/authors/<slug>/` — a reviewer.
+- These are **the same addresses the old site had**, trailing slash included, so
+  nothing Google indexed moves. `/guides/...` and `/articles/...` redirect here.
+- Markdown conventions authors use: `> Note:` (the disclaimer), `> Important:`,
+  `> Insight:`, a `## What matters most` summary box, `## Common questions` with
+  `###` questions (becomes an accordion + FAQ structured data), and
+  `![alt](figure:key "caption")` for the hand-drawn diagrams in
+  `components/reads/figures.tsx`.
+- A medical reviewer is credited when the post's `author` matches a name in
+  `lib/authors.ts`; that adds the profile link and MedicalWebPage structured data.
+- Images in posts point at `/media/...`, served from `public/media/`.
+- Pages refresh at most a minute after a publish. For instant: set `REVALIDATE_SECRET`
+  on Vercel and a Directus Flow (Event Hook on `content_posts`, `content_categories`,
+  `content_authors` create/update) → Webhook `POST https://parentveda.in/api/revalidate`
+  with header `x-revalidate-secret`.
 
-Body in Markdown. Every `## Heading` becomes an entry in the table of contents.
-
-> [!note] A calm aside
-> Callout body. Tones: note · tip · urgent · myth
-```
-
-Rebuild, and the article appears in the index, under its stage filter, in "Read next" and in the sitemap.
-The eight seed articles were converted from reads that already ship in the app.
-
-**Bylines:** in the app those reads carry named doctors. The site shows "ParentVeda
-editorial" until those reviewers are confirmed as real and have agreed to be
-named. Don't put a doctor's name on a public page until then.
+The eight articles I converted from the app earlier are kept in `content/articles/`
+and `app/_articles-kept/` but not served, so nothing competes with Reads.
 
 ## Images
 
@@ -128,14 +130,28 @@ to email instead. It never shows "sent" for a message that went nowhere.
 - `app/template.tsx`: the page-arrival transition.
 - Everything respects `prefers-reduced-motion`.
 
+## Carried over from the old site
+
+| What | Where | Needs |
+|---|---|---|
+| Doctor QR landing, `/care/<token>` | `app/care/`, `lib/care.ts` | Supabase keys to name the doctor (works generically without) |
+| Invite landing, `/invite/<code>` | `app/invite/`, `lib/invite.ts` | nothing |
+| App links file | `public/.well-known/assetlinks.json` | the **Play App Signing** SHA-256 in place of the placeholder |
+| Email confirmed | `app/confirmed/` | Supabase → Auth → URL Configuration → Site URL `https://parentveda.in/confirmed` |
+| Policies | `app/legal/`, `lib/legal.ts` | nothing (text carried over word for word) |
+| Reads | `app/reads/`, `lib/guides.ts` | Supabase keys; `REVALIDATE_SECRET` for instant publish |
+| Waitlist | `components/Waitlist.tsx`, `app/actions/subscribe.ts` | `SUPABASE_SERVICE_ROLE_KEY` |
+| Employer portal | `app/portal/`, `middleware.ts` | Supabase keys |
+
 ## Before launch
 
-- Flip `appLive` in `lib/site.ts` once the Play listing is live. Every "Get the app" button then goes straight to Play.
-- Confirm `partners@parentveda.com` is the right public address.
-- **parentveda.in already serves `/care/<token>` and `/invite/<code>`** from the older site
-  (spec in the app repo, `docs/CARE-PAGE-SPEC.md`). If this site replaces that one, those two routes
-  have to move here first, or shared invite links break.
-- The privacy page is a plain-language summary. The full policy still needs writing.
+- **Two switches, one each:** `APP_LIVE` in `lib/invite.ts` (turns /care and /invite into the
+  Play Store bounce) and `appLive` in `lib/site.ts` (every "Get the app" button, and the
+  closing band swaps the waitlist for the Play button). Flip both on listing day.
+- Put the Play App Signing fingerprint into `assetlinks.json` (Play Console → Setup → App signing).
+- Delete the demo Care Partner rows before launch (old site's OPEN-POINTS.md has the SQL).
+- The waitlist stores signups but no email provider sends anything yet; the success
+  message says so honestly.
 - Pricing isn't decided, so the site states no prices.
 
 ## Rules the copy keeps

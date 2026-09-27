@@ -6,6 +6,8 @@ import "./articles.css";
 import "./interactions.css";
 import "./contact.css";
 import "./stage.css";
+import "./ported.css";
+import "./portal.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";

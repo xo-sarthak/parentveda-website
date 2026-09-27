@@ -1,0 +1,668 @@
+/* ─────────────────────────────────────────────────────────────
+   Sponsor portal — /portal, /portal/login, /portal/people, /portal/report.
+
+   Ported from the old site (parentveda-web), where it was Tailwind. Every
+   class here is used only by app/portal/**, prefixed `portal` / `p-` /
+   `pstatus` so nothing collides with the marketing site.
+
+   A WORK SURFACE, deliberately plain: white ground, hairline borders,
+   readable tables, no animation. Someone opens this to answer a question
+   from their CFO; the marketing site's warmth would read as noise. It is
+   still ParentVeda: the same tokens (globals.css), Newsreader headings,
+   Manrope body, the same corner radii.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── the site header and footer do not belong here ─────────────
+   The root layout renders <header class="hdr"> and <footer class="ftr"> on
+   every page. Rather than teach the layout about the portal, every portal
+   page renders inside an element with class "portal", and :has() hides the
+   chrome whenever one is on the page. */
+body:has(.portal) .hdr,
+body:has(.portal) .ftr {
+  display: none;
+}
+/* No page-in rise either: app/template.tsx wraps every page in .pagein. */
+body:has(.portal) .pagein {
+  animation: none;
+}
+
+/* ── the frame ─────────────────────────────────────────────── */
+.portal {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+/* Buttons keep the site's ink pill, without the lift and ripple. */
+.portal .btn,
+.portal .btn:hover,
+.portal .btn:active {
+  transform: none;
+  transition: none;
+}
+.portal .btn--ink:hover {
+  background: var(--deep);
+  box-shadow: var(--shadow-sm);
+}
+.portal .ripple {
+  display: none;
+}
+
+.portal__hdr {
+  border-bottom: 1px solid var(--hair);
+  background: var(--paper);
+}
+.portal__bar {
+  max-width: 56rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px var(--gutter);
+}
+.portal__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.portal__tag {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.portal__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.portal__sponsor {
+  font-size: 14px;
+  color: var(--body);
+}
+.portal__signout {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+.portal__signout:hover {
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .portal__tag,
+  .portal__sponsor {
+    display: none;
+  }
+}
+
+.portal__main {
+  max-width: 56rem;
+  margin-inline: auto;
+  padding: 40px var(--gutter);
+}
+@media (min-width: 640px) {
+  .portal__main {
+    padding-block: 56px;
+  }
+}
+
+.portal__foot {
+  max-width: 56rem;
+  margin-inline: auto;
+  padding: 0 var(--gutter) 56px;
+}
+.portal__foot p {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.portal__foot a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ── type ──────────────────────────────────────────────────── */
+.p-head {
+  margin-bottom: 32px;
+}
+.p-head--tight {
+  margin-bottom: 8px;
+}
+.p-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(28px, 3.4vw, 36px);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.p-head--tight .p-title {
+  margin-top: 12px;
+}
+.p-sub {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--body);
+}
+.p-sub--lede {
+  margin-top: 8px;
+  line-height: 1.65;
+}
+.p-back {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple);
+  text-decoration: none;
+}
+.p-back:hover {
+  text-decoration: underline;
+}
+.p-label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.p-text {
+  margin-top: 8px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.p-text--gap {
+  margin-top: 8px;
+}
+
+/* ── cards ─────────────────────────────────────────────────── */
+.p-card {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-card);
+  padding: 24px;
+}
+.p-card + .p-card {
+  margin-top: 20px;
+}
+@media (min-width: 640px) {
+  .p-card {
+    padding: 32px;
+  }
+}
+.p-card--quiet {
+  background: var(--quiet);
+}
+.p-card__title {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* the headline sentence */
+.p-headline {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.p-accent {
+  color: var(--purple);
+}
+.p-take {
+  margin-top: 20px;
+}
+.p-meter {
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--purple-50);
+}
+.p-meter__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--purple);
+}
+.p-meta {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12.5px;
+  color: var(--body);
+}
+.p-meta strong {
+  color: var(--ink);
+}
+
+/* suppression note */
+.p-note {
+  margin-top: 16px;
+  border-radius: 14px;
+  background: var(--quiet);
+  padding: 16px;
+}
+.p-note__title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.p-note .p-text {
+  margin-top: 6px;
+}
+
+/* consultation stats */
+.p-stats {
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.p-stat {
+  display: flex;
+  flex-direction: column;
+}
+.p-stat__value {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--purple);
+}
+.p-stat__label {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--body);
+}
+
+.p-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* empty / not-an-admin / not-connected */
+.p-empty {
+  padding: 32px;
+}
+.p-empty--spaced {
+  margin-top: 24px;
+}
+.p-empty__title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.p-empty__title--sm {
+  font-size: 20px;
+}
+
+/* inline error */
+.p-alert {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 90, 121, 0.35);
+  background: rgba(255, 90, 121, 0.08);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #a3243d;
+}
+.p-alert--block {
+  margin-top: 24px;
+  padding: 12px 16px;
+}
+
+/* ── login ─────────────────────────────────────────────────── */
+.portal--login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px var(--gutter);
+}
+.p-login {
+  width: 100%;
+  max-width: 24rem;
+}
+.p-login__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.p-login__title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--ink);
+}
+.p-login__sub {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.p-login__card {
+  margin-top: 28px;
+}
+@media (min-width: 640px) {
+  .p-login__card {
+    padding: 24px;
+  }
+}
+.p-login__fine {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.p-login__fine .link {
+  font-weight: 700;
+}
+
+.p-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.p-field {
+  display: block;
+}
+.p-field__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.p-input {
+  margin-top: 6px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+}
+.p-input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px var(--purple-100);
+}
+.p-submit {
+  width: 100%;
+}
+.p-submit:disabled {
+  background: var(--muted);
+  box-shadow: none;
+  cursor: default;
+}
+
+/* ── people ────────────────────────────────────────────────── */
+.p-group {
+  margin-top: 32px;
+}
+.p-group__note {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--body);
+}
+.p-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  border-radius: var(--r-card);
+  background: var(--paper);
+}
+.p-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 14px 20px;
+}
+.p-row + .p-row {
+  border-top: 1px solid var(--hair);
+}
+.p-row__who {
+  min-width: 0;
+  flex: 1;
+}
+.p-row__name,
+.p-row__email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.p-row__name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.p-row__email {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.p-row__date {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* status pills (tone values come from PERSON_STATUS in lib/portal.ts) */
+.pstatus {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.pstatus--active {
+  color: var(--purple);
+  background: var(--purple-50);
+}
+.pstatus--not {
+  color: var(--body);
+  background: var(--quiet);
+}
+.pstatus--removed {
+  color: var(--muted);
+  background: var(--quiet);
+}
+
+/* ── report ────────────────────────────────────────────────── */
+/* The report has no PortalShell; its root is .portal.portal--report. */
+.portal--report {
+  padding-bottom: 1px;
+}
+.p-report__bar {
+  max-width: 48rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px var(--gutter);
+}
+.p-report__bar-end {
+  margin-left: auto;
+}
+.p-report {
+  max-width: 48rem;
+  margin: 0 auto 56px;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-card);
+  padding: 40px 32px;
+}
+@media (max-width: 640px) {
+  .p-report {
+    margin-inline: var(--gutter);
+    padding: 28px 20px;
+  }
+}
+.p-report__head {
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 24px;
+}
+.p-report__kicker {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+.p-report__head .p-title {
+  margin-top: 8px;
+}
+.p-report__section {
+  margin-top: 36px;
+}
+.p-headline--report {
+  font-size: clamp(22px, 2.6vw, 28px);
+}
+
+.p-figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+}
+@media (min-width: 640px) {
+  .p-figures {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.p-figures--3,
+.p-figures.p-figures--3 {
+  margin-top: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.p-figure__value {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.p-figure__label {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.p-table-wrap {
+  margin-top: 12px;
+  overflow-x: auto;
+}
+.p-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.p-table th {
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--hair);
+  text-align: left;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.p-table td {
+  padding: 6px 16px 6px 0;
+  border-bottom: 1px solid rgba(32, 28, 36, 0.06);
+  color: var(--body);
+}
+.p-table th:last-child,
+.p-table td:last-child {
+  padding-right: 0;
+}
+.p-table__strong {
+  font-weight: 700;
+  color: var(--ink) !important;
+}
+
+.p-limits {
+  border-top: 1px solid var(--hair);
+  padding-top: 24px;
+}
+.p-limits__list {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.p-limits__list li + li {
+  margin-top: 6px;
+}
+.p-limits__fine {
+  margin-top: 16px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ── print ─────────────────────────────────────────────────────
+   The report prints to PDF from the browser (window.print()). What a reader
+   receives has no navigation in it: the screen bar, the portal header and
+   every button are hidden, and the report loses its card frame so it sits
+   on the page like a document. */
+@media print {
+  body:has(.portal) {
+    background: #fff;
+  }
+  body:has(.portal) .skip,
+  .portal__hdr,
+  .portal__foot,
+  .p-report__bar,
+  .portal .btn,
+  .p-print {
+    display: none !important;
+  }
+  .portal {
+    min-height: 0;
+    background: #fff;
+  }
+  .p-report {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  .p-table tr,
+  .p-figure,
+  .p-limits {
+    break-inside: avoid;
+  }
+}
