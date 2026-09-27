@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import weeks from "@/lib/weeks.json";
 import { stages } from "@/lib/stages";
 import Icon from "../Icon";
+import CycleWheel from "./CycleWheel";
 
 // The signature: one thread, drawn by your scroll, that never breaks
 // between stages — the product thesis (one companion, not four apps)
@@ -115,7 +116,7 @@ export default function Journey() {
         </header>
 
         {/* Act 1 — Trying */}
-        <article className="act" style={{ ["--act" as string]: ttc.colour, ["--act-deep" as string]: ttc.deep }}>
+        <article className="act act--cycle" style={{ ["--act" as string]: ttc.colour, ["--act-deep" as string]: ttc.deep }}>
           <span className="act__node" aria-hidden="true" />
           <div className="act__copy">
             <span className="act__tag rv">Trying to conceive</span>
@@ -132,6 +133,8 @@ export default function Journey() {
               Inside trying to conceive
             </Link>
           </div>
+          {/* Kept for revert — the plain ring with one purple arc and three ticks. It said
+              nothing on its own, so the card now carries a cycle you can read.
           <div className="act__card rv rv-d2">
             <svg viewBox="0 0 200 200" className="act__ring" aria-hidden="true">
               <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(255,255,255,.7)" strokeWidth="14" />
@@ -140,6 +143,14 @@ export default function Journey() {
             </svg>
             <ul className="act__facts">
               <li><Icon name="check" size={18} /> Your cycle, read back to you in plain words</li>
+              <li><Icon name="check" size={18} /> Food, folic acid and the habits to change now</li>
+              <li><Icon name="check" size={18} /> When to see a doctor, and what to ask</li>
+            </ul>
+          </div>
+          */}
+          <div className="act__card act__card--cycle rv rv-d2">
+            <CycleWheel />
+            <ul className="act__facts act__facts--row">
               <li><Icon name="check" size={18} /> Food, folic acid and the habits to change now</li>
               <li><Icon name="check" size={18} /> When to see a doctor, and what to ask</li>
             </ul>
