@@ -141,7 +141,8 @@ export default async function Home() {
                 lede "From trying to conceive, through every week of pregnancy, into the
                 years of raising and growing a child. Calm, plain words, written for
                 Indian homes, kitchens and hospitals." */}
-            <span className="eyebrow">From the first try to the first school bag</span>
+            {/* Kept for revert — eyebrow "From the first try to the first school bag" */}
+            <span className="eyebrow">Your trusted parenting companion</span>
             <h1 id="hero-title" className="display-xl">
               <span className="hl"><span>Your child’s story</span></span>
               <span className="hl"><span><em>starts with you.</em></span></span>
