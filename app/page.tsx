@@ -13,7 +13,7 @@ import CtaBand from "@/components/CtaBand";
 import { stages } from "@/lib/stages";
 import { getFeaturedPosts } from "@/lib/guides";
 import PostCard from "@/components/reads/PostCard";
-import { getAppHref } from "@/lib/site";
+import { getAppHref, site } from "@/lib/site";
 
 const promises = [
   { glyph: "note", hue: 268, title: "Never a diagnosis", body: "If your doctor said something different, your doctor is right." },
@@ -142,7 +142,7 @@ export default async function Home() {
                 years of raising and growing a child. Calm, plain words, written for
                 Indian homes, kitchens and hospitals." */}
             {/* Kept for revert — eyebrow "From the first try to the first school bag" */}
-            <span className="eyebrow">Your trusted parenting companion</span>
+            <span className="eyebrow">{site.tagline}</span>
             <h1 id="hero-title" className="display-xl">
               <span className="hl"><span>Your child’s story</span></span>
               <span className="hl"><span><em>starts with you.</em></span></span>

@@ -5,7 +5,9 @@
 export const site = {
   name: "ParentVeda",
   domain: "https://parentveda.in",
-  tagline: "Your child’s story starts with you.",
+  // The official tagline (the user, 2026-10-01). Was "Your child’s story starts
+  // with you.", which stays the home headline and the voice guide's idea.
+  tagline: "Your trusted parenting companion",
   description:
     "ParentVeda is a calm, India-first companion for the whole journey of raising a child: trying to conceive, pregnancy, parenting and the school years.",
   appLive: false,

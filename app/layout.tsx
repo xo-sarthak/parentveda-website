@@ -29,12 +29,14 @@ const body = Manrope({ subsets: ["latin"], variable: "--font-body", display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "ParentVeda · A calm companion for trying, pregnancy and parenting",
+    // Was "ParentVeda · A calm companion for trying, pregnancy and parenting"
+    default: `ParentVeda · ${site.tagline}`,
     template: "%s · ParentVeda",
   },
   description: site.description,
   openGraph: {
-    title: "ParentVeda · Your child’s story starts with you",
+    // Was "ParentVeda · Your child’s story starts with you"
+    title: `ParentVeda · ${site.tagline}`,
     description: site.description,
     url: site.domain,
     siteName: "ParentVeda",
@@ -54,12 +56,13 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", name: "ParentVeda", url: site.domain, logo: `${site.domain}/brand/pv-mark.png` },
+    { "@type": "Organization", name: "ParentVeda", slogan: site.tagline, url: site.domain, logo: `${site.domain}/brand/pv-mark.png` },
     {
       "@type": "SoftwareApplication",
       name: "ParentVeda",
       operatingSystem: "Android",
       applicationCategory: "HealthApplication",
+      slogan: site.tagline,
       description: site.description,
     },
   ],

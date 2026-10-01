@@ -1418,6 +1418,12 @@
   border-radius: 12px;
   padding: 4px;
 }
+.ftr__tag {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: #fff;
+}
 .ftr__care {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.55);

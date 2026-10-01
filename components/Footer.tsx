@@ -14,6 +14,7 @@ export default function Footer() {
             {/* Kept for revert — <span>ParentVeda</span> in Newsreader */}
             <Wordmark />
           </div>
+          <p className="ftr__tag">{site.tagline}</p>
           <p>A calm, India-first companion for the whole journey: trying, expecting, raising and growing.</p>
           <p className="ftr__care">
             ParentVeda explains and helps you prepare. It never diagnoses. If your doctor has told you something different, your

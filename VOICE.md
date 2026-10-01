@@ -3,6 +3,12 @@
 Read this before writing any copy for the site. The site already looks right;
 this is what makes it *read* right.
 
+## The tagline
+
+**Your trusted parenting companion.** The official tagline (2026-10-01): the
+home hero line, page titles, link previews, the footer and the structured data
+all read it from `site.tagline` in `lib/site.ts`. Use it word for word.
+
 ## The idea, in one line
 
 **Your child's story starts with you.**
