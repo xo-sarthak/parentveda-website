@@ -23,9 +23,11 @@
 export const AUTHORS_BASE = "/reads/authors";
 
 export type Qualification = {
+  /** The degree, or for a plain line (a training, a posting) the whole line. */
   degree: string;
-  institution: string;
-  year: string;
+  /** Absent on a plain line. A line without an institution is not a credential in Person schema. */
+  institution?: string;
+  year?: string;
 };
 
 export type Author = {
@@ -51,6 +53,8 @@ export type Author = {
   languages?: string[];
   /** Practice / clinic name. */
   practice?: string;
+  /** Where she is based, when that is a place rather than a named practice. */
+  location?: string;
 };
 
 export const AUTHORS: Author[] = [
@@ -96,6 +100,114 @@ export const AUTHORS: Author[] = [
     languages: ["English", "Hindi"],
     practice: "Child Care",
   },
+  {
+    slug: "simranpreet-kaur-sandhu",
+    name: "Dr. Simranpreet Kaur Sandhu",
+    credentials: "PhD",
+    role: "Genetic counsellor and embryologist",
+    shortBio: "Fertility, IVF, recurrent miscarriage and prenatal genetic counselling.",
+    bio: [
+      "Simranpreet counsels couples through infertility, recurrent miscarriage, preconception screening and prenatal testing. She helped set up a genetic clinic and a Level I ART lab at a medical university, and she also coaches on nutrition based on genetic results.",
+    ],
+    specialties: ["Fertility", "IVF", "Miscarriage", "Prenatal genetics"],
+    qualifications: [
+      { degree: "PhD, Medical Physiology (Human Genetics)", institution: "SGRD University of Health Sciences", year: "2023" },
+      { degree: "MSc and BSc (Hons) in Human Genetics, Guru Nanak Dev University" },
+      { degree: "Post-doctoral fellow, ICMR National Institute for Research in Reproductive and Child Health, Mumbai (2023)" },
+      { degree: "Assistant Professor of Genetics, SGRD Institute of Medical Sciences (2021 to 2024); embryologist and counsellor there (2016 to 2024)" },
+      { degree: "Hands-on embryology training in Las Vegas, Bangkok and Mumbai" },
+      { degree: "11 research papers, including work on genes linked to infertility and on prenatal genetic counselling" },
+      { degree: "Selected for the Gates Foundation OpeningGates programme (2024)" },
+    ],
+    memberships: ["Board of Genetic Counselling India", "Indian Society of Human Genetics"],
+    experience: "In genetics and fertility since 2007, with more than 1,000 genetic counselling sessions",
+    registration: "Board of Genetic Counselling India, Level II Genetic Counsellor (BGC 2024-204)",
+    practice: "Blossom Genomic Wellness Clinic, Amritsar",
+  },
+  {
+    slug: "maneesha-mohan",
+    name: "Dr. Maneesha Mohan",
+    credentials: "Physiotherapist",
+    role: "Women's health physiotherapist and lactation specialist",
+    shortBio: "Pregnancy and postnatal physio, breastfeeding support, birth doula and childbirth education.",
+    bio: [
+      "Maneesha works with women through pregnancy, birth and the months after. She covers movement and recovery as a physiotherapist, feeding as a lactation specialist, and birth as a trained doula and childbirth educator.",
+    ],
+    specialties: ["Women's health", "Breastfeeding", "Birth doula", "Childbirth education"],
+    qualifications: [
+      { degree: "Bachelor of Physiotherapy", institution: "Rajiv Gandhi University of Health Sciences, Karnataka", year: "2011" },
+      { degree: "Postgraduate certificate in Women's Health and Rehabilitation, International Health and Fitness Association (2020)" },
+      { degree: "Infant and Young Child Feeding and Lactation Management Specialist, Breastfeeding Promotion Network of India (2019)" },
+      { degree: "Trauma-informed certified birth doula, The Doula Collective" },
+      { degree: "Completed the Lamaze Childbirth Educator Seminar, 25 contact hours (2024)" },
+    ],
+    memberships: ["Indian Association of Physiotherapists"],
+    experience: "Physiotherapist since 2011",
+    registration: "Indian Association of Physiotherapists, Life Member (L-34296)",
+    location: "Bengaluru",
+  },
+  {
+    slug: "keya-sampat",
+    name: "Keya Sampat",
+    role: "Clinical hypnotherapist and HypnoBirthing educator",
+    shortBio: "Calm birth preparation, fear of birth, anxiety and emotional wellbeing.",
+    bio: [
+      "Keya works with what a mother carries into birth. She combines hypnotherapy, HypnoBirthing and body-based somatic work to help people approach pregnancy and birth more calmly.",
+    ],
+    specialties: ["HypnoBirthing", "Birth fear", "Anxiety", "Life coaching"],
+    qualifications: [
+      { degree: "MSc Forensic Psychology", institution: "National Forensic Sciences University, Gandhinagar", year: "2022" },
+      { degree: "Certified in Integrated Clinical Hypnotherapy, Ekaa (2020)" },
+      { degree: "HypnoBirthing Practitioner, HypnoBirthing International, UK (2019)" },
+      { degree: "Integral Somatic Psychology training with Dr. Raja Selvam (2024)" },
+      { degree: "Certified life coach, Inspiring Evolution (2020)" },
+      { degree: "BA Psychology, University of Mumbai" },
+      { degree: "Runs workshops on anxiety and an introduction to HypnoBirthing" },
+    ],
+    memberships: [],
+    experience: "Independent practice since 2018",
+    location: "Parichay, Mumbai \u00b7 sees clients online",
+  },
+  {
+    slug: "aishwarya-jain",
+    name: "Aishwarya Jain",
+    role: "Child guidance counsellor",
+    shortBio: "Child development, behaviour and parenting guidance.",
+    bio: [
+      "Aishwarya helps parents understand how their child is growing, both in behaviour and in development, and what to do when something feels off.",
+    ],
+    specialties: ["Child development", "Behaviour", "Parenting"],
+    qualifications: [
+      { degree: "MSc Human Development and Childhood Studies", institution: "University of Delhi", year: "2016 (First Division)" },
+      { degree: "Advanced Diploma in Child Guidance and Counselling, recognised by RCI (2017); registration renewed 2024" },
+      { degree: "BSc Home Science, University of Delhi (2014, First Division)" },
+    ],
+    memberships: [],
+    experience: "Counselling children and families since 2017",
+    registration: "Rehabilitation Council of India, Rehabilitation Counsellor (CRR A62874), valid to 2029",
+    location: "New Delhi",
+  },
+  {
+    slug: "madhvi-khurana",
+    name: "Madhvi Khurana",
+    role: "Child and adolescent psychologist",
+    shortBio: "Behaviour therapy, psychological assessment and support for children and teenagers.",
+    bio: [
+      "Madhvi works with children and teenagers on behaviour, emotions and development, using therapy and psychological assessment.",
+    ],
+    specialties: ["Children and teens", "Behaviour therapy", "Assessments"],
+    qualifications: [
+      { degree: "MA Clinical Psychology", institution: "Amity University, Noida", year: "2025" },
+      { degree: "Advanced Diploma in Child Guidance and Counselling, Amity University, recognised by RCI (2026)" },
+      { degree: "Trainee child psychologist, Child Development Clinic, Sir Ganga Ram Hospital (2026)" },
+      { degree: "Clinical postings at Moolchand Khairati Ram Hospital" },
+      { degree: "BA Psychology and English, University of Delhi" },
+    ],
+    memberships: [],
+    experience: "Supervised clinical placements, 2022 to 2026",
+    registration: "Rehabilitation Council of India, Rehabilitation Counsellor (CRR A126421), valid to 2033",
+    location: "New Delhi",
+  },
 ];
 
 /* ---------------- Lookup ---------------- */
@@ -108,6 +220,16 @@ export function getAuthorByName(name: string): Author | undefined {
   const wanted = name.trim().toLowerCase();
   return AUTHORS.find((a) => a.name.toLowerCase() === wanted);
 }
+
+/** The field shown on a card's cover. Not a stage: no expert belongs to one. */
+export const AUTHOR_FIELD: Record<string, string> = {
+  "simranpreet-kaur-sandhu": "Genetics and fertility",
+  "maneesha-mohan": "Women's health",
+  "keya-sampat": "Birth and the mind",
+  "aishwarya-jain": "Child development",
+  "madhvi-khurana": "Child psychology",
+  "dr-mahender-singh": "Paediatrics",
+};
 
 /**
  * The profile behind a post's byline, or undefined for a plain-string author

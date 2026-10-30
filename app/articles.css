@@ -402,3 +402,38 @@
   display: grid;
   gap: 16px;
 }
+
+/* ═════════════════════════════ OUR EXPERTS ═════════════════════════════ */
+.experts__note {
+  margin-top: 28px;
+  font-size: 15px;
+  color: var(--muted);
+}
+/* "Show all" on a profile's Qualifications: a native <details>, so no client JS.
+   Both labels sit in the summary; the open state swaps which one shows. */
+.showall {
+  margin-top: 8px;
+}
+.showall > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--purple);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.showall > summary::-webkit-details-marker {
+  display: none;
+}
+.showall > summary .showall__close,
+.showall[open] > summary .showall__open {
+  display: none;
+}
+.showall[open] > summary .showall__close {
+  display: inline;
+}
+.showall[open] > summary {
+  margin-bottom: 8px;
+}

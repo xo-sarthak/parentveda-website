@@ -28,6 +28,7 @@ export const nav = [
   { href: "/skilling", label: "Skilling" },
   { href: "/ask-veda", label: "Ask Veda" },
   { href: "/reads", label: "Reads" }, // was /articles, "Articles": Reads is the one articles section
+  { href: "/experts", label: "Our experts" },
 ];
 
 /* Named exports the carried-over files from the old site import (lib/care,

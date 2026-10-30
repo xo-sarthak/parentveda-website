@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const [posts, categories] = await Promise.all([getAllPosts(), getCategories()]);
 
-  const pages = ["/", ...stages.map((s) => `/${s.slug}`), "/ask-veda", "/fathers", "/about", "/partners", "/privacy", "/download", "/contact"];
+  const pages = ["/", ...stages.map((s) => `/${s.slug}`), "/ask-veda", "/fathers", "/about", "/partners", "/privacy", "/download", "/contact", "/experts"];
 
   return [
     ...pages.map((p) => ({ url: abs(p), lastModified: now, changeFrequency: "monthly" as const, priority: p === "/" ? 1 : 0.7 })),

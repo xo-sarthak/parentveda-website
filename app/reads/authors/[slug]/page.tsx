@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import PostCard from "@/components/reads/PostCard";
-import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Author } from "@/lib/authors";
-import { GUIDES_BASE, GUIDES_NAME, getAllPosts } from "@/lib/guides";
+import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Author, type Qualification } from "@/lib/authors";
+import { getAllPosts } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
 /* A reviewer's profile. It exists as much for search as for readers: health
@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 function personSchema(author: Author, canonicalAbs: string) {
+  const degrees = author.qualifications.filter((q): q is typeof q & { institution: string } => !!q.institution);
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -41,26 +42,43 @@ function personSchema(author: Author, canonicalAbs: string) {
     url: canonicalAbs,
     jobTitle: author.role,
     description: author.shortBio,
-    honorificPrefix: "Dr.",
+    ...(/^dr\.?\s/i.test(author.name) ? { honorificPrefix: "Dr." } : {}),
     ...(author.photo ? { image: `${SITE_URL}${author.photo}` } : {}),
     knowsAbout: author.specialties,
     ...(author.languages?.length ? { knowsLanguage: author.languages } : {}),
-    alumniOf: [...new Set(author.qualifications.map((q) => q.institution))].map((name) => ({
+    // Only a line with an institution is a credential; a training or a posting is plain text.
+    alumniOf: [...new Set(degrees.map((q) => q.institution))].map((name) => ({
       "@type": "EducationalOrganization",
       name,
     })),
-    hasCredential: author.qualifications.map((q) => ({
+    hasCredential: degrees.map((q) => ({
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "degree",
       name: q.degree,
       educationalLevel: q.degree,
-      dateCreated: q.year,
+      ...(q.year?.match(/\d{4}/) ? { dateCreated: q.year.match(/\d{4}/)![0] } : {}),
       recognizedBy: { "@type": "EducationalOrganization", name: q.institution },
     })),
     memberOf: author.memberships.map((name) => ({ "@type": "Organization", name })),
     ...(author.practice ? { worksFor: { "@type": "MedicalBusiness", name: author.practice } } : {}),
     ...(author.registration ? { identifier: author.registration } : {}),
   };
+}
+
+const QUALS_SHOWN = 4;
+
+/* A degree with an institution reads as it always has: the degree in bold, the
+   institution and year under it. A plain line (a training, a posting) is just text. */
+function Qual({ q }: { q: Qualification }) {
+  return q.institution ? (
+    <li>
+      <b>{q.degree}</b>
+      {q.institution}
+      {q.year ? `, ${q.year}` : ""}
+    </li>
+  ) : (
+    <li>{q.degree}</li>
+  );
 }
 
 export default async function AuthorPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -75,7 +93,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
         <div className="wrap">
           <div className="phero__copy rperson">
             <nav className="rhead__crumbs" aria-label="Breadcrumb">
-              <Link href={`${GUIDES_BASE}/`}>{GUIDES_NAME}</Link>
+              <Link href="/experts/">Our experts</Link>
             </nav>
             <div className="rperson__top">
               {author.photo ? (
@@ -84,7 +102,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
                 <span className="rhead__initials rperson__photo">{authorInitials(author.name)}</span>
               )}
               <div>
-                <span className="phero__range">Medical reviewer</span>
+                <span className="phero__range">Our expert</span>
                 <h1 id="a-title" className="display-l">
                   {author.name}
                 </h1>
@@ -107,13 +125,24 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
             <div>
               <h3>Qualifications</h3>
               <ul className="rperson__list">
-                {author.qualifications.map((q) => (
-                  <li key={q.degree}>
-                    <b>{q.degree}</b>
-                    {q.institution}, {q.year}
-                  </li>
+                {author.qualifications.slice(0, QUALS_SHOWN).map((q) => (
+                  <Qual key={q.degree} q={q} />
                 ))}
               </ul>
+              {author.qualifications.length > QUALS_SHOWN && (
+                /* Native disclosure: no client JS. Both labels are in the markup; CSS shows the right one. */
+                <details className="showall">
+                  <summary>
+                    <span className="showall__open">Show all {author.qualifications.length}</span>
+                    <span className="showall__close">Show less</span>
+                  </summary>
+                  <ul className="rperson__list">
+                    {author.qualifications.slice(QUALS_SHOWN).map((q) => (
+                      <Qual key={q.degree} q={q} />
+                    ))}
+                  </ul>
+                </details>
+              )}
             </div>
             <div>
               <h3>Specialties</h3>
@@ -128,6 +157,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
               <ul className="rperson__list">
                 {author.experience ? <li>{author.experience}</li> : null}
                 {author.practice ? <li>{author.practice}</li> : null}
+                {author.location ? <li>{author.location}</li> : null}
                 {author.registration ? <li>Registered: {author.registration}</li> : null}
                 {author.languages?.length ? <li>Speaks {author.languages.join(" and ")}</li> : null}
                 {author.memberships.map((m) => (
