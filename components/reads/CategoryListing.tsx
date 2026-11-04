@@ -1,5 +1,7 @@
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 import PostCard from "@/components/reads/PostCard";
+import { breadcrumbSchema, categoryCrumbs } from "@/lib/jsonld";
 import { GUIDES_BASE, GUIDES_NAME, categoryPath, type GuideCategory, type GuidePost } from "@/lib/guides";
 
 /* One page of a category. Plain links, no client state, so a crawler can walk
@@ -69,6 +71,7 @@ export default function CategoryListing({ category, posts, page }: { category: G
           ) : null}
         </div>
       </section>
+      <JsonLd data={breadcrumbSchema(categoryCrumbs(category))} />
     </>
   );
 }

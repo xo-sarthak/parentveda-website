@@ -3,7 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import PostCard from "@/components/reads/PostCard";
-import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Author, type Qualification } from "@/lib/authors";
+import JsonLd from "@/components/JsonLd";
+import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Qualification } from "@/lib/authors";
+import { breadcrumbSchema, personSchema } from "@/lib/jsonld";
 import { getAllPosts, type GuidePost } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
@@ -30,38 +32,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: { canonical },
     openGraph: { type: "profile", url: `${SITE_URL}${canonical}`, title, description: author.shortBio },
     twitter: { card: "summary", title, description: author.shortBio },
-  };
-}
-
-function personSchema(author: Author, canonicalAbs: string) {
-  const degrees = author.qualifications.filter((q): q is typeof q & { institution: string } => !!q.institution);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: author.name,
-    url: canonicalAbs,
-    jobTitle: author.role,
-    description: author.shortBio,
-    ...(/^dr\.?\s/i.test(author.name) ? { honorificPrefix: "Dr." } : {}),
-    ...(author.photo ? { image: `${SITE_URL}${author.photo}` } : {}),
-    knowsAbout: author.specialties,
-    ...(author.languages?.length ? { knowsLanguage: author.languages } : {}),
-    // Only a line with an institution is a credential; a training or a posting is plain text.
-    alumniOf: [...new Set(degrees.map((q) => q.institution))].map((name) => ({
-      "@type": "EducationalOrganization",
-      name,
-    })),
-    hasCredential: degrees.map((q) => ({
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "degree",
-      name: q.degree,
-      educationalLevel: q.degree,
-      ...(q.year?.match(/\d{4}/) ? { dateCreated: q.year.match(/\d{4}/)![0] } : {}),
-      recognizedBy: { "@type": "EducationalOrganization", name: q.institution },
-    })),
-    memberOf: author.memberships.map((name) => ({ "@type": "Organization", name })),
-    ...(author.practice ? { worksFor: { "@type": "MedicalBusiness", name: author.practice } } : {}),
-    ...(author.registration ? { identifier: author.registration } : {}),
   };
 }
 
@@ -213,7 +183,15 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
 
       <PostShelf id="rev-title" title={`Reads reviewed by ${shortName}`} posts={reviewed} />
       <PostShelf id="wrote-title" title={`Reads written by ${shortName}`} posts={written} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(author, `${SITE_URL}${canonical}`)) }} />
+      <JsonLd
+        data={[
+          personSchema(author, `${SITE_URL}${canonical}`),
+          breadcrumbSchema([
+            isExpert ? { name: "Our experts", path: "/experts/" } : { name: "About ParentVeda", path: "/about/" },
+            { name: author.name, path: canonical },
+          ]),
+        ]}
+      />
     </>
   );
 }

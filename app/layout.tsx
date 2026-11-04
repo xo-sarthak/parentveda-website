@@ -53,21 +53,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": "Organization", name: "ParentVeda", slogan: site.tagline, url: site.domain, logo: `${site.domain}/brand/pv-mark.png` },
-    {
-      "@type": "SoftwareApplication",
-      name: "ParentVeda",
-      operatingSystem: "Android",
-      applicationCategory: "HealthApplication",
-      slogan: site.tagline,
-      description: site.description,
-    },
-  ],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${display.variable} ${body.variable}`}>
@@ -80,7 +65,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <MotionRoot />
         <Interactions />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );

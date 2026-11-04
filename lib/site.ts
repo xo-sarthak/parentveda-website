@@ -15,6 +15,9 @@ export const site = {
   // The same mailbox the legal pages and the app use (lib/legal.ts ORG).
   // Was "partners@parentveda.com", seen in an app-repo doc; kept for revert.
   email: "hello@parentveda.in",
+  /* ParentVeda's own public profiles (Instagram, YouTube, LinkedIn, Pinterest,
+     Facebook, X). They go into the homepage's Organization schema as sameAs. */
+  socials: [] as string[],
 } as const;
 
 export function getAppHref() {

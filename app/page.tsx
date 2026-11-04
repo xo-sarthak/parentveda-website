@@ -13,6 +13,8 @@ import CtaBand from "@/components/CtaBand";
 import { stages } from "@/lib/stages";
 import { getFeaturedPosts } from "@/lib/guides";
 import PostCard from "@/components/reads/PostCard";
+import JsonLd from "@/components/JsonLd";
+import { homeSchema } from "@/lib/jsonld";
 import { getAppHref, site } from "@/lib/site";
 
 const promises = [
@@ -441,6 +443,7 @@ export default async function Home() {
         </div>
       </section>
 
+      <JsonLd data={homeSchema()} />
       <Faq items={homeFaq} />
       <CtaBand />
     </>

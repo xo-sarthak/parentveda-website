@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AUTHOR_FIELD, EXPERTS, authorPath } from "@/lib/authors";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* The people behind ParentVeda's guidance, one card each, linking to the
@@ -77,6 +79,7 @@ export default function ExpertsPage() {
           <p className="experts__note">These specialists work with us. They do not replace your own doctor.</p>
         </div>
       </section>
+      <JsonLd data={breadcrumbSchema([{ name: "Our experts", path: "/experts/" }])} />
     </>
   );
 }

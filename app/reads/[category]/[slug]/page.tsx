@@ -22,7 +22,9 @@ import {
   isUnlisted,
   postPath,
 } from "@/lib/guides";
-import { buildFaqSchema, buildJsonLd, extractFaqs, formatDate, splitFaqSection } from "@/lib/reads-article";
+import { formatDate, splitFaqSection } from "@/lib/reads-article";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema, categoryCrumbs, faqSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* Live content: re-render at most once a minute so a Directus publish shows
@@ -30,6 +32,9 @@ import { SITE_URL } from "@/lib/site";
    published after the last build still renders on demand; unknown slugs 404. */
 export const revalidate = 60;
 export const dynamicParams = true;
+
+/* A post with no photo of its own. 1200px wide, which search needs of a page image. */
+const FALLBACK_IMAGE = "/og.jpg";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -61,7 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const post = await getPost(category, slug);
   if (!post) return {};
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
-  const ogImage = post.ogImage ?? "/parentveda-logo.jpg";
+  const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   return {
     title: post.metaTitle ?? post.title,
     description: post.description,
@@ -93,14 +98,10 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
   const related = await getRelatedPosts(post, 3);
-  const ogImage = post.ogImage ?? "/parentveda-logo.jpg";
+  const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
   const writer = resolveWriter(post);
   const reviewer = resolveReviewer(post);
-  const baseJsonLd = buildJsonLd(post, `${SITE_URL}${canonical}`, ogImageAbs, reviewer);
-  // An article with its own FAQ section also gets FAQPage (parenting-faq posts already are one).
-  const faqs = post.category === "parenting-faq" ? [] : extractFaqs(post.body);
-  const jsonLd = faqs.length >= 2 ? [baseJsonLd, buildFaqSchema(faqs)] : baseJsonLd;
 
   // The sticky rail replaces an inline [TOC]; dropping the marker lists every H2.
   const full = post.body.replace(/^\[toc\]\s*$/gim, "");
@@ -108,6 +109,13 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   const { body, title: faqTitle, faqs: faqItems, trailing: afterFaq } = splitFaqSection(full);
   const look = stageLook(post.stage);
   const lastChecked = (reviewer && post.reviewedDate) || post.updated || post.date;
+  const crumbs = categoryCrumbs(category);
+  const jsonLd = [
+    articleSchema({ post, canonicalAbs: `${SITE_URL}${canonical}`, imageAbs: ogImageAbs, writer, reviewer }),
+    // The same questions the accordion below shows. parenting-faq posts already are a FAQPage.
+    ...(post.category !== "parenting-faq" && faqItems.length ? [faqSchema(faqItems)] : []),
+    breadcrumbSchema([...crumbs, { name: post.title, path: canonical }]),
+  ];
 
   return (
     <div style={{ ["--tone" as string]: look.tone, ["--deep-tone" as string]: look.deep }}>
@@ -262,7 +270,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
         title="Guidance like this, for every week."
         body="Inside the app, reads like this one arrive when they’re relevant: the scan guide the week before your scan, not six months early."
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
     </div>
   );
 }
