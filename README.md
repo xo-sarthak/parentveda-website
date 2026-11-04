@@ -71,6 +71,21 @@ Articles are written and published in **Directus**, which stores them in Supabas
 The eight articles I converted from the app earlier are kept in `content/articles/`
 and `app/_articles-kept/` but not served, so nothing competes with Reads.
 
+## SEO, affiliate links and reports
+
+```bash
+npm run links:amazon   # reports/amazon-links.csv: every Amazon link, search links first
+npm run links:report   # reports/internal-links.csv: fewest inbound links first
+npm run indexnow:all   # submit every sitemap URL to IndexNow once (add -- --dry-run to test)
+```
+
+- `supabase/seo_author_fields.sql` adds the writer and reviewer fields. Step 2 runs only after the code is live.
+- `/sitemap.xml` and `/llms.txt` are generated from the content source.
+- On publish, the Directus Flow calls `/api/revalidate/`, which clears the cache and pings IndexNow.
+  It needs `REVALIDATE_SECRET` on Vercel, and `INDEXNOW_KEY` for the ping.
+- Affiliate domains live in `lib/affiliate.json`. Settings are described in `.env.example`.
+- ParentVeda's public profiles go in `socials` in `lib/site.ts`; a person's go in `sameAs` in `lib/authors.ts`.
+
 ## Images
 
 Every picture slot works today. Until its file exists, it shows one of the app's
