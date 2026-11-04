@@ -42,7 +42,7 @@
           Collections: content_posts, content_categories, content_authors
           Operation: Webhook / Request URL
           Method:   POST
-          URL:      https://parentveda.in/api/revalidate
+          URL:      https://parentveda.in/api/revalidate/
           Headers:  x-revalidate-secret: <the same string>
 
    Non-blocking on purpose: if this site is down, saving in Directus must still
@@ -98,16 +98,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
 
-  /* NEXT 16 SIGNATURE. `revalidateTag(tag)` was valid in 15 and is a type
-     error here — it now takes a cache profile as the second argument, part of
-     the `use cache` model. "max" is the aggressive end: treat everything under
-     this tag as expired.
-
-     Worth pinning in a comment because the change is silent in the worst way:
-     copy an example off the internet, get a compile error, "fix" it by
-     removing the tag argument, and you have quietly turned a targeted
-     invalidation into nothing at all. */
-  revalidateTag(CONTENT_TAG, "max");
+  /* NEXT 16 SIGNATURE. The second argument says how long stale content may
+     still be served. "max" would hand the next visitor the OLD page while it
+     rebuilds, which is exactly what the person who just pressed Publish must
+     not see. { expire: 0 } makes the next request wait for fresh content, and
+     is what the docs prescribe for a webhook (revalidateTag.md). */
+  revalidateTag(CONTENT_TAG, { expire: 0 });
 
   /* Echo what Directus sent, when it sent anything. The body is not trusted
      and not acted on — every tagged read is flushed regardless of which

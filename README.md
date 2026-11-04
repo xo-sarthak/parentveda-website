@@ -49,7 +49,8 @@ Articles are written and published in **Directus**, which stores them in Supabas
 
 - `/reads/` — every read, filterable by stage; `/reads/<category>/` — one kind
   (articles, research summaries, book summaries, recipes, parenting FAQ);
-  `/reads/<category>/<slug>/` — the article; `/reads/authors/<slug>/` — a reviewer.
+  `/reads/<category>/page/<n>/` — page 2 onward of a long category;
+  `/reads/<category>/<slug>/` — the article; `/reads/authors/<slug>/` — a writer or reviewer.
 - These are **the same addresses the old site had**, trailing slash included, so
   nothing Google indexed moves. `/guides/...` and `/articles/...` redirect here.
 - Markdown conventions authors use: `> Note:` (the disclaimer), `> Important:`,
@@ -57,12 +58,14 @@ Articles are written and published in **Directus**, which stores them in Supabas
   `###` questions (becomes an accordion + FAQ structured data), and
   `![alt](figure:key "caption")` for the hand-drawn diagrams in
   `components/reads/figures.tsx`.
-- A medical reviewer is credited when the post's `author` matches a name in
-  `lib/authors.ts`; that adds the profile link and MedicalWebPage structured data.
+- A post's writer is `author_slug` (default `sarthak-thakur`). Its medical reviewer is
+  `reviewed_by`, with `reviewed_at` as the date, and stays empty until an expert has actually
+  reviewed it. Both are slugs in `lib/authors.ts`. A reviewer adds the profile link and
+  MedicalWebPage structured data. `npm run build` lists articles with no reviewer.
 - Images in posts point at `/media/...`, served from `public/media/`.
 - Pages refresh at most a minute after a publish. For instant: set `REVALIDATE_SECRET`
   on Vercel and a Directus Flow (Event Hook on `content_posts`, `content_categories`,
-  `content_authors` create/update) → Webhook `POST https://parentveda.in/api/revalidate`
+  `content_authors` create/update) → Webhook `POST https://parentveda.in/api/revalidate/`
   with header `x-revalidate-secret`.
 
 The eight articles I converted from the app earlier are kept in `content/articles/`

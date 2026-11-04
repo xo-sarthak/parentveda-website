@@ -689,6 +689,32 @@
   margin: 2px 0 4px;
 }
 
+.rpages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+  font-weight: 700;
+}
+.rpages > * {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--body);
+}
+.rpages a:hover {
+  color: var(--purple);
+}
+.rpages [aria-current="page"] {
+  background: var(--purple);
+  color: #fff;
+}
+
 /* ─────────── reads: reviewer profile ─────────── */
 .rperson {
   max-width: 860px;
