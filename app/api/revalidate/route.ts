@@ -56,9 +56,10 @@
    separate embedding index, so it is not stale, it is unaware.)
    ============================================================ */
 
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, after, type NextRequest } from "next/server";
 import { revalidateTag } from "next/cache";
 import { CONTENT_TAG } from "@/lib/supabase";
+import { pingIndexNow, recentlyChangedUrls } from "@/lib/indexnow";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -104,6 +105,12 @@ export async function POST(request: NextRequest) {
      not see. { expire: 0 } makes the next request wait for fresh content, and
      is what the docs prescribe for a webhook (revalidateTag.md). */
   revalidateTag(CONTENT_TAG, { expire: 0 });
+
+  /* After the response, so Directus never waits on Bing, and a failed ping
+     cannot fail a publish. */
+  after(async () => {
+    await pingIndexNow(await recentlyChangedUrls());
+  });
 
   /* Echo what Directus sent, when it sent anything. The body is not trusted
      and not acted on — every tagged read is flushed regardless of which
