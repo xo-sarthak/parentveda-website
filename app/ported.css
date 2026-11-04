@@ -693,6 +693,16 @@
 .rperson {
   max-width: 860px;
 }
+.rperson__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  font-weight: 700;
+}
+.rperson__links a {
+  color: var(--purple);
+}
 .rperson__top {
   display: flex;
   gap: 24px;

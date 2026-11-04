@@ -1,17 +1,12 @@
 /* ============================================================
-   ParentVeda — article authors.
+   ParentVeda — the people behind the articles: writers and expert reviewers.
 
-   Why this lives in code rather than Supabase: an author profile is a
-   small, slow-moving, structured record (qualifications, registration,
-   memberships) that we render into Person schema. Directus currently
-   stores `author` as a plain string on the post, so this file enriches
-   that string into a full profile. Set a post's `author` in Directus to
-   an author's `name` below and the byline, end-of-article card and
-   /reads/authors/<slug> page all light up automatically.
-
-   An author string with no match here still renders exactly as before —
-   plain text, no link. Nothing breaks for the posts bylined
-   "Team ParentVeda".
+   Why this lives in code rather than Supabase: a profile is a small,
+   slow-moving, structured record (qualifications, registration, memberships)
+   that we render into Person schema. A post points at people by slug:
+   `author_slug` is who wrote it, `reviewed_by` is the expert who checked it
+   (see toPost in lib/guides.ts). Add a person here and their byline,
+   end-of-article card and /reads/authors/<slug> page all work from that.
 
    Why it matters for search: Google's quality guidelines for YMYL
    (your-money-or-your-life) topics — which all pregnancy and child-health
@@ -21,6 +16,9 @@
    ============================================================ */
 
 export const AUTHORS_BASE = "/reads/authors";
+
+/** Who a post is credited to when it names nobody. */
+export const DEFAULT_AUTHOR_SLUG = "sarthak-thakur";
 
 export type Qualification = {
   /** The degree, or for a plain line (a training, a posting) the whole line. */
@@ -32,7 +30,8 @@ export type Qualification = {
 
 export type Author = {
   slug: string;
-  /** Must match the post's `author` string in Directus for auto-resolution. */
+  /** "expert" people can review articles and appear on /experts/. */
+  kind: "writer" | "expert";
   name: string;
   /** Post-nominals, shown next to the name. */
   credentials?: string;
@@ -53,13 +52,33 @@ export type Author = {
   languages?: string[];
   /** Practice / clinic name. */
   practice?: string;
-  /** Where she is based, when that is a place rather than a named practice. */
+  /** Where they are based, when that is a place rather than a named practice. */
   location?: string;
+  /** Public profiles that identify this person: LinkedIn, clinic page, Practo. */
+  sameAs?: string[];
 };
 
 export const AUTHORS: Author[] = [
   {
+    slug: "sarthak-thakur",
+    kind: "writer",
+    name: "Sarthak Thakur",
+    role: "Founder & CTO, ParentVeda",
+    photo: "/authors/sarthak-thakur.jpg",
+    shortBio:
+      "Founder and CTO of ParentVeda, from a technology background, building calm guidance for Indian families.",
+    bio: [
+      "Sarthak Thakur is the founder and CTO of ParentVeda. He comes from a technology background and built ParentVeda to give Indian families calm, evidence-informed guidance from trying to conceive through parenting, in one place. He leads how the product is built and works alongside the experts on this site.",
+    ],
+    specialties: [],
+    qualifications: [],
+    memberships: [],
+    // LinkedIn and other public profiles go here once provided.
+    sameAs: [],
+  },
+  {
     slug: "dr-mahender-singh",
+    kind: "expert",
     name: "Dr. Mahender Singh",
     credentials: "MBBS, DCH, MD (Paediatrics)",
     role: "Consultant Child Specialist & Neonatologist",
@@ -102,6 +121,7 @@ export const AUTHORS: Author[] = [
   },
   {
     slug: "simranpreet-kaur-sandhu",
+    kind: "expert",
     name: "Dr. Simranpreet Kaur Sandhu",
     credentials: "PhD",
     role: "Genetic counsellor and embryologist",
@@ -126,6 +146,7 @@ export const AUTHORS: Author[] = [
   },
   {
     slug: "maneesha-mohan",
+    kind: "expert",
     name: "Dr. Maneesha Mohan",
     credentials: "Physiotherapist",
     role: "Women's health physiotherapist and lactation specialist",
@@ -148,6 +169,7 @@ export const AUTHORS: Author[] = [
   },
   {
     slug: "keya-sampat",
+    kind: "expert",
     name: "Keya Sampat",
     role: "Clinical hypnotherapist and HypnoBirthing educator",
     shortBio: "Calm birth preparation, fear of birth, anxiety and emotional wellbeing.",
@@ -170,6 +192,7 @@ export const AUTHORS: Author[] = [
   },
   {
     slug: "aishwarya-jain",
+    kind: "expert",
     name: "Aishwarya Jain",
     role: "Child guidance counsellor",
     shortBio: "Child development, behaviour and parenting guidance.",
@@ -189,6 +212,7 @@ export const AUTHORS: Author[] = [
   },
   {
     slug: "madhvi-khurana",
+    kind: "expert",
     name: "Madhvi Khurana",
     role: "Child and adolescent psychologist",
     shortBio: "Behaviour therapy, psychological assessment and support for children and teenagers.",
@@ -216,11 +240,6 @@ export function getAuthorBySlug(slug: string): Author | undefined {
   return AUTHORS.find((a) => a.slug === slug);
 }
 
-export function getAuthorByName(name: string): Author | undefined {
-  const wanted = name.trim().toLowerCase();
-  return AUTHORS.find((a) => a.name.toLowerCase() === wanted);
-}
-
 /** The field shown on a card's cover. Not a stage: no expert belongs to one. */
 export const AUTHOR_FIELD: Record<string, string> = {
   "simranpreet-kaur-sandhu": "Genetics and fertility",
@@ -231,18 +250,17 @@ export const AUTHOR_FIELD: Record<string, string> = {
   "dr-mahender-singh": "Paediatrics",
 };
 
-/**
- * The profile behind a post's byline, or undefined for a plain-string author
- * like "Team ParentVeda" (which renders as unlinked text, exactly as before).
- *
- * Resolution is purely by name now. There was a PILOT_AUTHOR_BY_POST map here
- * that pinned the ectopic preview to Dr. Mahender Singh, because that post's
- * `author` field in Directus still said "Team ParentVeda" and nothing could
- * write to it. The field is set correctly, so the special case is gone.
- */
-export function resolveAuthor(post: { author: string }): Author | undefined {
-  return getAuthorByName(post.author);
+/** The person who wrote a post. Always someone: an unknown slug falls back to the default. */
+export function resolveWriter(post: { authorSlug: string }): Author {
+  return getAuthorBySlug(post.authorSlug) ?? getAuthorBySlug(DEFAULT_AUTHOR_SLUG)!;
 }
+
+/** The expert who reviewed a post, or undefined when no expert has. */
+export function resolveReviewer(post: { reviewedBy?: string }): Author | undefined {
+  return post.reviewedBy ? getAuthorBySlug(post.reviewedBy) : undefined;
+}
+
+export const EXPERTS = AUTHORS.filter((a) => a.kind === "expert");
 
 export function authorPath(slug: string): string {
   return `${AUTHORS_BASE}/${slug}`;

@@ -10,7 +10,7 @@ import PostCard, { stageLook } from "@/components/reads/PostCard";
 import ReadRail from "@/components/reads/ReadRail";
 import { tocItems } from "@/components/reads/toc";
 import { headingSlug } from "@/lib/headings";
-import { authorPath, authorInitials, resolveAuthor } from "@/lib/authors";
+import { authorPath, authorInitials, getAuthorBySlug, resolveReviewer, resolveWriter, type Author } from "@/lib/authors";
 import {
   GUIDES_BASE,
   GUIDES_NAME,
@@ -33,6 +33,26 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
+
+  /* A build-time prompt, not a failure: a reviewer is credited only once an
+     expert has actually reviewed the piece. */
+  const unreviewed = posts.filter((p) => !p.reviewedBy);
+  if (unreviewed.length) {
+    console.warn(
+      `[reads] ${unreviewed.length} of ${posts.length} articles have no medical reviewer:\n` +
+        unreviewed.map((p) => `  - ${p.category}/${p.slug}`).join("\n")
+    );
+  }
+  const unknown = posts.filter(
+    (p) => !getAuthorBySlug(p.authorSlug) || (p.reviewedBy && getAuthorBySlug(p.reviewedBy)?.kind !== "expert")
+  );
+  if (unknown.length) {
+    console.warn(
+      `[reads] these articles name a person who is not in lib/authors.ts, or a reviewer who is not an expert:\n` +
+        unknown.map((p) => `  - ${p.category}/${p.slug}: author ${p.authorSlug}, reviewer ${p.reviewedBy ?? "none"}`).join("\n")
+    );
+  }
+
   return posts.map((p) => ({ category: p.category, slug: p.slug }));
 }
 
@@ -56,7 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
-      authors: [post.author],
+      authors: [resolveWriter(post).name],
       tags: post.tags,
       images: [{ url: ogImage, ...(post.ogImageAlt ? { alt: post.ogImageAlt } : {}) }],
     },
@@ -75,8 +95,9 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   const related = await getRelatedPosts(post, 3);
   const ogImage = post.ogImage ?? "/parentveda-logo.jpg";
   const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
-  const author = resolveAuthor(post);
-  const baseJsonLd = buildJsonLd(post, `${SITE_URL}${canonical}`, ogImageAbs, author);
+  const writer = resolveWriter(post);
+  const reviewer = resolveReviewer(post);
+  const baseJsonLd = buildJsonLd(post, `${SITE_URL}${canonical}`, ogImageAbs, reviewer);
   // An article with its own FAQ section also gets FAQPage (parenting-faq posts already are one).
   const faqs = post.category === "parenting-faq" ? [] : extractFaqs(post.body);
   const jsonLd = faqs.length >= 2 ? [baseJsonLd, buildFaqSchema(faqs)] : baseJsonLd;
@@ -86,6 +107,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   const items = tocItems(full);
   const { body, title: faqTitle, faqs: faqItems, trailing: afterFaq } = splitFaqSection(full);
   const look = stageLook(post.stage);
+  const lastChecked = (reviewer && post.reviewedDate) || post.updated || post.date;
 
   return (
     <div style={{ ["--tone" as string]: look.tone, ["--deep-tone" as string]: look.deep }}>
@@ -102,22 +124,18 @@ export default async function PostPage({ params }: { params: Promise<{ category:
             <h1 className="display-l rhead__title">{post.title}</h1>
             {post.description ? <p className="rhead__desc">{post.description}</p> : null}
             <p className="rhead__meta">
-              {author ? (
-                <Link href={`${authorPath(author.slug)}/`} className="rhead__reviewer">
-                  {author.photo ? (
-                    <Image src={author.photo} alt="" width={28} height={28} />
-                  ) : (
-                    <span className="rhead__initials">{authorInitials(author.name)}</span>
-                  )}
-                  Medically reviewed by <b>{author.name}</b>
-                </Link>
-              ) : (
-                <span>{post.author}</span>
-              )}
-              {post.date ? (
+              <Byline verb="Written by" person={writer} />
+              {reviewer ? <Byline verb="Medically reviewed by" person={reviewer} credentials /> : null}
+            </p>
+            <p className="rhead__meta">
+              {post.date ? <time dateTime={post.date}>{formatDate(post.date)}</time> : null}
+              {/* "Last reviewed" only when someone reviewed it; otherwise it would claim a review that never happened. */}
+              {lastChecked && (reviewer || lastChecked !== post.date) ? (
                 <>
-                  <span aria-hidden="true">·</span>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  {post.date ? <span aria-hidden="true">·</span> : null}
+                  <span>
+                    {reviewer ? "Last reviewed" : "Updated"} <time dateTime={lastChecked}>{formatDate(lastChecked)}</time>
+                  </span>
                 </>
               ) : null}
               {post.readingTime ? (
@@ -212,23 +230,8 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </p>
             ) : null}
 
-            {author ? (
-              <Link href={`${authorPath(author.slug)}/`} className="rauthor">
-                {author.photo ? (
-                  <Image src={author.photo} alt="" width={64} height={64} />
-                ) : (
-                  <span className="rhead__initials rhead__initials--lg">{authorInitials(author.name)}</span>
-                )}
-                <span>
-                  <small>Medically reviewed by</small>
-                  <b>
-                    {author.name}
-                    {author.credentials ? `, ${author.credentials}` : ""}
-                  </b>
-                  {author.shortBio}
-                </span>
-              </Link>
-            ) : null}
+            {reviewer ? <PersonCard label="Medically reviewed by" person={reviewer} /> : null}
+            <PersonCard label="Written by" person={writer} />
 
             <div className="care rbody__care">
               <Icon name="doctor" size={26} />
@@ -261,6 +264,42 @@ export default async function PostPage({ params }: { params: Promise<{ category:
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </div>
+  );
+}
+
+function Byline({ verb, person, credentials }: { verb: string; person: Author; credentials?: boolean }) {
+  return (
+    <Link href={`${authorPath(person.slug)}/`} className="rhead__reviewer">
+      {person.photo ? (
+        <Image src={person.photo} alt="" width={28} height={28} />
+      ) : (
+        <span className="rhead__initials">{authorInitials(person.name)}</span>
+      )}
+      <span>
+        {verb} <b>{person.name}</b>
+        {credentials && person.credentials ? `, ${person.credentials}` : ""}
+      </span>
+    </Link>
+  );
+}
+
+function PersonCard({ label, person }: { label: string; person: Author }) {
+  return (
+    <Link href={`${authorPath(person.slug)}/`} className="rauthor">
+      {person.photo ? (
+        <Image src={person.photo} alt="" width={64} height={64} />
+      ) : (
+        <span className="rhead__initials rhead__initials--lg">{authorInitials(person.name)}</span>
+      )}
+      <span>
+        <small>{label}</small>
+        <b>
+          {person.name}
+          {person.credentials ? `, ${person.credentials}` : ""}
+        </b>
+        {person.shortBio}
+      </span>
+    </Link>
   );
 }
 
