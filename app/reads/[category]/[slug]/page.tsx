@@ -23,6 +23,7 @@ import {
   postPath,
 } from "@/lib/guides";
 import { formatDate, splitFaqSection } from "@/lib/reads-article";
+import { hasAffiliateLink } from "@/lib/affiliate";
 import JsonLd from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema, categoryCrumbs, faqSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
@@ -109,6 +110,8 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   const { body, title: faqTitle, faqs: faqItems, trailing: afterFaq } = splitFaqSection(full);
   const look = stageLook(post.stage);
   const lastChecked = (reviewer && post.reviewedDate) || post.updated || post.date;
+  // Article order: the disclosure goes above the first affiliate link the reader reaches.
+  const firstAffiliate = [body, ...faqItems.map((f) => f.a), afterFaq].find(hasAffiliateLink);
   const crumbs = categoryCrumbs(category);
   const jsonLd = [
     articleSchema({ post, canonicalAbs: `${SITE_URL}${canonical}`, imageAbs: ogImageAbs, writer, reviewer }),
@@ -202,7 +205,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </div>
             ) : null}
 
-            <PostBody body={body} />
+            <PostBody body={body} disclose={body === firstAffiliate} />
 
             {faqTitle && faqItems.length ? (
               <section className="rfaq" id={headingSlug(faqTitle)} aria-label={faqTitle}>
@@ -214,7 +217,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
                       <Icon name="plus" size={20} />
                     </summary>
                     <div className="rfaq__a">
-                      <PostBody body={f.a} />
+                      <PostBody body={f.a} disclose={f.a === firstAffiliate} />
                     </div>
                   </details>
                 ))}
@@ -223,7 +226,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
             {/* Whatever followed the last question (the medical disclaimer),
                 always in the open, never inside a collapsed panel. */}
-            {afterFaq ? <PostBody body={afterFaq} /> : null}
+            {afterFaq ? <PostBody body={afterFaq} disclose={afterFaq === firstAffiliate} /> : null}
 
             {post.source ? (
               <p className="rsource">

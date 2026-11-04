@@ -32,9 +32,9 @@ export default function CookiePolicyPage() {
     <LegalPage title={META.title} summary={META.summary} sections={SECTIONS}>
       <S id="short-version" title="The short version">
         <Callout>
-          {ORG.site} sets no advertising cookies, no analytics cookies, and no third-party tracking
-          scripts. There is nothing here that follows you around the internet — which is also why
-          you have not been shown a cookie banner.
+          {ORG.site} sets no advertising cookies and nothing that builds an advertising profile. We
+          use Google Analytics to count visits, but only if you accept it. If you decline, or have
+          not been asked, it does not run. Reading works the same either way.
         </Callout>
       </S>
 
@@ -49,7 +49,7 @@ export default function CookiePolicyPage() {
       </S>
 
       <S id="what-we-use" title="What we actually use">
-        <P>Today, the list is short and entirely functional.</P>
+        <P>The list is short. Everything except analytics is functional.</P>
         <UL>
           <LI>
             <strong>Invite links</strong> — when you open a{" "}
@@ -64,6 +64,20 @@ export default function CookiePolicyPage() {
             cookies to route requests and protect against abuse. These do not identify you as a
             person.
           </LI>
+          <LI>
+            <strong>Your cookie choice</strong> — one entry in your browser&rsquo;s{" "}
+            <em>local storage</em> remembers whether you accepted or declined analytics, so we do not
+            ask on every page. It stays on your device and contains nothing else.
+          </LI>
+          <LI>
+            <strong>Google Analytics, if you accept</strong> — Google&rsquo;s script and its{" "}
+            <em>_ga</em> cookies, which last up to two years, tell us how many people visit, how they
+            found us, which pages they read and which product links they click. Google receives your
+            IP address, your browser and device type, and the address of each page you read, and an
+            address can show what a page is about, such as a pregnancy or fertility topic. Google
+            processes this under its own terms, and some of it outside India. Advertising features
+            are switched off. It does not run on invite, doctor or employer portal links.
+          </LI>
         </UL>
         <P>
           When the app launches and accounts exist, we will need a session cookie to keep you signed
@@ -73,29 +87,35 @@ export default function CookiePolicyPage() {
 
       <S id="what-we-dont" title="What we do not use">
         <UL>
-          <LI>No Google Analytics, or any other analytics product.</LI>
+          <LI>No analytics of any kind unless you accept it.</LI>
           <LI>No advertising or retargeting pixels.</LI>
           <LI>No social media tracking scripts.</LI>
           <LI>No cross-site profiling, and no selling of any of it.</LI>
         </UL>
         <P>
-          This is a deliberate choice rather than an oversight. A site read by women looking up
+          This is a deliberate choice rather than an oversight. A site read by people looking up
           pregnancy loss, complications and fertility should not be quietly building an advertising
-          profile out of it.
+          profile out of it. That is why analytics is off until you say yes, and why saying no costs
+          you nothing.
         </P>
       </S>
 
       <S id="third-party" title="Third parties">
         <P>
-          Our guides link out to other websites, and those sites set their own cookies once you
-          arrive. We have no control over them. If you install the app from Google Play, Google&rsquo;s
+          Our guides link out to other websites, including Amazon for some products, and those sites
+          set their own cookies once you arrive. We have no control over them. See our{" "}
+          <A href={legalPath("affiliate-disclosure")}>Affiliate Disclosure</A>. If you install the app from Google Play, Google&rsquo;s
           own terms and privacy policy apply to that.
         </P>
       </S>
 
       <S id="managing" title="Managing them yourself">
         <P>
-          Every browser lets you view, block and delete cookies and site storage, usually under
+          To change your answer about analytics at any time, use <strong>Cookie settings</strong> in
+          the footer. Declining removes our Google Analytics cookies from your browser.
+        </P>
+        <P>
+          Every browser also lets you view, block and delete cookies and site storage, usually under
           Settings &rarr; Privacy. Blocking everything for this site will not break the guides —
           there is nothing here you need to accept in order to read.
         </P>
@@ -103,9 +123,10 @@ export default function CookiePolicyPage() {
 
       <S id="changes" title="If this changes">
         <P>
-          If we ever add analytics or anything that tracks behaviour, we will update this page,
-          say so plainly, and ask for your consent first rather than assuming it. For the wider
-          picture of what we collect, see the <A href={legalPath("privacy")}>Privacy Policy</A>.
+          On {ORG.updated} we added Google Analytics, which runs only with your consent, and said so
+          here. If we add anything else that tracks behaviour, we will update this page, say so
+          plainly, and ask for your consent first rather than assuming it. For the wider picture of
+          what we collect, see the <A href={legalPath("privacy")}>Privacy Policy</A>.
         </P>
       </S>
     </LegalPage>

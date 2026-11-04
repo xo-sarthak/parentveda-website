@@ -81,9 +81,9 @@ export default function PrivacyPolicyPage() {
         </P>
 
         <Callout>
-          We do not run advertising trackers, analytics pixels or third-party marketing scripts on
-          this website. Not &ldquo;we limit them&rdquo; — there are none. If that ever changes, this
-          policy will say so before it happens.
+          We do not run advertising trackers or third-party marketing scripts on this website. Not
+          &ldquo;we limit them&rdquo; — there are none. The one analytics tool we use, Google
+          Analytics, runs only if you accept it, with its advertising features off.
         </Callout>
       </S>
 
@@ -101,8 +101,9 @@ export default function PrivacyPolicyPage() {
             networks.
           </LI>
           <LI>
-            Reading a guide on this website tells us nothing about you personally — the guides
-            require no account and set no tracking cookie.
+            Reading a guide needs no account and sets no tracking cookie unless you accept analytics.
+            If you do, Google Analytics sees the addresses of the pages you read, which can show
+            their topic. We use that to count readers, never to identify you or target advertising.
           </LI>
         </UL>
       </S>
@@ -157,6 +158,10 @@ export default function PrivacyPolicyPage() {
             <strong>Our email provider</strong> — to deliver the newsletter and launch
             announcements.
           </LI>
+          <LI>
+            <strong>Google Analytics</strong> — only if you accept it, to count visits and see which
+            pages and product links are read and clicked.
+          </LI>
         </UL>
         <P>
           We may also disclose information where the law genuinely requires it, or to protect
@@ -171,8 +176,9 @@ export default function PrivacyPolicyPage() {
 
       <S id="cookies" title="Cookies and browser storage">
         <P>
-          This site uses only what it needs to function, and no advertising or analytics cookies.
-          The details, including the one piece of browser storage we set on invite links, are in the{" "}
+          This site uses what it needs to function, and no advertising cookies. Analytics cookies are
+          set only if you accept them, and you can change your answer through Cookie settings in the
+          footer. The details are in the{" "}
           <A href={legalPath("cookies")}>Cookie Policy</A>.
         </P>
       </S>
@@ -243,6 +249,12 @@ export default function PrivacyPolicyPage() {
           starts holding more than an email address. We will update the date at the top, and for any
           change that materially affects your rights we will tell you directly rather than quietly
           editing the page.
+        </P>
+        <P>
+          On {ORG.updated} we added optional Google Analytics, which runs only with your consent, and
+          links to Amazon that may earn us a commission. See the{" "}
+          <A href={legalPath("cookies")}>Cookie Policy</A> and{" "}
+          <A href={legalPath("affiliate-disclosure")}>Affiliate Disclosure</A>.
         </P>
       </S>
 

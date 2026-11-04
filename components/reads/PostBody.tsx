@@ -2,6 +2,7 @@ import Markdown, { defaultUrlTransform, type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FIGURES, FIGURE_SCHEME } from "./figures";
 import { headingSlug } from "@/lib/headings";
+import { AFFILIATE_REL, isAffiliateLink, rehypeAffiliateDisclosure, withAssociateTag } from "@/lib/affiliate";
 
 /**
  * Renders an article's Markdown body. The component map and its conventions
@@ -102,11 +103,16 @@ function makeComponents(): Components {
         </aside>
       );
     },
-    a: ({ children, href }) => (
-      <a href={href} {...(href?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-        {children}
-      </a>
-    ),
+    a: ({ children, href }) =>
+      isAffiliateLink(href) ? (
+        <a href={withAssociateTag(href!)} target="_blank" rel={AFFILIATE_REL} data-affiliate="">
+          {children}
+        </a>
+      ) : (
+        <a href={href} {...(href?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+          {children}
+        </a>
+      ),
     img: ({ src, alt, title }) => {
       if (typeof src !== "string") return null;
       if (src.startsWith(FIGURE_SCHEME)) {
@@ -141,10 +147,17 @@ function makeComponents(): Components {
    an empty src. Let that one through; everything else keeps the default. */
 const urlTransform = (url: string): string => (url.startsWith(FIGURE_SCHEME) ? url : defaultUrlTransform(url));
 
-export default function PostBody({ body }: { body: string }) {
+/* `disclose`: this block holds the article's first affiliate link, so the
+   disclosure line goes above it. One article can render several PostBody blocks. */
+export default function PostBody({ body, disclose }: { body: string; disclose?: boolean }) {
   return (
     <div className="rbody__prose">
-      <Markdown remarkPlugins={[remarkGfm]} components={makeComponents()} urlTransform={urlTransform}>
+      <Markdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={disclose ? [rehypeAffiliateDisclosure] : []}
+        components={makeComponents()}
+        urlTransform={urlTransform}
+      >
         {body}
       </Markdown>
     </div>

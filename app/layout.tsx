@@ -12,6 +12,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
 import Interactions from "@/components/Interactions";
+import Analytics from "@/components/Analytics";
 import { site } from "@/lib/site";
 
 // The app's own pairing (docs/DESIGN-SYSTEM.md §2.2): Newsreader for display —
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <MotionRoot />
         <Interactions />
+        <Analytics />
       </body>
     </html>
   );
