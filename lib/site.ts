@@ -17,7 +17,7 @@ export const site = {
   email: "hello@parentveda.in",
   /* ParentVeda's own public profiles (Instagram, YouTube, LinkedIn, Pinterest,
      Facebook, X). They go into the homepage's Organization schema as sameAs. */
-  socials: [] as string[],
+  socials: ["https://www.linkedin.com/company/parentveda/"] as string[],
 } as const;
 
 export function getAppHref() {
