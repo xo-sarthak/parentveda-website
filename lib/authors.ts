@@ -73,8 +73,7 @@ export const AUTHORS: Author[] = [
     specialties: [],
     qualifications: [],
     memberships: [],
-    // LinkedIn and other public profiles go here once provided.
-    sameAs: [],
+    sameAs: ["https://www.linkedin.com/in/sarthak-thakur1/"],
   },
   {
     slug: "dr-mahender-singh",
