@@ -71,7 +71,6 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   return {
     title: post.metaTitle ?? post.title,
     description: post.description,
-    keywords: post.tags,
     // An unlisted post is a review link, not content we want ranked.
     ...(isUnlisted(post) ? { robots: { index: false, follow: false } } : {}),
     alternates: { canonical },
@@ -161,8 +160,15 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
         {post.ogImage ? (
           <div className="wrap rhero">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.ogImage} alt={post.ogImageAlt ?? ""} />
+            {post.ogImage.startsWith("/") ? (
+              /* The largest thing on the page, so it is preloaded. Heroes are 1400x933;
+                 CSS keeps any other ratio undistorted. */
+              <Image src={post.ogImage} alt={post.ogImageAlt ?? ""} width={1400} height={933} sizes="(max-width: 1140px) 100vw, 1140px" preload />
+            ) : (
+              /* An image on another host is not on next/image's allow list. */
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={post.ogImage} alt={post.ogImageAlt ?? ""} />
+            )}
           </div>
         ) : null}
 

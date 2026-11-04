@@ -35,6 +35,8 @@ export const metadata: Metadata = {
     template: "%s · ParentVeda",
   },
   description: site.description,
+  // Larger previews in Google Discover. A page with its own noindex replaces this whole value.
+  robots: "max-image-preview:large",
   openGraph: {
     // Was "ParentVeda · Your child’s story starts with you"
     title: `ParentVeda · ${site.tagline}`,

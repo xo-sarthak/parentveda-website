@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import Waitlist from "@/components/Waitlist";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/download/" },
   title: "Get the app",
   description: "ParentVeda is coming to Google Play first. No account needed to start.",
 };

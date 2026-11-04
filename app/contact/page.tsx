@@ -6,6 +6,7 @@ import Icon from "@/components/Icon";
 import Mark, { type Glyph } from "@/components/Mark";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/" },
   title: "Contact us",
   description: "Write to ParentVeda: parents, doctors and clinics, employers, brands and press.",
 };

@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ stage: string }> }): Promise<Metadata> {
   const s = getStage((await params).stage);
   if (!s) return {};
-  return { title: `${s.name} · ${s.range}`, description: s.intro };
+  return { title: `${s.name} · ${s.range}`, description: s.intro, alternates: { canonical: `/${s.slug}/` } };
 }
 
 // "*text*" in a title becomes the italic half of the line

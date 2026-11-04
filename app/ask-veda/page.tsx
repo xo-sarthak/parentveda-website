@@ -6,6 +6,7 @@ import AskVedaDemo from "@/components/home/AskVedaDemo";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ask-veda/" },
   title: "Ask Veda: calm answers, never made up",
   description:
     "Ask Veda answers pregnancy and parenting questions from ParentVeda's own library, in a clear shape, and routes red flags straight to your doctor.",

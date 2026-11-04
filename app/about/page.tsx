@@ -4,6 +4,7 @@ import Mark from "@/components/Mark";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about/" },
   title: "Why we built ParentVeda",
   description: "One calm companion for an Indian family, from the first try to the school years, and the rules it keeps.",
 };

@@ -384,6 +384,7 @@
 }
 .rhero img {
   width: 100%;
+  height: auto;
   max-height: 560px;
   object-fit: cover;
   border-radius: 28px;
