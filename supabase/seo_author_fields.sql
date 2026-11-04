@@ -32,8 +32,8 @@ insert into public.content_authors (slug, name, role, short_bio, photo, sort)
 values (
   'sarthak-thakur',
   'Sarthak Thakur',
-  'Founder & CTO, ParentVeda',
-  'Founder and CTO of ParentVeda, from a technology background, building calm guidance for Indian families.',
+  'Co-Founder, CTO & Chief Marketing Officer, ParentVeda',
+  'Co-founder, CTO and Chief Marketing Officer of ParentVeda, and the software engineer who builds its app and the pipeline that checks its articles.',
   '/authors/sarthak-thakur.jpg',
   1
 ) on conflict (slug) do nothing;

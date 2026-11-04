@@ -63,16 +63,18 @@ export const AUTHORS: Author[] = [
     slug: "sarthak-thakur",
     kind: "writer",
     name: "Sarthak Thakur",
-    role: "Founder & CTO, ParentVeda",
+    role: "Co-Founder, CTO & Chief Marketing Officer, ParentVeda",
     photo: "/authors/sarthak-thakur.jpg",
     shortBio:
-      "Founder and CTO of ParentVeda, from a technology background, building calm guidance for Indian families.",
+      "Co-founder, CTO and Chief Marketing Officer of ParentVeda, and the software engineer who builds its app and the pipeline that checks its articles.",
     bio: [
-      "Sarthak Thakur is the founder and CTO of ParentVeda. He comes from a technology background and built ParentVeda to give Indian families calm, evidence-informed guidance from trying to conceive through parenting, in one place. He leads how the product is built and works alongside the experts on this site.",
+      "Sarthak Thakur is a co-founder of ParentVeda, an India-first companion for families through trying to conceive, pregnancy, parenting and skilling. He is its CTO and Chief Marketing Officer, and the only engineer on a three-person founding team.",
+      "A software engineer who previously worked at DRDO (SSPL), he builds the app, the backend, Ask Veda and the editorial pipeline that checks articles and blocks unsafe drafts. He is based in New Delhi.",
     ],
     specialties: [],
     qualifications: [],
     memberships: [],
+    location: "New Delhi",
     sameAs: ["https://www.linkedin.com/in/sarthak-thakur1/"],
   },
   {
