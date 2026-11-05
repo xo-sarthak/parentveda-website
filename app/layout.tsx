@@ -8,6 +8,7 @@ import "./contact.css";
 import "./stage.css";
 import "./ported.css";
 import "./portal.css";
+import "./tools.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";

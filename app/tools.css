@@ -1,0 +1,85 @@
+/* Free tools (/tools/). Built on the site tokens in globals.css. */
+
+.tool-section { padding-top: 8px; padding-bottom: 40px; }
+.tool-wrap { max-width: 860px; }
+.tool-crumbs { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.tool-crumbs a { color: var(--purple); text-decoration: none; }
+
+.tool-card {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-sheet);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(20px, 4vw, 36px);
+}
+.tool-form { display: grid; gap: 18px; }
+.tool-form label { display: grid; gap: 6px; font-weight: 600; color: var(--ink); }
+.tool-form small { font-weight: 400; color: var(--muted); font-size: 14px; }
+.tool-form input[type="date"],
+.tool-form input[type="number"] {
+  font: inherit;
+  font-weight: 500;
+  padding: 12px 14px;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  background: var(--quiet);
+  color: var(--ink);
+  max-width: 280px;
+}
+.tool-form input:focus { outline: 2px solid var(--purple); outline-offset: 1px; }
+.tool-toggle { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.tool-toggle legend { font-weight: 600; margin-bottom: 6px; }
+.tool-toggle label { display: flex; gap: 10px; align-items: center; font-weight: 500; color: var(--body); }
+
+.tool-warn { margin-top: 18px; color: #8a3b12; }
+.tool-result { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--hair); }
+.tool-result__lead { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.5; color: var(--ink); margin: 0 0 18px; }
+.tool-result__lead strong { color: var(--deep); }
+
+.tool-facts { list-style: none; padding: 0; margin: 0 0 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.tool-facts li { background: var(--purple-50); border-radius: 14px; padding: 14px 16px; display: grid; gap: 4px; }
+.tool-facts span { font-size: 13px; color: var(--muted); }
+.tool-facts strong { font-size: 18px; color: var(--deep); }
+
+.tool-table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 14px; }
+.tool-table th, .tool-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+.tool-table th { font-size: 13px; color: var(--muted); font-weight: 600; }
+.tool-table tr.is-past td { color: var(--muted); opacity: 0.7; }
+.tool-small { font-size: 15px; color: var(--body); margin: 8px 0 0; }
+.tool-h3 { font-size: 18px; margin: 10px 0 8px; color: var(--ink); }
+.tool-list { margin: 0; padding-left: 20px; color: var(--body); display: grid; gap: 6px; }
+.tool-print { margin-top: 6px; }
+
+.tool-note { font-size: 15px; color: var(--muted); margin-top: 20px; line-height: 1.6; }
+
+.tool-links { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+.tool-links a { color: var(--purple); font-weight: 600; text-decoration: none; }
+.tool-links a:hover { text-decoration: underline; }
+
+.tool-faq { margin-top: 16px; display: grid; gap: 10px; }
+.tool-faq details { border: 1px solid var(--hair); border-radius: 14px; padding: 14px 18px; background: var(--paper); }
+.tool-faq summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.tool-faq p { margin: 10px 0 0; color: var(--body); line-height: 1.6; }
+
+.tool-grid { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.tool-grid a {
+  display: grid; gap: 8px; height: 100%;
+  padding: 22px; border-radius: var(--r-card);
+  background: var(--tone, var(--purple-50));
+  color: var(--ink); text-decoration: none;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.tool-grid a:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+.tool-grid strong { font-size: 19px; }
+.tool-grid span { color: var(--body); font-size: 15px; line-height: 1.5; }
+.tool-grid .tool-grid__stage { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--deep); }
+
+@media (max-width: 560px) {
+  .tool-table { font-size: 14px; }
+  .tool-table th, .tool-table td { padding: 8px 4px; }
+}
+
+@media print {
+  .hdr, footer, .tool-form, .tool-print, .tool-section:not(:has(.tool-card)), .phero .lede { display: none !important; }
+  .tool-card { box-shadow: none; border: 0; padding: 0; }
+}
