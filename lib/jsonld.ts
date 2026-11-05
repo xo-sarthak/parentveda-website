@@ -12,6 +12,13 @@ import { SITE_NAME, SITE_URL, site } from "@/lib/site";
 const CONTEXT = "https://schema.org";
 const LOGO = `${SITE_URL}/brand/pv-mark.png`;
 
+/* Google asks for a time and timezone on datePublished and dateModified. Posts
+   keep only a calendar date, so midnight in India is a placeholder that keeps
+   that date correct for readers here. */
+function schemaDateTime(date: string): string {
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00+05:30` : date;
+}
+
 const publisher = {
   "@type": "Organization",
   name: SITE_NAME,
@@ -87,8 +94,8 @@ export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer }
       "@type": "Recipe",
       name: post.title,
       description: post.description,
-      datePublished: post.date,
-      dateModified: post.updated ?? post.date,
+      datePublished: schemaDateTime(post.date),
+      dateModified: schemaDateTime(post.updated ?? post.date),
       author: personRef(writer),
       publisher,
       image: [imageAbs],
@@ -117,8 +124,8 @@ export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer }
     headline: post.title,
     description: post.description,
     image: [imageAbs],
-    datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    datePublished: schemaDateTime(post.date),
+    dateModified: schemaDateTime(post.updated ?? post.date),
     author: personRef(writer),
     ...(reviewer
       ? { reviewedBy: personRef(reviewer), lastReviewed: post.reviewedDate ?? post.updated ?? post.date }
