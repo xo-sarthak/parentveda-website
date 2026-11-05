@@ -4,6 +4,7 @@ import { stages } from "@/lib/stages";
 import { LEGAL_BASE, LEGAL_PAGES, legalPath } from "@/lib/legal";
 import { GUIDES_BASE, categoryPath, getAllPosts, getCategories, postPath, type GuidePost } from "@/lib/guides";
 import { AUTHORS, authorPath } from "@/lib/authors";
+import { TOOLS, TOOLS_BASE, toolPath } from "@/lib/tools";
 
 // Refreshes every minute, so a post published in Directus is submitted within the minute.
 export const revalidate = 60;
@@ -50,6 +51,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly" as const,
       priority: 0.5,
     })),
+    { url: abs(TOOLS_BASE), changeFrequency: "monthly" as const, priority: 0.8 },
+    ...TOOLS.map((t) => ({ url: abs(toolPath(t.slug)), changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: abs(LEGAL_BASE), changeFrequency: "yearly" as const, priority: 0.3 },
     ...LEGAL_PAGES.map((p) => ({ url: abs(legalPath(p.slug)), changeFrequency: "yearly" as const, priority: 0.3 })),
   ];

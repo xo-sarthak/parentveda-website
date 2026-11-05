@@ -2,6 +2,7 @@ import { getAllPosts, postPath, type GuidePost, type StageSlug } from "@/lib/gui
 import { legalPath } from "@/lib/legal";
 import { SITE_URL, site } from "@/lib/site";
 import { stages } from "@/lib/stages";
+import { TOOLS, toolPath } from "@/lib/tools";
 
 /* /llms.txt: a plain map of the site for AI search. Built from the same read as
    every listing, so a new article appears within the minute. */
@@ -40,6 +41,10 @@ export async function GET() {
     `> ${site.name} is an India-first companion for families, offering evidence-informed guidance from trying to conceive through pregnancy, parenting and the school years. Articles are reviewed by named experts where marked. It explains and helps people prepare; it never diagnoses, and it always points back to the reader's own doctor.`,
     "",
     ...sections.flatMap((s) => [s, ""]),
+    "## Free tools",
+    "",
+    ...TOOLS.map((t) => `- [${t.name}](${SITE_URL}${toolPath(t.slug)}): ${t.short}`),
+    "",
     "## About our guidance",
     "",
     `- [Our experts](${SITE_URL}/experts/): who reviews and advises on our content`,

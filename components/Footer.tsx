@@ -47,6 +47,7 @@ export default function Footer() {
             <li><Link href="/ask-veda">Ask Veda</Link></li>
             <li><Link href="/fathers">For fathers</Link></li>
             <li><Link href="/reads/">Reads</Link></li>
+            <li><Link href="/tools/">Free tools</Link></li>
             <li><Link href="/about">Why we built it</Link></li>
             <li><Link href="/download">Get the app</Link></li>
           </ul>

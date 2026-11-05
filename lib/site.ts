@@ -30,6 +30,7 @@ export const nav = [
   { href: "/parenting", label: "Parenting" },
   { href: "/skilling", label: "Skilling" },
   { href: "/ask-veda", label: "Ask Veda" },
+  { href: "/tools/", label: "Free tools" },
   { href: "/reads", label: "Reads" }, // was /articles, "Articles": Reads is the one articles section
   { href: "/experts", label: "Our experts" },
 ];

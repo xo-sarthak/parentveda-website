@@ -8,6 +8,7 @@ import StageStory from "@/components/stage/StageStory";
 import { hueOf } from "@/lib/color";
 import { stages, getStage } from "@/lib/stages";
 import { getAppHref } from "@/lib/site";
+import { TOOLS, toolPath } from "@/lib/tools";
 
 export const dynamicParams = false;
 
@@ -42,6 +43,8 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
   const s = getStage((await params).stage);
   if (!s) notFound();
   const next = s.next ? getStage(s.next) : undefined;
+  const STAGE_NAME: Record<string, string> = { "trying-to-conceive": "Trying to conceive", pregnancy: "Pregnancy", parenting: "Parenting" };
+  const webTools = TOOLS.filter((t) => t.stage === STAGE_NAME[s.slug]);
   const vars = { ["--tone" as string]: s.colour, ["--deep-tone" as string]: s.deep };
 
   return (
@@ -158,6 +161,34 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
           </div>
         </section>
         </>
+      )}
+
+      {webTools.length > 0 && (
+        <section className="section stagetools" aria-labelledby="stagetools-title" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="latest__head">
+              <div>
+                <span className="eyebrow rv">Free tools</span>
+                <h2 id="stagetools-title" className="display-m rv rv-d1">
+                  Try these now, <em>no app needed.</em>
+                </h2>
+              </div>
+              <Link href="/tools/" className="btn btn--ghost rv">
+                All free tools <Icon name="arrow" />
+              </Link>
+            </div>
+            <ul className="tool-grid">
+              {webTools.map((t) => (
+                <li key={t.slug} className="rv" style={{ ["--tone" as string]: t.tone }}>
+                  <Link href={toolPath(t.slug)}>
+                    <strong>{t.name}</strong>
+                    <span>{t.short}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       )}
 
       {next && (
