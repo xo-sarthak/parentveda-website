@@ -21,10 +21,10 @@ const META = getLegalPage("delete-account")!;
 export const metadata: Metadata = {
   title: META.title,
   description: META.summary,
-  alternates: { canonical: legalPath(META.slug) },
+  alternates: { canonical: `${legalPath(META.slug)}/` },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}${legalPath(META.slug)}`,
+    url: `${SITE_URL}${legalPath(META.slug)}/`,
     title: `${META.title} · ${ORG.brand}`,
     description: META.summary,
   },

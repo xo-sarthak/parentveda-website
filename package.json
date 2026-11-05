@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "links:amazon": "node --env-file-if-exists=.env.local scripts/links-amazon.mjs",
+    "links:report": "node --env-file-if-exists=.env.local scripts/links-report.mjs",
+    "indexnow:all": "node --env-file-if-exists=.env.local scripts/indexnow-all.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

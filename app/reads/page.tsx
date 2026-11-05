@@ -3,6 +3,8 @@ import Link from "next/link";
 import PostCard from "@/components/reads/PostCard";
 import ReadsBrowser from "@/components/reads/ReadsBrowser";
 import Icon from "@/components/Icon";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, readsCrumb } from "@/lib/jsonld";
 import { GUIDES_BASE, GUIDES_TAGLINE, categoryPath, countByCategory, getAllPosts, getCategories } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
@@ -81,6 +83,7 @@ export default async function ReadsPage() {
           )}
         </div>
       </section>
+      <JsonLd data={breadcrumbSchema([readsCrumb])} />
     </>
   );
 }

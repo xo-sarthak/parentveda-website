@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Art, { hasImage, findVideo, imageSrc } from "@/components/Art";
 import LoopVideo from "@/components/LoopVideo";
@@ -13,6 +14,8 @@ import CtaBand from "@/components/CtaBand";
 import { stages } from "@/lib/stages";
 import { getFeaturedPosts } from "@/lib/guides";
 import PostCard from "@/components/reads/PostCard";
+import JsonLd from "@/components/JsonLd";
+import { homeSchema } from "@/lib/jsonld";
 import { getAppHref, site } from "@/lib/site";
 
 const promises = [
@@ -125,6 +128,18 @@ const never = [
 ];
 
 export const revalidate = 60;
+
+/* Ownership proofs for Pinterest and Bing. They only need to be on the homepage,
+   and are printed only when set. Read at build, so setting one needs a redeploy. */
+const verification = {
+  ...(process.env.PINTEREST_SITE_VERIFICATION ? { "p:domain_verify": process.env.PINTEREST_SITE_VERIFICATION } : {}),
+  ...(process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : {}),
+};
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  other: verification,
+};
 
 export default async function Home() {
   const latest = await getFeaturedPosts(3);
@@ -441,6 +456,7 @@ export default async function Home() {
         </div>
       </section>
 
+      <JsonLd data={homeSchema()} />
       <Faq items={homeFaq} />
       <CtaBand />
     </>

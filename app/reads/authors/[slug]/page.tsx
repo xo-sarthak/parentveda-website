@@ -3,11 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import PostCard from "@/components/reads/PostCard";
-import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Author, type Qualification } from "@/lib/authors";
-import { getAllPosts } from "@/lib/guides";
+import JsonLd from "@/components/JsonLd";
+import { AUTHORS, authorInitials, authorPath, getAuthorBySlug, type Qualification } from "@/lib/authors";
+import { breadcrumbSchema, personSchema } from "@/lib/jsonld";
+import { getAllPosts, type GuidePost } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 
-/* A reviewer's profile. It exists as much for search as for readers: health
+/* A writer's or reviewer's profile. It exists as much for search as for readers: health
    content is judged heavily on who stands behind it, and a credentialed,
    linkable Person with structured data is the strongest signal we can give.
    Carried over from the old site; the look is new. */
@@ -33,39 +35,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function personSchema(author: Author, canonicalAbs: string) {
-  const degrees = author.qualifications.filter((q): q is typeof q & { institution: string } => !!q.institution);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: author.name,
-    url: canonicalAbs,
-    jobTitle: author.role,
-    description: author.shortBio,
-    ...(/^dr\.?\s/i.test(author.name) ? { honorificPrefix: "Dr." } : {}),
-    ...(author.photo ? { image: `${SITE_URL}${author.photo}` } : {}),
-    knowsAbout: author.specialties,
-    ...(author.languages?.length ? { knowsLanguage: author.languages } : {}),
-    // Only a line with an institution is a credential; a training or a posting is plain text.
-    alumniOf: [...new Set(degrees.map((q) => q.institution))].map((name) => ({
-      "@type": "EducationalOrganization",
-      name,
-    })),
-    hasCredential: degrees.map((q) => ({
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "degree",
-      name: q.degree,
-      educationalLevel: q.degree,
-      ...(q.year?.match(/\d{4}/) ? { dateCreated: q.year.match(/\d{4}/)![0] } : {}),
-      recognizedBy: { "@type": "EducationalOrganization", name: q.institution },
-    })),
-    memberOf: author.memberships.map((name) => ({ "@type": "Organization", name })),
-    ...(author.practice ? { worksFor: { "@type": "MedicalBusiness", name: author.practice } } : {}),
-    ...(author.registration ? { identifier: author.registration } : {}),
-  };
+const QUALS_SHOWN = 4;
+
+/** "linkedin.com/in/x" → "LinkedIn". Anything unrecognised shows its domain. */
+function profileLabel(url: string): string {
+  const host = new URL(url).hostname.replace(/^www\./, "");
+  const known: Record<string, string> = { "linkedin.com": "LinkedIn", "x.com": "X", "twitter.com": "X", "practo.com": "Practo", "instagram.com": "Instagram" };
+  return known[host] ?? host;
 }
 
-const QUALS_SHOWN = 4;
+function PostShelf({ id, title, posts }: { id: string; title: string; posts: GuidePost[] }) {
+  if (!posts.length) return null;
+  return (
+    <section className="section" style={{ paddingTop: 0 }} aria-labelledby={id}>
+      <div className="wrap">
+        <h2 id={id} className="display-m" style={{ marginBottom: 24 }}>
+          {title}
+        </h2>
+        <ul className="agrid agrid--three">
+          {posts.map((p) => (
+            <li key={p.slug}>
+              <PostCard post={p} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
 /* A degree with an institution reads as it always has: the degree in bold, the
    institution and year under it. A plain line (a training, a posting) is just text. */
@@ -85,7 +82,11 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
   const author = getAuthorBySlug((await params).slug);
   if (!author) notFound();
   const canonical = `${authorPath(author.slug)}/`;
-  const posts = (await getAllPosts()).filter((p) => p.author.trim().toLowerCase() === author.name.toLowerCase());
+  const all = await getAllPosts();
+  const reviewed = all.filter((p) => p.reviewedBy === author.slug);
+  const written = all.filter((p) => p.authorSlug === author.slug);
+  const shortName = author.name.replace(/^Dr\.?\s+/, "Dr ");
+  const isExpert = author.kind === "expert";
 
   return (
     <>
@@ -93,7 +94,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
         <div className="wrap">
           <div className="phero__copy rperson">
             <nav className="rhead__crumbs" aria-label="Breadcrumb">
-              <Link href="/experts/">Our experts</Link>
+              {isExpert ? <Link href="/experts/">Our experts</Link> : <Link href="/about/">About ParentVeda</Link>}
             </nav>
             <div className="rperson__top">
               {author.photo ? (
@@ -102,7 +103,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
                 <span className="rhead__initials rperson__photo">{authorInitials(author.name)}</span>
               )}
               <div>
-                <span className="phero__range">Our expert</span>
+                <span className="phero__range">{isExpert ? "Our expert" : "Our team"}</span>
                 <h1 id="a-title" className="display-l">
                   {author.name}
                 </h1>
@@ -115,10 +116,20 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
                 <p key={b.slice(0, 24)}>{b}</p>
               ))}
             </div>
+            {author.sameAs?.length ? (
+              <p className="rperson__links">
+                {author.sameAs.map((url) => (
+                  <a key={url} href={url} target="_blank" rel="noopener noreferrer me">
+                    {profileLabel(url)}
+                  </a>
+                ))}
+              </p>
+            ) : null}
           </div>
         </div>
       </section>
 
+      {isExpert ? (
       <section className="section" style={{ paddingTop: 16 }} aria-label="Credentials">
         <div className="wrap">
           <div className="cards3">
@@ -168,24 +179,19 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
           </div>
         </div>
       </section>
+      ) : null}
 
-      {posts.length > 0 && (
-        <section className="section" style={{ paddingTop: 0 }} aria-labelledby="rev-title">
-          <div className="wrap">
-            <h2 id="rev-title" className="display-m" style={{ marginBottom: 24 }}>
-              Reads reviewed by {author.name.replace(/^Dr\.?\s+/, "Dr ")}
-            </h2>
-            <ul className="agrid agrid--three">
-              {posts.map((p) => (
-                <li key={p.slug}>
-                  <PostCard post={p} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(author, `${SITE_URL}${canonical}`)) }} />
+      <PostShelf id="rev-title" title={`Reads reviewed by ${shortName}`} posts={reviewed} />
+      <PostShelf id="wrote-title" title={`Reads written by ${shortName}`} posts={written} />
+      <JsonLd
+        data={[
+          personSchema(author, `${SITE_URL}${canonical}`),
+          breadcrumbSchema([
+            isExpert ? { name: "Our experts", path: "/experts/" } : { name: "About ParentVeda", path: "/about/" },
+            { name: author.name, path: canonical },
+          ]),
+        ]}
+      />
     </>
   );
 }

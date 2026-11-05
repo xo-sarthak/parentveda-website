@@ -10,7 +10,7 @@ import PostCard, { stageLook } from "@/components/reads/PostCard";
 import ReadRail from "@/components/reads/ReadRail";
 import { tocItems } from "@/components/reads/toc";
 import { headingSlug } from "@/lib/headings";
-import { authorPath, authorInitials, resolveAuthor } from "@/lib/authors";
+import { authorPath, authorInitials, getAuthorBySlug, resolveReviewer, resolveWriter, type Author } from "@/lib/authors";
 import {
   GUIDES_BASE,
   GUIDES_NAME,
@@ -22,7 +22,10 @@ import {
   isUnlisted,
   postPath,
 } from "@/lib/guides";
-import { buildFaqSchema, buildJsonLd, extractFaqs, formatDate, splitFaqSection } from "@/lib/reads-article";
+import { formatDate, splitFaqSection } from "@/lib/reads-article";
+import { hasAffiliateLink } from "@/lib/affiliate";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema, categoryCrumbs, faqSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* Live content: re-render at most once a minute so a Directus publish shows
@@ -31,8 +34,31 @@ import { SITE_URL } from "@/lib/site";
 export const revalidate = 60;
 export const dynamicParams = true;
 
+/* A post with no photo of its own. 1200px wide, which search needs of a page image. */
+const FALLBACK_IMAGE = "/og.jpg";
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
+
+  /* A build-time prompt, not a failure: a reviewer is credited only once an
+     expert has actually reviewed the piece. */
+  const unreviewed = posts.filter((p) => !p.reviewedBy);
+  if (unreviewed.length) {
+    console.warn(
+      `[reads] ${unreviewed.length} of ${posts.length} articles have no medical reviewer:\n` +
+        unreviewed.map((p) => `  - ${p.category}/${p.slug}`).join("\n")
+    );
+  }
+  const unknown = posts.filter(
+    (p) => !getAuthorBySlug(p.authorSlug) || (p.reviewedBy && getAuthorBySlug(p.reviewedBy)?.kind !== "expert")
+  );
+  if (unknown.length) {
+    console.warn(
+      `[reads] these articles name a person who is not in lib/authors.ts, or a reviewer who is not an expert:\n` +
+        unknown.map((p) => `  - ${p.category}/${p.slug}: author ${p.authorSlug}, reviewer ${p.reviewedBy ?? "none"}`).join("\n")
+    );
+  }
+
   return posts.map((p) => ({ category: p.category, slug: p.slug }));
 }
 
@@ -41,11 +67,10 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const post = await getPost(category, slug);
   if (!post) return {};
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
-  const ogImage = post.ogImage ?? "/parentveda-logo.jpg";
+  const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   return {
     title: post.metaTitle ?? post.title,
     description: post.description,
-    keywords: post.tags,
     // An unlisted post is a review link, not content we want ranked.
     ...(isUnlisted(post) ? { robots: { index: false, follow: false } } : {}),
     alternates: { canonical },
@@ -56,7 +81,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
-      authors: [post.author],
+      authors: [resolveWriter(post).name],
       tags: post.tags,
       images: [{ url: ogImage, ...(post.ogImageAlt ? { alt: post.ogImageAlt } : {}) }],
     },
@@ -73,19 +98,26 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
   const related = await getRelatedPosts(post, 3);
-  const ogImage = post.ogImage ?? "/parentveda-logo.jpg";
+  const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
-  const author = resolveAuthor(post);
-  const baseJsonLd = buildJsonLd(post, `${SITE_URL}${canonical}`, ogImageAbs, author);
-  // An article with its own FAQ section also gets FAQPage (parenting-faq posts already are one).
-  const faqs = post.category === "parenting-faq" ? [] : extractFaqs(post.body);
-  const jsonLd = faqs.length >= 2 ? [baseJsonLd, buildFaqSchema(faqs)] : baseJsonLd;
+  const writer = resolveWriter(post);
+  const reviewer = resolveReviewer(post);
 
   // The sticky rail replaces an inline [TOC]; dropping the marker lists every H2.
   const full = post.body.replace(/^\[toc\]\s*$/gim, "");
   const items = tocItems(full);
   const { body, title: faqTitle, faqs: faqItems, trailing: afterFaq } = splitFaqSection(full);
   const look = stageLook(post.stage);
+  const lastChecked = (reviewer && post.reviewedDate) || post.updated || post.date;
+  // Article order: the disclosure goes above the first affiliate link the reader reaches.
+  const firstAffiliate = [body, ...faqItems.map((f) => f.a), afterFaq].find(hasAffiliateLink);
+  const crumbs = categoryCrumbs(category);
+  const jsonLd = [
+    articleSchema({ post, canonicalAbs: `${SITE_URL}${canonical}`, imageAbs: ogImageAbs, writer, reviewer }),
+    // The same questions the accordion below shows. parenting-faq posts already are a FAQPage.
+    ...(post.category !== "parenting-faq" && faqItems.length ? [faqSchema(faqItems)] : []),
+    breadcrumbSchema([...crumbs, { name: post.title, path: canonical }]),
+  ];
 
   return (
     <div style={{ ["--tone" as string]: look.tone, ["--deep-tone" as string]: look.deep }}>
@@ -102,22 +134,18 @@ export default async function PostPage({ params }: { params: Promise<{ category:
             <h1 className="display-l rhead__title">{post.title}</h1>
             {post.description ? <p className="rhead__desc">{post.description}</p> : null}
             <p className="rhead__meta">
-              {author ? (
-                <Link href={`${authorPath(author.slug)}/`} className="rhead__reviewer">
-                  {author.photo ? (
-                    <Image src={author.photo} alt="" width={28} height={28} />
-                  ) : (
-                    <span className="rhead__initials">{authorInitials(author.name)}</span>
-                  )}
-                  Medically reviewed by <b>{author.name}</b>
-                </Link>
-              ) : (
-                <span>{post.author}</span>
-              )}
-              {post.date ? (
+              <Byline verb="Written by" person={writer} />
+              {reviewer ? <Byline verb="Medically reviewed by" person={reviewer} credentials /> : null}
+            </p>
+            <p className="rhead__meta">
+              {post.date ? <time dateTime={post.date}>{formatDate(post.date)}</time> : null}
+              {/* "Last reviewed" only when someone reviewed it; otherwise it would claim a review that never happened. */}
+              {lastChecked && (reviewer || lastChecked !== post.date) ? (
                 <>
-                  <span aria-hidden="true">·</span>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  {post.date ? <span aria-hidden="true">·</span> : null}
+                  <span>
+                    {reviewer ? "Last reviewed" : "Updated"} <time dateTime={lastChecked}>{formatDate(lastChecked)}</time>
+                  </span>
                 </>
               ) : null}
               {post.readingTime ? (
@@ -132,8 +160,15 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
         {post.ogImage ? (
           <div className="wrap rhero">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.ogImage} alt={post.ogImageAlt ?? ""} />
+            {post.ogImage.startsWith("/") ? (
+              /* The largest thing on the page, so it is preloaded. Heroes are 1400x933;
+                 CSS keeps any other ratio undistorted. */
+              <Image src={post.ogImage} alt={post.ogImageAlt ?? ""} width={1400} height={933} sizes="(max-width: 1140px) 100vw, 1140px" preload />
+            ) : (
+              /* An image on another host is not on next/image's allow list. */
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={post.ogImage} alt={post.ogImageAlt ?? ""} />
+            )}
           </div>
         ) : null}
 
@@ -176,7 +211,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </div>
             ) : null}
 
-            <PostBody body={body} />
+            <PostBody body={body} disclose={body === firstAffiliate} />
 
             {faqTitle && faqItems.length ? (
               <section className="rfaq" id={headingSlug(faqTitle)} aria-label={faqTitle}>
@@ -188,7 +223,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
                       <Icon name="plus" size={20} />
                     </summary>
                     <div className="rfaq__a">
-                      <PostBody body={f.a} />
+                      <PostBody body={f.a} disclose={f.a === firstAffiliate} />
                     </div>
                   </details>
                 ))}
@@ -197,7 +232,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
             {/* Whatever followed the last question (the medical disclaimer),
                 always in the open, never inside a collapsed panel. */}
-            {afterFaq ? <PostBody body={afterFaq} /> : null}
+            {afterFaq ? <PostBody body={afterFaq} disclose={afterFaq === firstAffiliate} /> : null}
 
             {post.source ? (
               <p className="rsource">
@@ -212,23 +247,8 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </p>
             ) : null}
 
-            {author ? (
-              <Link href={`${authorPath(author.slug)}/`} className="rauthor">
-                {author.photo ? (
-                  <Image src={author.photo} alt="" width={64} height={64} />
-                ) : (
-                  <span className="rhead__initials rhead__initials--lg">{authorInitials(author.name)}</span>
-                )}
-                <span>
-                  <small>Medically reviewed by</small>
-                  <b>
-                    {author.name}
-                    {author.credentials ? `, ${author.credentials}` : ""}
-                  </b>
-                  {author.shortBio}
-                </span>
-              </Link>
-            ) : null}
+            {reviewer ? <PersonCard label="Medically reviewed by" person={reviewer} /> : null}
+            <PersonCard label="Written by" person={writer} />
 
             <div className="care rbody__care">
               <Icon name="doctor" size={26} />
@@ -259,8 +279,44 @@ export default async function PostPage({ params }: { params: Promise<{ category:
         title="Guidance like this, for every week."
         body="Inside the app, reads like this one arrive when they’re relevant: the scan guide the week before your scan, not six months early."
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
     </div>
+  );
+}
+
+function Byline({ verb, person, credentials }: { verb: string; person: Author; credentials?: boolean }) {
+  return (
+    <Link href={`${authorPath(person.slug)}/`} className="rhead__reviewer">
+      {person.photo ? (
+        <Image src={person.photo} alt="" width={28} height={28} />
+      ) : (
+        <span className="rhead__initials">{authorInitials(person.name)}</span>
+      )}
+      <span>
+        {verb} <b>{person.name}</b>
+        {credentials && person.credentials ? `, ${person.credentials}` : ""}
+      </span>
+    </Link>
+  );
+}
+
+function PersonCard({ label, person }: { label: string; person: Author }) {
+  return (
+    <Link href={`${authorPath(person.slug)}/`} className="rauthor">
+      {person.photo ? (
+        <Image src={person.photo} alt="" width={64} height={64} />
+      ) : (
+        <span className="rhead__initials rhead__initials--lg">{authorInitials(person.name)}</span>
+      )}
+      <span>
+        <small>{label}</small>
+        <b>
+          {person.name}
+          {person.credentials ? `, ${person.credentials}` : ""}
+        </b>
+        {person.shortBio}
+      </span>
+    </Link>
   );
 }
 

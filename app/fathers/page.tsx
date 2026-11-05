@@ -6,6 +6,7 @@ import Mark, { type Glyph } from "@/components/Mark";
 import { getAppHref } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/fathers/" },
   title: "For fathers",
   description:
     "ParentVeda's father's side: his own daily moment, a page for every week, things to read aloud, and a clear list of what to do next.",

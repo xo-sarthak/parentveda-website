@@ -3,6 +3,16 @@ import Image from "next/image";
 import { stages } from "@/lib/stages";
 import { site } from "@/lib/site";
 import Wordmark from "./Wordmark";
+import { CookieSettingsButton } from "./Analytics";
+
+function CookieSettingsItem() {
+  if (!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) return null;
+  return (
+    <li>
+      <CookieSettingsButton />
+    </li>
+  );
+}
 
 export default function Footer() {
   return (
@@ -49,6 +59,8 @@ export default function Footer() {
             <li><Link href="/partners#brands">Brands</Link></li>
             <li><Link href="/contact">Contact us</Link></li>
             <li><Link href="/legal/">Policies</Link></li>
+            <li><Link href="/legal/affiliate-disclosure/">Affiliate disclosure</Link></li>
+            <CookieSettingsItem />
             <li><Link href="/legal/delete-account/">Delete your account</Link></li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           </ul>

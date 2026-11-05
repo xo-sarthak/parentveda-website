@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
      in the world, so each 308s straight to its final address in one hop.
      Every destination ends in a slash, because trailingSlash does not
      normalise redirect destinations. Specific rules precede the wildcard. */
+  /* IndexNow's proof of ownership, at /<key>.txt. A rewrite because the key is an
+     environment variable, and a route folder cannot be named after one. */
+  async rewrites() {
+    const key = process.env.INDEXNOW_KEY;
+    return key ? [{ source: `/${key}.txt`, destination: "/api/indexnow-key/" }] : [];
+  },
+
   async redirects() {
     const CATEGORY_RENAMES: Array<[string, string]> = [
       ["article", "articles"],

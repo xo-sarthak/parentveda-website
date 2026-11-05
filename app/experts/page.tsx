@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AUTHORS, AUTHOR_FIELD, authorPath } from "@/lib/authors";
+import { AUTHOR_FIELD, EXPERTS, authorPath } from "@/lib/authors";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* The people behind ParentVeda's guidance, one card each, linking to the
@@ -29,7 +31,7 @@ const TONES = [
 
 // Dr. Mahender Singh was on the site first and keeps the last place, as in the approved layout.
 const LAST = "dr-mahender-singh";
-const experts = [...AUTHORS.filter((a) => a.slug !== LAST), ...AUTHORS.filter((a) => a.slug === LAST)];
+const experts = [...EXPERTS.filter((a) => a.slug !== LAST), ...EXPERTS.filter((a) => a.slug === LAST)];
 
 export default function ExpertsPage() {
   return (
@@ -77,6 +79,7 @@ export default function ExpertsPage() {
           <p className="experts__note">These specialists work with us. They do not replace your own doctor.</p>
         </div>
       </section>
+      <JsonLd data={breadcrumbSchema([{ name: "Our experts", path: "/experts/" }])} />
     </>
   );
 }

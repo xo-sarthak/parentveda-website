@@ -17,6 +17,7 @@
    ============================================================ */
 
 import { supabase } from "@/lib/supabase";
+import { DEFAULT_AUTHOR_SLUG, getAuthorBySlug } from "@/lib/authors";
 /* The old site typed these against its icon set and tint palette; here they
    are plain strings (the new site draws its own marks). */
 type IconKey = string;
@@ -77,7 +78,10 @@ export type GuidePost = {
   date: string; // ISO published
   updated?: string; // ISO modified
   readingTime: string;
-  author: string;
+  author: string; // the raw text column; display names come from authorSlug
+  authorSlug: string; // who wrote it: a slug in lib/authors.ts
+  reviewedBy?: string; // the expert who reviewed it, when one has
+  reviewedDate?: string; // ISO date of that review, when recorded
   tags: string[];
   body: string; // MARKDOWN (was Block[] when content was hardcoded)
   recipe?: RecipeMeta; // recipe category
@@ -144,6 +148,10 @@ type PostRow = {
   excerpt: string | null;
   body: string | null;
   author: string | null;
+  author_slug: string | null;
+  /* Absent, not null, until supabase/seo_author_fields.sql has been run. */
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
   reading_time: string | null;
   tags: string[] | null;
   stage: StageSlug | null;
@@ -160,10 +168,21 @@ type PostRow = {
   updated_at: string | null;
 };
 
-const POST_COLUMNS =
-  "category, slug, title, description, excerpt, body, author, reading_time, tags, " +
-  "stage, trimester, week_tag, recipe, source, book_meta, meta_title, og_image, og_image_alt, " +
-  "canonical_path, published_at, updated_at";
+/* Every column, not a list: naming reviewed_by here would make every content
+   read fail on a database where that migration has not run yet. toPost copes
+   with either shape, so deploy and migration can happen in any order. */
+const POST_COLUMNS = "*";
+
+/* Before the migration, an expert sat in author_slug and the page called them
+   the reviewer. Read that shape the same way, so no credit moves until the
+   migration records it properly. Once reviewed_by exists it is the only answer. */
+function peopleOf(r: PostRow): { authorSlug: string; reviewedBy?: string } {
+  const named = r.author_slug ?? undefined;
+  if (!("reviewed_by" in r) && named && getAuthorBySlug(named)?.kind === "expert") {
+    return { authorSlug: DEFAULT_AUTHOR_SLUG, reviewedBy: named };
+  }
+  return { authorSlug: named ?? DEFAULT_AUTHOR_SLUG, reviewedBy: r.reviewed_by ?? undefined };
+}
 
 /** ISO timestamp → the plain YYYY-MM-DD the UI and JSON-LD already expect. */
 function toDate(ts: string | null): string {
@@ -181,6 +200,8 @@ function toPost(r: PostRow): GuidePost {
     updated: r.updated_at ? toDate(r.updated_at) : undefined,
     readingTime: r.reading_time ?? "",
     author: r.author ?? "Team ParentVeda",
+    ...peopleOf(r),
+    reviewedDate: r.reviewed_at ? toDate(r.reviewed_at) : undefined,
     tags: r.tags ?? [],
     body: r.body ?? "",
     recipe: r.recipe ?? undefined,

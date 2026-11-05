@@ -3,6 +3,7 @@ import Icon from "@/components/Icon";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/partners/" },
   title: "Doctors, employers and brands",
   description: "Work with ParentVeda as a clinic, as an employer supporting working parents, or as a brand that’s happy to be labelled.",
 };

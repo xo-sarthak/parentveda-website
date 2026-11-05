@@ -12,6 +12,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
 import Interactions from "@/components/Interactions";
+import Analytics from "@/components/Analytics";
 import { site } from "@/lib/site";
 
 // The app's own pairing (docs/DESIGN-SYSTEM.md §2.2): Newsreader for display —
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
     template: "%s · ParentVeda",
   },
   description: site.description,
+  // Larger previews in Google Discover. A page with its own noindex replaces this whole value.
+  robots: "max-image-preview:large",
   openGraph: {
     // Was "ParentVeda · Your child’s story starts with you"
     title: `ParentVeda · ${site.tagline}`,
@@ -53,21 +56,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": "Organization", name: "ParentVeda", slogan: site.tagline, url: site.domain, logo: `${site.domain}/brand/pv-mark.png` },
-    {
-      "@type": "SoftwareApplication",
-      name: "ParentVeda",
-      operatingSystem: "Android",
-      applicationCategory: "HealthApplication",
-      slogan: site.tagline,
-      description: site.description,
-    },
-  ],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${display.variable} ${body.variable}`}>
@@ -80,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <MotionRoot />
         <Interactions />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Analytics />
       </body>
     </html>
   );

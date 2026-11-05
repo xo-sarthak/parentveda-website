@@ -72,7 +72,7 @@ export const ORG = {
   /* Bump `updated` whenever a policy changes materially, and say what changed
      in the page's own "Changes" section. */
   effective: "26 July 2026",
-  updated: "26 July 2026",
+  updated: "4 November 2026",
 } as const;
 
 export type LegalPageMeta = {
@@ -105,13 +105,19 @@ export const LEGAL_PAGES: LegalPageMeta[] = [
     slug: "cookies",
     title: "Cookie Policy",
     summary:
-      "The cookies and browser storage this site uses — currently essential ones only, with no advertising or analytics trackers.",
+      "The cookies and browser storage this site uses: essential ones, plus Google Analytics only if you accept it. No advertising trackers.",
   },
   {
     slug: "editorial-policy",
     title: "Editorial Policy",
     summary:
       "How ParentVeda researches, writes, reviews and corrects its guides, and who is accountable for them.",
+  },
+  {
+    slug: "affiliate-disclosure",
+    title: "Affiliate Disclosure",
+    summary:
+      "Some articles link to products on Amazon. How that works, and what it does not change.",
   },
   {
     /* Google Play requires an account-deletion route reachable WITHOUT

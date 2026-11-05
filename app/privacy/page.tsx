@@ -4,6 +4,7 @@ import Mark, { type Glyph } from "@/components/Mark";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy/" },
   title: "Privacy, in plain words",
   description: "How ParentVeda treats what you tell it: saved on your phone first, never sold, deleted in one tap.",
 };
