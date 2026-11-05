@@ -49,7 +49,11 @@
   color: var(--ink);
   padding: 9px 13px;
   border-radius: 999px;
+  white-space: nowrap;
   transition: background 0.25s ease;
+}
+@media (max-width: 1240px) {
+  .hdr__nav a { padding: 9px 9px; font-size: 14.5px; }
 }
 .hdr__nav a:hover {
   background: var(--quiet);

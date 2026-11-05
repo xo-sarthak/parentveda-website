@@ -58,7 +58,6 @@ export default function Header() {
               <Icon name="arrow" size={18} />
             </Link>
           ))}
-          <Link href="/tools/">Free tools</Link>
           <Link href="/fathers">For fathers</Link>
           <Link href="/about">About ParentVeda</Link>
           <Link href="/partners">Doctors, employers & brands</Link>

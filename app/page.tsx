@@ -17,6 +17,7 @@ import PostCard from "@/components/reads/PostCard";
 import JsonLd from "@/components/JsonLd";
 import { homeSchema } from "@/lib/jsonld";
 import { getAppHref, site } from "@/lib/site";
+import { TOOLS, toolPath } from "@/lib/tools";
 
 const promises = [
   { glyph: "note", hue: 268, title: "Never a diagnosis", body: "If your doctor said something different, your doctor is right." },
@@ -417,6 +418,34 @@ export default async function Home() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* FREE TOOLS */}
+      <section className="section hometools" aria-labelledby="hometools-title" style={{ paddingBottom: 0 }}>
+        <div className="wrap">
+          <div className="latest__head">
+            <div>
+              <span className="eyebrow rv">Free tools</span>
+              <h2 id="hometools-title" className="display-l rv rv-d1">
+                Quick answers, <em>no sign-up.</em>
+              </h2>
+            </div>
+            <Link href="/tools/" className="btn btn--ghost rv">
+              All free tools <Icon name="arrow" />
+            </Link>
+          </div>
+          <ul className="tool-grid">
+            {TOOLS.map((t) => (
+              <li key={t.slug} className="rv" style={{ ["--tone" as string]: t.tone }}>
+                <Link href={toolPath(t.slug)}>
+                  <span className="tool-grid__stage">{t.stage}</span>
+                  <strong>{t.name}</strong>
+                  <span>{t.short}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

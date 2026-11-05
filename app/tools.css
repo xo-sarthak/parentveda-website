@@ -158,3 +158,7 @@
 .vax-info h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 14px 0 4px; }
 .vax-info ul { margin: 0; padding-left: 18px; }
 .vax-info p, .vax-info li { color: var(--body); font-size: 15px; line-height: 1.5; }
+
+/* Free tools on the home page and stage pages */
+.hometools .tool-grid { margin-top: 28px; }
+.stagetools .tool-grid { margin-top: 24px; }

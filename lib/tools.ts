@@ -39,7 +39,7 @@ export const TOOLS: ToolInfo[] = [
   {
     slug: "due-date-calculator",
     name: "Due date calculator",
-    short: "Work out your estimated due date from your last period or the day you conceived.",
+    short: "Work out your due date from your last period, conception, IVF transfer or a scan.",
     cta: "Work out your due date",
     stage: "Pregnancy",
     tone: "#E8D9C0",
@@ -59,7 +59,7 @@ export const TOOLS: ToolInfo[] = [
   {
     slug: "is-it-safe-in-pregnancy",
     name: "Is it safe in pregnancy?",
-    short: "Look up common Indian foods, drinks and everyday activities and see what the evidence says.",
+    short: "200 foods, drinks, medicines and activities, with a clear answer and what changes by trimester.",
     cta: "Check a food or activity",
     stage: "Pregnancy",
     tone: "#F7ECD4",
@@ -99,7 +99,7 @@ export const TOOLS: ToolInfo[] = [
   {
     slug: "baby-names",
     name: "Indian baby name finder",
-    short: "Browse Indian baby names with their meanings. Filter by boy or girl and starting letter.",
+    short: "Over 2,000 Indian names with meanings, across communities. Filter by letter, gender and style.",
     cta: "Find a name",
     stage: "Parenting",
     tone: "#E8C4CE",
