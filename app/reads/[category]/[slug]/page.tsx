@@ -247,8 +247,10 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </p>
             ) : null}
 
-            {reviewer ? <PersonCard label="Medically reviewed by" person={reviewer} /> : null}
-            <PersonCard label="Written by" person={writer} />
+            <div className="rcredits">
+              {reviewer ? <PersonCard label="Medically reviewed by" person={reviewer} /> : null}
+              <PersonCard label="Written by" person={writer} />
+            </div>
 
             <div className="care rbody__care">
               <Icon name="doctor" size={26} />
@@ -304,7 +306,7 @@ function PersonCard({ label, person }: { label: string; person: Author }) {
   return (
     <Link href={`${authorPath(person.slug)}/`} className="rauthor">
       {person.photo ? (
-        <Image src={person.photo} alt="" width={64} height={64} />
+        <Image src={person.photo} alt="" width={56} height={56} />
       ) : (
         <span className="rhead__initials rhead__initials--lg">{authorInitials(person.name)}</span>
       )}

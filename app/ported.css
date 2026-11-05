@@ -654,22 +654,34 @@
 .rsource a {
   color: var(--purple);
 }
-.rauthor {
+/* One panel for who stands behind the article, reviewer first. */
+.rcredits {
   margin-top: 40px;
+  border: 1px solid var(--hair);
+  border-radius: 22px;
+  overflow: hidden;
+}
+.rauthor {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  padding: 20px 22px;
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--sage) 40%, white);
+  padding: 18px 22px;
   text-decoration: none;
   color: var(--body);
   font-size: 15px;
   line-height: 1.55;
-  transition: transform 0.4s var(--ease-out);
+  transition: background-color 0.3s ease;
+}
+.rauthor + .rauthor {
+  border-top: 1px solid var(--hair);
 }
 .rauthor:hover {
-  transform: translateY(-2px);
+  background: var(--quiet);
+}
+.rauthor:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: -2px;
+  border-radius: 22px;
 }
 .rauthor img {
   border-radius: 50%;
@@ -681,7 +693,7 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #2e5e45;
+  color: var(--purple);
 }
 .rauthor b {
   display: block;
