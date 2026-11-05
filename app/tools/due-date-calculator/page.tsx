@@ -4,7 +4,8 @@ import DueDateCalc from "@/components/tools/DueDateCalc";
 import { getTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
 
-export const revalidate = 3600;
+// Re-reads the article list every minute, so a newly published read appears under "Read next".
+export const revalidate = 60;
 
 const tool = getTool("due-date-calculator");
 const TITLE = 'Due Date Calculator: When Is My Baby Due? (Free)';

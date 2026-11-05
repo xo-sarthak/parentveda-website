@@ -3,17 +3,38 @@
 import { useState } from "react";
 import { addDays, daysBetween, fmt, isoDay, parseDate, today, trimesterOf } from "./date";
 
-/* Naegele's rule: 280 days from the first day of the last period, shifted by
-   how far the cycle is from 28 days. From a known conception date: 266 days. */
+/* Same four methods and maths as the app's due date calculator
+   (due_date_calculator_screen.dart). Naegele's rule: 280 days from the first
+   day of the last period, shifted by how far the cycle is from 28 days.
+   Conception: 266 days. IVF transfer: 266 days less the embryo's age.
+   Scan: 280 days less the pregnancy age the scan gave on that day. */
+type Method = "lmp" | "conception" | "ivf" | "scan";
+const LABEL: Record<Method, [string, string]> = {
+  lmp: ["First day of last period", "First day of your last period"],
+  conception: ["Date of conception", "Date of conception"],
+  ivf: ["IVF embryo transfer", "Date of embryo transfer"],
+  scan: ["An ultrasound scan", "Date of the scan"],
+};
 export default function DueDateCalc() {
-  const [method, setMethod] = useState<"lmp" | "conception">("lmp");
+  const [method, setMethod] = useState<Method>("lmp");
+  const [embryo, setEmbryo] = useState(5);
+  const [gaW, setGaW] = useState(8);
+  const [gaD, setGaD] = useState(0);
   const [date, setDate] = useState("");
   const [cycle, setCycle] = useState(28);
   const d = parseDate(date);
   const now = today();
-  const valid = d && d <= now && daysBetween(d, now) < 300 && cycle >= 21 && cycle <= 45;
+  const valid = d && d <= now && daysBetween(d, now) < 300 && cycle >= 21 && cycle <= 45 && gaW >= 4 && gaW <= 40 && gaD >= 0 && gaD <= 6;
 
-  const lmp = valid ? (method === "lmp" ? addDays(d!, cycle - 28) : addDays(d!, -14)) : null;
+  const lmp = !valid
+    ? null
+    : method === "lmp"
+      ? addDays(d!, cycle - 28)
+      : method === "conception"
+        ? addDays(d!, -14)
+        : method === "ivf"
+          ? addDays(d!, -14 - embryo)
+          : addDays(d!, -(gaW * 7 + gaD));
   const due = lmp ? addDays(lmp, 280) : null;
   const gestDays = lmp ? daysBetween(lmp, now) : 0;
   const weeks = Math.floor(gestDays / 7);
@@ -24,15 +45,14 @@ export default function DueDateCalc() {
       <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
         <fieldset className="tool-toggle">
           <legend>Calculate from</legend>
-          <label>
-            <input type="radio" name="m" checked={method === "lmp"} onChange={() => setMethod("lmp")} /> First day of last period
-          </label>
-          <label>
-            <input type="radio" name="m" checked={method === "conception"} onChange={() => setMethod("conception")} /> Date of conception (for example, IVF transfer or known date)
-          </label>
+          {(Object.keys(LABEL) as Method[]).map((m) => (
+            <label key={m}>
+              <input type="radio" name="m" checked={method === m} onChange={() => setMethod(m)} /> {LABEL[m][0]}
+            </label>
+          ))}
         </fieldset>
         <label>
-          <span>{method === "lmp" ? "First day of your last period" : "Date of conception"}</span>
+          <span>{LABEL[method][1]}</span>
           <input type="date" value={date} max={isoDay(now)} onChange={(e) => setDate(e.target.value)} />
         </label>
         {method === "lmp" && (
@@ -40,6 +60,28 @@ export default function DueDateCalc() {
             <span>Usual cycle length (days)</span>
             <input type="number" min={21} max={45} value={cycle} onChange={(e) => setCycle(Number(e.target.value))} />
           </label>
+        )}
+        {method === "ivf" && (
+          <fieldset className="tool-toggle">
+            <legend>Embryo transferred on</legend>
+            {[3, 5].map((n) => (
+              <label key={n}>
+                <input type="radio" name="e" checked={embryo === n} onChange={() => setEmbryo(n)} /> Day {n}
+              </label>
+            ))}
+          </fieldset>
+        )}
+        {method === "scan" && (
+          <div className="tool-row">
+            <label>
+              <span>Scan said (weeks)</span>
+              <input type="number" min={4} max={40} value={gaW} onChange={(e) => setGaW(Number(e.target.value))} />
+            </label>
+            <label>
+              <span>and days</span>
+              <input type="number" min={0} max={6} value={gaD} onChange={(e) => setGaD(Number(e.target.value))} />
+            </label>
+          </div>
         )}
       </form>
 

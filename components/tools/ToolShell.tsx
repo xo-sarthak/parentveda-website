@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/jsonld";
 import { getAllPosts, postPath } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
-import { TOOLS, TOOLS_BASE, toolPath, type ToolInfo } from "@/lib/tools";
+import { TOOLS, TOOLS_BASE, readsForTool, toolPath, type ToolInfo } from "@/lib/tools";
 
 /* Shared frame for every tool page: hero, the tool itself, an honest note,
    reads that explain the result, the other tools, and the structured data. */
@@ -20,11 +20,7 @@ export default async function ToolShell({
   faqs: { q: string; a: string }[];
   children: React.ReactNode;
 }) {
-  const posts = await getAllPosts();
-  const reads = tool.reads
-    .map((slug) => posts.find((p) => p.slug === slug))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p))
-    .slice(0, 4);
+  const reads = readsForTool(tool, await getAllPosts());
   const others = TOOLS.filter((t) => t.slug !== tool.slug);
   const url = `${SITE_URL}${toolPath(tool.slug)}`;
 

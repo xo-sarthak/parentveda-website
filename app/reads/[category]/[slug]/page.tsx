@@ -24,6 +24,7 @@ import {
 } from "@/lib/guides";
 import { formatDate, splitFaqSection } from "@/lib/reads-article";
 import { hasAffiliateLink } from "@/lib/affiliate";
+import { toolPath, toolsForPost } from "@/lib/tools";
 import JsonLd from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema, categoryCrumbs, faqSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
@@ -98,6 +99,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
   const related = await getRelatedPosts(post, 3);
+  const tools = toolsForPost(post);
   const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
   const writer = resolveWriter(post);
@@ -251,6 +253,19 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               {reviewer ? <PersonCard label="Medically reviewed by" person={reviewer} /> : null}
               <PersonCard label="Written by" person={writer} />
             </div>
+
+            {tools.length > 0 && (
+              <aside className="rtools" aria-label="Free tools">
+                {tools.map((t) => (
+                  <Link key={t.slug} href={toolPath(t.slug)} className="rtools__card" style={{ ["--tone" as string]: t.tone }}>
+                    <span className="rtools__eyebrow">Free tool</span>
+                    <strong>{t.name}</strong>
+                    <span>{t.short}</span>
+                    <span className="rtools__cta">{t.cta} →</span>
+                  </Link>
+                ))}
+              </aside>
+            )}
 
             <div className="care rbody__care">
               <Icon name="doctor" size={26} />

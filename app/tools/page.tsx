@@ -7,7 +7,7 @@ import { TOOLS, TOOLS_BASE, toolPath } from "@/lib/tools";
 
 const TITLE = "Free pregnancy and parenting tools";
 const DESCRIPTION =
-  "Free, simple tools for Indian families: ovulation calculator, due date calculator, pregnancy week calculator and the IAP baby vaccination schedule.";
+  "Free, simple tools for Indian families: ovulation and due date calculators, a pregnancy week calculator, an is-it-safe checker, a weight gain calculator, the IAP vaccine schedule, a WHO growth chart and a baby name finder.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -29,7 +29,7 @@ export default function ToolsPage() {
               Quick answers, <em>worked out for you.</em>
             </h1>
             <p className="lede">
-              The dates you keep counting on your fingers: your fertile days, your due date, which week you are in, and when the next vaccine is due. Free,
+              The questions you keep looking up: your fertile days, your due date, whether papaya is safe, how your baby is growing, and when the next vaccine is due. Free,
               no sign-up, and nothing you enter leaves your phone.
             </p>
           </div>
