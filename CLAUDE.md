@@ -13,6 +13,7 @@
 - Articles live in Supabase, edited through Directus (`parentveda-cms.onrender.com`). The website and the app share that database. Article text is not in this repo.
 - Do not change article wording unless asked. Do not change live URLs. New copy follows `VOICE.md`.
 - `updated_at` drives the sitemap `lastmod` and `dateModified`. Bulk SQL must not move it; see the guard in `supabase/seo_author_fields.sql`.
+- The free tools under `/tools/` reuse the app's data (Can I?, baby names, vaccine Learn Why, WHO growth tables) as JSON in `lib/`. When that app content changes, run `python scripts/sync-from-app.py C:\Projects\parentveda` and commit the result. Do not hand-edit those JSON files.
 - Website SQL is kept in `supabase/` in this repo. Numbered schema migrations are kept in the app repo.
 
 ## Writers and reviewers
