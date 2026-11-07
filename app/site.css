@@ -83,6 +83,9 @@
   border-radius: var(--r-sheet);
   box-shadow: var(--shadow);
   padding: 12px 18px 22px;
+  max-height: calc(100dvh - 96px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .hdr__sheet nav {
   display: grid;
@@ -121,6 +124,27 @@
   background: #fff;
   color: var(--slate);
 }
+
+/* Pillar guides under Trying / Pregnancy / Parenting. Always in the HTML so
+   crawlers see the links; shown on hover or keyboard focus. */
+.hdr__item { position: relative; display: inline-flex; }
+.hdr__drop {
+  position: absolute; top: 100%; left: 0; min-width: 260px; padding: 10px; margin-top: 6px;
+  display: grid; background: #fff; border-radius: 18px; box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 20;
+}
+.hdr__drop::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.hdr__item--drop:hover .hdr__drop, .hdr__item--drop:focus-within .hdr__drop { opacity: 1; visibility: visible; transform: none; }
+.hdr__drop-head { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 6px 12px 4px; }
+.hdr__nav .hdr__drop a { font-size: 15px; font-weight: 500; padding: 9px 12px; border-radius: 12px; color: var(--ink); }
+.hdr__nav .hdr__drop a:hover { background: var(--quiet); }
+.hdr__nav .hdr__drop a.hdr__drop-all { font-weight: 600; color: var(--purple); border-top: 1px solid var(--hair); border-radius: 0 0 12px 12px; margin-top: 4px; }
+.hdr--slate .hdr__nav .hdr__drop a { color: var(--ink); }
+.hdr__sheet-subs { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 4px 14px; border-bottom: 1px solid var(--hair); }
+.hdr__sheet nav .hdr__sheet-subs a { display: inline-block; padding: 7px 12px; border: 0; border-radius: 999px; background: var(--quiet); font-family: inherit; font-size: 14px; }
+.hdr__sheet-group:has(.hdr__sheet-subs) > a { border-bottom: 0; }
 
 @media (max-width: 1080px) {
   .hdr__nav,

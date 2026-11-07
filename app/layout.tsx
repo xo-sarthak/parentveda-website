@@ -9,7 +9,7 @@ import "./stage.css";
 import "./ported.css";
 import "./portal.css";
 import "./tools.css";
-import Header from "@/components/Header";
+import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
 import Interactions from "@/components/Interactions";
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip" href="#main">
           Skip to content
         </a>
-        <Header />
+        <SiteHeader />
         <main id="main">{children}</main>
         <Footer />
         <MotionRoot />
