@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Icon from "@/components/Icon";
 import { COMMUNITIES, NAMES } from "@/lib/baby-names";
+import { Choice, Field } from "./ui";
 
 const SEX = [
   { k: "all", label: "All" },
@@ -39,31 +41,26 @@ export default function BabyNames() {
   };
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()} role="search">
-        <label>
-          <span>Search by name or meaning</span>
-          <input type="search" className="tool-search" placeholder="Try light, Lakshmi, brave..." value={q} onChange={(e) => set(setQ)(e.target.value)} />
+    <div className="tool-names">
+      <form className="tool-panel tool-names__filters" onSubmit={(e) => e.preventDefault()} role="search">
+        <label className="tool-field">
+          <span className="tool-label">Search by name or meaning</span>
+          <span className="tool-searchbox">
+            <Icon name="search" size={20} />
+            <input type="search" placeholder="Try light, Lakshmi, brave..." value={q} onChange={(e) => set(setQ)(e.target.value)} />
+          </span>
         </label>
-        <div className="tool-chips" role="group" aria-label="Boy or girl">
-          {SEX.map((s) => (
-            <button key={s.k} type="button" className={`tool-chip${s.k === sex ? " is-on" : ""}`} aria-pressed={s.k === sex} onClick={() => set(setSex)(s.k)}>
-              {s.label}
-            </button>
-          ))}
-        </div>
+        <Choice legend="For a" name="sex" value={sex} onChange={set(setSex)} options={SEX.map((s) => ({ value: s.k, label: s.label }))} />
         <div className="tool-row">
-          <label>
-            <span>Community</span>
+          <Field label="Community">
             <select value={comm} onChange={(e) => set(setComm)(e.target.value)}>
               <option value="">All</option>
               {COMMUNITIES.map((c) => (
                 <option key={c}>{c}</option>
               ))}
             </select>
-          </label>
-          <label>
-            <span>Style</span>
+          </Field>
+          <Field label="Style">
             <select value={pop} onChange={(e) => set(setPop)(e.target.value)}>
               <option value="">All</option>
               {Object.entries(POP).map(([k, v]) => (
@@ -72,42 +69,48 @@ export default function BabyNames() {
                 </option>
               ))}
             </select>
-          </label>
+          </Field>
         </div>
-        <div className="tool-chips tool-chips--letters" role="group" aria-label="Starting letter">
-          <button type="button" className={`tool-chip${!letter ? " is-on" : ""}`} onClick={() => set(setLetter)("")}>
-            Any
-          </button>
-          {letters.map((l) => (
-            <button key={l} type="button" className={`tool-chip${l === letter ? " is-on" : ""}`} aria-pressed={l === letter} onClick={() => set(setLetter)(l)}>
-              {l}
+        <div className="tool-field">
+          <span className="tool-label">Starts with</span>
+          <div className="tool-letters" role="group" aria-label="Starting letter">
+            <button type="button" className={`tool-chip tool-letters__any${!letter ? " is-on" : ""}`} aria-pressed={!letter} onClick={() => set(setLetter)("")}>
+              Any
             </button>
-          ))}
+            {letters.map((l) => (
+              <button key={l} type="button" className={`tool-chip${l === letter ? " is-on" : ""}`} aria-pressed={l === letter} onClick={() => set(setLetter)(l)}>
+                {l}
+              </button>
+            ))}
+          </div>
         </div>
       </form>
 
-      <p className="tool-small" aria-live="polite">
-        {list.length.toLocaleString("en-IN")} {list.length === 1 ? "name" : "names"}
-      </p>
-      <ul className="name-list">
-        {list.slice(0, shown).map(([name, dev, g, meaning, c, origin, p]) => (
-          <li key={name}>
-            <strong>
-              {name} {dev && <span className="name-list__dev">{dev}</span>}
-            </strong>
-            <span className="name-list__g">
-              {g === "g" ? "Girl" : g === "b" ? "Boy" : "Unisex"} · {c}
-              {origin ? ` · ${origin}` : ""} · {POP[p]}
-            </span>
-            <span>{meaning}</span>
-          </li>
-        ))}
-      </ul>
-      {list.length > shown && (
-        <button type="button" className="tool-more" onClick={() => setShown(shown + PAGE)}>
-          Show more names
-        </button>
-      )}
+      <div className="tool-names__results">
+        <p className="tool-count" aria-live="polite">
+          {list.length.toLocaleString("en-IN")} {list.length === 1 ? "name" : "names"}
+        </p>
+        <ul className="name-list">
+          {list.slice(0, shown).map(([name, dev, g, meaning, c, origin, p]) => (
+            <li key={name}>
+              <strong>
+                {name} {dev && <span className="name-list__dev">{dev}</span>}
+              </strong>
+              <span>{meaning}</span>
+              <span className="name-list__g">
+                {g === "g" ? "Girl" : g === "b" ? "Boy" : "Unisex"} · {c}
+                {origin ? ` · ${origin}` : ""} · {POP[p]}
+              </span>
+            </li>
+          ))}
+        </ul>
+        {list.length === 0 && <p className="tool-small">No names match all of these. Try removing a filter.</p>}
+        {list.length > shown && (
+          <button type="button" className="btn btn--ghost btn--sm tool-more" onClick={() => setShown(shown + PAGE)}>
+            Show more names
+          </button>
+        )}
+      </div>
     </div>
   );
 }

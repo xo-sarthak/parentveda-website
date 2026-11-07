@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { addDays, daysBetween, fmt, isoDay, parseDate, today, trimesterOf } from "./date";
+import { Answer, Choice, Facts, Field, NumberField, PregnancyBar } from "./ui";
 
 /* Same four methods and maths as the app's due date calculator
    (due_date_calculator_screen.dart). Naegele's rule: 280 days from the first
@@ -41,85 +42,48 @@ export default function DueDateCalc() {
   const days = gestDays % 7;
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
-        <fieldset className="tool-toggle">
-          <legend>Calculate from</legend>
-          {(Object.keys(LABEL) as Method[]).map((m) => (
-            <label key={m}>
-              <input type="radio" name="m" checked={method === m} onChange={() => setMethod(m)} /> {LABEL[m][0]}
-            </label>
-          ))}
-        </fieldset>
-        <label>
-          <span>{LABEL[method][1]}</span>
+    <div className="tool-bench">
+      <form className="tool-panel" onSubmit={(e) => e.preventDefault()}>
+        <Choice legend="Calculate from" name="m" tiles value={method} onChange={setMethod} options={(Object.keys(LABEL) as Method[]).map((m) => ({ value: m, label: LABEL[m][0] }))} />
+        <Field label={LABEL[method][1]}>
           <input type="date" value={date} max={isoDay(now)} onChange={(e) => setDate(e.target.value)} />
-        </label>
-        {method === "lmp" && (
-          <label>
-            <span>Usual cycle length (days)</span>
-            <input type="number" min={21} max={45} value={cycle} onChange={(e) => setCycle(Number(e.target.value))} />
-          </label>
-        )}
+        </Field>
+        {method === "lmp" && <NumberField label="Usual cycle length" unit="days" min={21} max={45} value={cycle} onChange={(v) => setCycle(Number(v))} />}
         {method === "ivf" && (
-          <fieldset className="tool-toggle">
-            <legend>Embryo transferred on</legend>
-            {[3, 5].map((n) => (
-              <label key={n}>
-                <input type="radio" name="e" checked={embryo === n} onChange={() => setEmbryo(n)} /> Day {n}
-              </label>
-            ))}
-          </fieldset>
+          <Choice legend="Embryo transferred on" name="e" value={embryo} onChange={setEmbryo} options={[3, 5].map((n) => ({ value: n, label: `Day ${n}` }))} />
         )}
         {method === "scan" && (
           <div className="tool-row">
-            <label>
-              <span>Scan said (weeks)</span>
-              <input type="number" min={4} max={40} value={gaW} onChange={(e) => setGaW(Number(e.target.value))} />
-            </label>
-            <label>
-              <span>and days</span>
-              <input type="number" min={0} max={6} value={gaD} onChange={(e) => setGaD(Number(e.target.value))} />
-            </label>
+            <NumberField label="Scan said" unit="weeks" min={4} max={40} value={gaW} onChange={(v) => setGaW(Number(v))} />
+            <NumberField label="and" unit="days" min={0} max={6} placeholder="0" value={gaD} onChange={(v) => setGaD(Number(v))} />
           </div>
         )}
+        {date && !valid && <p className="tool-warn">Please choose a date within the last 42 weeks.</p>}
       </form>
 
-      {date && !valid && <p className="tool-warn">Please choose a date within the last 42 weeks.</p>}
-
-      {valid && due && lmp && (
-        <div className="tool-result" aria-live="polite">
-          <p className="tool-result__lead">
-            Your estimated due date is <strong>{fmt(due, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</strong>.
-          </p>
-          <ul className="tool-facts">
-            <li>
-              <span>Today you are</span>
-              <strong>
-                {weeks} weeks {days} {days === 1 ? "day" : "days"}
-              </strong>
-            </li>
-            <li>
-              <span>Stage</span>
-              <strong>{trimesterOf(weeks)}</strong>
-            </li>
-            <li>
-              <span>Full term window</span>
-              <strong>
-                {fmt(addDays(lmp, 259), { day: "numeric", month: "short" })} to {fmt(addDays(lmp, 293), { day: "numeric", month: "short" })}
-              </strong>
-            </li>
-            <li>
-              <span>Days to go</span>
-              <strong>{Math.max(0, daysBetween(now, due))}</strong>
-            </li>
-          </ul>
-          <p className="tool-small">
-            Only about 1 in 20 babies arrive on the exact date. Read it as the middle of a window. Your early scan may move it, and if it does, go by the
-            scan.
-          </p>
-        </div>
-      )}
+      <Answer
+        eyebrow="Your estimated due date"
+        empty="Add your date and it will appear here, with how far along you are today."
+        value={valid && due ? fmt(due, { day: "numeric", month: "long", year: "numeric" }) : undefined}
+        sub={due ? fmt(due, { weekday: "long" }) : undefined}
+      >
+        {lmp && due && (
+          <>
+            <PregnancyBar days={gestDays} />
+            <Facts
+              items={[
+                ["Today you are", `${weeks} weeks ${days} ${days === 1 ? "day" : "days"}`],
+                ["Stage", trimesterOf(weeks)],
+                ["Full term window", `${fmt(addDays(lmp, 259), { day: "numeric", month: "short" })} to ${fmt(addDays(lmp, 293), { day: "numeric", month: "short" })}`],
+                ["Days to go", Math.max(0, daysBetween(now, due))],
+              ]}
+            />
+            <p className="tool-small">
+              Only about 1 in 20 babies arrive on the exact date. Read it as the middle of a window. Your early scan may move it, and if it does, go by the scan.
+            </p>
+          </>
+        )}
+      </Answer>
     </div>
   );
 }

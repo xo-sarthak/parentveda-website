@@ -7,3 +7,6 @@ next-env.d.ts
 
 # local tooling, not part of the site
 *.skill
+
+# Week art masters from ChatGPT; the site serves the processed copies in public/weeks
+art-inbox/

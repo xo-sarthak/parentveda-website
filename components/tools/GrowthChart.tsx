@@ -3,6 +3,7 @@
 import { useState } from "react";
 import WHO from "@/lib/who-growth.json";
 import { daysBetween, isoDay, parseDate, today } from "./date";
+import { Answer, Choice, Field, NumberField } from "./ui";
 
 /* WHO Child Growth Standards (0 to 5 years), which the IAP recommends for
    Indian children under five. LMS method: z = ((x/M)^L - 1) / (L*S). */
@@ -39,6 +40,12 @@ const LABEL: Record<Ind, { name: string; unit: string }> = {
   hcfa: { name: "Head size", unit: "cm" },
 };
 
+function ordinal(n: number) {
+  const v = n % 100;
+  const suffix = v >= 11 && v <= 13 ? "th" : ["th", "st", "nd", "rd"][v % 10] ?? "th";
+  return `${n}${suffix}`;
+}
+
 function words(p: number) {
   if (p < 3) return "below the usual range. Please show this to your paediatrician.";
   if (p > 97) return "above the usual range. Please show this to your paediatrician.";
@@ -53,6 +60,11 @@ function Chart({ ind, sex, months, value }: { ind: Ind; sex: Sex; months: number
   const X = (m: number) => pad + (m / max) * (W - pad - 48);
   const Y = (v: number) => H - pad - ((v - lo) / (hi - lo)) * (H - pad * 1.6);
   const steps = Array.from({ length: max * 2 + 1 }, (_, i) => i / 2);
+  // Lines bunch up on the height chart, so space their labels out to stay readable.
+  const labelYs = [...LINES]
+    .reverse()
+    .map((l) => ({ p: l.p, y: Y(xOf(l.z, lms(ind, sex, max))) }))
+    .reduce<{ p: number; y: number }[]>((out, l) => [...out, { p: l.p, y: out.length ? Math.max(l.y, out[out.length - 1].y + 21) : l.y }], []);
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="growth-svg" role="img" aria-label={`${LABEL[ind].name} chart with your child's measurement`}>
       {Array.from({ length: 7 }, (_, i) => (max / 6) * i).map((m) => (
@@ -64,14 +76,17 @@ function Chart({ ind, sex, months, value }: { ind: Ind; sex: Sex; months: number
         </g>
       ))}
       {LINES.map((l) => (
-        <g key={l.p}>
-          <polyline fill="none" className={l.p === 50 ? "growth-line growth-line--mid" : "growth-line"} points={steps.map((m) => `${X(m)},${Y(xOf(l.z, lms(ind, sex, m)))}`).join(" ")} />
-          <text x={X(max) + 4} y={Y(xOf(l.z, lms(ind, sex, max))) + 4} className="growth-axis">
-            {l.p}th
-          </text>
-        </g>
+        <polyline key={l.p} fill="none" className={l.p === 50 ? "growth-line growth-line--mid" : "growth-line"} points={steps.map((m) => `${X(m)},${Y(xOf(l.z, lms(ind, sex, m)))}`).join(" ")} />
+      ))}
+      {labelYs.map(({ p, y }) => (
+        <text key={p} x={X(max) + 4} y={y + 4} className="growth-axis">
+          {ordinal(p)}
+        </text>
       ))}
       <circle cx={X(months)} cy={Y(value)} r={7} className="growth-dot" />
+      <text x={X(months) + (months / max > 0.75 ? -12 : 12)} y={Y(value) + (Y(value) < 40 ? 22 : -10)} textAnchor={months / max > 0.75 ? "end" : "start"} className="growth-val">
+        {value} {LABEL[ind].unit}
+      </text>
     </svg>
   );
 }
@@ -97,55 +112,52 @@ export default function GrowthChart() {
     .filter((r) => Math.abs(r.z) < 6);
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
-        <fieldset className="tool-toggle">
-          <legend>Your child is a</legend>
-          <label>
-            <input type="radio" name="s" checked={sex === "girls"} onChange={() => setSex("girls")} /> Girl
-          </label>
-          <label>
-            <input type="radio" name="s" checked={sex === "boys"} onChange={() => setSex("boys")} /> Boy
-          </label>
-        </fieldset>
-        <label>
-          <span>Date of birth</span>
-          <input type="date" value={dob} max={isoDay(today())} onChange={(e) => setDob(e.target.value)} />
-        </label>
-        <label>
-          <span>Date measured</span>
-          <input type="date" value={on} max={isoDay(today())} onChange={(e) => setOn(e.target.value)} />
-        </label>
+    <div className="tool-bench">
+      <form className="tool-panel" onSubmit={(e) => e.preventDefault()}>
+        <Choice
+          legend="Your child is a"
+          name="s"
+          value={sex}
+          onChange={setSex}
+          options={[
+            { value: "girls", label: "Girl" },
+            { value: "boys", label: "Boy" },
+          ]}
+        />
         <div className="tool-row">
+          <Field label="Date of birth">
+            <input type="date" value={dob} max={isoDay(today())} onChange={(e) => setDob(e.target.value)} />
+          </Field>
+          <Field label="Date measured">
+            <input type="date" value={on} max={isoDay(today())} onChange={(e) => setOn(e.target.value)} />
+          </Field>
+        </div>
+        <div className="tool-row tool-row--three">
           {(Object.keys(LABEL) as Ind[]).map((ind) => (
-            <label key={ind}>
-              <span>
-                {LABEL[ind].name} ({LABEL[ind].unit})
-              </span>
-              <input type="number" inputMode="decimal" step="0.1" value={vals[ind]} onChange={(e) => setVals({ ...vals, [ind]: e.target.value })} />
-            </label>
+            <NumberField key={ind} label={LABEL[ind].name} unit={LABEL[ind].unit} step="0.1" value={vals[ind]} onChange={(v) => setVals({ ...vals, [ind]: v })} />
           ))}
         </div>
-        <small>Fill in any one or more. Under 2 years, measure length lying down; from 2 years, height standing.</small>
+        <small className="tool-hint">Fill in any one or more. Under 2 years, measure length lying down; from 2 years, height standing.</small>
+        {dob && !ageOk && <p className="tool-warn">This chart covers birth to 5 years. Please check the dates.</p>}
       </form>
 
-      {dob && !ageOk && <p className="tool-warn">This chart covers birth to 5 years. Please check the dates.</p>}
-
-      {results.length > 0 && (
-        <div className="tool-result" aria-live="polite">
+      {results.length === 0 ? (
+        <Answer eyebrow="Where your child sits" empty="Add a date of birth and one measurement, and your child's place on the WHO chart will appear here." />
+      ) : (
+        <aside className="tool-answer" aria-live="polite">
           {results.map((r) => (
             <div key={r.ind} className="growth-block">
-              <p className="tool-result__lead">
-                {LABEL[r.ind].name}: <strong>{Math.round(r.p) < 1 ? "below the 1st" : Math.round(r.p) > 99 ? "above the 99th" : `${Math.round(r.p)}th`} percentile</strong>, {words(r.p)}
-              </p>
+              <span className="tool-answer__eyebrow">{LABEL[r.ind].name}</span>
+              <p className="tool-answer__value tool-answer__value--sm">{Math.round(r.p) < 1 ? "Below the 1st" : Math.round(r.p) > 99 ? "Above the 99th" : ordinal(Math.round(r.p))} percentile</p>
+              <p className="tool-answer__sub growth-words">{words(r.p)}</p>
               <Chart ind={r.ind} sex={sex} months={months} value={r.v} />
             </div>
           ))}
           <p className="tool-small">
-            The 50th percentile is the middle, not a target. A child who stays near the same line over time is usually growing well, whichever line it
-            is. What matters is the pattern across several visits, so take these numbers to your paediatrician rather than reading one alone.
+            The 50th percentile is the middle, not a target. A child who stays near the same line over time is usually growing well, whichever line it is. What matters is the pattern across several
+            visits, so take these numbers to your paediatrician rather than reading one alone.
           </p>
-        </div>
+        </aside>
       )}
     </div>
   );

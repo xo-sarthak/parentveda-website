@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import ToolCard from "@/components/tools/ToolCard";
 import { breadcrumbSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
-import { TOOLS, TOOLS_BASE, toolPath } from "@/lib/tools";
+import { TOOLS, TOOLS_BASE } from "@/lib/tools";
 
 const TITLE = "Free pregnancy and parenting tools";
 const DESCRIPTION =
@@ -21,31 +21,25 @@ export default function ToolsPage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Free tools", path: `${TOOLS_BASE}/` }])} />
-      <section className="phero ahero" style={{ ["--tone" as string]: "#D8CCE8" }} aria-labelledby="tools-title">
+      <section className="phero tool-hero" style={{ ["--tone" as string]: "#D8CCE8" }} aria-labelledby="tools-title">
         <div className="wrap">
-          <div className="phero__copy" style={{ maxWidth: 820 }}>
-            <span className="phero__range">Free tools</span>
-            <h1 id="tools-title" className="display-xl">
-              Quick answers, <em>worked out for you.</em>
-            </h1>
-            <p className="lede">
-              The questions you keep looking up: your fertile days, your due date, whether papaya is safe, how your baby is growing, and when the next vaccine is due. Free,
-              no sign-up, and nothing you enter leaves your phone.
-            </p>
-          </div>
+          <span className="phero__range">Free tools</span>
+          <h1 id="tools-title" className="tool-title">
+            Quick answers, <em>worked out for you.</em>
+          </h1>
+          <p className="tool-intro">
+            The questions you keep looking up: your fertile days, your due date, whether papaya is safe, how your baby is growing, and when the next vaccine is due. Free,
+            no sign-up, and nothing you enter leaves your phone.
+          </p>
         </div>
       </section>
 
-      <section className="section tool-section">
-        <div className="wrap tool-wrap">
+      <section className="tool-block tool-block--main">
+        <div className="wrap">
           <ul className="tool-grid">
             {TOOLS.map((t) => (
               <li key={t.slug} style={{ ["--tone" as string]: t.tone }}>
-                <Link href={toolPath(t.slug)}>
-                  <span className="tool-grid__stage">{t.stage}</span>
-                  <strong>{t.name}</strong>
-                  <span>{t.short}</span>
-                </Link>
+                <ToolCard tool={t} />
               </li>
             ))}
           </ul>

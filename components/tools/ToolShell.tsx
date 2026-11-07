@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
+import ToolCard from "./ToolCard";
 import { breadcrumbSchema } from "@/lib/jsonld";
 import { getAllPosts, postPath } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
@@ -55,37 +57,41 @@ export default async function ToolShell({
         }}
       />
 
-      <section className="phero ahero" style={{ ["--tone" as string]: tool.tone }} aria-labelledby="t-title">
+      <section className="phero tool-hero" style={{ ["--tone" as string]: tool.tone }} aria-labelledby="t-title">
         <div className="wrap">
-          <div className="phero__copy" style={{ maxWidth: 820 }}>
-            <nav className="tool-crumbs" aria-label="Breadcrumb">
-              <Link href={`${TOOLS_BASE}/`}>Free tools</Link> <span aria-hidden="true">/</span> <span>{tool.stage}</span>
-            </nav>
-            <h1 id="t-title" className="display-xl">
-              {tool.name}
-            </h1>
-            <p className="lede">{intro}</p>
-          </div>
+          <nav className="tool-crumbs" aria-label="Breadcrumb">
+            <Link href={`${TOOLS_BASE}/`}>Free tools</Link> <span aria-hidden="true">/</span> <span>{tool.stage}</span>
+          </nav>
+          <h1 id="t-title" className="tool-title">
+            {tool.name}
+          </h1>
+          <p className="tool-intro">{intro}</p>
         </div>
       </section>
 
-      <section className="section tool-section">
-        <div className="wrap tool-wrap">
+      <section className="tool-block tool-block--main" style={{ ["--tone" as string]: tool.tone }}>
+        <div className="wrap">
           {children}
           <p className="tool-note">{note}</p>
         </div>
       </section>
 
       {reads.length > 0 && (
-        <section className="section tool-section" aria-labelledby="t-reads">
-          <div className="wrap tool-wrap">
-            <h2 id="t-reads" className="display-l">
+        <section className="tool-block tool-noprint" aria-labelledby="t-reads">
+          <div className="wrap">
+            <h2 id="t-reads" className="tool-h2">
               Read next
             </h2>
-            <ul className="tool-links">
+            <ul className="tool-reads">
               {reads.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`${p.canonicalPath ?? postPath(p.category, p.slug)}/`}>{p.title}</Link>
+                  <Link href={`${p.canonicalPath ?? postPath(p.category, p.slug)}/`}>
+                    {p.ogImage && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.ogImage} alt="" loading="lazy" />
+                    )}
+                    <span>{p.title}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -93,15 +99,18 @@ export default async function ToolShell({
         </section>
       )}
 
-      <section className="section tool-section" aria-labelledby="t-faq">
-        <div className="wrap tool-wrap">
-          <h2 id="t-faq" className="display-l">
+      <section className="tool-block tool-noprint" aria-labelledby="t-faq">
+        <div className="wrap tool-faq">
+          <h2 id="t-faq" className="tool-h2">
             Common questions
           </h2>
-          <div className="tool-faq">
+          <div>
             {faqs.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
+              <details key={f.q} className="faq__item">
+                <summary>
+                  <span>{f.q}</span>
+                  <Icon name="plus" size={18} />
+                </summary>
                 <p>{f.a}</p>
               </details>
             ))}
@@ -109,19 +118,15 @@ export default async function ToolShell({
         </div>
       </section>
 
-      <section className="section tool-section" aria-labelledby="t-more">
-        <div className="wrap tool-wrap">
-          <h2 id="t-more" className="display-l">
+      <section className="tool-block tool-noprint" aria-labelledby="t-more">
+        <div className="wrap">
+          <h2 id="t-more" className="tool-h2">
             More free tools
           </h2>
-          <ul className="tool-grid">
+          <ul className="tool-grid tool-grid--compact">
             {others.map((t) => (
               <li key={t.slug} style={{ ["--tone" as string]: t.tone }}>
-                <Link href={toolPath(t.slug)}>
-                  <span className="tool-grid__stage">{t.stage}</span>
-                  <strong>{t.name}</strong>
-                  <span>{t.short}</span>
-                </Link>
+                <ToolCard tool={t} />
               </li>
             ))}
           </ul>

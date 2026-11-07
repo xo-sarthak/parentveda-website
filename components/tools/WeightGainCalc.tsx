@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Answer, Choice, Facts, NumberField } from "./ui";
 
 /* Total gain ranges for a single baby follow the US Institute of Medicine 2009
    guidance, which Indian obstetric practice commonly uses. BMI groups use the
@@ -25,56 +26,46 @@ export default function WeightGainCalc() {
   const range = band ? (twins ? band.twins : band.single) : null;
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
-        <label>
-          <span>Your height (cm)</span>
-          <input type="number" inputMode="decimal" min={120} max={220} value={h} onChange={(e) => setH(e.target.value)} placeholder="e.g. 160" />
-        </label>
-        <label>
-          <span>Your weight before pregnancy (kg)</span>
-          <input type="number" inputMode="decimal" min={30} max={200} value={w} onChange={(e) => setW(e.target.value)} placeholder="e.g. 55" />
-        </label>
-        <fieldset className="tool-toggle">
-          <legend>Expecting</legend>
-          <label>
-            <input type="radio" name="t" checked={!twins} onChange={() => setTwins(false)} /> One baby
-          </label>
-          <label>
-            <input type="radio" name="t" checked={twins} onChange={() => setTwins(true)} /> Twins
-          </label>
-        </fieldset>
+    <div className="tool-bench">
+      <form className="tool-panel" onSubmit={(e) => e.preventDefault()}>
+        <div className="tool-row">
+          <NumberField label="Your height" unit="cm" min={120} max={220} value={h} onChange={setH} placeholder="e.g. 160" />
+          <NumberField label="Weight before pregnancy" unit="kg" min={30} max={200} value={w} onChange={setW} placeholder="e.g. 55" />
+        </div>
+        <Choice
+          legend="Expecting"
+          name="t"
+          value={twins ? "twins" : "one"}
+          onChange={(v) => setTwins(v === "twins")}
+          options={[
+            { value: "one", label: "One baby" },
+            { value: "twins", label: "Twins" },
+          ]}
+        />
+        {(h || w) && !valid && <p className="tool-warn">Please enter your height in centimetres and weight in kilograms.</p>}
       </form>
 
-      {(h || w) && !valid && <p className="tool-warn">Please enter your height in centimetres and weight in kilograms.</p>}
-
-      {valid && band && (
-        <div className="tool-result" aria-live="polite">
-          {range ? (
-            <p className="tool-result__lead">
-              A healthy total gain for you is usually about <strong>{range[0]} to {range[1]} kg</strong> over the whole pregnancy.
+      <Answer
+        eyebrow="A healthy total gain for you"
+        empty="Add your height and weight and your range will appear here."
+        value={valid && band ? (range ? `${range[0]} to ${range[1]} kg` : "Your doctor will set a range for you") : undefined}
+        sub={valid && band ? (range ? "Usually about this much, over the whole pregnancy." : "For twins with a starting weight below the healthy range, there is no fixed guideline.") : undefined}
+      >
+        {valid && band && (
+          <>
+            <Facts
+              items={[
+                ["Your BMI before pregnancy", bmi.toFixed(1)],
+                ["That is", band.label],
+              ]}
+            />
+            <p className="tool-small">
+              Most of the gain comes after the first trimester. In the first three months many women gain only 0.5 to 2 kg, and some lose a little with nausea. Steady, gradual gain matters more than any
+              single number. Quality of food matters more than quantity.
             </p>
-          ) : (
-            <p className="tool-result__lead">
-              For twins with a starting weight below the healthy range, there is no fixed guideline. <strong>Your doctor will set a range for you.</strong>
-            </p>
-          )}
-          <ul className="tool-facts">
-            <li>
-              <span>Your BMI before pregnancy</span>
-              <strong>{bmi.toFixed(1)}</strong>
-            </li>
-            <li>
-              <span>That is</span>
-              <strong>{band.label}</strong>
-            </li>
-          </ul>
-          <p className="tool-small">
-            Most of the gain comes after the first trimester. In the first three months many women gain only 0.5 to 2 kg, and some lose a little with nausea.
-            Steady, gradual gain matters more than any single number. Quality of food matters more than quantity.
-          </p>
-        </div>
-      )}
+          </>
+        )}
+      </Answer>
     </div>
   );
 }

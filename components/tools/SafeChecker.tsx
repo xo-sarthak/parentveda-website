@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Icon from "@/components/Icon";
 import { CAN_I, CAN_I_BY_ID, CAN_I_GROUPS, CAN_I_POPULAR, CATEGORY_LABEL, VERDICT_LABEL, type Category, type CanI } from "@/lib/safe-in-pregnancy";
 
 const CATS = ["all", "eat", "drink", "take", "doActivity"] as const;
@@ -16,7 +17,10 @@ function Entry({ e, open, onRelated }: { e: CanI; open?: boolean; onRelated: (na
             <strong>{e.name}</strong>
             <span className={`safe-badge safe-badge--${e.verdict}`}>{VERDICT_LABEL[e.verdict]}</span>
           </span>
-          <p>{e.short}</p>
+          <span className="safe-item__short">{e.short}</span>
+          <span className="safe-item__why">
+            Why <Icon name="plus" size={14} />
+          </span>
         </summary>
         <div className="safe-item__more">
           <h4>Why</h4>
@@ -79,15 +83,24 @@ export default function SafeChecker() {
 
   const ask = (name: string) => {
     setQ(name);
-    window.scrollTo({ top: (document.querySelector(".tool-card") as HTMLElement)?.offsetTop - 80, behavior: "smooth" });
+    const top = document.querySelector(".tool-lookup")?.getBoundingClientRect().top ?? 0;
+    window.scrollTo({ top: window.scrollY + top - 96, behavior: "smooth" });
   };
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()} role="search">
-        <label>
-          <span>Can I have, take or do...</span>
-          <input type="search" className="tool-search" placeholder="Try papaya, chai, Crocin, flying..." value={q} onChange={(e) => setQ(e.target.value)} />
+    <div className="tool-lookup">
+      <form className="tool-lookup__bar" onSubmit={(e) => e.preventDefault()} role="search">
+        <label className="tool-field">
+          <span className="tool-label">Can I have, take or do...</span>
+          <span className="tool-searchbox">
+            <Icon name="search" size={20} />
+            <input type="search" placeholder="Try papaya, chai, Crocin, flying..." value={q} onChange={(e) => setQ(e.target.value)} />
+            {q && (
+              <button type="button" aria-label="Clear search" onClick={() => setQ("")}>
+                <Icon name="x" size={18} />
+              </button>
+            )}
+          </span>
         </label>
         <div className="tool-chips" role="group" aria-label="Popular">
           {CAN_I_POPULAR.map((id) => CAN_I_BY_ID.get(id)).filter(Boolean).map((e) => (
@@ -100,7 +113,7 @@ export default function SafeChecker() {
 
       {hits ? (
         <>
-          <p className="tool-small" aria-live="polite">
+          <p className="tool-count" aria-live="polite">
             {hits.length} {hits.length === 1 ? "answer" : "answers"}
           </p>
           <ul className="safe-list">
@@ -114,7 +127,7 @@ export default function SafeChecker() {
         </>
       ) : (
         <>
-          <div className="tool-chips" role="group" aria-label="Browse by type">
+          <div className="tool-chips tool-chips--filter" role="group" aria-label="Browse by type">
             {CATS.map((c) => (
               <button key={c} type="button" className={`tool-chip${c === cat ? " is-on" : ""}`} aria-pressed={c === cat} onClick={() => setCat(c)}>
                 {c === "all" ? "All" : CATEGORY_LABEL[c]}

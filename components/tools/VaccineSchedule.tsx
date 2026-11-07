@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { addDays, daysBetween, fmt, isoDay, parseDate, today } from "./date";
+import { Answer, Field } from "./ui";
 
 /* IAP (ACVIP) recommended schedule for healthy children, simplified to the
    standard age points. Days are from birth; months use 30.44 days. The
@@ -31,58 +32,50 @@ export default function VaccineSchedule() {
   const birth = parseDate(dob);
   const now = today();
   const valid = birth && birth <= now && daysBetween(birth, now) < M(13 * 12);
+  const dated = valid ? birth : null;
+  const next = dated ? SCHEDULE.find((s) => addDays(dated, s.at) >= now) : undefined;
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
-        <label>
-          <span>Your baby's date of birth</span>
-          <input type="date" value={dob} max={isoDay(now)} onChange={(e) => setDob(e.target.value)} />
-        </label>
-      </form>
+    <>
+      <div className="tool-bench">
+        <form className="tool-panel" onSubmit={(e) => e.preventDefault()}>
+          <Field label="Your baby's date of birth">
+            <input type="date" value={dob} max={isoDay(now)} onChange={(e) => setDob(e.target.value)} />
+          </Field>
+          {dob && !valid && <p className="tool-warn">Please enter a birth date in the past (up to 12 years ago).</p>}
+          {dated && (
+            <button type="button" className="btn btn--ghost btn--sm tool-print" onClick={() => window.print()}>
+              Print or save as PDF
+            </button>
+          )}
+        </form>
 
-      {dob && !valid && <p className="tool-warn">Please enter a birth date in the past (up to 12 years ago).</p>}
+        <Answer
+          eyebrow="Next due"
+          empty="Add your baby's date of birth and every date below will fill in."
+          value={dated ? (next ? next.age : "No more dates on this list") : undefined}
+          sub={dated ? (next ? `Around ${fmt(addDays(dated, next.at))}` : "Ask your paediatrician what comes next.") : undefined}
+        >
+          {next && <p className="tool-small">{next.vaccines.join(", ")}</p>}
+        </Answer>
+      </div>
 
-      {valid && birth && (
-        <div className="tool-result" aria-live="polite">
-          {(() => {
-            const next = SCHEDULE.find((s) => addDays(birth, s.at) >= now);
-            return next ? (
-              <p className="tool-result__lead">
-                Next due: <strong>{next.age}</strong>, around <strong>{fmt(addDays(birth, next.at))}</strong>.
-              </p>
-            ) : null;
-          })()}
-          <table className="tool-table tool-table--vax">
-            <thead>
-              <tr>
-                <th>Age</th>
-                <th>Around</th>
-                <th>Vaccines</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SCHEDULE.map((s) => {
-                const when = addDays(birth, s.at);
-                const past = when < now;
-                return (
-                  <tr key={s.age} className={past ? "is-past" : undefined}>
-                    <td>{s.age}</td>
-                    <td>{fmt(when, { day: "numeric", month: "short", year: "numeric" })}</td>
-                    <td>{s.vaccines.join(", ")}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <button type="button" className="btn btn--ghost btn--sm tool-print" onClick={() => window.print()}>
-            Print or save as PDF
-          </button>
-          <p className="tool-small">
-            Dates already passed are greyed out. If a dose was missed, it is usually given at the next visit, not restarted. Ask your paediatrician.
-          </p>
-        </div>
-      )}
-    </div>
+      <ol className="vax-line">
+        {SCHEDULE.map((s) => {
+          const when = dated ? addDays(dated, s.at) : null;
+          const state = !when ? "" : s === next ? " is-next" : when < now ? " is-past" : "";
+          return (
+            <li key={s.age} className={`vax-line__item${state}`}>
+              <span className="vax-line__age">
+                <strong>{s.age}</strong>
+                {when && <span>{fmt(when, { day: "numeric", month: "short", year: "numeric" })}</span>}
+              </span>
+              <span className="vax-line__list">{s.vaccines.join(", ")}</span>
+            </li>
+          );
+        })}
+      </ol>
+      {dated && <p className="tool-small">Dates already passed are greyed out. If a dose was missed, it is usually given at the next visit, not restarted. Ask your paediatrician.</p>}
+    </>
   );
 }

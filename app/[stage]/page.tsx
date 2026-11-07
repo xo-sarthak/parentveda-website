@@ -8,7 +8,8 @@ import StageStory from "@/components/stage/StageStory";
 import { hueOf } from "@/lib/color";
 import { stages, getStage } from "@/lib/stages";
 import { getAppHref } from "@/lib/site";
-import { TOOLS, toolPath } from "@/lib/tools";
+import { TOOLS } from "@/lib/tools";
+import ToolCard from "@/components/tools/ToolCard";
 
 export const dynamicParams = false;
 
@@ -180,10 +181,7 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
             <ul className="tool-grid">
               {webTools.map((t) => (
                 <li key={t.slug} className="rv" style={{ ["--tone" as string]: t.tone }}>
-                  <Link href={toolPath(t.slug)}>
-                    <strong>{t.name}</strong>
-                    <span>{t.short}</span>
-                  </Link>
+                  <ToolCard tool={t} hideStage />
                 </li>
               ))}
             </ul>

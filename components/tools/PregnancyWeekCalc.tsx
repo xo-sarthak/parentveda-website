@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { addDays, daysBetween, fmt, isoDay, parseDate, today, trimesterOf } from "./date";
+import { Answer, Choice, Facts, Field, PregnancyBar } from "./ui";
 
 /* What is usually offered around each point. Wording stays general on purpose:
    the treating doctor decides the actual plan. */
@@ -30,60 +31,55 @@ export default function PregnancyWeekCalc() {
   const now_checks = valid ? CHECKS.filter((c) => week >= c.from - 1 && week <= c.to) : [];
 
   return (
-    <div className="tool-card">
-      <form className="tool-form" onSubmit={(e) => e.preventDefault()}>
-        <fieldset className="tool-toggle">
-          <legend>I know my</legend>
-          <label>
-            <input type="radio" name="w" checked={method === "lmp"} onChange={() => setMethod("lmp")} /> First day of last period
-          </label>
-          <label>
-            <input type="radio" name="w" checked={method === "due"} onChange={() => setMethod("due")} /> Due date
-          </label>
-        </fieldset>
-        <label>
-          <span>{method === "lmp" ? "First day of your last period" : "Your due date"}</span>
+    <div className="tool-bench">
+      <form className="tool-panel" onSubmit={(e) => e.preventDefault()}>
+        <Choice
+          legend="I know my"
+          name="w"
+          tiles
+          value={method}
+          onChange={setMethod}
+          options={[
+            { value: "lmp", label: "First day of last period" },
+            { value: "due", label: "Due date" },
+          ]}
+        />
+        <Field label={method === "lmp" ? "First day of your last period" : "Your due date"}>
           <input type="date" value={date} max={method === "lmp" ? isoDay(now) : undefined} onChange={(e) => setDate(e.target.value)} />
-        </label>
+        </Field>
+        {date && !valid && <p className="tool-warn">That date doesn't fit a current pregnancy. Please check it.</p>}
       </form>
 
-      {date && !valid && <p className="tool-warn">That date doesn't fit a current pregnancy. Please check it.</p>}
-
-      {valid && lmp && (
-        <div className="tool-result" aria-live="polite">
-          <p className="tool-result__lead">
-            You are <strong>{week} weeks and {day} {day === 1 ? "day" : "days"}</strong> pregnant, in your <strong>{trimesterOf(week).toLowerCase()}</strong>.
-          </p>
-          <ul className="tool-facts">
-            <li>
-              <span>You are in week</span>
-              <strong>{week + 1}</strong>
-            </li>
-            <li>
-              <span>Due date</span>
-              <strong>{fmt(addDays(lmp, 280), { day: "numeric", month: "short", year: "numeric" })}</strong>
-            </li>
-            <li>
-              <span>Second trimester starts</span>
-              <strong>{fmt(addDays(lmp, 98), { day: "numeric", month: "short" })}</strong>
-            </li>
-            <li>
-              <span>Third trimester starts</span>
-              <strong>{fmt(addDays(lmp, 196), { day: "numeric", month: "short" })}</strong>
-            </li>
-          </ul>
-          {now_checks.length > 0 && (
-            <>
-              <h3 className="tool-h3">What is usually checked around now</h3>
-              <ul className="tool-list">
-                {now_checks.map((c) => (
-                  <li key={c.text}>{c.text}</li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
+      <Answer
+        eyebrow="You are"
+        empty="Add your date and your week will appear here, with what is usually checked around now."
+        value={valid ? `${week} weeks and ${day} ${day === 1 ? "day" : "days"}` : undefined}
+        sub={valid ? `pregnant, in your ${trimesterOf(week).toLowerCase()}.` : undefined}
+      >
+        {valid && lmp && (
+          <>
+            <PregnancyBar days={gest} />
+            <Facts
+              items={[
+                ["You are in week", week + 1],
+                ["Due date", fmt(addDays(lmp, 280), { day: "numeric", month: "short", year: "numeric" })],
+                ["Second trimester starts", fmt(addDays(lmp, 98), { day: "numeric", month: "short" })],
+                ["Third trimester starts", fmt(addDays(lmp, 196), { day: "numeric", month: "short" })],
+              ]}
+            />
+            {now_checks.length > 0 && (
+              <>
+                <h3 className="tool-h3">What is usually checked around now</h3>
+                <ul className="tool-list">
+                  {now_checks.map((c) => (
+                    <li key={c.text}>{c.text}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
+        )}
+      </Answer>
     </div>
   );
 }

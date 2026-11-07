@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import INFO from "@/lib/vaccine-info.json";
 
 /* "Learn why" content for each vaccine, the same text the app's vaccination
@@ -20,12 +21,17 @@ const RED_FLAGS = ["Difficult or noisy breathing, or swelling of the face or lip
 export default function VaccineInfo() {
   return (
     <section className="vax-info" aria-labelledby="vax-info-title">
-      <h2 id="vax-info-title">What each vaccine protects against</h2>
+      <h2 id="vax-info-title" className="tool-h2">
+        What each vaccine protects against
+      </h2>
       {(INFO as unknown as Info[]).map((v) => (
-        <details key={v.id}>
+        <details key={v.id} className="faq__item">
           <summary>
-            <strong>{v.name}</strong>
-            <span>{v.protects}</span>
+            <span>
+              <strong>{v.name}</strong>
+              <small>{v.protects}</small>
+            </span>
+            <Icon name="plus" size={18} />
           </summary>
           <h4>Protects against</h4>
           <ul>

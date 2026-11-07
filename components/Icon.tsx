@@ -3,6 +3,12 @@
 
 const paths: Record<string, React.ReactNode> = {
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4 4" />
+    </>
+  ),
   arrowDown: <path d="M12 5v14M6 13l6 6 6-6" />,
   lock: (
     <>

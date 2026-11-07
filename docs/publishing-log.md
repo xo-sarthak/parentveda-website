@@ -1,0 +1,150 @@
+# Publishing log
+
+Errors found while publishing Reads, and how each one was solved. Add new entries at the top. Do not put secrets or keys in this file.
+
+Status: **Solved**, **Open** (still needs action) or **Accepted** (known and left as it is, with the reason).
+
+---
+
+## 6 Nov 2026: rows 94, 95 and 96
+
+**Published**
+
+| Sheet row | Article | Live address | Reviewer shown |
+|---|---|---|---|
+| 94 | Iron-Rich Foods During Pregnancy | `/reads/articles/iron-rich-foods-during-pregnancy/` | Dr. Mahender Singh |
+| 95 | Delivery Ke Baad Pet Kaise Kam Kare | `/reads/articles/delivery-ke-baad-pet-kaise-kam-kare/` | Dr. Mahender Singh |
+| 96 | Foods to Avoid During Pregnancy | `/reads/articles/foods-to-avoid-during-pregnancy/` | Dr. Mahender Singh |
+
+Images commit: `423b446`. Article rows added to `content_posts` directly. The owner confirmed that Dr. Singh reviewed all three. `reviewed_at` is empty because no review date was supplied.
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | Vercel's Security Checkpoint began returning 403 to this connection, on every address including the sitemap and images. Repeated polling is the likely trigger, but that is not confirmed, and neither is whether other visitors or search engines are affected. | Live checks from this connection stopped. If it is site-wide, real visitors would see it too. | Open the site on another network, such as mobile data, and check Vercel's Firewall page. Do not try to get around the challenge. Poll less often in future. |
+| 2 | The three articles were not seen in the sitemap during 20 minutes of checks. The challenge may have blocked some of those checks, so this is inconclusive. | They may not be submitted to search engines yet. | Recheck the sitemap once the challenge has cleared. |
+| 3 | IndexNow was not pinged, because direct database inserts do not call `/api/revalidate`. | Bing and others were not told about the three pages. | Save each article once in Directus. |
+| 4 | Two reference links could not be confirmed: the Lok Sabha answer on eparlib.sansad.in (row 94, connection refused) and the BMJ study page (row 95, 403). | Each may be fine. A broken one would be a dead reference. | Open both in a browser. |
+| 5 | Row 94's "Specialist review in progress" line stays in the disclaimer, at the owner's request. | It is true today and goes out of date once the review is done. | Remove it when the dietitian and OB-GYN reviews are complete. |
+| 6 | The sheet's image links for row 96 return "not found". The images used came from the same Drive folder with matching titles. | The sheet points to files that cannot be opened. | Update the links, and confirm these are the intended images. |
+| 7 | Row 95's sheet title and keyword do not match: the title is about reducing the belly, but the keyword is "delivery ke baad kya khaye" (what to eat). The article follows the title. | The page may not rank for the sheet's keyword. Row 92 already covers postpartum food. | Correct the keyword in the sheet. |
+
+### Accepted
+
+| # | Item | Reason |
+|---|---|---|
+| 8 | Row 95's cover appears to show a baby sleeping on a pillow on an adult bed. | Flagged for the owner, because the picture may conflict with safe-sleep advice. Replacing it means making a new image. |
+| 9 | Row 94 labels bajra and ragi as flour, while IFCT lists them as "Bajra" and "Ragi". | Left as written. The iron values match. Flagged for the dietitian review. |
+| 10 | Row 94's Insight says the body builds blood "faster than any plate can supply". The 2024 guidelines do not say this directly. | Not part of the approved wording changes. Flagged for the dietitian review. |
+| 11 | Row 94's cover shows a glass of beetroot juice, while the article says beetroot holds much less iron than other foods. | Minor. The article does not call it harmful. |
+
+### Solved: content
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 12 | Row 94's doc said the 16 chart values were unverified because the writer could not open IFCT 2017. | Downloaded the PDF and compared every value against Table 5. All 16 match. |
+| 13 | Row 94's chana value of 6.08 mg is IFCT's figure for Bengal gram dal, not whole chana (6.78 mg). | Relabelled the row "chana dal", with the owner's approval. |
+| 14 | Row 94 said even a balanced diet cannot provide all the iron needed. The 2024 guidelines say a balanced diet can meet most nutrient needs, and advise daily IFA tablets. | Reworded the sentence and the matching takeaway, with the owner's approval. |
+| 15 | Row 94 linked to two pages that are not live: `anemia-in-pregnancy` and `pregnancy-diet-chart`. | Removed both lines, with the owner's approval. |
+| 16 | Row 95's C-section table had its headings shifted one column. | Fixed the headings and checked the live table. |
+| 17 | Row 95 mentioned a C-section guide without linking to it, and its notes said some linked pages were not live. | Linked `c-section-recovery`, which is published in the database. The diastasis and postpartum links return 200. The C-section page itself was not opened before the challenge began. |
+| 18 | Row 96's doc suggested `foods-to-avoid-during-pregnancy-indian`, but the sheet's row 98 links to the address without `-indian`. | Used `foods-to-avoid-during-pregnancy`, with the owner's approval. |
+| 19 | The docs contained internal notes, schema drafts, placeholders for review dates and registration numbers, and reviewer bios. | Left all of it out of the published articles. The site shows the reviewer from its own data. |
+
+### Solved: tools and checks
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 20 | A link check using `curl -k` was blocked because it turned off certificate checks. | Reran it with normal verification. `-k` should not be used. |
+| 21 | The three FDA and one CDC reference returned 404 or 403 to `curl`. | Opened them with WebFetch, and all four loaded. The CDC page confirms the 330 to 400 kcal figure. |
+| 22 | The first searches for IFCT values found nothing, because minerals are in Table 5, and some rows split across lines or pages. | Read each row from Table 5 by food code. |
+
+---
+
+## 6 Nov 2026: rows 84 and 88
+
+**Update:** the images deploy for rows 94 to 96 refreshed the sitemap, and rows 84 and 88 then appeared in it (`X-Vercel-Cache: MISS`). Item 1 below is solved for these two rows, but the deploy did not explain why the 60-second refresh failed. Item 2, IndexNow, is still open.
+
+**Published**
+
+| Sheet row | Article | Live address | Reviewer shown |
+|---|---|---|---|
+| 84 | Pumping Breast Milk at Work | `/reads/articles/pumping-breast-milk-at-work/` | Dr. Mahender Singh |
+| 88 | The IVF Process Step by Step | `/reads/articles/ivf-process/` | Dr. Mahender Singh |
+
+Images commit: `6f77058`. Article rows added to `content_posts` directly.
+`reviewed_at` is empty because no review date was supplied, so "Last reviewed" falls back to the publish date.
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | The live sitemap did not pick up the new articles. Vercel was still serving a cached copy over 20 minutes later (`X-Vercel-Cache: HIT`, `Age: 1332`), even though `app/sitemap.ts` sets `revalidate = 60`. | Both pages are live and in the Reads listing, but the sitemap does not submit them to search engines yet. | Save either new article in Directus. That runs the publish flow, which clears the content cache. Then check the sitemap. If it is still stale, the 60-second refresh is not working and needs a code fix or a redeploy. |
+| 2 | IndexNow was not pinged. The ping lives in `/api/revalidate`, and a direct database insert does not call it. `REVALIDATE_SECRET` is not in `.env.local`. | Bing and others were not told about the two pages. | The same Directus save sends the ping. |
+| 3 | Two reference links could not be confirmed: the Mayo Clinic IVF page (403) and the CDC fact sheet on stacks.cdc.gov (403). Both block automated checks, and Firecrawl credits ran out before they could be opened another way. | Each may be fine. A broken one would be a dead reference. | Open both in a browser. |
+| 4 | The sheet's "Published on website" column is out of date. It has 13 articles marked, 40 other live articles unmarked, and ChatGPT links on 8 rows that are not live. Rows 84 and 88 are not marked either. | The sheet cannot be trusted as a record of what is live. | Update the column. The file is an Excel upload owned by another account, so it was not edited. |
+
+### Accepted
+
+| # | Item | Reason |
+|---|---|---|
+| 5 | Row 84's legal wording was checked against the Code and gazette by Claude, not by a lawyer. | The owner approved publishing with the five wording changes. The line saying the law does not mention pumping is the one a lawyer would most want to see. |
+| 6 | The writers' docs still show doctor sign-off as pending on rows 84 and 88. | The owner confirmed that Dr. Singh reviewed these articles. |
+| 7 | The IVF flowchart says "a few painless minutes, no sedation", while the article says "usually". | Minor. Flagged for Dr. Singh, because changing it means regenerating the image. |
+
+### Solved: content
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 8 | Row 88 listed the same file for both cover and in-article image, and no IVF cover existed in Drive. | The file was the in-article flowchart. A new cover was made in ChatGPT from a prompt based on the live covers, checked, and resized to 1400×933. |
+| 9 | Row 88's sheet title promised "Success Rates in India", which the article deliberately does not cover. | Used the writer's title, with the owner's approval. |
+| 10 | Row 88 pointed to a two-week-wait guide that is not live. | Cut the end of that sentence, with the owner's approval. |
+| 11 | Row 84 said "earlier rules continue", but the final Central Rules came into force on 8 May 2026. | Reworded to give the date and say that state rules can still apply. |
+| 12 | Row 84 said state rules may differ on break length. Section 66 leaves it to the Central Government, and rule 36 also allows up to 15 minutes of travel time. | Reworded the break length row. |
+| 13 | Row 84 read as if every workplace is covered. | Added the coverage from the Code's First Schedule: factories, mines, plantations, and shops or establishments with 10 or more employees. |
+| 14 | Row 84 presented nursing breaks as a pumping right. Section 66 says "for nursing the child". | Changed the heading to "working mother" and added a line telling her to ask HR how the breaks can be used. |
+| 15 | Row 84's creche row left out that visits include rest intervals, and that an allowance can replace the creche. | Added both. |
+| 16 | Row 84 had a broken "breast pump guide" link and a line about foods for milk supply that led nowhere. | Removed both. |
+| 17 | Both docs ended with internal notes, and row 84's also had chat text. | Left all of it out of the published article. |
+| 18 | Row 84's doc had a typo: "as a routine form". | Corrected to "as a routine forms". |
+| 19 | The docs did not follow the site's article layout, and row 84 had no captions for its image. | Moved the text into the usual order (quick answer, Insight, doctor section, looking ahead, references, questions). Formatted the lists and tables, and renamed the doctor section to match other articles. Captions came from the image or the writer's notes. |
+
+### Solved: tools and checks
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 20 | The Google Sheets tool said "Spreadsheet not found or unavailable". | The file is an Excel upload, not a Google Sheet. Read it through Google Drive instead. |
+| 21 | Drive's text version of the sheet had no row breaks, so rows could not be counted. | Downloaded the real `.xlsx` and read it column by column with `openpyxl`. |
+| 22 | Sheet and image downloads were too large to return in full. | Used the saved copies the tool wrote to disk and decoded them with a script. |
+| 23 | Matching live articles to sheet rows paired `postpartum-recovery-foods` with row 39. | Checked every weak match by hand. The correct row is 92 (ID 698). |
+| 24 | Python scripts crashed with `UnicodeEncodeError` on characters like → and ₹. | `PYTHONIOENCODING` is ignored under `python -I`, so the scripts set UTF-8 output themselves with `sys.stdout.reconfigure`. |
+| 25 | A Firecrawl query on the Code's PDF returned only fragments and used about 120 credits. | Downloaded the Code and the gazette with `curl` and read them with `pypdf`, which is free and gives the exact text. |
+| 26 | Link checks returned 403, 203 or a timeout for some references. | CDC's main page and Taxmann opened normally through Firecrawl. PubMed's 203 is a working response. See item 3 for the two left unconfirmed. |
+| 27 | The check for leftover notes flagged "Scout". | False alarm: the article says "Scout the office". |
+| 28 | The background check reported failure after 20 minutes. | It required the sitemap and the listing together. The listing had updated; only the sitemap had not. See item 1. |
+
+---
+
+## Carried over from earlier batches
+
+From the 31 Oct to 5 Nov publishing notes.
+
+| Status | Row | Problem | Solved how, or what is needed |
+|---|---|---|---|
+| Open | 91 | The PCOS cover shows fertilisation inside the womb. It happens in the fallopian tube. | Replace the cover. |
+| Open | 80 | The NIPT dot chart was left out because it has 110 dots and its counts do not match its labels. | Regenerate the chart. |
+| Open | 80 | NIPT cost and anomaly scan timing differ from other Reads. | A doctor should pick one figure for each. |
+| Open | 81 | Two India-specific Group B Strep figures have no confirmed source. | Check the source. |
+| Open | 91, 92 | Dr. Singh is shown as a child specialist on fertility and postpartum articles. Row 91's notes ask for an OB-GYN. | Add the right specialists when they are onboarded. |
+| Open | All batches | The links the sheet wants from older articles to new ones have not been added. | Add them in a later pass. |
+| Solved | 80 | The article said detection was "somewhat lower" for Patau syndrome, but its source says about 99%. | Corrected the sentence. |
+| Solved | 81 | A link pointed to an article that does not exist. | Replaced it with a plain instruction. |
+| Solved | 92 | The ICMR link was broken. | Fixed it and confirmed the figures in the PDF. |
+
+## Not published yet
+
+| Row | Article | Blocked by |
+|---|---|---|
+| 87 | Combination Feeding | IMS Act legal check by a lawyer. |
+| 89 | IUI Procedure | No images, no plagiarism mark, placeholder links in the text, and NICE figures to verify. |
