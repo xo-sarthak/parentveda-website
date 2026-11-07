@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import { nav, getAppHref } from "@/lib/site";
 import Icon from "./Icon";
 import Wordmark from "./Wordmark";
+import type { MenuLink } from "@/lib/pillars";
 
-export default function Header() {
+export default function Header({ pillars = {} }: { pillars?: Record<string, MenuLink[]> }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -36,11 +37,31 @@ export default function Header() {
           <Wordmark />
         </Link>
         <nav className="hdr__nav" aria-label="Main">
-          {nav.map((n) => (
-            <Link key={n.href} href={n.href} className={pathname.startsWith(n.href) ? "is-active" : undefined} aria-current={pathname === n.href ? "page" : undefined}>
-              {n.label}
-            </Link>
-          ))}
+          {nav.map((n) => {
+            const top = (
+              <Link href={n.href} className={pathname.startsWith(n.href) ? "is-active" : undefined} aria-current={pathname === n.href ? "page" : undefined}>
+                {n.label}
+              </Link>
+            );
+            const subs = pillars[n.href];
+            if (!subs?.length) return <span key={n.href} className="hdr__item">{top}</span>;
+            return (
+              <span key={n.href} className="hdr__item hdr__item--drop">
+                {top}
+                <span className="hdr__drop">
+                  <span className="hdr__drop-head">Start here</span>
+                  {subs.map((s) => (
+                    <Link key={s.href} href={s.href}>
+                      {s.label}
+                    </Link>
+                  ))}
+                  <Link href={n.href} className="hdr__drop-all">
+                    Everything for {n.label.toLowerCase()} →
+                  </Link>
+                </span>
+              </span>
+            );
+          })}
         </nav>
         <Link href={getAppHref()} className="btn btn--ink btn--sm hdr__cta">
           Get the app
@@ -53,10 +74,21 @@ export default function Header() {
       <div id="mobile-nav" className="hdr__sheet" hidden={!open}>
         <nav aria-label="Mobile">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href}>
-              {n.label}
-              <Icon name="arrow" size={18} />
-            </Link>
+            <div key={n.href} className="hdr__sheet-group">
+              <Link href={n.href}>
+                {n.label}
+                <Icon name="arrow" size={18} />
+              </Link>
+              {pillars[n.href]?.length ? (
+                <div className="hdr__sheet-subs">
+                  {pillars[n.href].map((s) => (
+                    <Link key={s.href} href={s.href}>
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           ))}
           <Link href="/fathers">For fathers</Link>
           <Link href="/about">About ParentVeda</Link>
