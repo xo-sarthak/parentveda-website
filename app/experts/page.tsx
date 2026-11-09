@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { AUTHOR_FIELD, EXPERTS, authorPath } from "@/lib/authors";
+import { EXPERT_GROUPS, LISTED_EXPERTS, authorField, authorInitials, authorPath } from "@/lib/authors";
+import ExpertDirectory, { type DirectoryExpert } from "@/components/experts/ExpertDirectory";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* The people behind ParentVeda's guidance, one card each, linking to the
    profile at /reads/authors/<slug>/ (that URL is unchanged). Built from the
-   Reads index card pattern (.agrid / .acard in articles.css).
+   Reads index card pattern (.agrid / .acard in articles.css), with filter chips
+   by field.
 
-   The cover names the expert's FIELD, not a stage: nobody here belongs to one,
-   and a stage label would imply that she only helps there. Tones simply cycle. */
+   The cover names the expert's FIELD, not a stage: nobody here belongs to one.
+   Families reach experts through ParentVeda, so a card shows a city at most:
+   never a clinic, hospital, phone, email or outside profile. */
 
 const DESCRIPTION =
-  "Genetic counselling, women's health physiotherapy, breastfeeding, childbirth education and child psychology. Here is who they are and what they have trained in.";
+  "Fertility doctors, obstetricians, physiotherapists, lactation consultants, nutritionists, yoga teachers and child psychologists. Here is who they are and what they have trained in.";
 
 export const metadata: Metadata = {
   title: "Our experts",
@@ -23,17 +25,22 @@ export const metadata: Metadata = {
   twitter: { card: "summary", title: "Our experts", description: DESCRIPTION },
 };
 
-const TONES = [
-  { tone: "#E8D9C0", deep: "#6B4A1F" },
-  { tone: "#E8C4CE", deep: "#7A3348" },
-  { tone: "#D8CCE8", deep: "#4A3470" },
-] as const;
-
-// Dr. Mahender Singh was on the site first and keeps the last place, as in the approved layout.
-const LAST = "dr-mahender-singh";
-const experts = [...EXPERTS.filter((a) => a.slug !== LAST), ...EXPERTS.filter((a) => a.slug === LAST)];
 
 export default function ExpertsPage() {
+  const experts: DirectoryExpert[] = LISTED_EXPERTS.map((a) => ({
+    slug: a.slug,
+    href: `${authorPath(a.slug)}/`,
+    name: a.name,
+    credentials: a.credentials,
+    role: a.role,
+    field: authorField(a),
+    group: a.group,
+    founding: a.founding,
+    initials: authorInitials(a.name),
+    photo: a.photo,
+    meta: [a.location, a.experience].filter(Boolean).join(" \u00b7 "),
+    helps: a.specialties.slice(0, 3).join(" \u00b7 "),
+  }));
   return (
     <>
       <section className="phero ahero" style={{ ["--tone" as string]: "#E8C4CE" }} aria-labelledby="x-title">
@@ -50,33 +57,8 @@ export default function ExpertsPage() {
 
       <section className="section" style={{ paddingTop: 24 }} aria-label="All experts">
         <div className="wrap">
-          <ul className="agrid">
-            {experts.map((a, i) => {
-              const look = TONES[i % TONES.length];
-              return (
-                <li key={a.slug}>
-                  <Link
-                    href={`${authorPath(a.slug)}/`}
-                    className="acard"
-                    style={{ ["--tone" as string]: look.tone, ["--deep" as string]: look.deep }}
-                  >
-                    <span className="acard__cover" aria-hidden="true">
-                      <span className="acard__disc" />
-                      <span className="acard__cat">{AUTHOR_FIELD[a.slug]}</span>
-                    </span>
-                    <span className="acard__body">
-                      <span className="acard__meta">Helps with {a.specialties.slice(0, 3).join(" · ")}</span>
-                      <span className="acard__title">{a.name}</span>
-                      <span className="acard__desc">
-                        {a.role}. {a.shortBio}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <p className="experts__note">These specialists work with us. They do not replace your own doctor.</p>
+          <ExpertDirectory experts={experts} groups={EXPERT_GROUPS} />
+          <p className="experts__note">These specialists work with ParentVeda, and you can reach them through the app. They do not replace your own doctor.</p>
         </div>
       </section>
       <JsonLd data={breadcrumbSchema([{ name: "Our experts", path: "/experts/" }])} />

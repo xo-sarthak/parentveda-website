@@ -34,7 +34,7 @@ function personRef(person: Author) {
     url: `${SITE_URL}${authorPath(person.slug)}/`,
     jobTitle: jobTitle(person),
     ...(person.specialties.length ? { knowsAbout: person.specialties } : {}),
-    ...(person.sameAs?.length ? { sameAs: person.sameAs } : {}),
+    ...(person.kind === "writer" && person.sameAs?.length ? { sameAs: person.sameAs } : {}),
   };
 }
 
@@ -147,7 +147,8 @@ export function personSchema(person: Author, canonicalAbs: string) {
     description: person.shortBio,
     ...(/^dr\.?\s/i.test(person.name) ? { honorificPrefix: "Dr." } : {}),
     ...(person.photo ? { image: `${SITE_URL}${person.photo}` } : {}),
-    ...(person.sameAs?.length ? { sameAs: person.sameAs } : {}),
+    /* Experts are reached through ParentVeda: no outside profile, no practice. */
+    ...(person.kind === "writer" && person.sameAs?.length ? { sameAs: person.sameAs } : {}),
     ...(person.specialties.length ? { knowsAbout: person.specialties } : {}),
     ...(person.languages?.length ? { knowsLanguage: person.languages } : {}),
     // Only a line with an institution is a credential; a training or a posting is plain text.
@@ -171,10 +172,7 @@ export function personSchema(person: Author, canonicalAbs: string) {
     /* Experts work with us and have their own practices; our own people work for us. */
     ...(person.kind === "writer"
       ? { worksFor: { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/` } }
-      : {
-          affiliation: { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/` },
-          ...(person.practice ? { worksFor: { "@type": "MedicalBusiness", name: person.practice } } : {}),
-        }),
+      : { affiliation: { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/` } }),
     ...(person.registration ? { identifier: person.registration } : {}),
   };
 }

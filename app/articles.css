@@ -437,3 +437,122 @@
 .showall[open] > summary {
   margin-bottom: 8px;
 }
+
+/* ── /experts/ directory: filter chips, avatar covers, founding badge ── */
+.xchips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+.xchips button {
+  border: 1px solid var(--hair);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.xchips button span {
+  opacity: 0.6;
+  margin-left: 2px;
+  font-weight: 500;
+}
+.xchips button[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.xcard__cover {
+  position: relative;
+  background: var(--tone);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  min-height: 132px;
+  padding: 20px 22px 18px;
+}
+.xcard__cover .acard__cat {
+  font-size: 22px;
+  z-index: 1;
+}
+.xavatar {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px -8px rgba(45, 20, 76, 0.4);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--deep);
+  object-fit: cover;
+}
+.xbadge {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  background: var(--deep);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.xcard .acard__title {
+  font-size: 23px;
+}
+.xcard__cred {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: -4px;
+}
+.xcard__helps {
+  font-size: 14px;
+  color: var(--body);
+}
+.rperson__founding {
+  max-width: 44em;
+  margin: 0;
+  background: var(--deep);
+  color: #fff;
+  border-radius: 18px;
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.rperson__founding b {
+  color: var(--disc);
+}
+.rperson__empty {
+  margin: 0;
+  color: var(--muted);
+}
+.xcta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--purple-50);
+  border-radius: 24px;
+  padding: 28px 30px;
+}
+.xcta p {
+  margin: 8px 0 0;
+  color: var(--body);
+  max-width: 36em;
+}
