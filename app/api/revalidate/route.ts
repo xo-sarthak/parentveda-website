@@ -38,12 +38,16 @@
 
    2. Directus → Settings → Flows → Create Flow
           Trigger:  Event Hook, Action (non-blocking)
-          Scope:    items.create, items.update
-          Collections: content_posts, content_categories, content_authors
+          Scope:    items.create, items.update, items.delete
+          Collections: content_posts, content_categories, content_authors,
+                       can_i_entries, can_i_groups, baby_names, vaccines
           Operation: Webhook / Request URL
           Method:   POST
           URL:      https://parentveda.in/api/revalidate/
           Headers:  x-revalidate-secret: <the same string>
+
+   The shared-content collections use the same tag, so they need nothing new here.
+   lib/indexnow.ts works out which tool page changed from content_versions.
 
    Non-blocking on purpose: if this site is down, saving in Directus must still
    work. A publish that fails because a cache could not be cleared is a worse

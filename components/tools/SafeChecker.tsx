@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Icon from "@/components/Icon";
-import { CAN_I, CAN_I_BY_ID, CAN_I_GROUPS, CAN_I_POPULAR, CATEGORY_LABEL, VERDICT_LABEL, type Category, type CanI } from "@/lib/safe-in-pregnancy";
+import { CATEGORY_LABEL, VERDICT_LABEL, type Category, type CanI, type CanIData } from "@/lib/safe-in-pregnancy";
 
 const CATS = ["all", "eat", "drink", "take", "doActivity"] as const;
 const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^\p{L}\p{N} ]/gu, " ");
 
-function Entry({ e, open, onRelated }: { e: CanI; open?: boolean; onRelated: (name: string) => void }) {
+function Entry({ e, byId, open, onRelated }: { e: CanI; byId: Map<string, CanI>; open?: boolean; onRelated: (name: string) => void }) {
   const tri = [e.t1 && ["First trimester", e.t1], e.t2 && ["Second trimester", e.t2], e.t3 && ["Third trimester", e.t3]].filter(Boolean) as [string, string][];
   return (
     <li className="safe-item" id={e.id}>
@@ -45,7 +45,7 @@ function Entry({ e, open, onRelated }: { e: CanI; open?: boolean; onRelated: (na
             <p className="safe-related">
               Also asked:{" "}
               {e.related
-                .map((id) => CAN_I_BY_ID.get(id))
+                .map((id) => byId.get(id))
                 .filter(Boolean)
                 .map((r, i) => (
                   <span key={r!.id}>
@@ -63,22 +63,23 @@ function Entry({ e, open, onRelated }: { e: CanI; open?: boolean; onRelated: (na
   );
 }
 
-export default function SafeChecker() {
+export default function SafeChecker({ entries, groups, popular }: CanIData) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<(typeof CATS)[number]>("all");
   const s = norm(q.trim());
+  const byId = useMemo(() => new Map(entries.map((e) => [e.id, e])), [entries]);
 
   const hits = useMemo(() => {
     if (!s) return null;
-    return CAN_I.filter((e) => norm(`${e.name} ${(e.aliases ?? []).join(" ")}`).includes(s));
-  }, [s]);
+    return entries.filter((e) => norm(`${e.name} ${(e.aliases ?? []).join(" ")}`).includes(s));
+  }, [s, entries]);
 
   const shelves = useMemo(
     () =>
-      CAN_I_GROUPS.map(([label, ids]) => [label, ids.map((id) => CAN_I_BY_ID.get(id)!).filter((e) => cat === "all" || e.cat === (cat as Category))] as const).filter(
-        ([, l]) => l.length > 0,
-      ),
-    [cat],
+      groups
+        .map(([label, ids]) => [label, ids.flatMap((id) => byId.get(id) ?? []).filter((e) => cat === "all" || e.cat === (cat as Category))] as const)
+        .filter(([, l]) => l.length > 0),
+    [cat, groups, byId],
   );
 
   const ask = (name: string) => {
@@ -103,7 +104,7 @@ export default function SafeChecker() {
           </span>
         </label>
         <div className="tool-chips" role="group" aria-label="Popular">
-          {CAN_I_POPULAR.map((id) => CAN_I_BY_ID.get(id)).filter(Boolean).map((e) => (
+          {popular.map((id) => byId.get(id)).filter(Boolean).map((e) => (
             <button key={e!.id} type="button" className="tool-chip" onClick={() => setQ(e!.name)}>
               {e!.name}
             </button>
@@ -118,7 +119,7 @@ export default function SafeChecker() {
           </p>
           <ul className="safe-list">
             {hits.map((e) => (
-              <Entry key={e.id} e={e} open={hits.length <= 2} onRelated={ask} />
+              <Entry key={e.id} e={e} byId={byId} open={hits.length <= 2} onRelated={ask} />
             ))}
           </ul>
           {hits.length === 0 && (
@@ -139,7 +140,7 @@ export default function SafeChecker() {
               <h3>{label}</h3>
               <ul className="safe-list">
                 {list.map((e) => (
-                  <Entry key={e.id} e={e} onRelated={ask} />
+                  <Entry key={e.id} e={e} byId={byId} onRelated={ask} />
                 ))}
               </ul>
             </section>

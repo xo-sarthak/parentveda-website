@@ -1,9 +1,13 @@
-/* Data for /tools/baby-names/. The same catalogue as the app's Name Finder
-   (pp_names_catalogue.dart plus the hand-written names in pp_names_data.dart),
-   exported to baby-names.json. Re-export from the app when names change.
+/* Types for /tools/baby-names/. The names come from the baby_names table, which the
+   app's Name Finder reads too, and are edited in Directus: see lib/shared-content.ts.
+   This file is also imported by the browser component, so it must not import the JSON.
    Row: [name, Devanagari, "g" | "b" | "u", meaning, community, origin, "T" | "C" | "R"]. */
-import DATA from "./baby-names.json";
 
 export type NameRow = [string, string, "g" | "b" | "u", string, string, string, "T" | "C" | "R"];
-export const NAMES = DATA as NameRow[];
-export const COMMUNITIES = [...new Set(NAMES.map((n) => n[4]))].sort((a, b) => NAMES.filter((n) => n[4] === b).length - NAMES.filter((n) => n[4] === a).length);
+
+/** Communities in the list, most names first. */
+export function communitiesOf(names: NameRow[]): string[] {
+  const counts = new Map<string, number>();
+  for (const n of names) counts.set(n[4], (counts.get(n[4]) ?? 0) + 1);
+  return [...counts.keys()].sort((a, b) => counts.get(b)! - counts.get(a)!);
+}

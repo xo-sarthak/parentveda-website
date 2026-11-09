@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ToolShell from "@/components/tools/ToolShell";
 import BabyNames from "@/components/tools/BabyNames";
+import { getBabyNames } from "@/lib/shared-content";
 import { getTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
 
-// Re-reads the article list every minute, so a newly published read appears under "Read next".
+// Re-reads the names and the article list every minute. A Directus publish flushes this sooner, through /api/revalidate.
 export const revalidate = 60;
 
 const tool = getTool("baby-names");
@@ -34,10 +35,11 @@ const FAQS = [
   }
 ];
 
-export default function Page() {
+export default async function Page() {
+  const names = await getBabyNames();
   return (
     <ToolShell tool={tool} intro={"Looking for a name with meaning? Browse over 2,000 Indian names for girls and boys, filter by the letter your family chose, your community or how popular the name is, or search by the meaning you want."} note={"Meanings are the common ones a family would be told. A name can carry more than one, and your pandit, maulvi, granthi or priest may give another. If your family has a name you love that isn't here yet, write to hello@parentveda.in and we'll add it."} faqs={FAQS}>
-      <BabyNames />
+      <BabyNames names={names} />
     </ToolShell>
   );
 }

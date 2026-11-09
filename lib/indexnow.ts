@@ -9,6 +9,7 @@
 
 import { categoryPath, postPath, GUIDES_BASE, UNLISTED_TAG } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
+import { toolPath } from "@/lib/tools";
 
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 
@@ -43,6 +44,14 @@ export async function pingIndexNow(urls: string[]): Promise<void> {
   }
 }
 
+/* A shared-content version key (app migration 0165) and the tool page that shows it.
+   Unlike an article, one saved row maps to one page, however many rows changed. */
+const TOOL_FOR_VERSION: Record<string, string> = {
+  can_i: "is-it-safe-in-pregnancy",
+  baby_names: "baby-names",
+  vaccines: "vaccination-schedule",
+};
+
 type ChangedRow = { category: string; slug: string; canonical_path: string | null; tags: string[] | null };
 
 /* Reads Supabase directly, uncached. The site's own client goes through the data
@@ -53,6 +62,29 @@ export async function recentlyChangedUrls(now = Date.now()): Promise<string[]> {
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!base || !anon) return [];
   const since = new Date(now - RECENT_MINUTES * 60_000).toISOString();
+  // Separately, so a failed read of one still reports the other.
+  const [posts, tools] = await Promise.all([changedPostUrls(base, anon, since), changedToolUrls(base, anon, since)]);
+  return [...posts, ...tools];
+}
+
+/* content_versions moves on any write, a draft or a delete included, which is the one
+   thing content_posts cannot say. A draft save costs a needless ping, which is harmless. */
+async function changedToolUrls(base: string, anon: string, since: string): Promise<string[]> {
+  try {
+    const res = await fetch(`${base}/rest/v1/content_versions?select=key&updated_at=gte.${since}`, {
+      cache: "no-store",
+      headers: { apikey: anon, Authorization: `Bearer ${anon}` },
+    });
+    if (!res.ok) throw new Error(`Supabase said ${res.status}`);
+    const rows = (await res.json()) as { key: string }[];
+    return rows.flatMap((r) => (TOOL_FOR_VERSION[r.key] ? [`${SITE_URL}${toolPath(TOOL_FOR_VERSION[r.key])}`] : []));
+  } catch (err) {
+    console.error("[indexnow] could not read recent tool changes:", err);
+    return [];
+  }
+}
+
+async function changedPostUrls(base: string, anon: string, since: string): Promise<string[]> {
   const query = `select=category,slug,canonical_path,tags&status=eq.published&or=(updated_at.gte.${since},published_at.gte.${since})`;
   try {
     const res = await fetch(`${base}/rest/v1/content_posts?${query}`, {

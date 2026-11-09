@@ -1,30 +1,19 @@
 import Icon from "@/components/Icon";
-import INFO from "@/lib/vaccine-info.json";
+import type { VaccineInfoRow } from "@/lib/shared-content";
 
-/* "Learn why" content for each vaccine, the same text the app's vaccination
-   tracker shows (pp_vaccine_data.dart), exported to vaccine-info.json. */
-type Info = {
-  id: string;
-  name: string;
-  protects: string;
-  diseases: string[];
-  why: string;
-  reactions?: string[];
-  myths?: [string, string][];
-  faqs?: [string, string][];
-  redFlags?: string[];
-};
-
+/* "Learn why" content for each vaccine, the same text the app's vaccination tracker
+   shows. It comes from the vaccines table and is edited in Directus. The dates stay
+   in VaccineSchedule. These two lists stand in for a vaccine that has none of its own. */
 const REACTIONS = ["Mild soreness or redness where the shot was given", "A low-grade fever for a day or two", "Being a little more sleepy or fussy than usual"];
 const RED_FLAGS = ["Difficult or noisy breathing, or swelling of the face or lips", "A seizure, or unusual floppiness or drowsiness", "A high fever that won't settle, or a rash with vomiting"];
 
-export default function VaccineInfo() {
+export default function VaccineInfo({ vaccines }: { vaccines: VaccineInfoRow[] }) {
   return (
     <section className="vax-info" aria-labelledby="vax-info-title">
       <h2 id="vax-info-title" className="tool-h2">
         What each vaccine protects against
       </h2>
-      {(INFO as unknown as Info[]).map((v) => (
+      {vaccines.map((v) => (
         <details key={v.id} className="faq__item">
           <summary>
             <span>

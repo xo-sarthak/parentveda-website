@@ -6,6 +6,57 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 9 Nov 2026: rows 51, 65, 97, 98, 99 and 106
+
+**Published**
+
+| Sheet row | Article | Live address | Reviewer shown |
+|---|---|---|---|
+| 51 | Pregnancy Diet Chart (Indian) | `/reads/articles/pregnancy-diet-chart/` | None |
+| 65 | PCOS Treatment | `/reads/articles/pcos-treatment/` | None |
+| 106 | Piles During Pregnancy | `/reads/articles/piles-during-pregnancy/` | None |
+| 97 | Gas and Bloating During Pregnancy | `/reads/articles/gas-bloating-during-pregnancy/` | None |
+| 98 | Papaya in Pregnancy | `/reads/articles/papaya-during-pregnancy/` | None |
+| 99 | PCOS Diet and Insulin | `/reads/articles/pcos-diet-insulin/` | None |
+
+Rows 97 to 99 were next in the sheet. They link to rows 51, 65 and 106, which were written but not live, and rows 97 and 106 link to each other, so all six went out together. Images commit: `1cb02b7`, pushed from a clean worktree of `origin/main` so that the unpushed local commit `f857129` (tools redesign) and the uncommitted tools work were not deployed. Article rows added to `content_posts` directly. All six checked live: H1, title, canonical, tables, both images, and no leftover notes.
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | No reviewer is shown on any of the six. The docs give Dr. Singh only as interim or pending (rows 51, 97, 99, 106), name nobody (row 98), or say he does not fit (row 65, which needs an OB-GYN). The owner did not confirm a review. | The pages make no review claim. | Set `reviewed_by` only once a reviewer has actually reviewed the article. |
+| 2 | The six were not in the sitemap right after publishing, and IndexNow was not pinged, because direct inserts do not call `/api/revalidate`. | Search engines have not been told about them yet. | Save each article once in Directus, then recheck the sitemap. |
+| 3 | Row 99's FOGSI figures are unchecked: 2 to 5% weight loss, 150 minutes a week with strength work on two days, and a larger breakfast for lean PCOS. Row 97's FOGSI iron line is unchecked too. FOGSI blocks `curl` and WebFetch, and Firecrawl had no credits. | Each may be right. | Open the FOGSI PDFs in a browser. |
+| 4 | Not opened from this connection: Mayo Clinic, Cereal Chemistry, ScienceDirect, the Monash link and two PubMed pages. | A broken one would be a dead reference. | Open them in a browser. |
+| 5 | Row 94 had its `pregnancy-diet-chart` line removed on 6 Nov because the page was not live. It is live now. | A useful link is missing. | Re-add it if the owner wants. |
+| 6 | The papaya FAQ `/reads/parenting-faq/can-i-eat-papaya-during-pregnancy/` targets the same keyword as row 98. | Two pages may compete in search. | Add a link from the FAQ to the new article. Keep the FAQ's address. |
+| 7 | Rows 99 and 106 keep "specialist review in progress" in the disclaimer, as row 94 does. | It goes out of date once the reviews are done. | Remove it at that point. |
+| 8 | Row 106's cover includes an anatomical close-up of piles. It also appears in listings and social shares. | Some readers may find it too graphic. | Owner to decide whether to replace it. |
+
+### Solved: content
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 9 | Rows 97, 98 and 99 linked to pages that were not live yet (piles, diet chart, PCOS treatment). | Published those three pages in the same batch, with the owner's agreement, so no sentences were cut. |
+| 10 | Row 99 said the food-order evidence was "one small study". The writer's own flag says this is inaccurate. | Used the writer's wording, "small studies in adults with type 2 diabetes or prediabetes", and "In those studies", with the owner's approval. |
+| 11 | Row 99 said "Most doctors worldwide follow the 2023 International PCOS Guideline", which has no source. | Changed it to "The 2023 International PCOS Guideline is a widely used reference", with the owner's approval. |
+| 12 | Row 97 linked to `/reads/articles/pregnancy-symptoms/`, which returns 404. | Pointed it to `pregnancy-symptoms-month-by-month`, which has the same title. |
+| 13 | Row 97's ICMR link (DGI24thJune2024fin.pdf) and the NHS pre-eclampsia `/symptoms/` page return 404. | Used `DGI_2024.pdf`, as other Reads do, and `nhs.uk/conditions/pre-eclampsia/`. |
+| 14 | Row 97's spice table and row 98's ripeness table had an empty first heading. | Labelled them "Spice" and "What changes". |
+| 15 | Row 65's byline had `[Name, Degree]`, `[Registration No.]` and `[Date]` placeholders, and a stray full stop in "The treatment. approach". | Left out the byline, as for all Reads, and removed the stray full stop. |
+| 16 | Row 51's text mentions iron from plant foods, and the writer listed the iron article as "add when live". | Linked it to `iron-rich-foods-during-pregnancy`, which is live. |
+| 17 | The addresses suggested in the docs (`gas-during-pregnancy`, `papaya-in-pregnancy`, `pcos-diet`) differ from the ones other sheet rows link to. | Used the addresses the sheet links to: `gas-bloating-during-pregnancy`, `papaya-during-pregnancy`, `pcos-diet-insulin`, `pregnancy-diet-chart`, `pcos-treatment` and `piles-during-pregnancy`. |
+| 18 | The docs contained Part B and C notes, link sheets, validation tables and reviewer bios. | Left all of it out of the published articles. |
+
+### Solved: tools and checks
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 19 | `origin/main` had moved on (PR #4, social profiles) since local `main` was last updated. | Built the images commit on top of it, so the push was a fast-forward. |
+
+---
+
 ## 6 Nov 2026: rows 94, 95 and 96
 
 **Published**

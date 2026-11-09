@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Icon from "@/components/Icon";
-import { COMMUNITIES, NAMES } from "@/lib/baby-names";
+import { communitiesOf, type NameRow } from "@/lib/baby-names";
 import { Choice, Field } from "./ui";
 
 const SEX = [
@@ -14,18 +14,19 @@ const SEX = [
 const POP = { T: "Trending", C: "Classic", R: "Rare" } as const;
 const PAGE = 60;
 
-export default function BabyNames() {
+export default function BabyNames({ names }: { names: NameRow[] }) {
   const [sex, setSex] = useState<(typeof SEX)[number]["k"]>("all");
   const [letter, setLetter] = useState("");
   const [comm, setComm] = useState("");
   const [pop, setPop] = useState("");
   const [q, setQ] = useState("");
   const [shown, setShown] = useState(PAGE);
-  const letters = useMemo(() => [...new Set(NAMES.map((n) => n[0][0].toUpperCase()))].sort(), []);
+  const letters = useMemo(() => [...new Set(names.map((n) => n[0][0].toUpperCase()))].sort(), [names]);
+  const communities = useMemo(() => communitiesOf(names), [names]);
 
   const list = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return NAMES.filter(
+    return names.filter(
       ([name, dev, g, meaning, c, , p]) =>
         (sex === "all" || g === sex) &&
         (!letter || name.toUpperCase().startsWith(letter)) &&
@@ -33,7 +34,7 @@ export default function BabyNames() {
         (!pop || p === pop) &&
         (!s || name.toLowerCase().includes(s) || dev.includes(s) || meaning.toLowerCase().includes(s)),
     );
-  }, [sex, letter, comm, pop, q]);
+  }, [names, sex, letter, comm, pop, q]);
 
   const set = <T,>(f: (v: T) => void) => (v: T) => {
     f(v);
@@ -55,7 +56,7 @@ export default function BabyNames() {
           <Field label="Community">
             <select value={comm} onChange={(e) => set(setComm)(e.target.value)}>
               <option value="">All</option>
-              {COMMUNITIES.map((c) => (
+              {communities.map((c) => (
                 <option key={c}>{c}</option>
               ))}
             </select>

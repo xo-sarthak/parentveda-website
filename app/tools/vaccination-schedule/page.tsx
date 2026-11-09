@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import ToolShell from "@/components/tools/ToolShell";
 import VaccineSchedule from "@/components/tools/VaccineSchedule";
 import VaccineInfo from "@/components/tools/VaccineInfo";
+import { getVaccineInfo } from "@/lib/shared-content";
 import { getTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
 
-// Re-reads the article list every minute, so a newly published read appears under "Read next".
+// Re-reads the vaccine text and the article list every minute. A Directus publish flushes this sooner, through /api/revalidate.
 export const revalidate = 60;
 
 const tool = getTool("vaccination-schedule");
@@ -39,11 +40,12 @@ const FAQS = [
   }
 ];
 
-export default function Page() {
+export default async function Page() {
+  const vaccines = await getVaccineInfo();
   return (
     <ToolShell tool={tool} intro={"Enter your baby's date of birth. You'll get each vaccine the Indian Academy of Pediatrics recommends, with the date it falls due, which you can print and take to every visit."} note={"This follows the IAP (ACVIP) schedule for healthy children, simplified to the usual visits. Government centres follow the Universal Immunization Programme, which covers fewer vaccines at different times. Your paediatrician may choose different brands or combinations, so always follow the dates they give you."} faqs={FAQS}>
       <VaccineSchedule />
-      <VaccineInfo />
+      <VaccineInfo vaccines={vaccines} />
     </ToolShell>
   );
 }

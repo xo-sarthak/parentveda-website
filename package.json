@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "links:amazon": "node --env-file-if-exists=.env.local scripts/links-amazon.mjs",
     "links:report": "node --env-file-if-exists=.env.local scripts/links-report.mjs",
-    "indexnow:all": "node --env-file-if-exists=.env.local scripts/indexnow-all.mjs"
+    "indexnow:all": "node --env-file-if-exists=.env.local scripts/indexnow-all.mjs",
+    "content:compare": "node --env-file-if-exists=.env.local scripts/compare-shared-content.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

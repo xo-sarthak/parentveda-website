@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ToolShell from "@/components/tools/ToolShell";
 import SafeChecker from "@/components/tools/SafeChecker";
+import { getCanIData } from "@/lib/shared-content";
 import { getTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
 
-// Re-reads the article list every minute, so a newly published read appears under "Read next".
+// Re-reads the answers and the article list every minute. A Directus publish flushes this sooner, through /api/revalidate.
 export const revalidate = 60;
 
 const tool = getTool("is-it-safe-in-pregnancy");
@@ -38,10 +39,11 @@ const FAQS = [
   }
 ];
 
-export default function Page() {
+export default async function Page() {
+  const data = await getCanIData();
   return (
     <ToolShell tool={tool} intro={"Papaya, pineapple, chai, Crocin, flying, hair colour. Search what you're wondering about and get a clear answer, the reason behind it, and what changes trimester by trimester."} note={"This is general guidance for a healthy pregnancy. Your own situation may be different, for example with gestational diabetes, a low-lying placenta or a past complication, so if your doctor has told you something else, follow your doctor. For any medicine, the answer here is general: always check the dose and the brand with your doctor or pharmacist."} faqs={FAQS}>
-      <SafeChecker />
+      <SafeChecker {...data} />
     </ToolShell>
   );
 }
