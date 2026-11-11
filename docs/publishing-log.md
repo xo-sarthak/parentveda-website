@@ -22,7 +22,7 @@ Created, published and given images entirely in Directus, with no images commit.
 
 | # | Problem | Effect | What to do |
 |---|---|---|---|
-| 1 | A Directus Flow copies each "Image for sharing" upload into `og_image` as a public `pub-….r2.dev` link, so `parentveda-media` has public r2.dev access on. | Anyone with a file's id can open it. The site no longer uses those links (commit `7edba1c` serves them through `/cms-media/`). | Owner to decide whether to turn off the bucket's r2.dev access and that Flow step. Check the app does not use r2.dev links first. |
+| 1 | The app's `cms_sync_media` trigger (app repo, migration `0155_panel_can_publish.sql`) copies each Directus upload into a link column as a public `pub-4fb3649b….r2.dev` address, so `parentveda-media` has public r2.dev access on. | The website no longer uses those links (commit `7edba1c` serves them through `/cms-media/`). The app does, and r2.dev is rate-limited. | Keep r2.dev access on: turning it off blanks app images. Before the app launches, move it to a custom domain or to the website's `/cms-media/` route (app repo `docs/BEFORE-LAUNCH.md`). |
 | 2 | Row 101's cover shows the baby asleep on an adult bed. | Same safe-sleep question as row 95's cover. | Owner to decide. |
 | 3 | Row 102's flowchart says "lipstick-shaped", a phrase the writer removed from the text for plagiarism. | Minor. | Regenerate if wanted. |
 | 4 | All three disclaimers say lactation consultant review is in progress. | Goes out of date once done. | Remove then. |
