@@ -16,6 +16,10 @@
 const UUID = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
 const BARE_ID = new RegExp(`^${UUID}$`, "i");
 const ASSET_LINK = new RegExp(`^(?:https?://[^/]+)?/assets/(${UUID})(?:[/?#.].*)?$`, "i");
+/* A Directus Flow copies each "Image for sharing" upload into og_image as the
+   bucket's public r2.dev link. Cloudflare rate-limits r2.dev and says it is not
+   for production, so those links are served through /cms-media/ as well. */
+const R2_DEV_LINK = new RegExp(`^https://pub-[0-9a-f]+\\.r2\\.dev/(?:.*/)?(${UUID})\\.[a-z0-9]+$`, "i");
 
 export const CMS_MEDIA_BASE = "/cms-media";
 export const isCmsFileId = (s: string) => BARE_ID.test(s);
@@ -28,6 +32,6 @@ export function cmsMediaUrl(src: string | null | undefined): string | undefined 
   if (!src) return src ?? undefined;
   const s = src.trim();
   if (BARE_ID.test(s)) return cmsMediaPath(s);
-  const m = ASSET_LINK.exec(s);
+  const m = ASSET_LINK.exec(s) ?? R2_DEV_LINK.exec(s);
   return m ? cmsMediaPath(m[1]) : s;
 }
