@@ -45,6 +45,11 @@ export default function PrivacyPolicyPage() {
           answerable for it.
         </P>
         <P>
+          {ORG.brand} is a brand of {ORG.legalEntity}, a company registered in India (CIN{" "}
+          {ORG.cin}). Its registered office is at {ORG.address}, {ORG.country}. Wherever this policy says
+          &ldquo;we&rdquo; or &ldquo;us&rdquo;, it means {ORG.legalEntity}.
+        </P>
+        <P>
           This policy is written to be read, not to be survived. If any part of it is unclear, ask
           us and we will explain it plainly.
         </P>
@@ -251,7 +256,12 @@ export default function PrivacyPolicyPage() {
           editing the page.
         </P>
         <P>
-          On {ORG.updated} we added optional Google Analytics, which runs only with your consent, and
+          On 11 November 2026, {ORG.brand} moved from being run by an individual to being run by{" "}
+          {ORG.legalEntity}, now the data fiduciary for your information, and we updated our
+          postal address. Nothing about what we collect or how we use it changed.
+        </P>
+        <P>
+          On 4 November 2026 we added optional Google Analytics, which runs only with your consent, and
           links to Amazon that may earn us a commission. See the{" "}
           <A href={legalPath("cookies")}>Cookie Policy</A> and{" "}
           <A href={legalPath("affiliate-disclosure")}>Affiliate Disclosure</A>.

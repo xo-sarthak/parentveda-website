@@ -8,6 +8,7 @@ import { authorPath, type Author } from "@/lib/authors";
 import { markdownToText, isoMinutes, type Faq } from "@/lib/reads-article";
 import { GUIDES_BASE, GUIDES_NAME, categoryPath, type GuideCategory, type GuidePost } from "@/lib/guides";
 import { SITE_NAME, SITE_URL, site } from "@/lib/site";
+import { ORG } from "@/lib/legal";
 
 const CONTEXT = "https://schema.org";
 const LOGO = `${SITE_URL}/brand/pv-mark.png`;
@@ -189,6 +190,9 @@ export function homeSchema() {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: SITE_NAME,
+        legalName: ORG.legalEntity,
+        identifier: { "@type": "PropertyValue", propertyID: "CIN", value: ORG.cin },
+        address: { "@type": "PostalAddress", ...ORG.postal },
         slogan: site.tagline,
         url: `${SITE_URL}/`,
         logo: LOGO,
