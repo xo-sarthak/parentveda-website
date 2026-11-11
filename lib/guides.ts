@@ -18,6 +18,7 @@
 
 import { supabase } from "@/lib/supabase";
 import { DEFAULT_AUTHOR_SLUG, getAuthorBySlug } from "@/lib/authors";
+import { cmsMediaUrl } from "@/lib/cms-media";
 /* The old site typed these against its icon set and tint palette; here they
    are plain strings (the new site draws its own marks). */
 type IconKey = string;
@@ -163,6 +164,10 @@ type PostRow = {
   meta_title: string | null;
   og_image: string | null;
   og_image_alt: string | null;
+  /* Directus file ids from the upload boxes in the editor. A typed
+     og_image wins; otherwise the uploaded file is the cover. */
+  og_image_file?: string | null;
+  hero_file?: string | null;
   canonical_path: string | null;
   published_at: string | null;
   updated_at: string | null;
@@ -208,7 +213,7 @@ function toPost(r: PostRow): GuidePost {
     source: r.source ?? undefined,
     bookMeta: r.book_meta ?? undefined,
     metaTitle: r.meta_title ?? undefined,
-    ogImage: r.og_image ?? undefined,
+    ogImage: cmsMediaUrl(r.og_image || r.og_image_file || r.hero_file),
     ogImageAlt: r.og_image_alt ?? undefined,
     canonicalPath: r.canonical_path ?? undefined,
     stage: r.stage ?? undefined,

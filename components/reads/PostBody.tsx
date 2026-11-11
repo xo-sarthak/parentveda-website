@@ -2,6 +2,7 @@ import Markdown, { defaultUrlTransform, type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FIGURES, FIGURE_SCHEME } from "./figures";
 import { headingSlug } from "@/lib/headings";
+import { cmsMediaUrl } from "@/lib/cms-media";
 import { AFFILIATE_REL, isAffiliateLink, rehypeAffiliateDisclosure, withAssociateTag } from "@/lib/affiliate";
 
 /**
@@ -16,6 +17,7 @@ import { AFFILIATE_REL, isAffiliateLink, rehypeAffiliateDisclosure, withAssociat
  *   ## What matters most / Key takeaways / The short version → a summary box
  *   ![alt](figure:key "caption") → a hand-drawn diagram (figures.tsx)
  *   [TOC] → dropped here; the sticky contents list replaces it
+ *   ![alt](<Directus image> "caption") → served from /cms-media/ (lib/cms-media.ts)
  *
  * Markdown is written by our own team behind Directus auth, and raw HTML is
  * never rendered (no rehype-raw), so there is no injection surface.
@@ -130,7 +132,7 @@ function makeComponents(): Components {
       return (
         <figure className="rfig">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={alt ?? ""} loading="lazy" />
+          <img src={cmsMediaUrl(src)} alt={alt ?? ""} loading="lazy" />
           {title ? <figcaption>{title}</figcaption> : null}
         </figure>
       );
