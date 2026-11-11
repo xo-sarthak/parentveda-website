@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { stages } from "@/lib/stages";
 import { site } from "@/lib/site";
+import { ORG } from "@/lib/legal";
 import Wordmark from "./Wordmark";
 import { CookieSettingsButton } from "./Analytics";
 
@@ -73,7 +74,11 @@ export default function Footer() {
         <span className="ftr__giant rv" />
       </div>
       <div className="wrap ftr__base">
-        <span>© {new Date().getFullYear()} ParentVeda. Made in India.</span>
+        <span>
+          © {new Date().getFullYear()} {ORG.legalEntity}. {site.name} is a brand of {ORG.legalEntity}. Made in India.
+          <br />
+          CIN {ORG.cin}. Registered office: {ORG.address}, {ORG.country}.
+        </span>
         <span>In an emergency, call 108 or go to your nearest hospital.</span>
       </div>
     </footer>

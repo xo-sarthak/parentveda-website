@@ -44,6 +44,11 @@ export default function TermsPage() {
           the service.
         </P>
         <P>
+          {ORG.brand} is a brand of {ORG.legalEntity}, a company registered in India (CIN{" "}
+          {ORG.cin}) with its registered office at {ORG.address}, {ORG.country}. &ldquo;We&rdquo; and &ldquo;us&rdquo;
+          in these terms mean {ORG.legalEntity}.
+        </P>
+        <P>
           Two other documents form part of this agreement and are worth reading:{" "}
           <A href={legalPath("privacy")}>the Privacy Policy</A> and{" "}
           <A href={legalPath("medical-disclaimer")}>the Medical Disclaimer</A>.
@@ -152,6 +157,11 @@ export default function TermsPage() {
           We may update these terms. If a change materially affects your rights, we will tell you
           rather than quietly edit the page. Continuing to use {ORG.brand} after a change means you
           accept it.
+        </P>
+        <P>
+          On 11 November 2026 these terms changed from an agreement with an individual to an
+          agreement with {ORG.legalEntity}, the company that now runs {ORG.brand}. What you can and
+          cannot do under them did not change.
         </P>
       </S>
 

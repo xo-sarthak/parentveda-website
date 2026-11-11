@@ -38,18 +38,14 @@ export const ORG = {
   brand: "ParentVeda",
 
   /* The operator, as the DPDP Act and the Terms both need to name one.
-     ParentWise is being registered but does not legally exist yet, so naming
-     it here would have five published policy pages assert a company that
-     cannot be found on the MCA register. Until the certificate lands, the
-     operator is a natural person, which is accurate and ordinary for a
-     pre-incorporation site.
+     ParentVeda is the brand; ParentWise Private Limited is the registered
+     company that runs it (was "Deepti Sekhri" before incorporation, changed
+     11 November 2026 with a line in each policy's Changes section). Keep this
+     the exact name on the certificate, suffix included. */
+  legalEntity: "ParentWise Private Limited",
 
-     WHEN PARENTWISE IS REGISTERED: change this to the exact name on the
-     certificate INCLUDING the suffix, and bump `effective` and `updated`
-     below. Moving from an individual to a company is a material change to
-     both policies, so it also needs a line in each page's Changes section —
-     not a silent edit. */
-  legalEntity: "Deepti Sekhri",
+  /** Corporate Identification Number on the MCA register. */
+  cin: "U47912DL2026PTC472047",
 
   site: "parentveda.in",
 
@@ -62,7 +58,18 @@ export const ORG = {
   /** A named individual, as the IT Rules require. */
   grievanceOfficer: "Deepti Sekhri",
 
-  address: "H-18/121, Sector 7, Rohini, Delhi 110085",
+  /** Registered office of ParentWise Private Limited. */
+  address:
+    "808B, DLF Prime Tower, Pocket F, Okhla Phase I, Okhla Industrial Estate, New Delhi, Delhi 110020",
+
+  /* The same address in parts, for the Organization schema. */
+  postal: {
+    streetAddress: "808B, DLF Prime Tower, Pocket F, Okhla Phase I, Okhla Industrial Estate",
+    addressLocality: "New Delhi",
+    addressRegion: "Delhi",
+    postalCode: "110020",
+    addressCountry: "IN",
+  },
 
   /** Seat of jurisdiction, taken from the address above. */
   city: "Delhi",
@@ -72,7 +79,7 @@ export const ORG = {
   /* Bump `updated` whenever a policy changes materially, and say what changed
      in the page's own "Changes" section. */
   effective: "26 July 2026",
-  updated: "4 November 2026",
+  updated: "11 November 2026",
 } as const;
 
 export type LegalPageMeta = {

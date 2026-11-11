@@ -123,7 +123,7 @@ export default function CookiePolicyPage() {
 
       <S id="changes" title="If this changes">
         <P>
-          On {ORG.updated} we added Google Analytics, which runs only with your consent, and said so
+          On 4 November 2026 we added Google Analytics, which runs only with your consent, and said so
           here. If we add anything else that tracks behaviour, we will update this page, say so
           plainly, and ask for your consent first rather than assuming it. For the wider picture of
           what we collect, see the <A href={legalPath("privacy")}>Privacy Policy</A>.
