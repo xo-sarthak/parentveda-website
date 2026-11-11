@@ -6,6 +6,42 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 11 Nov 2026: rows 100, 101 and 102 (first batch through Directus)
+
+**Published**
+
+| Sheet row | Article | Live address | Reviewer shown |
+|---|---|---|---|
+| 100 | Cluster Feeding and the Witching Hour | `/reads/articles/cluster-feeding/` | Dr. Mahender Singh |
+| 101 | Breast Engorgement, Cracked Nipples and Mastitis | `/reads/articles/breast-engorgement/` | Dr. Mahender Singh |
+| 102 | Sore and Cracked Nipples While Breastfeeding | `/reads/articles/cracked-nipples/` | Dr. Mahender Singh |
+
+Created, published and given images entirely in Directus, with no images commit. Uploads go to the `parentveda-media` R2 bucket, and the site serves them at `/cms-media/<file id>/` with a read-only R2 token (`lib/cms-media.ts`, `lib/r2.ts`, variables in `.env.example`). The owner confirmed Dr. Singh reviewed these three and the six 9 Nov articles; `reviewed_by` was set on all nine through Directus. How to Breastfeed now links to all three, as the sheet asks.
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | A Directus Flow copies each "Image for sharing" upload into `og_image` as a public `pub-….r2.dev` link, so `parentveda-media` has public r2.dev access on. | Anyone with a file's id can open it. The site no longer uses those links (commit `7edba1c` serves them through `/cms-media/`). | Owner to decide whether to turn off the bucket's r2.dev access and that Flow step. Check the app does not use r2.dev links first. |
+| 2 | Row 101's cover shows the baby asleep on an adult bed. | Same safe-sleep question as row 95's cover. | Owner to decide. |
+| 3 | Row 102's flowchart says "lipstick-shaped", a phrase the writer removed from the text for plagiarism. | Minor. | Regenerate if wanted. |
+| 4 | All three disclaimers say lactation consultant review is in progress. | Goes out of date once done. | Remove then. |
+| 5 | Directus cannot edit `tags` (Postgres `text[]`, shown as unknown), and `reviewed_by` is free text. | Tags must be sent as `{"a","b"}`; a typo in a reviewer slug shows no reviewer. | Make both proper fields. |
+
+### Solved
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 6 | Row 100 linked to Combination Feeding, which is not live (IMS Act check). | Removed that one link sentence. |
+| 7 | Row 101 linked to `/reads/articles/breast-milk/`, which does not exist. | Removed that link sentence. |
+| 8 | Rows 101 and 102 asked to link to each other once both were live. | Added one link each way. |
+| 9 | Row 101's first table had its headings shifted one column, and used "diapers". | Fixed the headings; changed to "nappies", as the writer flagged. |
+| 10 | The docs suggested slugs that differ from the ones other sheet rows link to. | Used the sheet's: `cluster-feeding`, `breast-engorgement`, `cracked-nipples`. Writers' titles as H1, sheet titles as Title for Google. |
+| 11 | Four references (MDPI, two Liebert DOIs, Cochrane) returned 403 to `curl`. | Confirmed all three DOIs through Crossref; the MDPI paper resolves there too. |
+| 12 | Chrome could not read a localhost server from the Directus page. | Handed the files to a temporary file input in the page instead. |
+
+---
+
 ## 9 Nov 2026: rows 51, 65, 97, 98, 99 and 106
 
 **Published**
