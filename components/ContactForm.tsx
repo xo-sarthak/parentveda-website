@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Icon from "./Icon";
-import { topics, limits, validate, isTopic, type ContactPayload, type TopicId } from "@/lib/contact";
+import { topics, CHIP_TOPICS, limits, validate, isTopic, type ContactPayload, type TopicId } from "@/lib/contact";
 import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "not_configured" | "error" | "rate_limited";
@@ -95,7 +95,7 @@ export default function ContactForm() {
       <fieldset className="cform__topics">
         <legend>What’s this about?</legend>
         <div className="cform__chips">
-          {topics.map((t) => (
+          {CHIP_TOPICS.map((t) => (
             <label key={t.id} className={`cchip${topic === t.id ? " is-on" : ""}`}>
               <input type="radio" name="topic" value={t.id} checked={topic === t.id} onChange={() => setTopic(t.id)} />
               {t.label}

@@ -28,7 +28,7 @@ export default function LegalIndexPage() {
       </header>
       <div className="wrap legal__narrow">
         <ul className="legal__list">
-          {LEGAL_PAGES.map((p) => (
+          {LEGAL_PAGES.filter((p) => !p.draft).map((p) => (
             <li key={p.slug}>
               <Link href={`${legalPath(p.slug)}/`}>
                 <span>

@@ -15,10 +15,13 @@ export function LegalPage({
   title,
   summary,
   sections,
+  draft,
   children,
 }: {
   title: string;
   summary: string;
+  /** A page waiting for legal and founder review: a banner instead of dates. */
+  draft?: boolean;
   /** Anchors for the contents list — must match the <S id> values below. */
   sections: { id: string; title: string }[];
   children: React.ReactNode;
@@ -34,9 +37,15 @@ export function LegalPage({
           </nav>
           <h1 className="display-l">{title}</h1>
           <p className="legal__summary">{summary}</p>
-          <p className="small">
-            Effective {ORG.effective} · Last updated {ORG.updated}
-          </p>
+          {draft ? (
+            <p className="legal__draft" role="note">
+              DRAFT, needs legal and founder review. Not published: only preview and local builds show this page.
+            </p>
+          ) : (
+            <p className="small">
+              Effective {ORG.effective} · Last updated {ORG.updated}
+            </p>
+          )}
         </div>
       </header>
       <div className="wrap legal__narrow">

@@ -31,6 +31,8 @@
    content is health related.
    ============================================================ */
 
+import { showUnreviewed } from "./review-gate";
+
 export const LEGAL_BASE = "/legal";
 
 export const ORG = {
@@ -139,7 +141,33 @@ export const LEGAL_PAGES: LegalPageMeta[] = [
     summary:
       "How to delete your ParentVeda account and everything in it — from inside the app, or by writing to us.",
   },
+  /* Trust pages from the website upgrade. Drafts: not listed, not in the
+     sitemap or footer, noindex, and 404 in production until `draft` is removed
+     after legal and founder review (docs/website-upgrade/02-phase-2.md). */
+  {
+    slug: "medical-review-policy",
+    title: "Medical Review Policy",
+    summary: "Who checks our health content, how we match the reviewer to the topic, how often we review, and how corrections work.",
+    draft: true,
+  },
+  {
+    slug: "how-we-make-money",
+    title: "How We Make Money",
+    summary: "Every way ParentVeda earns money, and the things we will never do for money.",
+    draft: true,
+  },
+  {
+    slug: "corrections",
+    title: "Report an Error",
+    summary: "Found something wrong or out of date in one of our reads? Tell us here, and we will check it and fix it.",
+    draft: true,
+  },
 ];
+
+/** Production builds hide draft policy pages entirely. */
+export function draftHidden(page: LegalPageMeta): boolean {
+  return Boolean(page.draft) && !showUnreviewed();
+}
 
 export const legalPath = (slug: string) => `${LEGAL_BASE}/${slug}`;
 

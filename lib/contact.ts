@@ -9,7 +9,12 @@ export const topics = [
   { id: "brands", label: "I’m from a brand", subject: "Brand partnership with ParentVeda" },
   { id: "press", label: "Press or media", subject: "Press enquiry" },
   { id: "other", label: "Something else", subject: "A message for ParentVeda" },
+  // Used only by the Report an Error form (/legal/corrections/), not shown as a chip on /contact/.
+  { id: "correction", label: "Report an error in a read", subject: "Correction report" },
 ] as const;
+
+/** Topics offered as chips on the contact page. */
+export const CHIP_TOPICS = topics.filter((t) => t.id !== "correction");
 
 export type TopicId = (typeof topics)[number]["id"];
 
