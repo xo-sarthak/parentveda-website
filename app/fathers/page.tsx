@@ -3,7 +3,7 @@ import Link from "next/link";
 import Art from "@/components/Art";
 import Icon from "@/components/Icon";
 import Mark, { type Glyph } from "@/components/Mark";
-import { getAppHref } from "@/lib/site";
+import { appLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/fathers/" },
@@ -39,7 +39,7 @@ export default function FathersPage() {
               jobs. It’s built for the partner who wants to help and isn’t sure where to start.
             </p>
             <div className="hero__actions rv rv-d3">
-              <Link href={getAppHref()} className="btn btn--light">
+              <Link href={appLink("fathers-hero", "fathers")} className="btn btn--light">
                 Get ParentVeda <Icon name="arrow" />
               </Link>
             </div>

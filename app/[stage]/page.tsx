@@ -7,7 +7,7 @@ import CtaBand from "@/components/CtaBand";
 import StageStory from "@/components/stage/StageStory";
 import { hueOf } from "@/lib/color";
 import { stages, getStage } from "@/lib/stages";
-import { getAppHref } from "@/lib/site";
+import { appLink } from "@/lib/site";
 import { TOOLS } from "@/lib/tools";
 import ToolCard from "@/components/tools/ToolCard";
 
@@ -63,7 +63,7 @@ export default async function StagePage({ params }: { params: Promise<{ stage: s
             </h1>
             <p className="lede rv rv-d2">{s.intro}</p>
             <div className="hero__actions rv rv-d3">
-              <Link href={getAppHref()} className="btn btn--ink">
+              <Link href={appLink("stage-hero", s.slug)} className="btn btn--ink">
                 Start with {s.short.toLowerCase()} <Icon name="arrow" />
               </Link>
               <Link href="#doors" className="btn btn--ghost">

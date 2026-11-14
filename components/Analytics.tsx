@@ -56,8 +56,9 @@ function clearGoogleCookies() {
   }
 }
 
-/* The same paths robots.ts keeps out of search: one-off links and a signed-in portal. */
-const isPrivatePath = (path: string) => /^\/(care|invite|portal)(\/|$)/.test(path);
+/* The same paths robots.ts keeps out of search: one-off links, a signed-in portal
+   and the team's internal pages. */
+const isPrivatePath = (path: string) => /^\/(care|invite|portal|internal)(\/|$)/.test(path);
 
 export default function Analytics() {
   const pathname = usePathname();

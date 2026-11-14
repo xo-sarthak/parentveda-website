@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { track } from "@/lib/track";
 import { subscribe } from "@/app/actions/subscribe";
 import { SIGNUP_INITIAL } from "@/lib/signup";
 import Icon from "./Icon";
@@ -16,6 +17,10 @@ import Icon from "./Icon";
  */
 export default function Waitlist({ source = "website", dark = false }: { source?: string; dark?: boolean }) {
   const [state, action, pending] = useActionState(subscribe, SIGNUP_INITIAL);
+  // Only which form it was (a slug); never the email.
+  useEffect(() => {
+    if (state.status === "ok") track("app_waitlist_submit", { source });
+  }, [state.status, source]);
 
   if (state.status === "ok") {
     return (

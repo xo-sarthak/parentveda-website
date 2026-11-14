@@ -2,7 +2,7 @@ import Link from "next/link";
 import Art from "./Art";
 import Icon from "./Icon";
 import Waitlist from "./Waitlist";
-import { getAppHref, site } from "@/lib/site";
+import { appLink, site } from "@/lib/site";
 
 // The closing band on every page. Before launch it carries the waitlist
 // (id="waitlist" is where /#waitlist links from the care and invite pages
@@ -30,7 +30,7 @@ export default function CtaBand({
             <p className="lede rv rv-d2">{body}</p>
             {site.appLive ? (
               <div className="cta__actions rv rv-d3">
-                <Link href={getAppHref()} className="btn btn--ink">
+                <Link href={appLink("cta-band", source)} className="btn btn--ink">
                   <Icon name="phone" /> Get ParentVeda
                 </Link>
                 <Link href="/ask-veda/" className="btn btn--ghost">

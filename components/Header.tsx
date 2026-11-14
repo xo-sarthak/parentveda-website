@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav, getAppHref } from "@/lib/site";
+import { nav, appLink } from "@/lib/site";
 import Icon from "./Icon";
 import Wordmark from "./Wordmark";
 import type { MenuLink } from "@/lib/pillars";
@@ -21,6 +21,10 @@ export default function Header({
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const slate = pathname === "/fathers";
+  /* utm_campaign for "Get the app": the page's own slug. One-off links
+     (/care/, /invite/, /portal/) carry a token in the path, so they never
+     put it in a tag. */
+  const campaign = /^\/(care|invite|portal)(\/|$)/.test(pathname) ? "private" : pathname.split("/").filter(Boolean).at(-1) || "home";
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 24);
@@ -82,7 +86,7 @@ export default function Header({
             );
           })}
         </nav>
-        <Link href={getAppHref()} className="btn btn--ink btn--sm hdr__cta">
+        <Link href={appLink("header", campaign)} className="btn btn--ink btn--sm hdr__cta">
           Get the app
         </Link>
         <button className="hdr__menu" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen((o) => !o)}>
@@ -115,7 +119,7 @@ export default function Header({
           <Link href="/partners">Doctors, employers & brands</Link>
           <Link href="/contact">Contact us</Link>
         </nav>
-        <Link href={getAppHref()} className="btn btn--ink">
+        <Link href={appLink("mobile-menu", campaign)} className="btn btn--ink">
           Get the app
         </Link>
       </div>

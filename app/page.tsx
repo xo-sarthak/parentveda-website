@@ -16,7 +16,7 @@ import { getFeaturedPosts } from "@/lib/guides";
 import PostCard from "@/components/reads/PostCard";
 import JsonLd from "@/components/JsonLd";
 import { homeSchema } from "@/lib/jsonld";
-import { getAppHref, site } from "@/lib/site";
+import { appLink, site } from "@/lib/site";
 import { TOOLS } from "@/lib/tools";
 import ToolCard from "@/components/tools/ToolCard";
 
@@ -169,7 +169,7 @@ export default async function Home() {
               the best you can do for your child at every step, and stays beside you while you do it.
             </p>
             <div className="hero__actions rv rv-d3">
-              <Link href={getAppHref()} className="btn btn--ink">
+              <Link href={appLink("home-hero", "home")} className="btn btn--ink">
                 Get the app <Icon name="arrow" />
               </Link>
               <Link href="#stages" className="btn btn--ghost">

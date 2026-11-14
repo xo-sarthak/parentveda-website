@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
            employer: near-identical pages with no search value. The pages send
            noindex themselves too; this saves the crawl. Link previews are
            unaffected, since WhatsApp's crawler fetches a shared URL directly. */
-        disallow: ["/invite/", "/care/", "/portal/"],
+        disallow: ["/invite/", "/care/", "/portal/", "/internal/"],
       },
     ],
     sitemap: `${site.domain}/sitemap.xml`,

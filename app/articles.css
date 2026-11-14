@@ -935,3 +935,8 @@
   color: var(--deep-tone, var(--deep));
   text-decoration: none;
 }
+
+/* /internal/content-health/ */
+.health { display: grid; gap: 14px; }
+.health h2 { margin-top: 24px; font-size: 20px; }
+.health td, .health th { font-size: 14px; }
