@@ -48,3 +48,17 @@ export const CAN_I_GROUPS: [string, string[]][] = [["Fruits", ["papaya", "pineap
 
 /** Popular searches, used only when the tables cannot be read. */
 export const CAN_I_POPULAR = ["pineapple", "coffee", "paracetamol", "flight_travel", "hair_color", "sex"];
+
+/* ---------- One page per answer: /tools/is-it-safe-in-pregnancy/<slug>/ ---------- */
+
+export const SAFE_BASE = "/tools/is-it-safe-in-pregnancy";
+
+/** "flight_travel" -> "flight-travel". Ids are lowercase words joined by underscores. */
+export const safeSlug = (id: string) => id.replace(/_/g, "-");
+export const safeIdFromSlug = (slug: string) => slug.replace(/-/g, "_");
+export const safePath = (id: string) => `${SAFE_BASE}/${safeSlug(id)}/`;
+
+/** The question as people search it: "Papaya in pregnancy: is it safe?" */
+export function safeQuestion(e: Pick<CanI, "name">): string {
+  return /pregnan/i.test(e.name) ? `${e.name}: is it safe?` : `${e.name} in pregnancy: is it safe?`;
+}
