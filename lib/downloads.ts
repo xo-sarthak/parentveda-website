@@ -32,6 +32,12 @@ export function getDownload(slug?: string | null): Download | undefined {
   return d?.file ? d : undefined;
 }
 
+/** The plain shape the client DownloadCard takes. The file path stays on the
+    server until the form is sent. */
+export function downloadView(d: Download) {
+  return { slug: d.slug, title: d.title, value: d.value, gate: d.gate };
+}
+
 export function findDownload(slug?: string | null): Download | undefined {
   return slug ? DOWNLOADS.find((x) => x.slug === slug) : undefined;
 }

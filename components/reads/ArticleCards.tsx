@@ -1,21 +1,15 @@
 import Link from "next/link";
 import { toolPath } from "@/lib/tools";
+import { consultView } from "@/lib/consults";
+import { downloadView } from "@/lib/downloads";
 import type { Card } from "@/lib/cta";
+import ConsultBlock from "@/components/leads/ConsultBlock";
+import DownloadCard from "@/components/leads/DownloadCard";
 
-/* The contextual cards for an article (lib/cta.ts). `compact` is the single
-   card in the side rail. Download and consult cards render through their own
-   components once those features are switched on. */
-export default function ArticleCards({
-  cards,
-  compact,
-  renderDownload,
-  renderConsult,
-}: {
-  cards: Card[];
-  compact?: boolean;
-  renderDownload?: (c: Extract<Card, { kind: "download" }>) => React.ReactNode;
-  renderConsult?: (c: Extract<Card, { kind: "consult" }>) => React.ReactNode;
-}) {
+/* The contextual cards for an article or hub (lib/cta.ts). `compact` is the
+   single card in the side rail: a tool card, or a short link down to the
+   download or consult block below the article. */
+export default function ArticleCards({ cards, compact, condition }: { cards: Card[]; compact?: boolean; condition?: string }) {
   const shown = compact ? cards.slice(0, 1) : cards;
   if (!shown.length) return null;
   return (
@@ -32,8 +26,19 @@ export default function ArticleCards({
             </Link>
           );
         }
-        if (c.kind === "download") return renderDownload ? <div key={`dl-${c.download.slug}`}>{renderDownload(c)}</div> : null;
-        return renderConsult ? <div key={`consult-${c.consult.specialty}`}>{renderConsult(c)}</div> : null;
+        if (compact) {
+          const label = c.kind === "consult" ? `Talk to a ${c.consult.label.toLowerCase()}` : c.download.title;
+          const href = c.kind === "consult" ? "#talk-to-a-specialist" : `#dl-${c.download.slug}-h`;
+          return (
+            <a key={`rail-${c.kind}`} href={href} className="rtools__card">
+              <span className="rtools__eyebrow">{c.kind === "consult" ? "Talk to a specialist" : "Free download"}</span>
+              <strong>{label}</strong>
+              <span className="rtools__cta">See below →</span>
+            </a>
+          );
+        }
+        if (c.kind === "download") return <DownloadCard key={`dl-${c.download.slug}`} download={downloadView(c.download)} condition={condition} />;
+        return <ConsultBlock key={`consult-${c.consult.specialty}`} consult={consultView(c.consult)} condition={condition} />;
       })}
     </aside>
   );

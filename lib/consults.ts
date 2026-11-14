@@ -50,5 +50,11 @@ export function findConsult(specialty?: string | null): Consult | undefined {
 
 export function priceLabel(c: Consult): string {
   if (c.price_inr == null) return "Price on request";
-  return `₹${c.price_inr.toLocaleString("en-IN")}${c.for_couple ? " for both of you" : ""}`;
+  const minutes = c.duration_min ? `, ${c.duration_min} minutes` : "";
+  return `₹${c.price_inr.toLocaleString("en-IN")}${c.for_couple ? " for both of you" : ""}${minutes}`;
+}
+
+/** The plain shape the client ConsultBlock takes. */
+export function consultView(c: Consult) {
+  return { specialty: c.specialty, label: c.label, priceLabel: priceLabel(c), includes: c.includes, mode: c.mode };
 }

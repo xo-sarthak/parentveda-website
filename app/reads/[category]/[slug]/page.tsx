@@ -280,7 +280,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               <PersonCard label="Written by" person={writer} />
             </div>
 
-            <ArticleCards cards={ctx.cards} />
+            <ArticleCards cards={ctx.cards} condition={ctx.condition?.slug} />
             {sensitive ? <SupportCard /> : null}
 
             <div className="care rbody__care">
