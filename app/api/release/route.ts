@@ -31,6 +31,7 @@
 
 import { NextResponse, after, type NextRequest } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { SITEMAP_PATHS } from "@/lib/sitemap-paths";
 import { CONTENT_TAG } from "@/lib/supabase";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { pingIndexNow, recentlyChangedUrls } from "@/lib/indexnow";
@@ -110,9 +111,9 @@ export async function GET(request: NextRequest) {
 
   if (slugs.length) {
     revalidateTag(CONTENT_TAG, { expire: 0 });
-    // The sitemap is cached as its own route. After a publish it kept serving the
-    // old list for minutes (14 Nov), so rebuild it explicitly on the next visit.
-    revalidatePath("/sitemap.xml");
+    // The sitemaps are cached as their own routes. After a publish they kept serving
+    // the old list for minutes (14 Nov), so rebuild them explicitly on the next visit.
+    for (const p of SITEMAP_PATHS) revalidatePath(p);
     after(async () => {
       await pingIndexNow(await recentlyChangedUrls());
     });

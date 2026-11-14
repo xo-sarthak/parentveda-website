@@ -62,6 +62,7 @@
 
 import { NextResponse, after, type NextRequest } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { SITEMAP_PATHS } from "@/lib/sitemap-paths";
 import { CONTENT_TAG } from "@/lib/supabase";
 import { pingIndexNow, recentlyChangedUrls } from "@/lib/indexnow";
 
@@ -109,9 +110,9 @@ export async function POST(request: NextRequest) {
      not see. { expire: 0 } makes the next request wait for fresh content, and
      is what the docs prescribe for a webhook (revalidateTag.md). */
   revalidateTag(CONTENT_TAG, { expire: 0 });
-  // The sitemap is cached as its own route. After a publish it kept serving the
-  // old list for minutes (14 Nov), so rebuild it explicitly on the next visit.
-  revalidatePath("/sitemap.xml");
+  // The sitemaps are cached as their own routes. After a publish they kept serving
+  // the old list for minutes (14 Nov), so rebuild them explicitly on the next visit.
+  for (const p of SITEMAP_PATHS) revalidatePath(p);
 
   /* After the response, so Directus never waits on Bing, and a failed ping
      cannot fail a publish. */
