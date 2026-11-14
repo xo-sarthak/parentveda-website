@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import ToolShell from "@/components/tools/ToolShell";
 import BabyNames from "@/components/tools/BabyNames";
+import Link from "next/link";
 import { getBabyNames } from "@/lib/shared-content";
+import { allNamePages, namePageSlug, namePageTitle, namesPath, type NamePage } from "@/lib/baby-names";
 import { getTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
 
@@ -40,6 +42,32 @@ export default async function Page() {
   return (
     <ToolShell tool={tool} intro={"Looking for a name with meaning? Browse over 2,000 Indian names for girls and boys, filter by the letter your family chose, your community or how popular the name is, or search by the meaning you want."} note={"Meanings are the common ones a family would be told. A name can carry more than one, and your pandit, maulvi, granthi or priest may give another. If your family has a name you love that isn't here yet, write to hello@parentveda.in and we'll add it."} faqs={FAQS}>
       <BabyNames names={names} />
+      <BrowseLinks pages={allNamePages(names)} />
     </ToolShell>
+  );
+}
+
+/* Plain links to every browse page, so readers and search engines can reach them. */
+function BrowseLinks({ pages }: { pages: NamePage[] }) {
+  const rows: [string, NamePage[]][] = [
+    ["Girl names by letter", pages.filter((p) => p.kind === "letter" && p.gender === "girl")],
+    ["Boy names by letter", pages.filter((p) => p.kind === "letter" && p.gender === "boy")],
+    ["By community", pages.filter((p) => p.kind === "community")],
+  ];
+  return (
+    <nav className="names-browse" aria-label="Browse names">
+      {rows.map(([label, list]) => (
+        <div key={label}>
+          <h2 className="tool-h3">{label}</h2>
+          <div className={label === "By community" ? "tool-chips" : "tool-letters names-nav__letters"}>
+            {list.map((p) => (
+              <Link key={namePageSlug(p)} className="tool-chip" href={namesPath(namePageSlug(p))} title={namePageTitle(p)}>
+                {p.kind === "letter" ? p.letter : namePageTitle(p).replace(/ baby/, "")}
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
+    </nav>
   );
 }

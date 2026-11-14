@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import Icon from "@/components/Icon";
-import { CATEGORY_LABEL, VERDICT_LABEL, type Category, type CanI, type CanIData } from "@/lib/safe-in-pregnancy";
+import { CATEGORY_LABEL, VERDICT_LABEL, safePath, type Category, type CanI, type CanIData } from "@/lib/safe-in-pregnancy";
 
 const CATS = ["all", "eat", "drink", "take", "doActivity"] as const;
 const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^\p{L}\p{N} ]/gu, " ");
@@ -57,6 +58,9 @@ function Entry({ e, byId, open, onRelated }: { e: CanI; byId: Map<string, CanI>;
                 ))}
             </p>
           )}
+          <p className="safe-item__page">
+            <Link href={safePath(e.id)}>Full answer for {e.name}</Link>
+          </p>
         </div>
       </details>
     </li>

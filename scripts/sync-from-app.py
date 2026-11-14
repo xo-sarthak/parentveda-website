@@ -202,6 +202,71 @@ def main(app, web):
     json.dump(who, open(out("lib/who-growth.json"), "w"), separators=(",", ":"))
     print("WHO growth tables: ok")
 
+    pregnancy_months(app, read, out)
+
+
+def pregnancy_months(app, read, out):
+    """Month-by-month pregnancy pages  <-  the app's week cards, month FAQs and scans.
+
+    English only. The week text is the app's Mother week (lib/data/weekContent.json);
+    the months and their week ranges are the app's (lib/data/preg_faqs/index.dart),
+    with month 9 as weeks 36 to 40, the weeks the app's FAQ months leave."""
+
+    def en_all(o):
+        if isinstance(o, dict):
+            if o and set(o) <= {"en", "hi"}:
+                return o.get("en")
+            return {k: en_all(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [en_all(x) for x in o]
+        return o
+
+    weeks = []
+    for w in en_all(json.loads(read("lib/data/weekContent.json"))):
+        b, m, n, a = w["babySnapshot"], w["momJourney"], w["nutrition"], w["actionPlan"]
+        sf = n.get("indianSuperfoodOfTheWeek") or {}
+        weeks.append({
+            "week": w["week"], "milestone": b["milestone"], "headline": b["weekHeadline"],
+            "size": b["size"]["fruit"], "length": b["size"]["length"], "weight": b["size"]["weight"],
+            "baby": w["babyDevelopment"]["whatImDoing"], "body": m["physicalChanges"], "feel": m["emotionalState"],
+            "symptoms": m.get("commonSymptoms", []), "selfCare": m["selfCareTip"], "reassurance": m["reassurance"],
+            "theme": n["nutritionTheme"], "whyNow": n["whyNow"], "foods": n.get("foods", []),
+            "superfood": {"food": sf.get("food"), "benefit": sf.get("benefit"), "how": sf.get("howToConsume")} if sf else None,
+            "meal": n.get("mealIdea"), "doThis": a["doThisWeek"], "skip": a["skipThisWeek"], "redFlags": a["redFlags"],
+            "myth": a.get("mythBuster"), "partner": w.get("partnerCorner", {}).get("whatYouCanDo"),
+        })
+
+    t = read("lib/data/preg_faqs/index.dart")
+    months = [{"month": int(m[0]), "from": int(m[1]), "to": int(m[2])} for m in re.findall(r"PregFaqMonth\((\d+), (\d+), (\d+),", t)]
+    months.append({"month": 9, "from": months[-1]["to"] + 1, "to": 40})
+
+    faqs = {}
+    for mo in months[:-1]:
+        t = read(f"lib/data/preg_faqs/month_{mo['month']}.dart")
+        rows = []
+        for f in calls(t[t.index("= [") :], "PregFaq"):
+            if not isinstance(f, dict) or "question" not in f:
+                continue
+            parts = {p["pos"][0].split(".")[-1]: p["pos"] for p in f.get("parts", []) if isinstance(p, dict) and p.get("pos")}
+            direct = parts.get("direct")
+            if not direct or not direct[2]:
+                continue
+            rows.append({"id": f["id"], "q": f["question"], "category": f.get("category", ""),
+                         "a": direct[2], "takeaways": (parts.get("takeaways") or [None, None, [], []])[3]})
+        faqs[str(mo["month"])] = rows
+
+    t = read("lib/data/journey_milestones.dart")
+    scans = []
+    for s in calls(t, "JourneyMilestone"):
+        if not isinstance(s, dict) or s.get("type") != "JourneyNodeType.medical":
+            continue
+        why = next((en(c["pos"][1]) for c in s.get("sections", []) if isinstance(c, dict) and c.get("pos")), "")
+        scans.append({"id": s["id"], "week": int(s["anchorWeek"]), "range": en(s.get("rangeLabel")) or "", "title": en(s["title"]), "why": why})
+
+    data = {"months": months, "weeks": weeks, "faqs": faqs, "scans": scans}
+    json.dump(data, open(out("lib/pregnancy-months.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    print(f"Pregnancy months: {len(months)} months, {len(weeks)} weeks, {sum(len(v) for v in faqs.values())} FAQs, {len(scans)} scans")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

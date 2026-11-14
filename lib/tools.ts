@@ -57,6 +57,16 @@ export const TOOLS: ToolInfo[] = [
     match: /weeks? pregnant|week by week|trimester|\bscan\b|anomaly|nt scan|ultrasound|glucose test|\bgtt\b/i,
   },
   {
+    slug: "pregnancy-weeks-to-months",
+    name: "Pregnancy weeks to months",
+    short: "Turn weeks into months. See which month and trimester you are in, and what that month usually holds.",
+    cta: "Find your month",
+    stage: "Pregnancy",
+    tone: "#F3D9CB",
+    reads: ["pregnancy-symptoms-month-by-month", "pregnancy-week-by-week", "pregnancy-ultrasound-schedule"],
+    match: /month by month|months? pregnant|weeks to months|(\d|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth) month/i,
+  },
+  {
     slug: "is-it-safe-in-pregnancy",
     name: "Is it safe in pregnancy?",
     short: "200 foods, drinks, medicines and activities, with a clear answer and what changes by trimester.",
