@@ -1,0 +1,38 @@
+{
+  "slug": "premature-baby-nicu",
+  "name": "Premature baby and NICU",
+  "alternate_names": [
+    "preterm baby",
+    "NICU stay"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Neonatology",
+  "reviewer_specialty_required": "Neonatology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "neonatology",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "premature-baby-nicu"
+    ],
+    "keywords": [
+      "premature",
+      "preterm baby",
+      "nicu"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

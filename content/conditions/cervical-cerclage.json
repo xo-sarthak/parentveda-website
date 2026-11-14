@@ -1,0 +1,40 @@
+{
+  "slug": "cervical-cerclage",
+  "name": "Short cervix and cervical stitch",
+  "alternate_names": [
+    "short cervix",
+    "cervical cerclage",
+    "cervical stitch",
+    "cervical insufficiency"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics / Fetal Medicine",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "cervical-cerclage"
+    ],
+    "keywords": [
+      "cerclage",
+      "short cervix",
+      "cervical stitch"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

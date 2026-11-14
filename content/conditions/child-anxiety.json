@@ -1,0 +1,36 @@
+{
+  "slug": "child-anxiety",
+  "name": "Anxiety in children",
+  "alternate_names": [
+    "childhood anxiety"
+  ],
+  "stage": "Child",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Child Psychology",
+  "reviewer_specialty_required": "Child Psychology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "child-psychology",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "child-anxiety"
+    ],
+    "keywords": [
+      "child anxiety",
+      "anxiety in children"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

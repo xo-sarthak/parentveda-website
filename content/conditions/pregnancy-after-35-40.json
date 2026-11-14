@@ -1,0 +1,37 @@
+{
+  "slug": "pregnancy-after-35-40",
+  "name": "Pregnancy after 35 and 40",
+  "alternate_names": [
+    "late pregnancy",
+    "advanced maternal age"
+  ],
+  "stage": "Preconception",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "fertility-specialist-check",
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "pregnancy-after-35-40"
+    ],
+    "keywords": [
+      "pregnancy after 35",
+      "pregnancy after 40"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

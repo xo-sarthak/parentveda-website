@@ -1,0 +1,35 @@
+{
+  "slug": "egg-freezing",
+  "name": "Egg freezing",
+  "alternate_names": [
+    "oocyte freezing"
+  ],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Reproductive Medicine",
+  "reviewer_specialty_required": "Reproductive Medicine",
+  "sensitivity": "low",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "amh-reader",
+  "download": null,
+  "consult": {
+    "specialty": "fertility-specialist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "egg-freezing"
+    ],
+    "keywords": [
+      "egg freezing"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

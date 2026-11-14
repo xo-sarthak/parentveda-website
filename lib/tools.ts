@@ -23,6 +23,9 @@ export type ToolInfo = {
   reads: string[];
   /** Matched against a live article's slug, title and tags. */
   match: RegExp;
+  /** false while a tool's medical values wait for review on this deploy (lib/review-gate.ts).
+      Such a tool gets no cards and no index entry, and its page says it is coming soon. */
+  available?: boolean;
 };
 
 export const TOOLS: ToolInfo[] = [

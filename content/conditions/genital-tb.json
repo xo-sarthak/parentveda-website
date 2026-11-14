@@ -1,0 +1,36 @@
+{
+  "slug": "genital-tb",
+  "name": "Genital TB",
+  "alternate_names": [
+    "genital tuberculosis"
+  ],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Reproductive Medicine",
+  "reviewer_specialty_required": "Reproductive Medicine",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "fertility-specialist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "genital-tb"
+    ],
+    "keywords": [
+      "genital tb",
+      "genital tuberculosis"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

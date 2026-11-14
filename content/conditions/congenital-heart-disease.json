@@ -1,0 +1,38 @@
+{
+  "slug": "congenital-heart-disease",
+  "name": "Heart defects in babies",
+  "alternate_names": [
+    "congenital heart disease",
+    "CHD",
+    "hole in the heart"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Paediatric Cardiology",
+  "reviewer_specialty_required": "Paediatric Cardiology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "paediatric-cardiology",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "congenital-heart-disease"
+    ],
+    "keywords": [
+      "congenital heart",
+      "heart defect"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

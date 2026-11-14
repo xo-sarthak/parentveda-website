@@ -1,0 +1,38 @@
+{
+  "slug": "speech-delay",
+  "name": "Speech delay",
+  "alternate_names": [
+    "late talker",
+    "delayed speech"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Speech Therapy",
+  "reviewer_specialty_required": "Therapy",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "speech-therapy",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "speech-delay"
+    ],
+    "keywords": [
+      "speech delay",
+      "speech",
+      "late talker"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

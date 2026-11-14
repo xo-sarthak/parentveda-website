@@ -1,0 +1,37 @@
+{
+  "slug": "thalassemia-minor",
+  "name": "Thalassemia carrier",
+  "alternate_names": [
+    "thalassemia minor",
+    "thalassemia trait",
+    "beta thalassemia carrier"
+  ],
+  "stage": "Preconception",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Haematology / Genetic Counselling",
+  "reviewer_specialty_required": "Genetic Counselling",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "thalassemia-couple-check",
+  "download": null,
+  "consult": {
+    "specialty": "genetic-counselling",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "thalassemia-minor"
+    ],
+    "keywords": [
+      "thalassemia"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

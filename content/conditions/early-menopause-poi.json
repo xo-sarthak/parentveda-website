@@ -1,0 +1,38 @@
+{
+  "slug": "early-menopause-poi",
+  "name": "Early menopause and POI",
+  "alternate_names": [
+    "premature ovarian insufficiency",
+    "POI",
+    "premature menopause"
+  ],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Reproductive Medicine",
+  "reviewer_specialty_required": "Reproductive Medicine",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "amh-reader",
+  "download": null,
+  "consult": {
+    "specialty": "fertility-specialist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "early-menopause-poi"
+    ],
+    "keywords": [
+      "early menopause",
+      "premature ovarian"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

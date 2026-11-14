@@ -1,0 +1,33 @@
+{
+  "slug": "adenomyosis",
+  "name": "Adenomyosis",
+  "alternate_names": [],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Gynaecology",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "adenomyosis"
+    ],
+    "keywords": [
+      "adenomyosis"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

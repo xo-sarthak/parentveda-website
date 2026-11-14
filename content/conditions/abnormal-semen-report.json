@@ -1,0 +1,40 @@
+{
+  "slug": "abnormal-semen-report",
+  "name": "Abnormal semen report",
+  "alternate_names": [
+    "low sperm count",
+    "oligospermia",
+    "low motility"
+  ],
+  "stage": "TTC",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Andrology",
+  "reviewer_specialty_required": "Andrology/Urology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "semen-report-reader",
+  "download": null,
+  "consult": {
+    "specialty": "male-fertility",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "abnormal-semen-report"
+    ],
+    "keywords": [
+      "sperm count",
+      "semen analysis",
+      "male fertility",
+      "oligospermia"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

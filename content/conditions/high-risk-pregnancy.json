@@ -1,0 +1,39 @@
+{
+  "slug": "high-risk-pregnancy",
+  "name": "High-risk pregnancy and screening results",
+  "alternate_names": [
+    "high risk pregnancy"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Fetal Medicine",
+  "reviewer_specialty_required": "Fetal Medicine",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "screening-result-explainer",
+  "download": null,
+  "consult": {
+    "specialty": "fetal-medicine",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "high-risk-pregnancy"
+    ],
+    "keywords": [
+      "high risk pregnancy",
+      "down syndrome screening",
+      "double marker",
+      "nipt",
+      "nt scan"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

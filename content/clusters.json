@@ -1,0 +1,486 @@
+[
+  {
+    "name": "Cross-stage > Partners & fathers",
+    "prefix": "Cross-stage",
+    "leaf": "Partners & fathers",
+    "slug": "partners-and-fathers",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Cross-stage > Relationships & family",
+    "prefix": "Cross-stage",
+    "leaf": "Relationships & family",
+    "slug": "relationships-and-family",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Kids 5-12 > Behaviour",
+    "prefix": "Kids 5-12",
+    "leaf": "Behaviour",
+    "slug": "kids-behaviour",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Kids 5-12 > Mental health & learning",
+    "prefix": "Kids 5-12",
+    "leaf": "Mental health & learning",
+    "slug": "kids-mental-health-and-learning",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Kids 5-12 > Puberty",
+    "prefix": "Kids 5-12",
+    "leaf": "Puberty",
+    "slug": "kids-puberty",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Kids 5-12 > School & skills",
+    "prefix": "Kids 5-12",
+    "leaf": "School & skills",
+    "slug": "kids-school-and-skills",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Behaviour",
+    "prefix": "Parenting 0-5",
+    "leaf": "Behaviour",
+    "slug": "behaviour",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Breastfeeding",
+    "prefix": "Parenting 0-5",
+    "leaf": "Breastfeeding",
+    "slug": "breastfeeding",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Development",
+    "prefix": "Parenting 0-5",
+    "leaf": "Development",
+    "slug": "development",
+    "stage": "parenting",
+    "cta": {
+      "tool": "baby-growth-chart",
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Development concerns & therapies",
+    "prefix": "Parenting 0-5",
+    "leaf": "Development concerns & therapies",
+    "slug": "development-concerns",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": "developmental-paediatrics"
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Early learning",
+    "prefix": "Parenting 0-5",
+    "leaf": "Early learning",
+    "slug": "early-learning",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > First 40 days (mother recovery)",
+    "prefix": "Parenting 0-5",
+    "leaf": "First 40 days (mother recovery)",
+    "slug": "first-40-days",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Formula, bottles & solids",
+    "prefix": "Parenting 0-5",
+    "leaf": "Formula, bottles & solids",
+    "slug": "formula-bottles-and-solids",
+    "stage": "parenting",
+    "cta": {
+      "tool": "baby-growth-chart",
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Gear & buying guides",
+    "prefix": "Parenting 0-5",
+    "leaf": "Gear & buying guides",
+    "slug": "gear-and-buying-guides",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Health",
+    "prefix": "Parenting 0-5",
+    "leaf": "Health",
+    "slug": "health",
+    "stage": "parenting",
+    "cta": {
+      "tool": "baby-growth-chart",
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Newborn care",
+    "prefix": "Parenting 0-5",
+    "leaf": "Newborn care",
+    "slug": "newborn-care",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Potty training",
+    "prefix": "Parenting 0-5",
+    "leaf": "Potty training",
+    "slug": "potty-training",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Safety",
+    "prefix": "Parenting 0-5",
+    "leaf": "Safety",
+    "slug": "safety",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Skin",
+    "prefix": "Parenting 0-5",
+    "leaf": "Skin",
+    "slug": "skin",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Sleep",
+    "prefix": "Parenting 0-5",
+    "leaf": "Sleep",
+    "slug": "sleep",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Teeth",
+    "prefix": "Parenting 0-5",
+    "leaf": "Teeth",
+    "slug": "teeth",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Traditions",
+    "prefix": "Parenting 0-5",
+    "leaf": "Traditions",
+    "slug": "traditions",
+    "stage": "parenting",
+    "cta": {
+      "tool": "baby-names",
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > Vaccines",
+    "prefix": "Parenting 0-5",
+    "leaf": "Vaccines",
+    "slug": "vaccines",
+    "stage": "parenting",
+    "cta": {
+      "tool": "vaccination-schedule",
+      "consult": null
+    }
+  },
+  {
+    "name": "Parenting 0-5 > You (parent wellbeing & work)",
+    "prefix": "Parenting 0-5",
+    "leaf": "You (parent wellbeing & work)",
+    "slug": "parent-wellbeing",
+    "stage": "parenting",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Belly & skin",
+    "prefix": "Pregnancy",
+    "leaf": "Belly & skin",
+    "slug": "belly-and-skin",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "pregnancy-weight-gain-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Complications",
+    "prefix": "Pregnancy",
+    "leaf": "Complications",
+    "slug": "complications",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": null,
+      "consult": "gynaecologist"
+    }
+  },
+  {
+    "name": "Pregnancy > Garbh Sanskar",
+    "prefix": "Pregnancy",
+    "leaf": "Garbh Sanskar",
+    "slug": "garbh-sanskar",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Is it safe?",
+    "prefix": "Pregnancy",
+    "leaf": "Is it safe?",
+    "slug": "is-it-safe",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "is-it-safe-in-pregnancy",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Labour & birth",
+    "prefix": "Pregnancy",
+    "leaf": "Labour & birth",
+    "slug": "labour-and-birth",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "due-date-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Mind & mood",
+    "prefix": "Pregnancy",
+    "leaf": "Mind & mood",
+    "slug": "mind-and-mood",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": null,
+      "consult": "perinatal-mental-health"
+    }
+  },
+  {
+    "name": "Pregnancy > Month & week guides",
+    "prefix": "Pregnancy",
+    "leaf": "Month & week guides",
+    "slug": "month-and-week-guides",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "pregnancy-week-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Nutrition",
+    "prefix": "Pregnancy",
+    "leaf": "Nutrition",
+    "slug": "nutrition",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "is-it-safe-in-pregnancy",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Rights, money & planning",
+    "prefix": "Pregnancy",
+    "leaf": "Rights, money & planning",
+    "slug": "rights-money-and-planning",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Scans & tests",
+    "prefix": "Pregnancy",
+    "leaf": "Scans & tests",
+    "slug": "scans-and-tests",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "pregnancy-week-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Symptoms",
+    "prefix": "Pregnancy",
+    "leaf": "Symptoms",
+    "slug": "symptoms",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": "pregnancy-week-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "Pregnancy > Yoga & fitness",
+    "prefix": "Pregnancy",
+    "leaf": "Yoga & fitness",
+    "slug": "yoga-and-fitness",
+    "stage": "pregnancy",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "TTC > After a loss",
+    "prefix": "TTC",
+    "leaf": "After a loss",
+    "slug": "after-a-loss",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": null,
+      "consult": "fertility-specialist"
+    }
+  },
+  {
+    "name": "TTC > Fertile window",
+    "prefix": "TTC",
+    "leaf": "Fertile window",
+    "slug": "fertile-window",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": "ovulation-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "TTC > Getting ready",
+    "prefix": "TTC",
+    "leaf": "Getting ready",
+    "slug": "getting-ready",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": "ovulation-calculator",
+      "consult": null
+    }
+  },
+  {
+    "name": "TTC > His side",
+    "prefix": "TTC",
+    "leaf": "His side",
+    "slug": "his-side",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": "semen-report-reader",
+      "consult": "male-fertility"
+    }
+  },
+  {
+    "name": "TTC > IVF & IUI",
+    "prefix": "TTC",
+    "leaf": "IVF & IUI",
+    "slug": "ivf-and-iui",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": "fertility-specialist-check",
+      "consult": "fertility-specialist"
+    }
+  },
+  {
+    "name": "TTC > Mind & body",
+    "prefix": "TTC",
+    "leaf": "Mind & body",
+    "slug": "mind-and-body",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": null,
+      "consult": null
+    }
+  },
+  {
+    "name": "TTC > PCOS",
+    "prefix": "TTC",
+    "leaf": "PCOS",
+    "slug": "pcos",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": null,
+      "consult": "gynaecologist"
+    }
+  },
+  {
+    "name": "TTC > Periods & hormones",
+    "prefix": "TTC",
+    "leaf": "Periods & hormones",
+    "slug": "periods-and-hormones",
+    "stage": "trying-to-conceive",
+    "cta": {
+      "tool": null,
+      "consult": "gynaecologist"
+    }
+  }
+]

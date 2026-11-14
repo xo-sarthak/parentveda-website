@@ -1,0 +1,35 @@
+{
+  "slug": "ectopic-pregnancy",
+  "name": "Ectopic pregnancy",
+  "alternate_names": [
+    "tubal pregnancy"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "ectopic-pregnancy"
+    ],
+    "keywords": [
+      "ectopic pregnancy"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

@@ -1,0 +1,38 @@
+{
+  "slug": "postpartum-depression",
+  "name": "Postpartum depression",
+  "alternate_names": [
+    "postnatal depression",
+    "PPD"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Perinatal Mental Health",
+  "reviewer_specialty_required": "Perinatal Mental Health",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "perinatal-mental-health",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "postpartum-depression"
+    ],
+    "keywords": [
+      "postpartum depression",
+      "postnatal depression",
+      "baby blues"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

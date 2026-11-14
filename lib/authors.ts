@@ -44,6 +44,10 @@ export type Author = {
   /** Full bio, one string per paragraph. */
   bio: string[];
   specialties: string[];
+  /** The expert's field in the fixed names of content/specialties.json. The
+      reviewer audit (scripts/reviewer-audit.mjs) matches these against the
+      specialty an article needs. Taken from each person's stated role. */
+  specialty?: string[];
   qualifications: Qualification[];
   memberships: string[];
   experience?: string;
@@ -104,6 +108,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "dr-mahender-singh",
     kind: "expert",
+    specialty: ["Paediatrics", "Neonatology"],
     name: "Dr. Mahender Singh",
     credentials: "MBBS, DCH, MD (Paediatrics)",
     role: "Consultant Child Specialist & Neonatologist",
@@ -149,6 +154,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "simranpreet-kaur-sandhu",
     kind: "expert",
+    specialty: ["Genetic Counselling"],
     name: "Dr. Simranpreet Kaur Sandhu",
     credentials: "PhD",
     role: "Genetic counsellor and embryologist",
@@ -178,6 +184,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "maneesha-mohan",
     kind: "expert",
+    specialty: ["Physiotherapy", "Lactation"],
     name: "Dr. Maneesha Mohan",
     credentials: "Physiotherapist",
     role: "Women's health physiotherapist and lactation specialist",
@@ -204,6 +211,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "keya-sampat",
     kind: "expert",
+    specialty: ["Childbirth Education"],
     name: "Keya Sampat",
     role: "Clinical hypnotherapist and HypnoBirthing educator",
     photo: "/authors/keya-sampat.jpg",
@@ -231,6 +239,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "aishwarya-jain",
     kind: "expert",
+    specialty: ["Child Counselling"],
     name: "Aishwarya Jain",
     role: "Child guidance counsellor",
     photo: "/authors/aishwarya-jain.jpg",
@@ -254,6 +263,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "madhvi-khurana",
     kind: "expert",
+    specialty: ["Child Psychology"],
     name: "Madhvi Khurana",
     role: "Child and adolescent psychologist",
     photo: "/authors/madhvi-khurana.jpg",
@@ -279,6 +289,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "gunjan-sabherwal",
     kind: "expert",
+    specialty: ["Reproductive Medicine", "Obstetrics & Gynaecology"],
     name: "Dr. Gunjan Sabherwal",
     credentials: "MBBS, DGO, DNB",
     role: "Fertility specialist and gynaecologist",
@@ -298,6 +309,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "smitha-avula",
     kind: "expert",
+    specialty: ["Obstetrics & Gynaecology", "Fetal Medicine"],
     name: "Dr. Smitha Avula",
     credentials: "MBBS, DNB, FFM",
     role: "High-risk obstetrician and fetal medicine specialist",
@@ -317,6 +329,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "gurbani-kohli",
     kind: "expert",
+    specialty: ["Child Psychology"],
     name: "Dr. Gurbani Kohli",
     credentials: "PhD",
     role: "Child and adolescent psychologist",
@@ -337,6 +350,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "sugandh-yadav",
     kind: "expert",
+    specialty: ["Yoga"],
     name: "Sugandh Yadav",
     role: "Fertility, prenatal and postnatal yoga coach",
     photo: "/authors/sugandh-yadav.jpg",
@@ -353,6 +367,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "kiran-sharma",
     kind: "expert",
+    specialty: ["Yoga"],
     name: "Kiran Sharma",
     role: "Prenatal and postnatal yoga teacher",
     photo: "/authors/kiran-sharma.jpg",
@@ -369,6 +384,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "shilpi-srivastava",
     kind: "expert",
+    specialty: ["Physiotherapy", "Childbirth Education", "Lactation"],
     name: "Dr. Shilpi Srivastava",
     credentials: "MPT",
     role: "Women's health physiotherapist, Lamaze educator and lactation counsellor",
@@ -387,6 +403,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "swati-shivhare",
     kind: "expert",
+    specialty: ["Reproductive Medicine", "Obstetrics & Gynaecology"],
     name: "Dr. Swati Shivhare",
     credentials: "MBBS, MD, DNB, MRCOG (UK)",
     role: "Fertility and IVF specialist",
@@ -404,6 +421,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "fathima-pothuraju",
     kind: "expert",
+    specialty: ["Clinical Pharmacology"],
     name: "Dr. Fathima Pothuraju",
     credentials: "PharmD",
     role: "Clinical pharmacologist and pregnancy & parenting coach",
@@ -420,6 +438,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "shalini-chakraborty",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Shalini Chakraborty",
     role: "Senior nutritionist",
     photo: "/authors/shalini-chakraborty.jpg",
@@ -435,6 +454,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "shahla-ansari",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Dt. Shahla Ansari",
     role: "Clinical dietitian, IVF and fertility nutrition",
     photo: "/authors/shahla-ansari.jpg",
@@ -450,6 +470,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "purabi-gunjal",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Purabi Gunjal",
     credentials: "MSc",
     role: "Women's health and fertility nutritionist",
@@ -468,6 +489,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "vijayalakshmi-km",
     kind: "expert",
+    specialty: ["Ayurveda"],
     name: "Dr. Vijayalakshmi KM",
     role: "Ayurvedic doctor, garbh sanskar and parenting coach",
     photo: "/authors/vijayalakshmi-km.jpg",
@@ -482,6 +504,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "archana-goyal",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Archana Goyal",
     role: "Maternal, infant and fertility nutritionist",
     shortBio: "Diet for IVF cycles, egg freezing, pregnancy, postpartum and a baby's first foods.",
@@ -495,6 +518,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "juhi-agrawal",
     kind: "expert",
+    specialty: ["Yoga"],
     name: "Juhi Agrawal",
     role: "Garbh sanskar educator and yoga trainer",
     photo: "/authors/juhi-agrawal.jpg",
@@ -510,6 +534,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "neha-kumari",
     kind: "expert",
+    specialty: ["Physiotherapy", "Lactation"],
     name: "Dr. Neha Kumari",
     credentials: "Physiotherapist",
     role: "Women's health physiotherapist and lactation consultant",
@@ -528,6 +553,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "kashyap-shah",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Dr. Kashyap Shah",
     credentials: "BSc (Hons), DHMS",
     role: "Clinical nutritionist",
@@ -546,6 +572,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "neera-parmar",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Dr. Neera Parmar",
     role: "Reproductive, maternal and child health nutritionist",
     photo: "/authors/neera-parmar.jpg",
@@ -561,6 +588,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "ritu-chauhan",
     kind: "expert",
+    specialty: ["Reproductive Medicine"],
     name: "Dr. Ritu Chauhan",
     credentials: "DNB, FNB",
     role: "Consultant IVF specialist",
@@ -577,6 +605,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "kajal-singh",
     kind: "expert",
+    specialty: ["Ayurveda"],
     name: "Dr. Kajal Singh",
     credentials: "MD (Ayurveda)",
     role: "Ayurvedic fertility consultant",
@@ -593,6 +622,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "sunita-patel",
     kind: "expert",
+    specialty: ["Physiotherapy"],
     name: "Dr. Sunita Patel",
     credentials: "Physiotherapist",
     role: "Pelvic floor rehab therapist and educator",
@@ -609,6 +639,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "anusha-potlapalli",
     kind: "expert",
+    specialty: ["Physiotherapy"],
     name: "Dr. Anusha Potlapalli",
     credentials: "MPT",
     role: "Women's health physiotherapist",
@@ -625,6 +656,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "akanksha-srivastava",
     kind: "expert",
+    specialty: ["Nutrition"],
     name: "Akanksha Srivastava",
     role: "Maternal and child nutritionist",
     photo: "/authors/akanksha-srivastava.jpg",
@@ -641,6 +673,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "stuti-kumar",
     kind: "expert",
+    specialty: ["Child Psychology"],
     name: "Dr. Stuti Kumar",
     credentials: "MA",
     role: "RCI-licensed child psychologist",
@@ -658,6 +691,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "surbhi-sharma",
     kind: "expert",
+    specialty: ["Reproductive Medicine"],
     name: "Dr. Surbhi Sharma",
     role: "Senior IVF consultant",
     shortBio: "IVF treatment and fertility workups.",
@@ -671,6 +705,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "muskan-rastogi",
     kind: "expert",
+    specialty: ["Physiotherapy", "Lactation"],
     name: "Dr. Muskan Rastogi",
     credentials: "MPT (OBG)",
     role: "Women's health physiotherapist and lactation consultant",
@@ -688,6 +723,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "vaishnavi-kokate",
     kind: "expert",
+    specialty: ["Physiotherapy"],
     name: "Dr. Vaishnavi Kokate",
     credentials: "MPT (OBG)",
     role: "Pelvic floor physiotherapist",
@@ -705,6 +741,7 @@ export const AUTHORS: Author[] = [
   {
     slug: "rani-balgude",
     kind: "expert",
+    specialty: ["Lactation"],
     name: "Dr. Rani Balgude",
     credentials: "BHMS, IBCLC",
     role: "Lactation consultant and infant massage trainer",

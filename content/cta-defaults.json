@@ -1,0 +1,5 @@
+{
+  "trying-to-conceive": { "tool": "ovulation-calculator" },
+  "pregnancy": { "tool": "due-date-calculator" },
+  "parenting": { "tool": "vaccination-schedule" }
+}

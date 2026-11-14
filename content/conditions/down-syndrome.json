@@ -1,0 +1,35 @@
+{
+  "slug": "down-syndrome",
+  "name": "Down syndrome",
+  "alternate_names": [
+    "trisomy 21"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Fetal Medicine / Developmental Paediatrics",
+  "reviewer_specialty_required": "Fetal Medicine",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "screening-result-explainer",
+  "download": null,
+  "consult": {
+    "specialty": "fetal-medicine",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "down-syndrome"
+    ],
+    "keywords": [
+      "down syndrome"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "cousin-marriage",
+  "name": "Cousin marriage and genetic risk",
+  "alternate_names": [
+    "consanguineous marriage"
+  ],
+  "stage": "Preconception",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Genetic Counselling",
+  "reviewer_specialty_required": "Genetic Counselling",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "thalassemia-couple-check",
+  "download": null,
+  "consult": {
+    "specialty": "genetic-counselling",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "cousin-marriage"
+    ],
+    "keywords": [
+      "cousin marriage",
+      "consanguin"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

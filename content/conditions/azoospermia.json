@@ -1,0 +1,37 @@
+{
+  "slug": "azoospermia",
+  "name": "Azoospermia (nil sperm count)",
+  "alternate_names": [
+    "nil sperm count",
+    "zero sperm count"
+  ],
+  "stage": "TTC",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Andrology",
+  "reviewer_specialty_required": "Andrology/Urology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "semen-report-reader",
+  "download": null,
+  "consult": {
+    "specialty": "male-fertility",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "azoospermia"
+    ],
+    "keywords": [
+      "azoospermia",
+      "nil sperm"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

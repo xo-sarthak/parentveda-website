@@ -1,0 +1,38 @@
+{
+  "slug": "gestational-diabetes",
+  "name": "Gestational diabetes",
+  "alternate_names": [
+    "GDM",
+    "pregnancy sugar"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics / Diabetology",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "pregnancy-sugar-targets",
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "gestational-diabetes"
+    ],
+    "keywords": [
+      "gestational diabetes",
+      "gdm",
+      "pregnancy sugar"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

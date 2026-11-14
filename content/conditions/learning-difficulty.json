@@ -1,0 +1,37 @@
+{
+  "slug": "learning-difficulty",
+  "name": "Learning difficulty and dyslexia",
+  "alternate_names": [
+    "dyslexia",
+    "learning disability"
+  ],
+  "stage": "Child",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Child Psychology",
+  "reviewer_specialty_required": "Child Psychology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "child-psychology",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "learning-difficulty"
+    ],
+    "keywords": [
+      "dyslexia",
+      "learning difficulty"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

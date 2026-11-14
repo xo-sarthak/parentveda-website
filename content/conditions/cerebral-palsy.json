@@ -1,0 +1,35 @@
+{
+  "slug": "cerebral-palsy",
+  "name": "Cerebral palsy",
+  "alternate_names": [
+    "CP"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Paediatric Neurology / Physiotherapy",
+  "reviewer_specialty_required": "Paediatric Neurology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "paediatric-neurology",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "cerebral-palsy"
+    ],
+    "keywords": [
+      "cerebral palsy"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

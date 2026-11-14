@@ -1,0 +1,37 @@
+{
+  "slug": "autism",
+  "name": "Autism",
+  "alternate_names": [
+    "autism spectrum disorder",
+    "ASD"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Developmental Paediatrics",
+  "reviewer_specialty_required": "Developmental Paediatrics",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "developmental-paediatrics",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "autism"
+    ],
+    "keywords": [
+      "autism",
+      "asd"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "preeclampsia",
+  "name": "Preeclampsia and high BP in pregnancy",
+  "alternate_names": [
+    "pre-eclampsia",
+    "pregnancy-induced hypertension",
+    "high BP in pregnancy"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "bp-log",
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "preeclampsia"
+    ],
+    "keywords": [
+      "preeclampsia",
+      "pre-eclampsia",
+      "bp in pregnancy",
+      "gestational hypertension"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

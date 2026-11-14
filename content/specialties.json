@@ -1,0 +1,45 @@
+{
+  "specialties": [
+    "Obstetrics & Gynaecology",
+    "Reproductive Medicine",
+    "Fetal Medicine",
+    "Radiology",
+    "Andrology/Urology",
+    "Paediatrics",
+    "Neonatology",
+    "Developmental Paediatrics",
+    "Paediatric Neurology",
+    "Paediatric Cardiology",
+    "Child Psychology",
+    "Child Counselling",
+    "Therapy",
+    "Perinatal Mental Health",
+    "Genetic Counselling",
+    "Haematology",
+    "Nutrition",
+    "Lactation",
+    "Physiotherapy",
+    "Childbirth Education",
+    "Clinical Pharmacology",
+    "Ayurveda",
+    "Yoga",
+    "Legal"
+  ],
+  "also_accepts": {
+    "Paediatrics": ["Neonatology"],
+    "Neonatology": ["Paediatrics"],
+    "Developmental Paediatrics": ["Child Psychology", "Therapy"],
+    "Genetic Counselling": ["Haematology"]
+  },
+  "cluster_defaults": [
+    { "prefix": "TTC > His side", "required": "Andrology/Urology", "also": [] },
+    { "prefix": "TTC", "required": "Obstetrics & Gynaecology", "also": ["Reproductive Medicine"] },
+    { "prefix": "Pregnancy > Scans & tests", "required": "Obstetrics & Gynaecology", "also": ["Fetal Medicine", "Radiology"] },
+    { "prefix": "Pregnancy > Nutrition", "required": "Nutrition", "also": ["Obstetrics & Gynaecology"] },
+    { "prefix": "Pregnancy", "required": "Obstetrics & Gynaecology", "also": [] },
+    { "prefix": "Parenting 0-5 > Health", "required": "Paediatrics", "also": ["Neonatology"] },
+    { "prefix": "Parenting 0-5 > Newborn care", "required": "Paediatrics", "also": ["Neonatology"] },
+    { "prefix": "Parenting 0-5 > Development concerns & therapies", "required": "Developmental Paediatrics", "also": ["Child Psychology", "Therapy"] },
+    { "prefix": "Parenting 0-5 > Formula, bottles & solids", "required": "Nutrition", "also": ["Paediatrics"] }
+  ]
+}

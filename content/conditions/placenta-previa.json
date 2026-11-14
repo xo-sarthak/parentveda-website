@@ -1,0 +1,37 @@
+{
+  "slug": "placenta-previa",
+  "name": "Placenta previa and low-lying placenta",
+  "alternate_names": [
+    "low-lying placenta",
+    "placenta praevia"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "placenta-previa"
+    ],
+    "keywords": [
+      "placenta previa",
+      "low-lying placenta"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "fibroids",
+  "name": "Fibroids",
+  "alternate_names": [
+    "uterine fibroids",
+    "myoma"
+  ],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Gynaecology",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "low",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "fibroids"
+    ],
+    "keywords": [
+      "fibroids"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

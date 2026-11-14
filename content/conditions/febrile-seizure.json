@@ -1,0 +1,36 @@
+{
+  "slug": "febrile-seizure",
+  "name": "Febrile seizure",
+  "alternate_names": [
+    "fever fit"
+  ],
+  "stage": "Parenting 0-5",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Paediatrics",
+  "reviewer_specialty_required": "Paediatrics",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "paediatrics",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "febrile-seizure"
+    ],
+    "keywords": [
+      "febrile seizure",
+      "fever fit"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

@@ -1,0 +1,35 @@
+{
+  "slug": "secondary-infertility",
+  "name": "Secondary infertility",
+  "alternate_names": [
+    "trouble conceiving a second baby"
+  ],
+  "stage": "TTC",
+  "tier": "P2",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Reproductive Medicine",
+  "reviewer_specialty_required": "Reproductive Medicine",
+  "sensitivity": "medium",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": "fertility-specialist-check",
+  "download": null,
+  "consult": {
+    "specialty": "fertility-specialist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "secondary-infertility"
+    ],
+    "keywords": [
+      "secondary infertility"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}

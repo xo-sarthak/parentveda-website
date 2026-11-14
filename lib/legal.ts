@@ -87,6 +87,9 @@ export type LegalPageMeta = {
   title: string;
   /** One line, used on the index and as the meta description. */
   summary: string;
+  /** "DRAFT, needs legal and founder review": the page renders (noindex) at its
+      URL, but is left out of the legal index, the footer and the sitemap. */
+  draft?: boolean;
 };
 
 export const LEGAL_PAGES: LegalPageMeta[] = [

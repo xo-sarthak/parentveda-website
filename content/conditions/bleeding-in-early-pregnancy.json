@@ -1,0 +1,36 @@
+{
+  "slug": "bleeding-in-early-pregnancy",
+  "name": "Bleeding in early pregnancy",
+  "alternate_names": [
+    "spotting in early pregnancy"
+  ],
+  "stage": "Pregnancy",
+  "tier": "P1",
+  "published": false,
+  "one_line": "",
+  "who_this_is_for": "",
+  "specialty": "Obstetrics",
+  "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "sensitivity": "high",
+  "red_flags": [],
+  "red_flags_reviewed": false,
+  "tool": null,
+  "download": null,
+  "consult": {
+    "specialty": "gynaecologist",
+    "mode": "callback"
+  },
+  "article_match": {
+    "conditions": [
+      "bleeding-in-early-pregnancy"
+    ],
+    "keywords": [
+      "bleeding in early pregnancy",
+      "spotting during pregnancy"
+    ]
+  },
+  "hinglish_pair": null,
+  "doctor_questions": [],
+  "track": null,
+  "faq": []
+}
