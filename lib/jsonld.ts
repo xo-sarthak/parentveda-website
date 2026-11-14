@@ -208,7 +208,13 @@ export function personSchema(person: Author, canonicalAbs: string) {
     ...(person.kind === "writer"
       ? { worksFor: { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/` } }
       : { affiliation: { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/` } }),
-    ...(person.registration ? { identifier: person.registration } : {}),
+    ...(person.registration
+      ? {
+          identifier: person.registrationNumber
+            ? { "@type": "PropertyValue", propertyID: person.registration, value: person.registrationNumber }
+            : person.registration,
+        }
+      : {}),
   };
 }
 

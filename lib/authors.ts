@@ -51,8 +51,19 @@ export type Author = {
   qualifications: Qualification[];
   memberships: string[];
   experience?: string;
-  /** Medical council registration — a verifiable credential, worth showing. */
+  /** Medical council registration — a verifiable credential, worth showing.
+      The council or body, as free text, e.g. "Delhi Medical Council". */
   registration?: string;
+  /** The registration number with that council. Shown as "Reg. no." when present. */
+  registrationNumber?: string;
+  /** Whole years in practice, when known exactly. `experience` stays the readable line. */
+  yearsExperience?: number;
+  /** Takes paid consults through ParentVeda. Shows the consult block on the profile. */
+  takesConsults?: boolean;
+  /** The consult this expert gives: a key in content/consults.json. */
+  consultSpecialty?: string;
+  /** Condition hubs (content/conditions slugs) this expert covers. Listed on the profile. */
+  conditions?: string[];
   languages?: string[];
   /** Practice / clinic name. Kept for our records; never shown for an expert
       (families reach experts through ParentVeda, not directly). */

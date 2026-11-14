@@ -8,6 +8,9 @@ import { AUTHORS, LISTED_EXPERTS, authorField, authorInitials, authorPath, getAu
 import { breadcrumbSchema, personSchema } from "@/lib/jsonld";
 import { getAllPosts, type GuidePost } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
+import ConsultBlock from "@/components/leads/ConsultBlock";
+import { conditionPath, getCondition, isHubLive, type Condition } from "@/lib/conditions";
+import { consultView, getConsult } from "@/lib/consults";
 
 /* A writer's or reviewer's profile. It exists as much for search as for readers: health
    content is judged heavily on who stands behind it, and a credentialed,
@@ -144,6 +147,9 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
   const written = all.filter((p) => p.authorSlug === author.slug);
   const shortName = author.name.replace(/^Dr\.?\s+/, "Dr ");
   const isExpert = author.kind === "expert";
+  // Conditions this expert covers, linked only when that hub is live.
+  const covered = (author.conditions ?? []).map((s) => getCondition(s)).filter((c): c is Condition => Boolean(c));
+  const consult = isExpert && author.takesConsults ? getConsult(author.consultSpecialty) : undefined;
 
   return (
     <>
@@ -233,6 +239,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
                 {/* No practice name for an expert: families reach experts through ParentVeda. */}
                 {author.location ? <li>{author.location}</li> : null}
                 {author.registration ? <li>Registered with the {author.registration}</li> : null}
+                {author.registrationNumber ? <li>Reg. no. {author.registrationNumber}</li> : null}
                 {author.languages?.length ? <li>Speaks {author.languages.join(" and ")}</li> : null}
                 {author.memberships.map((m) => (
                   <li key={m}>{m}</li>
@@ -245,7 +252,40 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
       </section>
       ) : null}
 
-      {isExpert ? <ExpertCta author={author} /> : null}
+      {covered.length ? (
+        <section className="section" style={{ paddingTop: 0 }} aria-labelledby="covers-title">
+          <div className="wrap">
+            <h2 id="covers-title" className="display-m" style={{ marginBottom: 16 }}>
+              Conditions {shortName} covers
+            </h2>
+            <ul className="hub__list">
+              {covered.map((c) => (
+                <li key={c.slug}>
+                  {isHubLive(c, all) ? (
+                    <Link href={conditionPath(c.slug)}>
+                      <b>{c.name}</b>
+                    </Link>
+                  ) : (
+                    <span className="hub__plain">
+                      <b>{c.name}</b>
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      {consult ? (
+        <section className="section" style={{ paddingTop: 0 }} aria-label={`Book a session with ${callName(author)}`}>
+          <div className="wrap" style={{ maxWidth: 760 }}>
+            <ConsultBlock consult={consultView(consult)} heading={`Book a session with ${callName(author)}`} />
+          </div>
+        </section>
+      ) : isExpert ? (
+        <ExpertCta author={author} />
+      ) : null}
 
       <PostShelf id="rev-title" title={`Reads reviewed by ${shortName}`} posts={reviewed} />
       <PostShelf id="wrote-title" title={`Reads written by ${shortName}`} posts={written} />
