@@ -10,7 +10,10 @@
     "links:amazon": "node --env-file-if-exists=.env.local scripts/links-amazon.mjs",
     "links:report": "node --env-file-if-exists=.env.local scripts/links-report.mjs",
     "indexnow:all": "node --env-file-if-exists=.env.local scripts/indexnow-all.mjs",
-    "content:compare": "node --env-file-if-exists=.env.local scripts/compare-shared-content.mjs"
+    "content:compare": "node --env-file-if-exists=.env.local scripts/compare-shared-content.mjs",
+    "check:content": "node scripts/check-content-config.mjs",
+    "audit:reviewers": "node --no-warnings --env-file-if-exists=.env.local scripts/reviewer-audit.mjs",
+    "validate:schema": "node scripts/validate-schema.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
