@@ -12,6 +12,8 @@
   "who_this_is_for": "",
   "specialty": "Perinatal Mental Health",
   "reviewer_specialty_required": "Perinatal Mental Health",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "high",
   "red_flags": [],
   "red_flags_reviewed": false,

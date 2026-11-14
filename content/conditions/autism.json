@@ -12,6 +12,8 @@
   "who_this_is_for": "",
   "specialty": "Developmental Paediatrics",
   "reviewer_specialty_required": "Developmental Paediatrics",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "high",
   "red_flags": [],
   "red_flags_reviewed": false,

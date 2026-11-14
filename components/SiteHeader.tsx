@@ -1,8 +1,9 @@
 import Header from "./Header";
-import { getMenuPillars } from "@/lib/pillars";
+import { getMenuConditions, getMenuPillars } from "@/lib/pillars";
 
-/* Server wrapper: reads the published pillar guides so the menu links to them
-   in the HTML itself (crawlable), then hands them to the client Header. */
+/* Server wrapper: the header's dropdowns list published pillar guides and live
+   condition hubs, so it reads content once here and passes plain links down. */
 export default async function SiteHeader() {
-  return <Header pillars={await getMenuPillars()} />;
+  const [pillars, conditions] = await Promise.all([getMenuPillars(), getMenuConditions()]);
+  return <Header pillars={pillars} conditions={conditions} />;
 }

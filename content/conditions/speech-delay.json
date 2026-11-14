@@ -12,6 +12,8 @@
   "who_this_is_for": "",
   "specialty": "Speech Therapy",
   "reviewer_specialty_required": "Therapy",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "medium",
   "red_flags": [],
   "red_flags_reviewed": false,

@@ -9,7 +9,14 @@ import Icon from "./Icon";
 import Wordmark from "./Wordmark";
 import type { MenuLink } from "@/lib/pillars";
 
-export default function Header({ pillars = {} }: { pillars?: Record<string, MenuLink[]> }) {
+export default function Header({
+  pillars = {},
+  conditions = {},
+}: {
+  pillars?: Record<string, MenuLink[]>;
+  /** Live condition hubs per stage (lib/pillars.ts getMenuConditions). */
+  conditions?: Record<string, MenuLink[]>;
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -44,17 +51,29 @@ export default function Header({ pillars = {} }: { pillars?: Record<string, Menu
               </Link>
             );
             const subs = pillars[n.href];
-            if (!subs?.length) return <span key={n.href} className="hdr__item">{top}</span>;
+            const conds = conditions[n.href] ?? [];
+            if (!subs?.length && !conds.length) return <span key={n.href} className="hdr__item">{top}</span>;
             return (
               <span key={n.href} className="hdr__item hdr__item--drop">
                 {top}
                 <span className="hdr__drop">
-                  <span className="hdr__drop-head">Start here</span>
-                  {subs.map((s) => (
+                  {subs?.length ? <span className="hdr__drop-head">Start here</span> : null}
+                  {subs?.map((s) => (
                     <Link key={s.href} href={s.href}>
                       {s.label}
                     </Link>
                   ))}
+                  {conds.length ? (
+                    <>
+                      <span className="hdr__drop-head">Conditions</span>
+                      {conds.map((s) => (
+                        <Link key={s.href} href={s.href}>
+                          {s.label}
+                        </Link>
+                      ))}
+                      <Link href="/conditions/">All conditions →</Link>
+                    </>
+                  ) : null}
                   <Link href={n.href} className="hdr__drop-all">
                     Everything for {n.label.toLowerCase()} →
                   </Link>
@@ -79,9 +98,9 @@ export default function Header({ pillars = {} }: { pillars?: Record<string, Menu
                 {n.label}
                 <Icon name="arrow" size={18} />
               </Link>
-              {pillars[n.href]?.length ? (
+              {pillars[n.href]?.length || conditions[n.href]?.length ? (
                 <div className="hdr__sheet-subs">
-                  {pillars[n.href].map((s) => (
+                  {[...(pillars[n.href] ?? []), ...(conditions[n.href] ?? [])].map((s) => (
                     <Link key={s.href} href={s.href}>
                       {s.label}
                     </Link>
@@ -90,6 +109,7 @@ export default function Header({ pillars = {} }: { pillars?: Record<string, Menu
               ) : null}
             </div>
           ))}
+          {Object.values(conditions).some((l) => l.length) ? <Link href="/conditions/">All conditions</Link> : null}
           <Link href="/fathers">For fathers</Link>
           <Link href="/about">About ParentVeda</Link>
           <Link href="/partners">Doctors, employers & brands</Link>

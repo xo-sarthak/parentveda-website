@@ -3,6 +3,7 @@
    its article is published, so add new pillars here before they go live and
    they show up on their own. `label` is the short menu text. */
 import { getAllPosts, postPath, type GuidePost } from "./guides";
+import { conditionPath, conditionSiteStage, liveConditions } from "./conditions";
 
 export type MenuLink = { href: string; label: string };
 
@@ -46,6 +47,23 @@ const PILLARS: Record<string, [slug: string, label: string][]> = {
 };
 
 const MAX_PER_STAGE = 6;
+const MAX_CONDITIONS = 5;
+
+/** Live condition hubs per stage menu item, P1 first. Never throws. */
+export async function getMenuConditions(): Promise<Record<string, MenuLink[]>> {
+  let posts: GuidePost[] = [];
+  try {
+    posts = await getAllPosts();
+  } catch {
+    return {};
+  }
+  const out: Record<string, MenuLink[]> = {};
+  for (const c of liveConditions(posts).sort((a, b) => a.tier.localeCompare(b.tier))) {
+    const list = (out[`/${conditionSiteStage(c)}`] ??= []);
+    if (list.length < MAX_CONDITIONS) list.push({ href: conditionPath(c.slug), label: c.name });
+  }
+  return out;
+}
 
 /** Published pillar links per stage menu item. Never throws: a failed read
     leaves the menu as plain links rather than breaking every page. */

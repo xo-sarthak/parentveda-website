@@ -12,6 +12,8 @@
   "who_this_is_for": "",
   "specialty": "Child Psychology",
   "reviewer_specialty_required": "Child Psychology",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "medium",
   "red_flags": [],
   "red_flags_reviewed": false,

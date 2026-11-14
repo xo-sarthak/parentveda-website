@@ -12,6 +12,8 @@
   "who_this_is_for": "",
   "specialty": "Gynaecology",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "low",
   "red_flags": [],
   "red_flags_reviewed": false,

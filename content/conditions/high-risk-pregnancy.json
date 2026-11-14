@@ -11,6 +11,8 @@
   "who_this_is_for": "",
   "specialty": "Fetal Medicine",
   "reviewer_specialty_required": "Fetal Medicine",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "medium",
   "red_flags": [],
   "red_flags_reviewed": false,
@@ -27,9 +29,7 @@
     "keywords": [
       "high risk pregnancy",
       "down syndrome screening",
-      "double marker",
-      "nipt",
-      "nt scan"
+      "double marker"
     ]
   },
   "hinglish_pair": null,

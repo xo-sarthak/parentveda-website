@@ -33,6 +33,18 @@ export function getAppHref() {
   return site.appLive ? site.playUrl : "/download";
 }
 
+/** A link into the app with UTM tags saying which component sent the visitor.
+    Tags go only on the Play Store link: on our own /download page they would
+    start a new GA4 session and lose where the visitor came from. */
+export function appLink(medium: string, campaign: string) {
+  if (!site.appLive) return "/download/";
+  const u = new URL(site.playUrl);
+  u.searchParams.set("utm_source", "web");
+  u.searchParams.set("utm_medium", medium);
+  u.searchParams.set("utm_campaign", campaign);
+  return u.toString();
+}
+
 export const nav = [
   { href: "/trying-to-conceive", label: "Trying" },
   { href: "/pregnancy", label: "Pregnancy" },

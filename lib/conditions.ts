@@ -36,6 +36,11 @@ export type Condition = {
   specialty: string;
   /** In content/specialties.json names. */
   reviewer_specialty_required: string;
+  /** The expert (lib/authors.ts slug) who actually reviewed this hub, and when.
+      Both stay null until that review has happened: the hub then shows no
+      reviewer at all, never a made-up one. */
+  reviewed_by: string | null;
+  reviewed_at: string | null;
   sensitivity: "low" | "medium" | "high";
   /** MEDICAL-REVIEW. Shown only once red_flags_reviewed is true. */
   red_flags: string[];

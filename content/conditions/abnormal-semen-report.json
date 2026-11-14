@@ -13,6 +13,8 @@
   "who_this_is_for": "",
   "specialty": "Andrology",
   "reviewer_specialty_required": "Andrology/Urology",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "medium",
   "red_flags": [],
   "red_flags_reviewed": false,

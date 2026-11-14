@@ -9,6 +9,8 @@
   "who_this_is_for": "",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
+  "reviewed_by": null,
+  "reviewed_at": null,
   "sensitivity": "medium",
   "red_flags": [],
   "red_flags_reviewed": false,
