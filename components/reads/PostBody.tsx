@@ -40,7 +40,7 @@ function blockText(node: React.ReactNode): string {
   return "";
 }
 
-function makeComponents(): Components {
+function makeComponents(plainAffiliate = false): Components {
   /* Heading ids must match tocItems(): same slug rule, same de-duplication,
      same document order. H3s get their own counter so an H3 that slugifies
      like an H2 can never bump that H2's id. */
@@ -106,7 +106,10 @@ function makeComponents(): Components {
       );
     },
     a: ({ children, href }) =>
-      isAffiliateLink(href) ? (
+      /* A sensitive page sells nothing: the words stay, the shop link goes. */
+      isAffiliateLink(href) && plainAffiliate ? (
+        <>{children}</>
+      ) : isAffiliateLink(href) ? (
         <a href={withAssociateTag(href!)} target="_blank" rel={AFFILIATE_REL} data-affiliate="">
           {children}
         </a>
@@ -150,14 +153,15 @@ function makeComponents(): Components {
 const urlTransform = (url: string): string => (url.startsWith(FIGURE_SCHEME) ? url : defaultUrlTransform(url));
 
 /* `disclose`: this block holds the article's first affiliate link, so the
-   disclosure line goes above it. One article can render several PostBody blocks. */
-export default function PostBody({ body, disclose }: { body: string; disclose?: boolean }) {
+   disclosure line goes above it. One article can render several PostBody blocks.
+   `plainAffiliate`: a sensitive page; shop links render as plain text, no disclosure. */
+export default function PostBody({ body, disclose, plainAffiliate }: { body: string; disclose?: boolean; plainAffiliate?: boolean }) {
   return (
     <div className="rbody__prose">
       <Markdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={disclose ? [rehypeAffiliateDisclosure] : []}
-        components={makeComponents()}
+        rehypePlugins={disclose && !plainAffiliate ? [rehypeAffiliateDisclosure] : []}
+        components={makeComponents(plainAffiliate)}
         urlTransform={urlTransform}
       >
         {body}

@@ -6,6 +6,8 @@ import Icon from "@/components/Icon";
 import { getAllPosts } from "@/lib/guides";
 import { getTool, readsForTool, toolPath } from "@/lib/tools";
 import { SITE_URL } from "@/lib/site";
+import { getClusterBySlug } from "@/lib/clusters";
+import ClusterListing, { clusterMetadata, clustersWithPosts, postsInCluster } from "@/components/reads/ClusterListing";
 import {
   MONTHS_HUB,
   MONTH_RANGES,
@@ -30,19 +32,27 @@ import {
    Every sentence about the baby, the body, food and scans is the app's own (see
    lib/pregnancy-months.ts); this page only arranges it by month. */
 
-export const dynamicParams = false;
+/* This route also serves the cluster lists: /<stage>/<cluster-slug>/, e.g.
+   /pregnancy/complications/ (components/reads/ClusterListing.tsx). A cluster
+   gets a page once it has a published article, so a new one must render on
+   demand without a rebuild; unknown pages still 404. scripts/check-routes.mjs
+   fails the build check if a cluster slug ever equals a month page's slug. */
+export const dynamicParams = true;
+export const revalidate = 60;
 
 const HUB = "month-by-month";
 const tool = getTool("pregnancy-weeks-to-months");
 const TONE = "#F3D9CB";
 
-/* Only the Pregnancy stage has sub-pages, so both segments are spelled out here
-   rather than taken from the parent's list of stages. */
-export function generateStaticParams() {
-  return [HUB, ...MONTH_RANGES.map((r) => monthSlug(r.month))].map((page) => ({ stage: "pregnancy", page }));
+export async function generateStaticParams() {
+  const months = [HUB, ...MONTH_RANGES.map((r) => monthSlug(r.month))].map((page) => ({ stage: "pregnancy", page }));
+  const clusters = clustersWithPosts(await getAllPosts()).map((c) => ({ stage: c.stage, page: c.slug }));
+  return [...months, ...clusters];
 }
 
 type Params = Promise<{ stage: string; page: string }>;
+
+const isMonthPage = (stage: string, page: string) => stage === "pregnancy" && (page === HUB || Boolean(monthFromSlug(page)));
 
 const NOTE =
   "Every pregnancy moves at its own pace. Sizes and changes are typical ones, not targets, and the scans listed are the usual pattern; your doctor may add, move or skip tests for you. If something feels wrong, call your doctor rather than waiting for the next visit.";
@@ -54,7 +64,10 @@ function titleFor(m: number) {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { stage, page } = await params;
-  if (stage !== "pregnancy") return {};
+  if (!isMonthPage(stage, page)) {
+    const cluster = getClusterBySlug(stage, page);
+    return cluster ? clusterMetadata(cluster, postsInCluster(cluster, await getAllPosts()).length) : {};
+  }
   if (page === HUB) {
     const title = "Pregnancy Month by Month: All 9 Months, Week by Week";
     const description = "What happens in each month of pregnancy, from the 1st month to the 9th: your baby's growth, the changes in your body, food, scans and what to do, written for Indian families.";
@@ -74,7 +87,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function MonthPage({ params }: { params: Params }) {
   const { stage, page } = await params;
-  if (stage !== "pregnancy") notFound();
+  if (!isMonthPage(stage, page)) {
+    const cluster = getClusterBySlug(stage, page);
+    if (!cluster) notFound();
+    const posts = postsInCluster(cluster, await getAllPosts());
+    if (!posts.length) notFound();
+    return <ClusterListing cluster={cluster} posts={posts} />;
+  }
   if (page === HUB) return <Hub />;
   const m = monthFromSlug(page);
   if (!m) notFound();

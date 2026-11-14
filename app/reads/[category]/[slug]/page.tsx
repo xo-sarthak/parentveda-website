@@ -5,28 +5,21 @@ import { notFound } from "next/navigation";
 import Icon from "@/components/Icon";
 import ReadProgress from "@/components/ReadProgress";
 import CtaBand from "@/components/CtaBand";
+import ArticleCards from "@/components/reads/ArticleCards";
+import RedFlagCard from "@/components/reads/RedFlagCard";
+import SupportCard from "@/components/reads/SupportCard";
+import { articleContext, relatedFor } from "@/lib/article-context";
 import PostBody from "@/components/reads/PostBody";
 import PostCard, { stageLook } from "@/components/reads/PostCard";
 import ReadRail from "@/components/reads/ReadRail";
 import { tocItems } from "@/components/reads/toc";
 import { headingSlug } from "@/lib/headings";
 import { authorPath, authorInitials, getAuthorBySlug, resolveReviewer, resolveWriter, type Author } from "@/lib/authors";
-import {
-  GUIDES_BASE,
-  GUIDES_NAME,
-  categoryPath,
-  getAllPosts,
-  getCategory,
-  getPost,
-  getRelatedPosts,
-  isUnlisted,
-  postPath,
-} from "@/lib/guides";
+import { getAllPosts, getCategory, getPost, isUnlisted, postPath } from "@/lib/guides";
 import { formatDate, splitFaqSection } from "@/lib/reads-article";
 import { hasAffiliateLink } from "@/lib/affiliate";
-import { toolPath, toolsForPost } from "@/lib/tools";
 import JsonLd from "@/components/JsonLd";
-import { articleSchema, breadcrumbSchema, categoryCrumbs, faqSchema } from "@/lib/jsonld";
+import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 
 /* Live content: re-render at most once a minute so a Directus publish shows
@@ -98,8 +91,10 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   if (!category) notFound();
 
   const canonical = `${post.canonicalPath ?? postPath(post.category, post.slug)}/`;
-  const related = await getRelatedPosts(post, 3);
-  const tools = toolsForPost(post);
+  const all = await getAllPosts();
+  const related = relatedFor(post, all, 3);
+  const ctx = articleContext(post, all);
+  const { sensitive } = ctx;
   const ogImage = post.ogImage ?? FALLBACK_IMAGE;
   const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
   const writer = resolveWriter(post);
@@ -112,10 +107,21 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   const look = stageLook(post.stage);
   const lastChecked = (reviewer && post.reviewedDate) || post.updated || post.date;
   // Article order: the disclosure goes above the first affiliate link the reader reaches.
-  const firstAffiliate = [body, ...faqItems.map((f) => f.a), afterFaq].find(hasAffiliateLink);
-  const crumbs = categoryCrumbs(category);
+  // A sensitive page shows no shop links, so it needs no disclosure either.
+  const firstAffiliate = sensitive ? undefined : [body, ...faqItems.map((f) => f.a), afterFaq].find(hasAffiliateLink);
+  // Reads / Stage / Cluster, from content/article-meta.json (lib/article-context.ts).
+  const crumbs = ctx.crumbs;
   const jsonLd = [
-    articleSchema({ post, canonicalAbs: `${SITE_URL}${canonical}`, imageAbs: ogImageAbs, writer, reviewer }),
+    articleSchema({
+      post,
+      canonicalAbs: `${SITE_URL}${canonical}`,
+      imageAbs: ogImageAbs,
+      writer,
+      reviewer,
+      condition: ctx.condition
+        ? { name: ctx.condition.name, alternateName: ctx.condition.alternate_names, specialty: ctx.condition.specialty }
+        : undefined,
+    }),
     // The same questions the accordion below shows. parenting-faq posts already are a FAQPage.
     ...(post.category !== "parenting-faq" && faqItems.length ? [faqSchema(faqItems)] : []),
     breadcrumbSchema([...crumbs, { name: post.title, path: canonical }]),
@@ -128,12 +134,24 @@ export default async function PostPage({ params }: { params: Promise<{ category:
         <header className="rhead">
           <div className="wrap rhead__inner">
             <nav className="rhead__crumbs" aria-label="Breadcrumb">
-              <Link href={`${GUIDES_BASE}/`}>{GUIDES_NAME}</Link>
-              <span aria-hidden="true">/</span>
-              <Link href={`${categoryPath(category.slug)}/`}>{category.name}</Link>
+              {crumbs.map((c, i) => (
+                <span key={c.path} className="rhead__crumb">
+                  {i ? <span aria-hidden="true">/</span> : null}
+                  <Link href={c.path}>{c.name}</Link>
+                </span>
+              ))}
+              <span className="rhead__crumb rhead__crumb--here">
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">{post.title}</span>
+              </span>
             </nav>
             <span className="phero__range">{category.singular}</span>
             <h1 className="display-l rhead__title">{post.title}</h1>
+            {ctx.hub ? (
+              <p className="rhub">
+                Part of the <Link href={ctx.hub.path}>{ctx.hub.name} guide</Link>
+              </p>
+            ) : null}
             {post.description ? <p className="rhead__desc">{post.description}</p> : null}
             <p className="rhead__meta">
               <Byline verb="Written by" person={writer} />
@@ -174,8 +192,16 @@ export default async function PostPage({ params }: { params: Promise<{ category:
           </div>
         ) : null}
 
-        <div className="wrap rgrid">
-          <ReadRail items={items} shareUrl={`${SITE_URL}${canonical}`} shareTitle={post.title} target="article-body" />
+        <div className={`wrap rgrid${ctx.redFlags.length ? " rgrid--flag" : ""}`}>
+          {/* First in the grid: above the contents list on a phone, at the top of the body column on a wide screen. */}
+          {ctx.redFlags.length ? (
+            <div className="rgrid__flag">
+              <RedFlagCard items={ctx.redFlags} slug={post.slug} />
+            </div>
+          ) : null}
+          <ReadRail items={items} shareUrl={`${SITE_URL}${canonical}`} shareTitle={post.title} target="article-body">
+            <ArticleCards cards={ctx.cards} compact />
+          </ReadRail>
 
           <div className="rbody" id="article-body">
             {post.bookMeta ? (
@@ -213,7 +239,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </div>
             ) : null}
 
-            <PostBody body={body} disclose={body === firstAffiliate} />
+            <PostBody body={body} disclose={body === firstAffiliate} plainAffiliate={sensitive} />
 
             {faqTitle && faqItems.length ? (
               <section className="rfaq" id={headingSlug(faqTitle)} aria-label={faqTitle}>
@@ -225,7 +251,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
                       <Icon name="plus" size={20} />
                     </summary>
                     <div className="rfaq__a">
-                      <PostBody body={f.a} disclose={f.a === firstAffiliate} />
+                      <PostBody body={f.a} disclose={f.a === firstAffiliate} plainAffiliate={sensitive} />
                     </div>
                   </details>
                 ))}
@@ -234,7 +260,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
 
             {/* Whatever followed the last question (the medical disclaimer),
                 always in the open, never inside a collapsed panel. */}
-            {afterFaq ? <PostBody body={afterFaq} disclose={afterFaq === firstAffiliate} /> : null}
+            {afterFaq ? <PostBody body={afterFaq} disclose={afterFaq === firstAffiliate} plainAffiliate={sensitive} /> : null}
 
             {post.source ? (
               <p className="rsource">
@@ -254,18 +280,8 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               <PersonCard label="Written by" person={writer} />
             </div>
 
-            {tools.length > 0 && (
-              <aside className="rtools" aria-label="Free tools">
-                {tools.map((t) => (
-                  <Link key={t.slug} href={toolPath(t.slug)} className="rtools__card" style={{ ["--tone" as string]: t.tone }}>
-                    <span className="rtools__eyebrow">Free tool</span>
-                    <strong>{t.name}</strong>
-                    <span>{t.short}</span>
-                    <span className="rtools__cta">{t.cta} →</span>
-                  </Link>
-                ))}
-              </aside>
-            )}
+            <ArticleCards cards={ctx.cards} />
+            {sensitive ? <SupportCard /> : null}
 
             <div className="care rbody__care">
               <Icon name="doctor" size={26} />
@@ -292,10 +308,15 @@ export default async function PostPage({ params }: { params: Promise<{ category:
         </section>
       )}
 
-      <CtaBand
-        title="Guidance like this, for every week."
-        body="Inside the app, reads like this one arrive when they’re relevant: the scan guide the week before your scan, not six months early."
-      />
+      {/* The app waitlist is the last fallback: only when no card fits, and
+          never on a sensitive page (the form also offers the newsletter). */}
+      {!ctx.cards.length && !sensitive ? (
+        <CtaBand
+          title="Guidance like this, for every week."
+          body="Inside the app, reads like this one arrive when they’re relevant: the scan guide the week before your scan, not six months early."
+          source="article"
+        />
+      ) : null}
       <JsonLd data={jsonLd} />
     </div>
   );

@@ -556,3 +556,165 @@
   color: var(--body);
   max-width: 36em;
 }
+
+/* ── condition hubs and conversion (docs/website-upgrade) ─────────── */
+
+/* Breadcrumb: Reads / Stage / Cluster / Title. The title part shortens with an
+   ellipsis so a long one never pushes the trail onto many lines. */
+.rhead__crumbs {
+  flex-wrap: wrap;
+  row-gap: 4px;
+  /* Lets the trail shrink: without it the one-line title sets the header's
+     minimum width and pushes the page wider than a phone. */
+  overflow: hidden;
+  max-width: 100%;
+  padding: 2px 0;
+}
+.rhead__crumb {
+  display: inline-flex;
+  gap: 10px;
+  min-width: 0;
+}
+.rhead__crumb--here {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 28em;
+  font-weight: 600;
+}
+.rhead__crumb--here > span[aria-current] {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* "Part of the <Condition> guide", under the title. */
+.rhub {
+  display: inline-block;
+  margin: 4px 0 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tone, var(--lilac)) 40%, white);
+  font-size: 15px;
+  font-weight: 600;
+}
+.rhub a {
+  color: var(--deep-tone, var(--deep));
+}
+
+/* Red-flag card: plain, high-contrast, at the top of the body. */
+.redflag {
+  margin: 0 0 28px;
+  padding: 18px 20px;
+  border-radius: var(--r-card);
+  border: 2px solid #b3261e;
+  background: #fdecee;
+  color: var(--ink);
+}
+.redflag__h {
+  margin: 0 0 8px;
+  font-weight: 800;
+  font-size: 18px;
+  color: #8c1d18;
+}
+.redflag ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.redflag li {
+  margin: 4px 0;
+  font-size: 16.5px;
+}
+.redflag__act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: 0;
+  font-weight: 700;
+}
+.redflag__call {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #b3261e;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+}
+.redflag__call:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* "Talk to someone" on sensitive pages. */
+.support {
+  display: flex;
+  gap: 14px;
+  margin: 28px 0;
+  padding: 20px 22px;
+  border-radius: var(--r-card);
+  background: var(--quiet);
+}
+.support svg {
+  flex: none;
+  color: var(--deep);
+  margin-top: 2px;
+}
+.support p {
+  margin: 0 0 8px;
+}
+.support .support__h {
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 21px;
+  color: var(--ink);
+}
+.support__line {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* The one card in the side rail; the inline cards below the article cover phones. */
+.rtools--rail {
+  margin: 22px 0 0;
+}
+@media (max-width: 960px) {
+  .rtools--rail {
+    display: none;
+  }
+}
+
+/* Red-flag card placement: top of the body column on wide screens, first
+   thing under the photo on phones (before the contents list). */
+.rgrid--flag {
+  row-gap: 0;
+}
+.rgrid--flag > .rgrid__flag {
+  grid-column: 2;
+  grid-row: 1;
+}
+.rgrid--flag > .rtoc {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+.rgrid--flag > .rbody {
+  grid-column: 2;
+  grid-row: 2;
+}
+@media (max-width: 960px) {
+  .rgrid--flag {
+    row-gap: 24px;
+  }
+  .rgrid--flag > .rgrid__flag,
+  .rgrid--flag > .rtoc,
+  .rgrid--flag > .rbody {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .rgrid--flag .redflag {
+    margin-bottom: 0;
+  }
+}

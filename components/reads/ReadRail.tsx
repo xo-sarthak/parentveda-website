@@ -21,11 +21,14 @@ export default function ReadRail({
   shareUrl,
   shareTitle,
   target,
+  children,
 }: {
   items: TocItem[];
   shareUrl: string;
   shareTitle: string;
   target: string; // id of the article body
+  /** The contextual card shown under Share, rendered by the server page. */
+  children?: React.ReactNode;
 }) {
   const [active, setActive] = useState(items[0]?.id ?? "");
   const [copied, setCopied] = useState(false);
@@ -103,6 +106,7 @@ export default function ReadRail({
           </button>
         </div>
       </div>
+      {children}
     </aside>
   );
 }

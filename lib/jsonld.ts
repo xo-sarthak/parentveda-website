@@ -22,10 +22,41 @@ function schemaDateTime(date: string): string {
 
 const publisher = {
   "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
+  legalName: ORG.legalEntity,
   url: `${SITE_URL}/`,
   logo: { "@type": "ImageObject", url: LOGO },
 };
+
+/* schema.org's MedicalSpecialty values for the specialties our hubs name.
+   A specialty with no close value is left out rather than guessed. */
+const SCHEMA_SPECIALTY: [RegExp, string][] = [
+  [/obstetric|fetal|gynaecolog/i, "Obstetric"],
+  [/reproductive/i, "Gynecologic"],
+  [/androlog|urolog/i, "Urologic"],
+  [/neonat|paediatric(?!.*(neurolog|cardiolog))|paediatrics/i, "Pediatric"],
+  [/neurolog/i, "Neurologic"],
+  [/cardiolog/i, "Cardiovascular"],
+  [/mental health|psychiatr/i, "Psychiatric"],
+  [/genetic/i, "Genetic"],
+  [/haematolog/i, "Hematologic"],
+  [/oncolog/i, "Oncologic"],
+  [/nutrition|diet/i, "DietNutrition"],
+  [/speech/i, "SpeechPathology"],
+];
+
+export type ConditionRef = { name: string; alternateName: string[]; specialty: string };
+
+export function medicalCondition(c: ConditionRef) {
+  const specialties = [...new Set(SCHEMA_SPECIALTY.filter(([re]) => re.test(c.specialty)).map(([, v]) => `https://schema.org/${v}`))];
+  return {
+    "@type": "MedicalCondition",
+    name: c.name,
+    ...(c.alternateName.length ? { alternateName: c.alternateName } : {}),
+    ...(specialties.length ? { relevantSpecialty: specialties } : {}),
+  };
+}
 
 /* The short form used inside an article: who, where to read more, how to verify. */
 function personRef(person: Author) {
@@ -83,12 +114,14 @@ type ArticleInput = {
   imageAbs: string;
   writer: Author;
   reviewer?: Author;
+  /** The condition the article is about (content/article-meta.json). */
+  condition?: ConditionRef;
 };
 
 /* Article, or Recipe / FAQPage for those categories. `reviewedBy` and
    `lastReviewed` belong to MedicalWebPage, not Article, which is why a reviewed
    piece carries both types and an unreviewed one claims neither. */
-export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer }: ArticleInput) {
+export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer, condition }: ArticleInput) {
   if (post.category === "recipes" && post.recipe) {
     return {
       "@context": CONTEXT,
@@ -131,6 +164,7 @@ export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer }
     ...(reviewer
       ? { reviewedBy: personRef(reviewer), lastReviewed: post.reviewedDate ?? post.updated ?? post.date }
       : {}),
+    ...(condition ? { about: medicalCondition(condition) } : {}),
     publisher,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalAbs },
     inLanguage: "en-IN",
