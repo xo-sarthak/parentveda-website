@@ -116,12 +116,14 @@ type ArticleInput = {
   reviewer?: Author;
   /** The condition the article is about (content/article-meta.json). */
   condition?: ConditionRef;
+  /** "hi-Latn" for a Hinglish read. */
+  inLanguage?: string;
 };
 
 /* Article, or Recipe / FAQPage for those categories. `reviewedBy` and
    `lastReviewed` belong to MedicalWebPage, not Article, which is why a reviewed
    piece carries both types and an unreviewed one claims neither. */
-export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer, condition }: ArticleInput) {
+export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer, condition, inLanguage = "en-IN" }: ArticleInput) {
   if (post.category === "recipes" && post.recipe) {
     return {
       "@context": CONTEXT,
@@ -167,7 +169,7 @@ export function articleSchema({ post, canonicalAbs, imageAbs, writer, reviewer, 
     ...(condition ? { about: medicalCondition(condition) } : {}),
     publisher,
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalAbs },
-    inLanguage: "en-IN",
+    inLanguage,
   };
 }
 

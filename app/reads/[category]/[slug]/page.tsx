@@ -8,6 +8,7 @@ import CtaBand from "@/components/CtaBand";
 import ArticleCards from "@/components/reads/ArticleCards";
 import RedFlagCard from "@/components/reads/RedFlagCard";
 import SupportCard from "@/components/reads/SupportCard";
+import LangToggle from "@/components/reads/LangToggle";
 import { articleContext, relatedFor } from "@/lib/article-context";
 import PostBody from "@/components/reads/PostBody";
 import PostCard, { stageLook } from "@/components/reads/PostCard";
@@ -121,6 +122,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
       condition: ctx.condition
         ? { name: ctx.condition.name, alternateName: ctx.condition.alternate_names, specialty: ctx.condition.specialty }
         : undefined,
+      inLanguage: ctx.hinglish ? "hi-Latn" : "en-IN",
     }),
     // The same questions the accordion below shows. parenting-faq posts already are a FAQPage.
     ...(post.category !== "parenting-faq" && faqItems.length ? [faqSchema(faqItems)] : []),
@@ -130,7 +132,9 @@ export default async function PostPage({ params }: { params: Promise<{ category:
   return (
     <div style={{ ["--tone" as string]: look.tone, ["--deep-tone" as string]: look.deep }}>
       <ReadProgress target="article-body" />
-      <article>
+      {/* A Hinglish read is Hindi in Roman script: hi-Latn tells browsers and
+          screen readers so. The root <html> stays en-IN for the site chrome. */}
+      <article lang={ctx.hinglish ? "hi-Latn" : undefined} className={ctx.hinglish ? "rarticle--hinglish" : undefined}>
         <header className="rhead">
           <div className="wrap rhead__inner">
             <nav className="rhead__crumbs" aria-label="Breadcrumb">
@@ -146,6 +150,7 @@ export default async function PostPage({ params }: { params: Promise<{ category:
               </span>
             </nav>
             <span className="phero__range">{category.singular}</span>
+            {ctx.pair ? <LangToggle href={ctx.pair.href} to={ctx.pair.to} slug={post.slug} /> : null}
             <h1 className="display-l rhead__title">{post.title}</h1>
             {ctx.hub ? (
               <p className="rhub">

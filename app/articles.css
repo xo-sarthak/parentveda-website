@@ -914,3 +914,24 @@
   border-radius: var(--r-card);
   background: var(--quiet);
 }
+
+/* Hinglish reads: a shorter line, which reads more easily in Roman Hindi. */
+.rarticle--hinglish .rbody__prose {
+  max-width: 34em;
+}
+.rlang {
+  margin: 0;
+}
+.rlang a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--deep-tone, var(--deep));
+  text-decoration: none;
+}

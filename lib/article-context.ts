@@ -16,7 +16,7 @@ import {
 } from "@/lib/clusters";
 import { conditionPath, getCondition, isHubLive, type Condition } from "@/lib/conditions";
 import { resolveCards, type Card } from "@/lib/cta";
-import { GUIDES_BASE, GUIDES_NAME, type GuidePost } from "@/lib/guides";
+import { GUIDES_BASE, GUIDES_NAME, postPath, type GuidePost } from "@/lib/guides";
 import { canShow } from "@/lib/review-gate";
 import type { Crumb } from "@/lib/jsonld";
 
@@ -33,6 +33,10 @@ export type ArticleContext = {
   /** Reviewed red flags, or unreviewed ones on preview and dev. Empty = no card. */
   redFlags: string[];
   cards: Card[];
+  /** Roman-script Hindi article: lang="hi-Latn" and a narrower measure. */
+  hinglish: boolean;
+  /** The same article in the other language, when it is published. */
+  pair?: { href: string; to: "hinglish" | "english" };
 };
 
 export function articleContext(post: GuidePost, all: GuidePost[]): ArticleContext {
@@ -46,6 +50,12 @@ export function articleContext(post: GuidePost, all: GuidePost[]): ArticleContex
   if (cluster) crumbs.push({ name: cluster.leaf, path: clusterPath(cluster) });
 
   const sensitive = meta.sensitivity === "high" || condition?.sensitivity === "high";
+  const hinglish = meta.role === "hinglish";
+  const pairSlug = hinglish ? meta.english_pair : meta.hinglish_pair;
+  const pairPost = pairSlug ? all.find((p) => p.slug === pairSlug) : undefined;
+  const pair = pairPost
+    ? { href: `${pairPost.canonicalPath ?? postPath(pairPost.category, pairPost.slug)}/`, to: (hinglish ? "english" : "hinglish") as "english" | "hinglish" }
+    : undefined;
   const redFlags = meta.red_flags.length && canShow(meta.red_flags_reviewed) ? meta.red_flags : [];
 
   return {
@@ -58,6 +68,8 @@ export function articleContext(post: GuidePost, all: GuidePost[]): ArticleContex
     sensitive,
     redFlags,
     cards: resolveCards({ meta, condition, cluster, stage }),
+    hinglish,
+    pair,
   };
 }
 
