@@ -1,0 +1,12 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Genetic Counselling",
+  "both_carriers": {
+    "affected": "1 in 4",
+    "carrier": "1 in 2",
+    "unaffected": "1 in 4"
+  },
+  "cvs_weeks": "11 to 13",
+  "test_article": "preconception-tests-india"
+}

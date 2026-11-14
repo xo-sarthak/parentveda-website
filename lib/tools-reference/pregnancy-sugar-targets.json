@@ -1,0 +1,15 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Obstetrics & Gynaecology",
+  "mg_per_mmol": 18,
+  "targets_mg_dl": {
+    "fasting": 95,
+    "one_hour": 140,
+    "two_hour": 120
+  },
+  "dipsi": {
+    "glucose_g": 75,
+    "two_hour_gdm_at_or_above": 140
+  }
+}

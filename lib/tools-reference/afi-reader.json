@@ -1,0 +1,14 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Fetal Medicine",
+  "afi_cm": {
+    "low_below": 5,
+    "lower_normal_below": 8,
+    "high_above": 24
+  },
+  "sdp_cm": {
+    "low_below": 2,
+    "high_above": 8
+  }
+}

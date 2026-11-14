@@ -1,0 +1,27 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Obstetrics & Gynaecology",
+  "call_doctor": {
+    "systolic": 140,
+    "diastolic": 90
+  },
+  "emergency": {
+    "systolic": 160,
+    "diastolic": 110
+  },
+  "emergency_symptoms": [
+    "A bad headache",
+    "Blurred vision or flashing lights",
+    "Pain in the upper tummy",
+    "Feeling short of breath",
+    "Swelling of the face or hands"
+  ],
+  "how_to_measure": [
+    "Sit quietly for 5 minutes first, with your back supported and feet flat on the floor.",
+    "Rest your arm on a table at the level of your heart.",
+    "Use a cuff that fits your upper arm, on bare skin.",
+    "Do not talk during the reading.",
+    "Take two readings a minute apart and write down both."
+  ]
+}

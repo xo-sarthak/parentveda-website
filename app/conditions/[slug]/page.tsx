@@ -193,7 +193,7 @@ export default async function HubPage({ params }: { params: Params }) {
               Where do I stand?
             </h2>
             {tool ? (
-              <ToolEmbed tool={tool} />
+              <ToolEmbed tool={tool} condition={c.slug} />
             ) : (
               <>
                 <p>Questions to take to your doctor:</p>
@@ -233,7 +233,7 @@ export default async function HubPage({ params }: { params: Params }) {
             </h2>
             <p>{c.track.label}</p>
             {trackTool ? (
-              <ToolEmbed tool={trackTool} />
+              <ToolEmbed tool={trackTool} condition={c.slug} />
             ) : (
               <p>
                 <Link className="btn btn--ink" href={appLink("hub-track", c.slug)}>

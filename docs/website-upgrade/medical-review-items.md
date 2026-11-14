@@ -42,3 +42,18 @@ File: `components/reads/SupportCard.tsx`. Not gated, because it is a public help
 ### Structured data
 
 `about` → `MedicalCondition` with `relevantSpecialty` on articles that have a condition. The specialty mapping is in `lib/jsonld.ts` (`SCHEMA_SPECIALTY`). This is labelling, not a claim, but the condition names and alternate names in `content/conditions/*.json` should be read once by a reviewer.
+
+## Phase 3: tools
+
+Each tool reads its numbers from `lib/tools-reference/<slug>.json`. Flag: `"reviewed": true` in that file. Until then the tool page says "Coming soon, being reviewed by our doctors" in production, is noindex, and the tool is left out of every list, card and sitemap. Fixed sentences in the tool components are listed too, because they are medical claims.
+
+| Tool | Reviewer | Values (file) | Sentences in the component |
+|---|---|---|---|
+| fertility-specialist-check | Reproductive Medicine | Under 35: see after 12 months. 35 to 39: after 6 months. 40 or older: now. "See now" for PCOS, endometriosis, previous miscarriage, past pelvic surgery or infection, irregular cycles, abnormal semen test. Thyroid problem: not "see now". | "Ask your doctor about a folic acid supplement". "Egg numbers fall with age, and faster after 35" (FAQ). |
+| semen-report-reader | Andrology/Urology | WHO 2021 lower limits: volume 1.4 mL, concentration 16 M/mL, total 39 M, total motility 42%, progressive 30%, normal forms 4%, vitality 54%. Abstinence 2 to 7 days. | Nil count: "There are treatment options, and many men in this situation go on to become fathers, sometimes with help. The test is usually repeated first." One-line explanations for each value. |
+| amh-reader | Reproductive Medicine | **Age bands left empty for the specialist to fill.** Conversion 1 ng/mL = 7.14 pmol/L. The tool stays unavailable until bands exist and reviewed is true. | "AMH reflects how many eggs are left, not how good they are." "It does not predict your natural chance of pregnancy in any given month." "A high AMH can go with PCOS." |
+| thalassemia-couple-check | Genetic Counselling | Both carriers: 1 in 4 thalassemia major, 1 in 2 carrier, 1 in 4 unaffected. CVS at 11 to 13 weeks. | Carrier plus normal: "a baby cannot have thalassemia major from these two results". Carrier test named as HbA2 or haemoglobin electrophoresis. |
+| screening-result-explainer | Fetal Medicine | Default cut-off 1 in 250. Stat line: "Most screens that come back as intermediate or high risk turn out to be low risk on NIPT." | "NIPT is a very good screen, but a high-risk result is not a confirmed diagnosis." "A low-risk NIPT is reassuring." "A result below the cut-off is called low risk." |
+| afi-reader | Fetal Medicine | AFI under 5 cm low; 5 to 8 lower side of normal; 8 to 24 usual; above 24 high. Deepest pocket under 2 cm low, above 8 cm high. | Next steps: "a repeat scan, a Doppler scan ... and a check of the baby's growth". "Drinking more water has some evidence of raising fluid a little for a short time. Coconut water and other home remedies have no evidence of helping." Red flags: leaking fluid, reduced movements. |
+| bp-log | Obstetrics & Gynaecology | 140/90 or above: call your doctor today. 160/110 or above, or symptoms (bad headache, vision changes, upper tummy pain, breathlessness, swelling of face or hands): full-screen hospital card with 108. Five "how to measure" steps. | none beyond the values |
+| pregnancy-sugar-targets | Obstetrics & Gynaecology | Fasting under 95, 1 hour after a meal under 140, 2 hours under 120 mg/dL. 1 mmol/L = 18 mg/dL. DIPSI: 75 g glucose, 2-hour value 140 or above is GDM. | "One high reading is worth noting, not panicking about." |

@@ -1,0 +1,13 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off. The age bands are left empty on purpose: a reproductive specialist fills them.",
+  "reviewed": false,
+  "reviewer_specialty": "Reproductive Medicine",
+  "pmol_per_ng": 7.14,
+  "bands": [],
+  "band_shape_example": {
+    "min_age": 30,
+    "max_age": 34,
+    "low_below_ng_ml": null,
+    "high_above_ng_ml": null
+  }
+}

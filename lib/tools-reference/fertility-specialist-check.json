@@ -1,0 +1,54 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Reproductive Medicine",
+  "age_rules": [
+    {
+      "label": "under 35",
+      "min_age": 0,
+      "max_age": 34,
+      "months": 12
+    },
+    {
+      "label": "35 to 39",
+      "min_age": 35,
+      "max_age": 39,
+      "months": 6
+    },
+    {
+      "label": "40 or older",
+      "min_age": 40,
+      "max_age": 99,
+      "months": 0
+    }
+  ],
+  "conditions": [
+    {
+      "id": "pcos",
+      "label": "PCOS",
+      "see_now": true
+    },
+    {
+      "id": "endometriosis",
+      "label": "Endometriosis",
+      "see_now": true
+    },
+    {
+      "id": "miscarriage",
+      "label": "A previous miscarriage",
+      "see_now": true
+    },
+    {
+      "id": "pelvic",
+      "label": "Past surgery or infection in the pelvis or tubes",
+      "see_now": true
+    },
+    {
+      "id": "thyroid",
+      "label": "A thyroid problem",
+      "see_now": false
+    }
+  ],
+  "irregular_cycles_see_now": true,
+  "abnormal_semen_see_now": true
+}

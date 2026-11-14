@@ -9,6 +9,15 @@
    publish webhook updates them within the minute. */
 
 import type { GuidePost } from "./guides";
+import { canShow } from "./review-gate";
+import fertilityRef from "./tools-reference/fertility-specialist-check.json";
+import semenRef from "./tools-reference/semen-report-reader.json";
+import amhRef from "./tools-reference/amh-reader.json";
+import thalRef from "./tools-reference/thalassemia-couple-check.json";
+import screenRef from "./tools-reference/screening-result-explainer.json";
+import afiRef from "./tools-reference/afi-reader.json";
+import bpRef from "./tools-reference/bp-log.json";
+import sugarRef from "./tools-reference/pregnancy-sugar-targets.json";
 
 export const TOOLS_BASE = "/tools";
 
@@ -28,7 +37,7 @@ export type ToolInfo = {
   available?: boolean;
 };
 
-export const TOOLS: ToolInfo[] = [
+const BUILT: ToolInfo[] = [
   {
     slug: "ovulation-calculator",
     name: "Ovulation calculator",
@@ -121,8 +130,112 @@ export const TOOLS: ToolInfo[] = [
   },
 ];
 
+/* Condition tools (website upgrade, Phase 3). Each keeps its medical values in
+   lib/tools-reference/<slug>.json with "reviewed": false until a specialist
+   signs them off. Until then, production shows a "being reviewed" page and
+   lists the tool nowhere; preview and dev work normally (lib/review-gate.ts). */
+const CONDITION_TOOLS: (Omit<ToolInfo, "available"> & { reviewed: boolean })[] = [
+  {
+    slug: "fertility-specialist-check",
+    name: "Is it time to see a fertility specialist?",
+    short: "Answer five questions about your age, how long you have been trying and your health, and see when a specialist visit makes sense.",
+    cta: "Check in two minutes",
+    stage: "Trying to conceive",
+    tone: "#E8C4CE",
+    reads: ["preconception-tests-india", "get-pregnant-with-pcos", "ivf-process"],
+    match: /fertility specialist|unexplained infertility|trying for a (year|long time)|not getting pregnant/i,
+    reviewed: fertilityRef.reviewed,
+  },
+  {
+    slug: "semen-report-reader",
+    name: "Semen report reader",
+    short: "Type in the numbers from a semen analysis and see, line by line, how each compares with the usual range.",
+    cta: "Read a semen report",
+    stage: "Trying to conceive",
+    tone: "#D8CCE8",
+    reads: ["improve-sperm-count", "azoospermia"],
+    match: /semen|sperm|male fertility|azoospermia|varicocele/i,
+    reviewed: semenRef.reviewed,
+  },
+  {
+    slug: "amh-reader",
+    name: "AMH result reader",
+    short: "Enter your AMH result and age to see how it compares with what is usual at your age, and what it does and does not tell you.",
+    cta: "Read an AMH result",
+    stage: "Trying to conceive",
+    tone: "#E8D9C0",
+    reads: ["ivf-process", "preconception-tests-india"],
+    match: /amh|ovarian reserve|egg reserve|egg freezing/i,
+    reviewed: amhRef.reviewed && amhRef.bands.length > 0,
+  },
+  {
+    slug: "thalassemia-couple-check",
+    name: "Thalassemia couple check",
+    short: "Choose each partner's thalassemia test result and see what it means for your children, and what to do next.",
+    cta: "Check as a couple",
+    stage: "Trying to conceive",
+    tone: "#C5D6C4",
+    reads: ["preconception-tests-india", "preconception-checklist"],
+    match: /thalass|hba2|hb electrophoresis|cousin marriage/i,
+    reviewed: thalRef.reviewed,
+  },
+  {
+    slug: "screening-result-explainer",
+    name: "Screening result explainer",
+    short: "Turn a \"1 in N\" result from a double marker, triple, quadruple or NIPT report into plain words, and see the next steps.",
+    cta: "Explain my result",
+    stage: "Pregnancy",
+    tone: "#D8CCE8",
+    reads: ["down-syndrome-screening-india", "nipt-test-pregnancy", "nt-scan"],
+    match: /double marker|triple (test|marker)|quadruple|nipt|down syndrome|screening result/i,
+    reviewed: screenRef.reviewed,
+  },
+  {
+    slug: "afi-reader",
+    name: "Amniotic fluid (AFI) reader",
+    short: "Enter the AFI or deepest pocket from your scan report to see where it sits and what doctors usually do next.",
+    cta: "Read my scan number",
+    stage: "Pregnancy",
+    tone: "#C5D6C4",
+    reads: ["pregnancy-ultrasound-schedule", "what-scan-doctor-can-tell-you"],
+    match: /amniotic fluid|afi|oligohydramnios|polyhydramnios/i,
+    reviewed: afiRef.reviewed,
+  },
+  {
+    slug: "bp-log",
+    name: "Pregnancy BP log",
+    short: "Keep your blood pressure readings on this phone, see when a reading needs a call to your doctor, and print the log for your visit.",
+    cta: "Start a BP log",
+    stage: "Pregnancy",
+    tone: "#F7ECD4",
+    reads: ["high-risk-pregnancy"],
+    match: /blood pressure|bp|preeclampsia|pre-eclampsia|hypertension/i,
+    reviewed: bpRef.reviewed,
+  },
+  {
+    slug: "pregnancy-sugar-targets",
+    name: "Pregnancy sugar targets",
+    short: "Check a blood sugar reading against the usual pregnancy targets, and keep a simple log for your doctor.",
+    cta: "Check a sugar reading",
+    stage: "Pregnancy",
+    tone: "#E8C4CE",
+    reads: ["pregnancy-diet-chart"],
+    match: /gestational diabetes|gdm|pregnancy sugar|blood sugar|glucose test|dipsi/i,
+    reviewed: sugarRef.reviewed,
+  },
+];
+
+/** Every tool, including ones waiting for review. Tool pages use this. */
+export const ALL_TOOLS: ToolInfo[] = [
+  ...BUILT,
+  ...CONDITION_TOOLS.map(({ reviewed, ...t }) => ({ ...t, available: canShow(reviewed) })),
+];
+
+/** Tools a visitor can use on this deploy: every list, card and sitemap uses this. */
+export const TOOLS: ToolInfo[] = ALL_TOOLS.filter((t) => t.available !== false);
+
 export const toolPath = (slug: string) => `${TOOLS_BASE}/${slug}/`;
-export const getTool = (slug: string) => TOOLS.find((t) => t.slug === slug)!;
+export const getTool = (slug: string) => ALL_TOOLS.find((t) => t.slug === slug)!;
 
 const haystack = (p: GuidePost) => `${p.slug.replace(/-/g, " ")} ${p.title} ${p.tags.join(" ")}`;
 

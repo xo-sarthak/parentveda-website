@@ -34,7 +34,8 @@ export default async function ToolShell({
           { name: tool.name, path: toolPath(tool.slug) },
         ])}
       />
-      <JsonLd
+      {/* A tool waiting for medical review is not usable yet, so it claims no WebApplication. */}
+      {tool.available === false ? null : <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
@@ -48,7 +49,7 @@ export default async function ToolShell({
           offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
           publisher: { "@type": "Organization", name: "ParentVeda", url: SITE_URL },
         }}
-      />
+      />}
       <JsonLd
         data={{
           "@context": "https://schema.org",

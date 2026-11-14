@@ -1,0 +1,51 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Fetal Medicine",
+  "default_cutoff": 250,
+  "tests": [
+    {
+      "id": "double",
+      "label": "Double marker"
+    },
+    {
+      "id": "nt",
+      "label": "NT combined"
+    },
+    {
+      "id": "triple",
+      "label": "Triple marker"
+    },
+    {
+      "id": "quad",
+      "label": "Quadruple marker"
+    },
+    {
+      "id": "nipt",
+      "label": "NIPT"
+    }
+  ],
+  "conditions": [
+    {
+      "id": "t21",
+      "label": "Down syndrome (trisomy 21)",
+      "in_sentence": "Down syndrome"
+    },
+    {
+      "id": "t18",
+      "label": "Trisomy 18",
+      "in_sentence": "trisomy 18"
+    },
+    {
+      "id": "t13",
+      "label": "Trisomy 13",
+      "in_sentence": "trisomy 13"
+    },
+    {
+      "id": "ntd",
+      "label": "Neural tube defect",
+      "in_sentence": "a neural tube defect"
+    }
+  ],
+  "stat_line": "Most screens that come back as intermediate or high risk turn out to be low risk on NIPT."
+}

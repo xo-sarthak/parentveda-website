@@ -1,0 +1,55 @@
+{
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off.",
+  "reviewed": false,
+  "reviewer_specialty": "Andrology/Urology",
+  "source": "WHO laboratory manual, 6th edition (2021), lower reference limits (5th centile)",
+  "limits": {
+    "volume": {
+      "label": "Volume",
+      "unit": "mL",
+      "lower": 1.4,
+      "line": "How much fluid there is. Low volume can come from a short gap since the last ejaculation or a collection problem."
+    },
+    "concentration": {
+      "label": "Concentration",
+      "unit": "million per mL",
+      "lower": 16,
+      "line": "How many sperm are in each millilitre."
+    },
+    "total": {
+      "label": "Total count",
+      "unit": "million",
+      "lower": 39,
+      "line": "All the sperm in the sample."
+    },
+    "total_motility": {
+      "label": "Total motility",
+      "unit": "%",
+      "lower": 42,
+      "line": "How many sperm are moving at all."
+    },
+    "progressive": {
+      "label": "Progressive motility",
+      "unit": "%",
+      "lower": 30,
+      "line": "How many sperm are moving forward, which is the movement that matters for reaching the egg."
+    },
+    "morphology": {
+      "label": "Normal forms",
+      "unit": "%",
+      "lower": 4,
+      "line": "How many sperm have the usual shape. Most sperm in every man look unusual, so low numbers here are common."
+    },
+    "vitality": {
+      "label": "Vitality",
+      "unit": "%",
+      "lower": 54,
+      "line": "How many sperm are alive."
+    }
+  },
+  "abstinence_days": {
+    "min": 2,
+    "max": 7
+  },
+  "repeat_line": "One result is not a conclusion. Repeat the test after 2 to 3 months before acting."
+}
