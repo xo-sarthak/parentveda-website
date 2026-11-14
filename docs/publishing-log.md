@@ -6,6 +6,51 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 14 Nov 2026: rows 46, 47 and 48 (first batch through the daily release)
+
+**Published**
+
+| Sheet row | Article | Live address | Reviewer shown |
+|---|---|---|---|
+| 46 | The Anomaly Scan (TIFFA) | `/reads/articles/anomaly-scan-tiffa/` | Dr. Mahender Singh |
+| 47 | Foods to Increase Breast Milk | `/reads/articles/foods-increase-breast-milk/` | Dr. Mahender Singh |
+| 48 | Low-Lying Placenta | `/reads/articles/low-lying-placenta/` | Dr. Mahender Singh |
+
+Created in Directus as `scheduled` with `published_at` set to the planned day, then published by `/api/release` (Vercel cron, run by hand from Vercel for this first test). The owner confirmed Dr. Singh's review covers all future rows from the sheet. Images were converted to JPEG and uploaded through Directus to R2. Queue order from here: rows 49 to 76, then 103 onwards, three a day.
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | Row 48's article text is an older draft. Its Part B notes describe a final round against RCOG 2026 (birth planning by distance band, previa as "reaches or covers", the 2019 RCOG reference dropped) that is not in the article text. | What is published is not wrong, but it is not the writer's final version. | Ask the writer for the final file and update the article. |
+| 2 | Row 46 has no reference list; the doc names NHS, NICE and FOGSI only in general terms. | The page cites no sources. | Ask the writer for the references. |
+| 3 | Row 48's diagram draws the 20-week placenta mid-wall, not near the cervix, though its labels are right. | Minor. | Regenerate if wanted. |
+| 4 | The sheet asks for an OB-GYN reviewer on rows 46 and 48 and a nutritionist on row 47; Dr. Singh is a paediatrician. Row 48 keeps "review by an obstetrician-gynaecologist is in progress". | Weaker trust signal on pregnancy topics. | Add the right specialists when onboarded. |
+| 5 | FOGSI's PDF (row 48, reference 1) sits behind a bot check and was not opened. | A broken one would be a dead reference. | Open it in a browser. |
+
+### Solved
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 6 | Rows 46 and 61 link to the same doc. | Published once as row 46. Skip row 61. |
+| 7 | Row 47 twice pointed to "our guide on low milk supply", which does not exist. | Removed both mentions; linked its cluster feeding mention to `cluster-feeding`. |
+| 8 | Row 47 had no reference list, though it cites the Academy of Breastfeeding Medicine. | Added ABM Protocol #9 (2018), confirmed through Crossref. |
+| 9 | Row 48's MoHFW 2010 guideline link on nhmodisha.gov.in returns 404. | Pointed it to the same April 2010 document on nhm.gov.in, checked page by page. |
+| 10 | The docs suggested slugs (`anomaly-scan`) that differ from the ones other sheet rows link to. | Used the sheet's: `anomaly-scan-tiffa`, `foods-increase-breast-milk`, `low-lying-placenta`. |
+| 11 | Docs carried bylines, SEO packs, validation tables, change logs and tracker rows. | Left all of it out. |
+
+### Solved: tools and checks
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 12 | The Google Drive connector timed out for hours. | Waited; reading as text (`read_file_content`) worked first, downloads after. |
+| 13 | Chrome actions went to a second connected browser (a Mac) that was not signed in to Directus. | Selected the Windows browser with `select_browser`. |
+| 14 | Directus on Render's free plan sleeps and signs everyone out on wake. | Release runs from Vercel, not a Directus Flow. Setting a fixed `SECRET` on Render should keep logins (not yet done). |
+| 15 | Directus's database user cannot change column defaults. | The owner ran the default-to-draft SQL in Supabase. |
+| 16 | A page fetched while still unpublished served a cached 404 once after release. | Cleared on the next request. Avoid fetching scheduled pages before release. |
+
+---
+
 ## 11 Nov 2026: rows 100, 101 and 102 (first batch through Directus)
 
 **Published**
