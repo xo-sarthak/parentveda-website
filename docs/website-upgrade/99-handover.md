@@ -24,15 +24,20 @@ Branch `feat/condition-hubs-and-conversion`, 15 Nov 2026. **Local only.** Nothin
 
 ## What the team needs to supply
 
+Drafted since (15 Nov 2026), all still behind the review gate:
+- **AMH ranges by age** from an Indian study (Gunasheela 2021, 5,525 women): `lib/tools-reference/amh-reader.json`.
+- **The nine PDFs**: `content/downloads/` (sources in `src/`, re-render with `node content/downloads/src/render.mjs`). Served at `/downloads/<slug>/` only when `reviewed: true` in `content/downloads.json`, or on preview.
+- **Hub copy for all 43 hubs** (one line, who it is for, doctor questions, FAQ, red flags, track). Every claim is listed in `hub-copy-review.md`.
+- **Consult descriptions** for the 11 consults that had none, and a new `obstetrician` consult for pregnancy hubs (price on request).
+
+Still needed from the team:
+
 1. **Webhook URLs** for consult requests and download leads (Google Sheet script in `02-phase-2.md`). Then set `CONSULT_WEBHOOK_URL`, `LEADS_WEBHOOK_URL` and optionally `OPS_EMAIL` in Vercel.
-2. **AMH reference values by age**, from a reproductive specialist, in `lib/tools-reference/amh-reader.json` (`bands`).
-3. **The nine PDFs.** Put each path in `content/downloads.json` (`file`).
-4. **Each expert's registration number**, and whether they take consults, which consult, and which conditions they cover (`lib/authors.ts`).
-5. **Consult prices** beyond fertility specialist ₹899, gynaecologist ₹599 and male fertility ₹599. The app has genetic counselling at ₹999; confirm before it is added.
-6. **Legal and founder review** of the three trust pages and the privacy policy addition (`02-phase-2.md`).
-7. **Doctor sign-off** on everything in `medical-review-items.md` (red-flag lists, tool values and tool sentences).
-8. **Hub copy** for whichever hubs go first: `one_line`, `who_this_is_for`, `doctor_questions`, `faq`, `track`.
-9. **Decisions** listed in `01-phase-1.md` ("What I could not infer") and `02-phase-2.md` ("Decisions I made that differ from the plan").
+2. **Each expert's registration number**, and whether they take consults, which consult, and which conditions they cover (`lib/authors.ts`).
+3. **Consult prices** beyond fertility specialist ₹899, gynaecologist ₹599 and male fertility ₹599. The app has genetic counselling at ₹999; confirm before it is added.
+4. **Legal and founder review** of the three trust pages and the privacy policy addition (`02-phase-2.md`).
+5. **Doctor sign-off** on `medical-review-items.md` (red flags, tool values including AMH) and `hub-copy-review.md` (hub copy and the nine PDFs). A sign-off sets `reviewed: true` / `red_flags_reviewed: true`, and for hubs `reviewed_by` and `reviewed_at` with the real reviewer and date.
+6. **Decisions** still open in `01-phase-1.md` ("What I could not infer"), items 1 to 7. Item 8 (a pregnancy consult) is done.
 
 ## Before this is merged
 
