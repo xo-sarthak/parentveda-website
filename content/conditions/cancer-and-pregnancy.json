@@ -7,8 +7,8 @@
   "stage": "Preconception",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Many people treated for cancer go on to become parents. There are ways to protect your fertility, and the best time to ask is before treatment.",
+  "who_this_is_for": "For anyone facing cancer treatment who wants a child someday, cancer survivors planning a pregnancy, and anyone diagnosed with cancer while pregnant.",
   "specialty": "Oncology + Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -31,7 +31,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Could my treatment affect my fertility?",
+    "Is there time to freeze eggs, embryos or sperm before treatment starts?",
+    "Can I see a fertility specialist before my treatment begins?",
+    "How long should I wait after treatment before trying to conceive?",
+    "Do I need contraception during treatment?",
+    "If I am pregnant now, which treatments are safe at this stage?",
+    "Will a future pregnancy need extra checks because of my treatment?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "Can cancer treatment affect fertility?",
+      "a": "Some chemotherapy, radiation to the pelvis and some surgeries can affect eggs, sperm or the womb. The effect depends on the treatment, the dose and your age. Your cancer doctor can tell you what applies to you."
+    },
+    {
+      "q": "What are the options to protect fertility?",
+      "a": "Options include freezing eggs, embryos or sperm before treatment, and sometimes freezing ovarian tissue. Some can be done within a few weeks, so ask early. A fertility specialist can see you alongside your cancer team."
+    },
+    {
+      "q": "How long should I wait to try for a baby after treatment?",
+      "a": "There is no single answer. It depends on the cancer and the treatment, and some medicines need a set gap before conceiving. Your oncologist and gynaecologist decide the timing with you."
+    },
+    {
+      "q": "Can cancer be treated during pregnancy?",
+      "a": "Often, yes. Some surgery and some chemotherapy can be given after the first trimester, while other treatments wait until after birth. A team of cancer, pregnancy and newborn doctors plans your care together."
+    },
+    {
+      "q": "Can I breastfeed after cancer treatment?",
+      "a": "Often, yes, but not during some treatments, because certain medicines pass into breast milk. Ask your doctors before you start breastfeeding."
+    }
+  ]
 }

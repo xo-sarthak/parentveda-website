@@ -8,17 +8,24 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A NICU stay is hard on a parent's heart. Your touch, your voice and your milk matter, and you are part of your baby's care team.",
+  "who_this_is_for": "Parents whose baby was born early or is in the NICU, and families getting ready to bring a premature baby home.",
   "specialty": "Neonatology",
   "reviewer_specialty_required": "Neonatology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Pauses in breathing, or fast or hard breathing",
+    "Blue or grey lips or face",
+    "Not feeding, or very sleepy and hard to wake",
+    "Feels cold to touch, or has a fever",
+    "Yellow skin that is spreading or getting deeper",
+    "Fits, stiffening or jerking movements"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
-  "download": null,
+  "download": "nicu-to-home-checklist",
   "consult": {
     "specialty": "neonatology",
     "mode": "callback"
@@ -34,7 +41,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What is my baby's main need right now: breathing, feeding, warmth or something else?",
+    "When can I hold my baby skin to skin for kangaroo care?",
+    "How can I express milk and bring it to the NICU?",
+    "Which eye, hearing and other checks does my baby need, and when?",
+    "What needs to happen before my baby can come home?",
+    "How do we use corrected age for milestones and vaccines?",
+    "Which signs at home mean we should come back straight away?"
+  ],
+  "track": {
+    "label": "Feeds after you come home, to share at follow up visits",
+    "app_feature": "Feeding log"
+  },
+  "faq": [
+    {
+      "q": "What is kangaroo mother care?",
+      "a": "It means holding your baby skin to skin on your chest, for as long as you comfortably can. The WHO recommends it for small and premature babies once they are stable. It helps keep your baby warm and supports breastfeeding, and fathers can do it too."
+    },
+    {
+      "q": "Can my premature baby have breast milk?",
+      "a": "Yes, and it is the best food for most premature babies. If your baby cannot feed at the breast yet, the team can help you express milk to give by tube or cup. Ask the nurses to show you how."
+    },
+    {
+      "q": "What is corrected age?",
+      "a": "Corrected age counts from your baby's due date instead of their birth date. Doctors usually use it for growth and milestones until about two years. Vaccines are usually given by actual age from birth, and your doctor decides."
+    },
+    {
+      "q": "Why does my baby need an eye check?",
+      "a": "Babies born early can have a condition called retinopathy of prematurity, which affects the back of the eye. In India, screening is advised for babies born before 34 weeks or weighing under 2 kg, and for others the doctor feels are at risk. The first check is usually in the first month."
+    },
+    {
+      "q": "What should we watch for at home?",
+      "a": "Watch how your baby feeds, breathes and stays warm. Keep every follow up visit, including eye and hearing checks. If something feels wrong, call your doctor."
+    }
+  ]
 }

@@ -5,14 +5,17 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Period pain that stops your life is worth taking seriously, and endometriosis can be managed. Many women with it go on to have children.",
+  "who_this_is_for": "For women with painful periods or pain during sex who suspect endometriosis, or who have been diagnosed and are trying to conceive.",
   "specialty": "Gynaecology",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Sudden, severe belly pain with fever, vomiting or fainting: go to hospital now.",
+    "A positive pregnancy test with pain on one side of the lower belly: see a doctor today."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -29,7 +32,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Do my symptoms and scan suggest endometriosis, and where?",
+    "Is there an endometrioma (a chocolate cyst) on my ovary?",
+    "Should my AMH be checked before any surgery on my ovaries?",
+    "Which pain treatments can I take while trying to conceive?",
+    "Would surgery help me conceive, or would you suggest IUI or IVF?",
+    "Should I see a doctor who specialises in endometriosis?"
+  ],
+  "track": {
+    "label": "Pain and bleeding through your cycle, so your doctor can see the pattern",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What is endometriosis?",
+      "a": "It is when tissue similar to the lining of the womb grows outside the womb, often on the ovaries, tubes or the lining of the pelvis. It can cause pain, especially around periods. It is a long-term condition, but it can be managed."
+    },
+    {
+      "q": "What are the common signs?",
+      "a": "Painful periods that painkillers do not help, pain during sex, pain passing stool or urine during periods, and trouble conceiving are common. Some women have few symptoms. Many women in India wait years for a diagnosis because period pain is seen as normal, so it is worth speaking up."
+    },
+    {
+      "q": "How is it diagnosed?",
+      "a": "A transvaginal ultrasound can often show cysts on the ovaries and some deeper disease, but it can miss smaller patches. A laparoscopy lets the doctor see inside the belly directly. Your doctor will decide which tests you need."
+    },
+    {
+      "q": "Can I get pregnant with endometriosis?",
+      "a": "Many women with endometriosis conceive, some naturally and some with treatment. The right plan depends on your age, your tubes, your egg reserve and your partner's report. Your doctor decides with you."
+    },
+    {
+      "q": "Will hormone treatment help me conceive?",
+      "a": "Hormonal treatments can ease pain, but most of them stop you getting pregnant while you take them. So if you are trying, ask your doctor which pain options fit with trying, or whether fertility treatment should come first."
+    }
+  ]
 }

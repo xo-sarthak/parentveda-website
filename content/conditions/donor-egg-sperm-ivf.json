@@ -7,8 +7,8 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Choosing donor eggs or sperm is a big, personal step, and families built this way are full and loving. Here is how it works in India.",
+  "who_this_is_for": "For couples and individuals whose doctor has suggested donor eggs or donor sperm, or who are thinking about it and want to understand the process.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -32,7 +32,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Why are you suggesting donor eggs or sperm in our case?",
+    "Is your clinic and the bank you use registered under the ART Act?",
+    "How are donors screened for infections and genetic conditions?",
+    "What details about the donor will we be told?",
+    "What tests and preparation will I need before the treatment?",
+    "Can we speak to a counsellor before we decide?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "Is donor IVF legal in India?",
+      "a": "Yes. It is allowed under the Assisted Reproductive Technology (Regulation) Act, 2021, which sets rules for clinics, banks and donors. Treatment should be done only at a registered clinic using a registered ART bank. Ask the clinic to show you their registration."
+    },
+    {
+      "q": "Will we know who the donor is?",
+      "a": "In India, the donor's identity is kept confidential. You are usually told some non-identifying details, such as age, height and blood group. The donor is also not told who receives their eggs or sperm."
+    },
+    {
+      "q": "Is the baby legally ours?",
+      "a": "Under Indian law, a child born through donor eggs or sperm is the legal child of the couple or woman who had the treatment. The donor has no parental rights. Your clinic will ask you to sign consent forms that set this out."
+    },
+    {
+      "q": "Should we tell our child?",
+      "a": "This is your decision. Many counsellors suggest being open, in simple words, from an early age, so the child grows up knowing their own story. A counsellor can help you think through what feels right for your family."
+    },
+    {
+      "q": "How do we cope with the feelings that come with this choice?",
+      "a": "It is normal to grieve the genetic link you hoped for, even when you feel sure about the decision. Partners may feel differently or at a different pace. Talking it through, with each other and with a counsellor, often helps."
+    }
+  ]
 }

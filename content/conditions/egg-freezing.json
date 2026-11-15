@@ -7,14 +7,18 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Egg freezing keeps an option open for later. Here is how it works, what it can and cannot do, and the questions to ask before you start.",
+  "who_this_is_for": "For women thinking about freezing their eggs, whether to plan for later or before a medical treatment such as chemotherapy.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "low",
-  "red_flags": [],
+  "red_flags": [
+    "Severe belly pain or swelling, or fast weight gain, after egg collection: see your doctor today.",
+    "Passing very little urine, or feeling breathless, after egg collection: go to hospital now.",
+    "Heavy bleeding, fever or fainting after egg collection: see your doctor today."
+  ],
   "red_flags_reviewed": false,
   "tool": "amh-reader",
   "download": null,
@@ -31,7 +35,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Based on my age, AMH and scan, how many eggs might you expect to collect in one cycle?",
+    "Might I need more than one cycle?",
+    "What medicines and injections will I take, and for how many days?",
+    "What are the risks of the procedure, including ovarian hyperstimulation?",
+    "How long can my eggs be stored, and what happens when I want to use them?",
+    "Is your clinic registered under the ART Act?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "How does egg freezing work?",
+      "a": "You take hormone injections for about two weeks so that several eggs grow at once. The growth is checked with scans and blood tests. The eggs are then collected through the vagina under sedation and frozen by a fast method called vitrification."
+    },
+    {
+      "q": "When is the best time to freeze eggs?",
+      "a": "Egg number and quality fall with age, so eggs frozen at a younger age generally do better later. There is no single right age for everyone. Your doctor will look at your age, AMH and scan to advise you."
+    },
+    {
+      "q": "Does freezing eggs mean I will have a baby later?",
+      "a": "No. Frozen eggs keep an option open, but not every egg survives thawing, gets fertilised or becomes a healthy pregnancy. Your doctor can explain what to expect for someone of your age."
+    },
+    {
+      "q": "Is egg freezing allowed in India?",
+      "a": "Yes. It is done at clinics registered under the Assisted Reproductive Technology (Regulation) Act, 2021, which also sets rules on storage and consent. Ask your clinic about storage time limits and yearly storage charges before you start."
+    },
+    {
+      "q": "Can I freeze eggs before cancer treatment?",
+      "a": "Often, yes. If you have a cancer diagnosis, ask your cancer doctor about fertility preservation as early as possible. A fertility specialist can sometimes plan egg collection quickly, before treatment starts."
+    }
+  ]
 }

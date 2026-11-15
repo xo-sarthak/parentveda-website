@@ -8,14 +8,19 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Losing more than one pregnancy is deeply painful, and it is not your fault. Here is what doctors check, and the support that helps next time.",
+  "who_this_is_for": "For women and couples who have had two or more pregnancy losses and want to understand the tests, the care available and what to expect.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Heavy bleeding, soaking through a pad every hour, or feeling faint: go to hospital now.",
+    "Severe belly pain, or pain on one side, in early pregnancy: see a doctor today.",
+    "Fever, chills or a foul-smelling discharge after a miscarriage or procedure: see a doctor today.",
+    "Thoughts of harming yourself: call Tele-MANAS 14416 today, or go to hospital."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -33,7 +38,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Which tests would you suggest for us, and why?",
+    "Should I be tested for antiphospholipid syndrome, thyroid problems or diabetes?",
+    "Do I need a scan to check the shape of my womb?",
+    "Should either of us have a chromosome test?",
+    "Could tissue from a future loss be tested to look for a cause?",
+    "What care will I get early in my next pregnancy, such as early scans or medicines?",
+    "Can we see a counsellor, together or on our own?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What counts as recurrent miscarriage?",
+      "a": "Many doctors now offer tests after two pregnancy losses. Older definitions used three in a row. Your doctor will look at your history as a whole, not only the number."
+    },
+    {
+      "q": "Which tests are usually done?",
+      "a": "Common tests include blood tests for antiphospholipid antibodies, thyroid function and blood sugar, and a scan to check the shape of the womb. In some couples, a chromosome test for both partners is suggested. Your doctor decides which you need."
+    },
+    {
+      "q": "What if no cause is found?",
+      "a": "This is common, and it can be frustrating. Many couples with no clear cause go on to have a healthy pregnancy with supportive care. Early scans and regular contact with your doctor in the next pregnancy can help you feel looked after."
+    },
+    {
+      "q": "Did something I did cause the losses?",
+      "a": "Almost always, no. Work, travel, lifting, sex and normal exercise do not cause miscarriage. Most early losses happen because the pregnancy was not developing as it should, which no one could have prevented."
+    },
+    {
+      "q": "Are there medicines that help?",
+      "a": "It depends on the cause. For example, women with antiphospholipid syndrome are often given aspirin and heparin in pregnancy. Progesterone may be offered to some women who bleed in early pregnancy after a past miscarriage. Your doctor decides what fits your situation."
+    }
+  ]
 }

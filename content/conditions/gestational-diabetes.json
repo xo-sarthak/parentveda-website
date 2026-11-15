@@ -8,19 +8,24 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Gestational diabetes is common and manageable. Food changes, gentle activity and regular sugar checks help keep you and your baby well.",
+  "who_this_is_for": "For anyone with a high sugar result in pregnancy, diagnosed with gestational diabetes (GDM), or told they are more likely to get it.",
   "specialty": "Obstetrics / Diabetology",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Your baby moving less than usual",
+    "Feeling shaky, sweaty or confused if you take insulin",
+    "Sugar readings much higher than your target, again and again",
+    "Leaking fluid or regular tightenings before 37 weeks"
+  ],
   "red_flags_reviewed": false,
   "tool": "pregnancy-sugar-targets",
-  "download": null,
+  "download": "gdm-diet-chart-veg",
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -34,7 +39,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What sugar targets should I aim for, fasting and after meals?",
+    "How often should I check my sugar at home, and at what times?",
+    "Can I see a dietitian for a meal plan built on Indian food?",
+    "Do I need metformin or insulin, and are they safe for my baby?",
+    "How will you check my baby's growth?",
+    "When and how do you plan my delivery?",
+    "When should I get my sugar tested after delivery?"
+  ],
+  "track": {
+    "label": "Check your sugar readings against the usual pregnancy targets",
+    "tool": "pregnancy-sugar-targets"
+  },
+  "faq": [
+    {
+      "q": "How is gestational diabetes tested in India?",
+      "a": "Government of India guidelines use a single-step test: you drink 75 g of glucose, fasting or not, and blood sugar is checked after two hours. Some hospitals use a fasting 75 g OGTT with several readings instead. Testing is usually done at your first visit and again around 24 to 28 weeks."
+    },
+    {
+      "q": "What should I eat?",
+      "a": "Spread your food across three smaller meals and two or three snacks. Choose whole grains, dal, vegetables, curd and some protein with each meal, and go easy on white rice, maida, sweets, fruit juice and sugary chai. A dietitian can build a plan around the food you already eat."
+    },
+    {
+      "q": "Will I need insulin?",
+      "a": "Many women manage with food changes and activity alone. If sugar stays above target, your doctor may add metformin or insulin. Insulin does not cross to the baby, and needing it does not mean you have failed."
+    },
+    {
+      "q": "Does walking after meals help?",
+      "a": "Yes, a gentle 10 to 15 minute walk after meals can help lower sugar after eating. Check with your doctor first if you have any other pregnancy problems."
+    },
+    {
+      "q": "Does gestational diabetes go away after delivery?",
+      "a": "It usually goes away after birth. It does make type 2 diabetes more likely later, so get a sugar test in the weeks after delivery as your doctor advises, and then regularly. Breastfeeding and staying active are worth doing for your own health too."
+    }
+  ]
 }

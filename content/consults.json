@@ -1,40 +1,137 @@
 {
   "fertility-specialist": {
-    "label": "Fertility specialist",
-    "price_inr": 899,
-    "duration_min": null,
-    "for_couple": true,
-    "includes": "A private video call to look at where you both are, which tests are worth doing, and what a sensible plan for the next six months looks like.",
-    "mode": "callback",
-    "experts": []
+      "label": "Fertility specialist",
+      "price_inr": 899,
+      "duration_min": null,
+      "for_couple": true,
+      "includes": "A private video call to look at where you both are, which tests are worth doing, and what a sensible plan for the next six months looks like.",
+      "mode": "callback",
+      "experts": []
   },
   "gynaecologist": {
-    "label": "Gynaecologist",
-    "price_inr": 599,
-    "duration_min": null,
-    "for_couple": false,
-    "includes": "For irregular cycles, painful periods, PCOS or endometriosis. Or for a check-up before you start trying.",
-    "mode": "callback",
-    "experts": []
+      "label": "Gynaecologist",
+      "price_inr": 599,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For irregular cycles, painful periods, PCOS or endometriosis. Or for a check-up before you start trying.",
+      "mode": "callback",
+      "experts": []
+  },
+  "obstetrician": {
+      "label": "Obstetrician",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For a pregnancy question that cannot wait for your next visit: a report, a symptom, a BP or sugar reading, or a plan you want to understand.",
+      "mode": "callback",
+      "experts": []
   },
   "male-fertility": {
-    "label": "Male fertility specialist",
-    "price_inr": 599,
-    "duration_min": null,
-    "for_couple": false,
-    "includes": "How to read a semen analysis properly, what can change and what cannot, and when it is worth seeing a urologist or andrologist in person.",
-    "mode": "callback",
-    "experts": []
+      "label": "Male fertility specialist",
+      "price_inr": 599,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "How to read a semen analysis properly, what can change and what cannot, and when it is worth seeing a urologist or andrologist in person.",
+      "mode": "callback",
+      "experts": []
   },
-  "fetal-medicine": { "label": "Fetal medicine specialist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "neonatology": { "label": "Neonatologist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "paediatrics": { "label": "Paediatrician", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "developmental-paediatrics": { "label": "Developmental paediatrician", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "paediatric-neurology": { "label": "Paediatric neurologist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "paediatric-cardiology": { "label": "Paediatric cardiologist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "perinatal-mental-health": { "label": "Perinatal mental health specialist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "genetic-counselling": { "label": "Genetic counsellor", "price_inr": null, "duration_min": null, "for_couple": true, "includes": "", "mode": "callback", "experts": [] },
-  "speech-therapy": { "label": "Speech therapist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "child-psychology": { "label": "Child psychologist", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] },
-  "lactation": { "label": "Lactation consultant", "price_inr": null, "duration_min": null, "for_couple": false, "includes": "", "mode": "callback", "experts": [] }
+  "fetal-medicine": {
+      "label": "Fetal medicine specialist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For a screening result, a scan finding or a growth worry. Go through your reports and the next steps, in plain words.",
+      "mode": "callback",
+      "experts": []
+  },
+  "neonatology": {
+      "label": "Neonatologist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For parents of a baby born early or after a NICU stay. Feeding, weight, follow-up checks and what to watch for at home.",
+      "mode": "callback",
+      "experts": []
+  },
+  "paediatrics": {
+      "label": "Paediatrician",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For questions about your child's health, growth or development that need more time than a clinic visit gives.",
+      "mode": "callback",
+      "experts": []
+  },
+  "developmental-paediatrics": {
+      "label": "Developmental paediatrician",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For a worry about speech, movement, play or learning. Which assessments help, and what early support looks like.",
+      "mode": "callback",
+      "experts": []
+  },
+  "paediatric-neurology": {
+      "label": "Paediatric neurologist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For seizures, movement concerns or a neurology report. What it means, and what to ask at the next visit.",
+      "mode": "callback",
+      "experts": []
+  },
+  "paediatric-cardiology": {
+      "label": "Paediatric cardiologist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For a heart murmur, an echo report or life after heart surgery. What the findings mean, and the follow-up plan.",
+      "mode": "callback",
+      "experts": []
+  },
+  "perinatal-mental-health": {
+      "label": "Perinatal mental health specialist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "A private call for low mood, worry or feeling not yourself, in pregnancy or after birth. Partners are welcome too.",
+      "mode": "callback",
+      "experts": []
+  },
+  "genetic-counselling": {
+      "label": "Genetic counsellor",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": true,
+      "includes": "For carrier results, cousin marriage, a family condition or a screening result. Your options, explained without pressure.",
+      "mode": "callback",
+      "experts": []
+  },
+  "speech-therapy": {
+      "label": "Speech therapist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For a child who is late to talk or hard to understand. What to try at home, and whether therapy would help.",
+      "mode": "callback",
+      "experts": []
+  },
+  "child-psychology": {
+      "label": "Child psychologist",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For worry, behaviour, attention or school stress. Practical steps for home, and whether an assessment is worth it.",
+      "mode": "callback",
+      "experts": []
+  },
+  "lactation": {
+      "label": "Lactation consultant",
+      "price_inr": null,
+      "duration_min": null,
+      "for_couple": false,
+      "includes": "For latch, pain, low supply or pumping. A lactation consultant looks at what is happening and what to change.",
+      "mode": "callback",
+      "experts": []
+  }
 }

@@ -8,14 +8,16 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Children find their words at different times. If you are wondering about your child's talking, a hearing check and a little support help.",
+  "who_this_is_for": "Parents of toddlers and young children who are using fewer words than expected, or are hard to understand.",
   "specialty": "Speech Therapy",
   "reviewer_specialty_required": "Therapy",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Losing words or other skills your child already had"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -34,7 +36,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Should my child have a hearing test first?",
+    "Is my child understanding words as well as saying them?",
+    "Should we see a speech and language therapist?",
+    "Could ear infections or fluid in the ears play a part?",
+    "We speak two languages at home. Should we change that?",
+    "What can we do at home every day to help talking?",
+    "When should we come back if things do not change?"
+  ],
+  "track": {
+    "label": "New words and gestures, noted as they come",
+    "app_feature": "Milestones"
+  },
+  "faq": [
+    {
+      "q": "When do most children start talking?",
+      "a": "Many children say their first words around their first birthday and start putting two words together around two years. There is a wide range of normal. Understanding, pointing and gestures matter as much as spoken words."
+    },
+    {
+      "q": "Do two languages at home cause speech delay?",
+      "a": "No. Children can learn two or more languages, and this is common in Indian homes. Keep talking in the languages you are comfortable with. A speech therapist can help if there is a concern."
+    },
+    {
+      "q": "Does screen time affect talking?",
+      "a": "Young children learn words best from people talking and playing with them. Paediatric groups suggest avoiding screens for children under two, apart from video calls with family. Talking, singing and reading together are worth doing every day."
+    },
+    {
+      "q": "Who can help in India?",
+      "a": "Your paediatrician can arrange a hearing test and refer you to an audiologist and speech language therapist. District Early Intervention Centres (DEICs) under the RBSK programme also offer speech therapy for young children."
+    },
+    {
+      "q": "Should we wait for our child to grow out of it?",
+      "a": "Some children do catch up, but it is hard to know which ones. If you are worried, ask now. A check that finds nothing is still good news."
+    }
+  ]
 }

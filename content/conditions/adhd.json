@@ -7,8 +7,8 @@
   "stage": "Child",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A busy, distractible or impulsive child is not a bad child. Understanding how their attention works is the first step to helping them thrive.",
+  "who_this_is_for": "Parents who wonder about ADHD, whose child's teacher has raised attention or behaviour, or whose child has recently been diagnosed.",
   "specialty": "Developmental Paediatrics / Child Psychology",
   "reviewer_specialty_required": "Developmental Paediatrics",
   "reviewed_by": null,
@@ -31,7 +31,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "What would a full ADHD assessment involve for my child?",
+    "Should we check hearing, eyesight or sleep first?",
+    "Would forms from my child's teacher help you?",
+    "What parenting and behaviour support do you suggest?",
+    "Is medicine something to think about for my child? What are the benefits and side effects?",
+    "How can we work with my child's school?",
+    "How often should we come back for review?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is ADHD?",
+      "a": "ADHD stands for attention deficit hyperactivity disorder. It describes a brain difference in attention, activity and impulse control. It is not caused by bad parenting, and children with ADHD have many strengths."
+    },
+    {
+      "q": "When can ADHD be diagnosed?",
+      "a": "Many young children are active and distractible, so doctors usually wait until a child is of school age. Signs need to show in more than one place, such as at home and at school, and affect daily life. A paediatrician, child psychiatrist or psychologist makes the assessment."
+    },
+    {
+      "q": "How is ADHD treated?",
+      "a": "Parent training and support at home and school come first, especially for younger children. For some school age children, medicine also helps. Your doctor decides what suits your child."
+    },
+    {
+      "q": "Does sugar cause ADHD?",
+      "a": "No. Sugar does not cause ADHD. Regular meals, good sleep and outdoor play are good for every child."
+    },
+    {
+      "q": "Can my child get support at school?",
+      "a": "Talk to the class teacher and school counsellor about what helps, such as seating near the front or short breaks. Under the Rights of Persons with Disabilities Act, 2016, schools are expected to make reasonable accommodations. Your doctor can help with any letter the school needs."
+    }
+  ]
 }

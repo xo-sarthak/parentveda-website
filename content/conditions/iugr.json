@@ -9,14 +9,20 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A baby measuring small is not always a problem. Careful scans help your doctor see how your baby is growing and choose the right time for birth.",
+  "who_this_is_for": "For anyone told their baby is small for dates, has IUGR or fetal growth restriction, or needs extra growth scans.",
   "specialty": "Fetal Medicine",
   "reviewer_specialty_required": "Fetal Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Your baby moving less than usual, or a change in their pattern",
+    "Severe headache, blurred vision or sudden swelling",
+    "Bleeding from your vagina",
+    "Leaking fluid from your vagina",
+    "Severe or constant pain in your tummy"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -34,7 +40,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Is my baby small but healthy, or is growth slowing down?",
+    "What did the Doppler scan show about blood flow?",
+    "How often will I need growth scans and Dopplers?",
+    "How should I keep track of my baby's movements?",
+    "Could anything be causing this, like my BP?",
+    "When and where do you plan my delivery?",
+    "Will my baby need the NICU after birth?"
+  ],
+  "track": {
+    "label": "Get to know your baby's movement pattern and notice any change",
+    "app_feature": "Kick counter"
+  },
+  "faq": [
+    {
+      "q": "What is IUGR?",
+      "a": "IUGR, or fetal growth restriction, means a baby is not growing as well as expected in the womb. Some babies are simply small, like their parents, and healthy. Scans over time help your doctor tell the two apart."
+    },
+    {
+      "q": "Why does it happen?",
+      "a": "Often the placenta is not passing enough food and oxygen to the baby. High BP, preeclampsia, smoking, some infections and some health conditions in the mother can play a part. Sometimes no reason is found."
+    },
+    {
+      "q": "What is a Doppler scan?",
+      "a": "A Doppler is an ultrasound that checks blood flow in the umbilical cord and the baby's blood vessels. It shows how well the placenta is working. With growth scans, it guides how often you are checked and when to deliver."
+    },
+    {
+      "q": "Will eating more help my baby grow?",
+      "a": "Eating well is good for you, but eating extra does not usually fix growth restriction, because the cause is often the placenta. Keep to a balanced diet, rest when you need to, and keep every scan appointment."
+    },
+    {
+      "q": "Will my baby be born early?",
+      "a": "Sometimes. If your doctor feels your baby will do better outside the womb, they may plan an earlier delivery. If early birth is likely, you may be given steroid injections to help your baby's lungs. Your doctor weighs this carefully with you."
+    }
+  ]
 }

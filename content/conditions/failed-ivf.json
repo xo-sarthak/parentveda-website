@@ -8,17 +8,22 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A cycle that did not work is heartbreaking, and it does not decide what happens next. Here is how to grieve, ask questions and plan, at your own pace.",
+  "who_this_is_for": "For couples who have had a negative result or a loss after IVF. It helps you look after yourselves first and then prepare for the review with your doctor.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Severe belly pain or swelling, fast weight gain, or passing very little urine after egg collection: see your IVF doctor today.",
+    "Breathlessness or chest pain during or after an IVF cycle: go to hospital now.",
+    "A positive test with one-sided belly pain, shoulder tip pain or fainting: go to hospital now.",
+    "Thoughts of harming yourself: call Tele-MANAS 14416 today, or go to hospital."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
-  "download": null,
+  "download": "ivf-next-cycle-questions",
   "consult": {
     "specialty": "fertility-specialist",
     "mode": "callback"
@@ -33,7 +38,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What do you think happened in this cycle, from the eggs to the embryos to the transfer?",
+    "How did the embryos develop, and what did you see in their grading?",
+    "Would you change the medicines or the plan if we try again?",
+    "Do I need any tests of the womb, such as a hysteroscopy, before another transfer?",
+    "Are any tests needed for my partner?",
+    "Which add-on treatments are worth it for us, and which have weak evidence?",
+    "How long should we wait before the next cycle?"
+  ],
+  "track": {
+    "label": "How you feel day to day, in your own words, while you take a break",
+    "app_feature": "Journal"
+  },
+  "faq": [
+    {
+      "q": "Does one failed IVF mean it will never work for us?",
+      "a": "No. A single cycle not working is common and does not mean the next one will fail. Many couples need more than one cycle. Your doctor will look at what happened and suggest whether anything should change."
+    },
+    {
+      "q": "Why do IVF cycles fail?",
+      "a": "Often the reason is the embryo itself, which is closely linked to egg age, rather than anything you did. Sometimes the lining of the womb or the transfer plays a part. Many times there is no single clear reason, and that is hard, but it is not your fault."
+    },
+    {
+      "q": "Should we take a break before trying again?",
+      "a": "Many couples do, and that is okay. Your body usually needs at least one period before the next cycle, and your mind may need longer. Your doctor will suggest a medical gap, and you decide when you feel ready."
+    },
+    {
+      "q": "Are add-on tests and treatments worth paying for?",
+      "a": "Clinics in India often offer extras such as endometrial receptivity tests, embryo glue or immune treatments. For many of these, the evidence that they help is limited. Ask your doctor what the evidence is for your situation before you agree to one."
+    },
+    {
+      "q": "Where can we get emotional support?",
+      "a": "Talking to a fertility counsellor, a trusted friend or a support group can help a great deal. Many IVF centres have a counsellor you can ask for. If you feel low for weeks or cannot get through the day, please tell your doctor."
+    }
+  ]
 }

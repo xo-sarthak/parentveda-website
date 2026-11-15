@@ -9,14 +9,20 @@
   "stage": "Parenting 0-5",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Hearing your child has a heart condition is frightening. Many heart differences are small, and care for the rest keeps improving.",
+  "who_this_is_for": "Parents whose baby or child has been found to have a heart difference, during pregnancy, at birth or later on.",
   "specialty": "Paediatric Cardiology",
   "reviewer_specialty_required": "Paediatric Cardiology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Blue or grey lips, tongue or skin, especially when crying or feeding",
+    "Fast or hard breathing while resting",
+    "Sweating, tiring or stopping during feeds",
+    "Very sleepy, floppy or hard to wake",
+    "Fainting or chest pain in an older child"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -34,7 +40,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What exactly is different about my child's heart?",
+    "Is it likely to close or improve on its own?",
+    "Does my child need medicine, a procedure or surgery, and when?",
+    "Which signs at home mean we should come straight back?",
+    "How should we feed our baby, and how will we know they are growing well?",
+    "Are there any limits on play, sport or vaccines?",
+    "Does my child need antibiotics before dental work?"
+  ],
+  "track": {
+    "label": "Weight between visits, on WHO growth curves",
+    "app_feature": "Growth"
+  },
+  "faq": [
+    {
+      "q": "What is congenital heart disease?",
+      "a": "It means a difference in the heart's structure that a baby is born with. It ranges from a small hole that closes on its own to conditions that need surgery. It is not caused by anything a parent did."
+    },
+    {
+      "q": "How is it found?",
+      "a": "Some heart differences are seen on a pregnancy scan. Others are found by a pulse oximeter check after birth, or when a doctor hears a murmur. An echocardiogram, an ultrasound of the heart, is the main test."
+    },
+    {
+      "q": "Will my child need surgery?",
+      "a": "Not always. Many small holes close by themselves and only need check ups. Others need medicine, a catheter procedure or surgery, and a paediatric cardiologist decides."
+    },
+    {
+      "q": "Is there support for treatment in India?",
+      "a": "Congenital heart disease is one of the conditions covered under the RBSK programme, and several states have schemes that help with heart treatment for children. Ask your paediatrician or District Early Intervention Centre (DEIC) what applies where you live."
+    }
+  ]
 }

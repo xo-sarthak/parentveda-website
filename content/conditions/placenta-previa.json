@@ -8,19 +8,25 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A low-lying placenta seen at the anomaly scan often moves up as the womb grows. A later scan checks, and your doctor plans the safest birth.",
+  "who_this_is_for": "For anyone told at a scan that their placenta is low lying or covering the cervix (placenta previa), and the family supporting them.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Any bleeding from your vagina, even if it is light or painless",
+    "Tightenings, cramps or pain in your tummy",
+    "Your baby moving less than usual",
+    "Feeling faint or dizzy",
+    "Leaking fluid from your vagina"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -33,7 +39,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "How far is my placenta from the cervix, and is it covering it?",
+    "When will you scan again to check where it is?",
+    "Given my history, like a past caesarean, do I need checks for placenta accreta?",
+    "Should I avoid sex, heavy lifting or exercise?",
+    "If I bleed, what should I do and which hospital should I go to?",
+    "Will I need a caesarean, and when?",
+    "What is my blood group, and should blood be arranged for delivery?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is placenta previa?",
+      "a": "The placenta usually attaches higher up in the womb. In placenta previa, it lies low and partly or fully covers the cervix, the opening of the womb. If it is low but not covering the cervix, doctors call it a low-lying placenta."
+    },
+    {
+      "q": "Will my placenta move?",
+      "a": "Often, yes. As the womb grows in the second half of pregnancy, a placenta that looked low at the anomaly scan often ends up clear of the cervix. Your doctor will usually repeat the scan around 32 weeks to check."
+    },
+    {
+      "q": "What should I avoid?",
+      "a": "Doctors often advise avoiding sex while the placenta is low, along with heavy exercise. You can usually carry on with normal daily life. Ask your doctor what applies to you."
+    },
+    {
+      "q": "Will I need a caesarean?",
+      "a": "If the placenta still covers or lies very close to the cervix late in pregnancy, a planned caesarean is usually advised, often a few weeks before the due date. If it has moved clear, a normal delivery may be possible. Your doctor decides closer to the time."
+    },
+    {
+      "q": "Why does bleeding matter so much?",
+      "a": "Bleeding from a low placenta is often painless, and it can be sudden and heavy. Any bleeding needs to be checked in hospital the same day, even if it stops. Keep your hospital's number and a way to get there ready."
+    }
+  ]
 }

@@ -5,17 +5,19 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Varicocele is common, and many men who have one father children without treatment. Here is what it is and when doctors suggest fixing it.",
+  "who_this_is_for": "For men told they have a varicocele, often found during a fertility check, and for their partners who want to understand what it means.",
   "specialty": "Andrology / Urology",
   "reviewer_specialty_required": "Andrology/Urology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "low",
-  "red_flags": [],
+  "red_flags": [
+    "Sudden, severe pain or swelling in a testicle: go to hospital now."
+  ],
   "red_flags_reviewed": false,
   "tool": "semen-report-reader",
-  "download": null,
+  "download": "semen-report-guide",
   "consult": {
     "specialty": "male-fertility",
     "mode": "callback"
@@ -29,7 +31,31 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Can you feel the varicocele on examination, or was it seen only on the scan?",
+    "What grade is it, and is it on one side or both?",
+    "Is it likely to be affecting my semen report?",
+    "Would repair help in our case, and what are the options?",
+    "How long after repair would we see any change in the semen report?",
+    "Should my partner have any tests while we decide?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is a varicocele?",
+      "a": "It is a swelling of the veins in the scrotum, a bit like varicose veins in the leg. It is most often on the left side. Many men have one and never know."
+    },
+    {
+      "q": "Does a varicocele always cause infertility?",
+      "a": "No. Many men with a varicocele have normal semen and father children. It matters more when it can be felt on examination and the semen report is also abnormal."
+    },
+    {
+      "q": "When do doctors suggest treatment?",
+      "a": "Repair is usually considered when the varicocele can be felt, the semen report is abnormal, and the couple is having trouble conceiving. A small varicocele seen only on a scan is not usually treated for fertility. Your doctor decides with you."
+    },
+    {
+      "q": "What does treatment involve?",
+      "a": "The common options are microsurgery to tie off the affected veins, or embolisation, where the veins are blocked from inside by a radiologist. Both are usually done as day or short stay procedures. Any change in the semen report takes a few months to show."
+    }
+  ]
 }

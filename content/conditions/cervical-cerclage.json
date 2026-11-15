@@ -10,19 +10,25 @@
   "stage": "Pregnancy",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A short cervix found on a scan gives your doctor time to act. Here is what progesterone or a cervical stitch involves, and what to ask.",
+  "who_this_is_for": "For anyone told their cervix is short on a scan, advised a cervical stitch (cerclage), or who has had a late miscarriage or an early birth before.",
   "specialty": "Obstetrics / Fetal Medicine",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Leaking fluid or a gush of water from your vagina",
+    "Regular tightenings or period-like cramps before 37 weeks",
+    "Bleeding from your vagina",
+    "Pressure low in your pelvis, as if the baby is pushing down",
+    "Fever, chills or smelly discharge"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
-  "download": null,
+  "download": "cerclage-care-sheet",
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -36,7 +42,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "How long is my cervix, and will you measure it again?",
+    "Do I need vaginal progesterone, a stitch, or both?",
+    "When would the stitch be put in, and what anaesthesia is used?",
+    "What work, travel and activity are fine for me now?",
+    "Is sex safe for me while the stitch is in?",
+    "When will the stitch be removed?",
+    "Which signs mean I should come in straight away?"
+  ],
+  "track": {
+    "label": "Time tightenings if they start, so you can tell your doctor how often they come",
+    "app_feature": "Contraction timer"
+  },
+  "faq": [
+    {
+      "q": "What is a short cervix?",
+      "a": "The cervix is the neck of the womb. It usually stays long and closed until late in pregnancy. If a transvaginal scan in mid pregnancy shows it is shorter than expected, early labour is more likely, and your doctor may suggest treatment."
+    },
+    {
+      "q": "What is a cervical stitch?",
+      "a": "A cerclage is a stitch placed around the cervix, through the vagina, to help keep it closed. It is a short procedure done under anaesthesia, often a spinal. Most women go home the same day or the next."
+    },
+    {
+      "q": "Who is offered progesterone instead?",
+      "a": "Vaginal progesterone is often advised when a scan shows a short cervix. Some women are offered a stitch, and some both. Your doctor decides based on your history and your scan."
+    },
+    {
+      "q": "Do I need strict bed rest?",
+      "a": "Strict bed rest is not usually advised. It has not been shown to help and can raise the risk of blood clots. Your doctor may ask you to avoid heavy lifting or long hours on your feet, so ask what is right for you."
+    },
+    {
+      "q": "When is the stitch removed?",
+      "a": "Usually around 36 to 37 weeks, in the clinic or labour room, often without anaesthesia. It is taken out earlier if labour starts or your waters break. After that, most women wait for labour to begin on its own."
+    }
+  ]
 }

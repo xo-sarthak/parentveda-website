@@ -5,14 +5,17 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Heavy, painful periods are not something you must simply put up with. Here is what adenomyosis is and how doctors help, including when you want a baby.",
+  "who_this_is_for": "For women told they have adenomyosis or a bulky uterus on a scan, especially those who are trying to conceive or planning to.",
   "specialty": "Gynaecology",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Bleeding so heavy you soak through a pad every hour for a few hours: see a doctor today.",
+    "Heavy bleeding with feeling faint, dizzy or breathless: go to hospital now."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -29,7 +32,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Was this seen on an ultrasound or an MRI, and how widespread is it?",
+    "Could it affect trying to conceive, or my plans for IVF?",
+    "Which treatments can I take while trying to get pregnant, and which would stop me trying?",
+    "What can I do for the pain and heavy bleeding right now?",
+    "Do I need a blood test for anaemia?",
+    "Would any surgery be suggested, and how would it affect a future pregnancy?"
+  ],
+  "track": {
+    "label": "Your periods: how heavy, how painful and how many days, cycle by cycle",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What is adenomyosis?",
+      "a": "It is when tissue like the lining of the womb grows into the muscle wall of the womb. This can make the womb larger and cause heavy, painful periods. It is not cancer."
+    },
+    {
+      "q": "How is it diagnosed?",
+      "a": "A transvaginal ultrasound by an experienced sonologist can often show it. Sometimes an MRI is done for a clearer picture. Your doctor will put the scan together with your symptoms."
+    },
+    {
+      "q": "Can I get pregnant with adenomyosis?",
+      "a": "Many women with adenomyosis do conceive. It can sometimes make conceiving or carrying a pregnancy harder, so doctors may plan treatment with this in mind. Your doctor decides with you based on your age and your scan."
+    },
+    {
+      "q": "What treatments are there?",
+      "a": "Pain relief and medicines to reduce bleeding help many women. Hormonal treatments, including a hormone coil, can ease symptoms but prevent pregnancy while used. Some women having IVF are given a short course of hormone injections first. Removing the womb ends periods for good but also means you cannot carry a pregnancy, so it is only for those who have finished their family."
+    },
+    {
+      "q": "Can heavy periods make me anaemic?",
+      "a": "Yes. Heavy bleeding month after month can lower your haemoglobin and iron. Tiredness, breathlessness or looking pale are signs to mention. A simple blood test can check this."
+    }
+  ]
 }

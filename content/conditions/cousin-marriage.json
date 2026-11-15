@@ -7,8 +7,8 @@
   "stage": "Preconception",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Most children of cousin couples are born healthy. Simple tests before pregnancy help you understand and plan for conditions that run in families.",
+  "who_this_is_for": "For couples who are cousins or related by family, or planning such a marriage, who want to know what it means for their children.",
   "specialty": "Genetic Counselling",
   "reviewer_specialty_required": "Genetic Counselling",
   "reviewed_by": null,
@@ -17,7 +17,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "thalassemia-couple-check",
-  "download": null,
+  "download": "thalassemia-partner-test-guide",
   "consult": {
     "specialty": "genetic-counselling",
     "mode": "callback"
@@ -32,7 +32,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Should we see a genetic counsellor before trying for a baby?",
+    "Which carrier tests make sense for us, like thalassemia or sickle cell?",
+    "Does anyone in our family have a known condition we should test for?",
+    "Is there a wider carrier screening panel that suits our family?",
+    "If we are both carriers of something, what are our options in pregnancy?",
+    "Does our baby need any extra tests after birth?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "Why does cousin marriage raise genetic risk?",
+      "a": "Relatives share some of the same genes. If both partners carry the same changed gene for a recessive condition, their child could inherit it from both. Unrelated couples can face this too, but it is more likely when partners are related."
+    },
+    {
+      "q": "Does this mean our baby will have a problem?",
+      "a": "No. Most children born to cousin couples are healthy. The risk is higher than for unrelated couples, which is why testing and counselling before pregnancy are worth doing."
+    },
+    {
+      "q": "What tests can we do?",
+      "a": "A thalassemia carrier test, a CBC with HbA2 by HPLC, is a common starting point in India. Depending on your family and community, your doctor may add a sickle cell test or a wider genetic carrier screening panel. A genetic counsellor helps you choose."
+    },
+    {
+      "q": "Should we share our family history with the doctor?",
+      "a": "Yes. Tell your doctor about any relative with a known genetic condition, a child who died young without a clear reason, deafness, blindness or learning difficulties. This helps them choose the right tests. Nothing you share is a judgement on your family."
+    },
+    {
+      "q": "What if we are both carriers?",
+      "a": "Your genetic counsellor explains your options, which may include testing the baby early in pregnancy through CVS or amniocentesis. Some couples choose IVF with embryo testing. You decide what feels right, with your doctor's guidance."
+    }
+  ]
 }

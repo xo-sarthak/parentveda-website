@@ -8,8 +8,8 @@
   "stage": "Preconception",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Many women have healthy pregnancies after 35 and 40. A little more planning and a few extra checks help you start well.",
+  "who_this_is_for": "For women aged 35 or older who are trying to conceive or already pregnant, and their partners.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
@@ -18,7 +18,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "fertility-specialist-check",
-  "download": null,
+  "download": "fertility-specialist-checklist",
   "consult": {
     "specialty": "gynaecologist",
     "mode": "callback"
@@ -33,7 +33,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "How long should we try before seeing a fertility specialist?",
+    "Should I get my AMH and other fertility tests done now?",
+    "Which screening tests for the baby do you advise, like the NT scan, double marker or NIPT?",
+    "Do I need low-dose aspirin, or extra checks for BP and sugar?",
+    "Should I start folic acid now, and at what dose?",
+    "Will I need growth scans later in pregnancy?",
+    "What is your plan if my pregnancy goes past the due date?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "How long should we try before seeing a doctor?",
+      "a": "If you are 35 or older, see a doctor after six months of trying. Over 40, many doctors suggest getting checked straight away. If your periods are irregular or you have a known problem, go sooner."
+    },
+    {
+      "q": "Is fertility lower after 35?",
+      "a": "The number and quality of eggs fall naturally with age, so it can take longer to conceive. This is common and not your fault. Tests like AMH and an antral follicle count scan show your doctor your egg reserve, though they cannot tell whether you will conceive."
+    },
+    {
+      "q": "Which extra tests might I be offered in pregnancy?",
+      "a": "All pregnant women are offered screening for chromosome conditions, such as the NT scan with double marker, and NIPT is another option. Your doctor may also check sugar earlier and watch BP more closely. A detailed anomaly scan around 18 to 20 weeks is offered to everyone."
+    },
+    {
+      "q": "Do I need a caesarean because of my age?",
+      "a": "No. Age alone is not a reason for a caesarean, and many women over 35 have a normal delivery. Your doctor decides the safest way based on how your pregnancy goes."
+    },
+    {
+      "q": "What can I do before trying?",
+      "a": "Start folic acid at least a month before trying, get your thyroid, sugar and BP checked, and bring any long-term condition under good control. Stop smoking and alcohol. These steps are worth doing at any age."
+    }
+  ]
 }

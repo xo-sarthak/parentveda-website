@@ -7,8 +7,8 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Finding it hard to conceive again after having a child is common, and your feelings are valid. Here is what doctors look at and when to ask for help.",
+  "who_this_is_for": "For parents who already have a child, or have been pregnant before, and are now finding it hard to conceive again.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -17,7 +17,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "fertility-specialist-check",
-  "download": null,
+  "download": "fertility-specialist-checklist",
   "consult": {
     "specialty": "fertility-specialist",
     "mode": "callback"
@@ -31,7 +31,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What tests do both of us need, even though we conceived before?",
+    "Could anything from my last pregnancy or birth, such as a caesarean, be playing a part?",
+    "Should my tubes be checked?",
+    "Could changes in weight, thyroid or a new health condition be a factor?",
+    "Should my partner have a fresh semen analysis?",
+    "Given my age, how long should we keep trying before starting treatment?"
+  ],
+  "track": {
+    "label": "Your cycle, so you and your doctor know when you ovulate",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What is secondary infertility?",
+      "a": "It means having trouble conceiving after you have been pregnant before, whether or not that pregnancy led to a birth. It is common, and it can feel confusing because conceiving happened before."
+    },
+    {
+      "q": "Why does it happen?",
+      "a": "Things can change over time for both partners. Age, weight, thyroid or other health changes, infections, scarring after a birth or surgery, and changes in the semen can all play a part. Sometimes no cause is found."
+    },
+    {
+      "q": "When should we see a doctor?",
+      "a": "If you are under 35, see a doctor after a year of regular unprotected sex without a pregnancy. If you are 35 or older, see one after six months. Go sooner if your periods are irregular or you know of a problem."
+    },
+    {
+      "q": "Can breastfeeding affect getting pregnant?",
+      "a": "Yes. Breastfeeding, especially often and through the night, can delay the return of regular periods and ovulation. This is normal. If your periods have not come back and you want to conceive, speak to your doctor."
+    },
+    {
+      "q": "Is it okay to feel sad when we already have a child?",
+      "a": "Yes. The longing for another child is real, and so is the grief when it does not happen. You can be grateful for your child and still feel this. Talking to your partner or a counsellor can help."
+    }
+  ]
 }

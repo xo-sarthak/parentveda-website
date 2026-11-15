@@ -8,8 +8,8 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Low AMH tells you about the number of eggs left, not their quality, and many women with low AMH still conceive. Here is what it means.",
+  "who_this_is_for": "For women who have just seen a low AMH number on a report and want to understand it calmly. Partners who want to help will find it useful too.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -18,7 +18,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "amh-reader",
-  "download": null,
+  "download": "fertility-specialist-checklist",
   "consult": {
     "specialty": "fertility-specialist",
     "mode": "callback"
@@ -34,7 +34,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What does my AMH value mean for someone my age?",
+    "Should I also have an antral follicle count scan to see the full picture?",
+    "Does this result change how long we should keep trying naturally?",
+    "Would you suggest any other tests for me or my partner now?",
+    "Are any supplements worth taking, or should I avoid them?",
+    "If we need treatment, what would you suggest first and why?"
+  ],
+  "track": {
+    "label": "Your cycle dates and every AMH report, kept together for your doctor",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "Does low AMH mean I cannot get pregnant?",
+      "a": "No. AMH gives an idea of how many eggs are left in the ovaries. It does not measure egg quality and does not predict natural pregnancy well on its own. Many women with low AMH conceive, and your doctor will look at your age and other tests too."
+    },
+    {
+      "q": "Do I need to take the AMH test on a particular day of my cycle?",
+      "a": "Usually not. AMH stays fairly steady through the cycle, so most labs in India take the sample on any day. Results can differ a little between labs, so it helps to repeat a test at the same lab if your doctor wants a second reading."
+    },
+    {
+      "q": "Can I raise my AMH with diet or supplements?",
+      "a": "There is no reliable way to raise AMH. Good food, regular sleep, staying active and not smoking are worth doing for your overall health and for a future pregnancy. Ask your doctor before starting any supplement, as many are sold with claims that are not backed by good evidence."
+    },
+    {
+      "q": "What is an AFC scan and how is it different?",
+      "a": "AFC means antral follicle count. It is a vaginal ultrasound, often done early in the cycle, that counts small follicles in each ovary. Doctors often read it alongside AMH, because the two together give a clearer picture than either one alone."
+    },
+    {
+      "q": "Should I go straight to IVF?",
+      "a": "Not always. The right next step depends on your age, how long you have been trying, your partner's semen report and whether your tubes are open. Your doctor decides with you, and some couples are advised to keep trying or start with simpler treatment first."
+    }
+  ]
 }

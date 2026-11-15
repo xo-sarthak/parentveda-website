@@ -7,14 +7,18 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Genital TB is treatable, and treatment is free at government TB centres in India. Here is how it is found, treated and planned around when you want a baby.",
+  "who_this_is_for": "For women, and sometimes men, who have been told they have or may have genital tuberculosis during fertility tests, and want to understand what it means.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "A positive pregnancy test with pain on one side of the lower belly: see a doctor today.",
+    "Coughing up blood: go to hospital now.",
+    "Yellow eyes or skin, or vomiting, while on TB medicines: see your doctor today."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -32,7 +36,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "How was the diagnosis made, and which test showed TB?",
+    "Has TB been confirmed on a tissue sample, such as an endometrial biopsy?",
+    "Which medicines will I take, for how long, and what side effects should I watch for?",
+    "Can I get the treatment free under the national TB programme?",
+    "How have my tubes and the lining of my womb been affected?",
+    "When can we start trying, and what options do we have after treatment?"
+  ],
+  "track": {
+    "label": "Your daily TB medicines, so no dose is missed",
+    "app_feature": "Medicines"
+  },
+  "faq": [
+    {
+      "q": "What is genital TB?",
+      "a": "It is tuberculosis that affects the reproductive organs, most often the fallopian tubes and the lining of the womb. It is seen more often in India than in many other countries. It often causes no symptoms and is found during fertility tests."
+    },
+    {
+      "q": "How is it diagnosed?",
+      "a": "Doctors usually test a small sample of the womb lining, taken by an endometrial biopsy. The sample may be sent for a TB culture, a CBNAAT or GeneXpert test, and a look under the microscope. Sometimes signs are seen during a laparoscopy or hysteroscopy."
+    },
+    {
+      "q": "Can a blood test or Mantoux test diagnose genital TB?",
+      "a": "No, not on their own. Blood antibody tests for TB are not recommended in India, and a Mantoux or TB Gold test only shows past contact with TB. Ask your doctor how your diagnosis was confirmed before starting a long course of medicines."
+    },
+    {
+      "q": "How is it treated?",
+      "a": "It is treated with a full course of TB medicines, usually for about six months. Treatment is free at government TB centres under the National TB Elimination Programme. Take every dose and finish the course, even if you feel well."
+    },
+    {
+      "q": "Can I get pregnant after treatment?",
+      "a": "Some women do conceive naturally after treatment. If the tubes or the lining were damaged, your doctor may suggest IVF. Your doctor decides with you once treatment is complete."
+    }
+  ]
 }

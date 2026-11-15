@@ -9,8 +9,8 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "One semen report is a snapshot, not a final word. Here is how to read the terms on yours and what doctors usually check next.",
+  "who_this_is_for": "For men, and their partners, who have a semen analysis report with words like low count, low motility or abnormal morphology and want to understand it.",
   "specialty": "Andrology",
   "reviewer_specialty_required": "Andrology/Urology",
   "reviewed_by": null,
@@ -19,7 +19,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "semen-report-reader",
-  "download": null,
+  "download": "semen-report-guide",
   "consult": {
     "specialty": "male-fertility",
     "mode": "callback"
@@ -36,7 +36,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Which values on my report are outside the normal range, and how far?",
+    "Should I repeat the test, and when?",
+    "Do I need a physical exam, hormone tests or a scrotal scan?",
+    "Is anything in my daily life, such as smoking, alcohol, heat or medicines, worth changing?",
+    "Could a recent fever or illness have affected this report?",
+    "Given this result, what are our options for trying to conceive?"
+  ],
+  "track": {
+    "label": "Each semen report, kept in order so your doctor can compare them",
+    "app_feature": "Attachments"
+  },
+  "faq": [
+    {
+      "q": "Why do doctors ask for a repeat test?",
+      "a": "Semen results change a lot from one sample to the next. A recent fever, illness or a very short or long gap since the last ejaculation can change the numbers. Doctors usually ask for a second test a few weeks to three months later before drawing conclusions."
+    },
+    {
+      "q": "What do the long words on the report mean?",
+      "a": "Oligozoospermia means a low sperm count. Asthenozoospermia means fewer sperm are moving well. Teratozoospermia means fewer sperm have the usual shape. Most Indian labs compare your values with the WHO reference ranges printed on the report."
+    },
+    {
+      "q": "How should I prepare for the test?",
+      "a": "Most labs ask for two to seven days without ejaculation before the sample. Collect the whole sample in the container the lab gives you, and get it to the lab within about an hour, kept close to body temperature. Tell the lab if any part of the sample was lost."
+    },
+    {
+      "q": "Can lifestyle changes help?",
+      "a": "Stopping smoking, cutting down alcohol, keeping a healthy weight, and avoiding long hot baths or a laptop on the lap are worth doing. Sperm take about three months to form, so any change shows up in a test after that time. Ask your doctor before taking supplements."
+    },
+    {
+      "q": "Is a low count the man's fault?",
+      "a": "No. A semen report is a medical result, not a measure of manhood. Many causes are outside anyone's control, and both partners are usually tested together because trying to conceive is a shared journey."
+    }
+  ]
 }

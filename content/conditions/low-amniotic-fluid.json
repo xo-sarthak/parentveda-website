@@ -8,14 +8,19 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Low fluid on a scan is often found late in pregnancy and can be watched closely. Here is what your AFI means and what your doctor may suggest.",
+  "who_this_is_for": "For anyone told their amniotic fluid is low, their AFI is reduced, or whose scan report says oligohydramnios.",
   "specialty": "Fetal Medicine",
   "reviewer_specialty_required": "Fetal Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Leaking fluid or a trickle of water from your vagina",
+    "Your baby moving less than usual",
+    "Bleeding from your vagina",
+    "Regular tightenings or pain before 37 weeks"
+  ],
   "red_flags_reviewed": false,
   "tool": "afi-reader",
   "download": null,
@@ -34,7 +39,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What is my AFI or deepest pocket, and how low is it?",
+    "Could my waters be leaking?",
+    "Is my baby growing well, and do I need a Doppler?",
+    "How often will you repeat the scan or do an NST?",
+    "Should I drink more water?",
+    "Do you advise delivery soon, or can we wait?"
+  ],
+  "track": {
+    "label": "Notice your baby's movements every day and report any change",
+    "app_feature": "Kick counter"
+  },
+  "faq": [
+    {
+      "q": "What is amniotic fluid?",
+      "a": "It is the fluid around your baby in the womb. It cushions your baby and gives room to move and practise breathing. Later in pregnancy, most of it is your baby's urine."
+    },
+    {
+      "q": "How is low fluid measured?",
+      "a": "On ultrasound, either by the amniotic fluid index (AFI), which adds up four pockets of fluid, or by the single deepest pocket. Your report may say oligohydramnios. Readings vary a little from scan to scan, so your doctor looks at the trend and at your baby's overall wellbeing."
+    },
+    {
+      "q": "What causes low fluid?",
+      "a": "Common reasons include going past your due date, a leak from the waters, and the placenta not working as well, sometimes with high BP or growth restriction. Sometimes no cause is found. Rarely it is linked to the baby's kidneys, which the anomaly scan checks."
+    },
+    {
+      "q": "Will drinking more water help?",
+      "a": "Drinking enough water is good for you, and it may raise the fluid a little for a short time. It is not a treatment on its own. Keep following your doctor's plan for scans."
+    },
+    {
+      "q": "Does low fluid mean an early delivery?",
+      "a": "Not always. Your doctor looks at how many weeks you are, how your baby is growing, the Doppler and the NST. Sometimes watching closely is right, and sometimes delivery is safer. Your doctor decides with you."
+    }
+  ]
 }

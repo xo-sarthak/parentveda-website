@@ -7,14 +7,18 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Cerebral palsy shapes how a child moves, not who they are. With the right therapy and support, your child has real room to grow.",
+  "who_this_is_for": "Parents whose baby or young child has cerebral palsy, or whose doctor is watching their movement and muscle tone.",
   "specialty": "Paediatric Neurology / Physiotherapy",
   "reviewer_specialty_required": "Paediatric Neurology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "A seizure lasting more than 5 minutes: call 108",
+    "Choking, or coughing and struggling to breathe during feeds",
+    "Losing skills your child already had"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -31,7 +35,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Which parts of my child's body are most affected, and how?",
+    "Which therapies should we start, and how often?",
+    "What exercises and positions can we practise at home?",
+    "Should my child's eyes, hearing, swallowing or hips be checked?",
+    "Does my child need any aids, such as splints or a special seat?",
+    "Is there a District Early Intervention Centre near us for therapy?",
+    "What signs mean we should come back sooner?"
+  ],
+  "track": {
+    "label": "Therapy notes, reports and appointments, in one place",
+    "app_feature": "Health records"
+  },
+  "faq": [
+    {
+      "q": "What is cerebral palsy?",
+      "a": "Cerebral palsy is a group of conditions that affect movement and posture. It comes from a difference or injury in the developing brain, before, during or soon after birth. The brain injury does not get worse over time, though a child's needs change as they grow."
+    },
+    {
+      "q": "How is it found?",
+      "a": "Doctors often notice stiff or floppy muscles, or movements that look different, in the first year or two. Your paediatrician or a paediatric neurologist may suggest a brain scan and a detailed movement check. Your doctor decides which tests are needed."
+    },
+    {
+      "q": "Which therapies help?",
+      "a": "Physiotherapy, occupational therapy and speech therapy are the main supports, and they work best as part of daily life at home. Your therapist will show you how to hold, play with and position your child. Some children also need medicines, splints or surgery, and your doctor decides."
+    },
+    {
+      "q": "Where can we get help in India?",
+      "a": "District Early Intervention Centres (DEICs) under the RBSK programme offer therapy for young children. Cerebral palsy is also recognised under the Rights of Persons with Disabilities Act, 2016, which can open access to support. Your paediatrician can guide you on certificates and schemes."
+    }
+  ]
 }

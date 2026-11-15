@@ -9,8 +9,8 @@
   "stage": "Preconception",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Being a thalassemia carrier is common and usually harmless to you. One simple test of your partner shows what it means for your baby.",
+  "who_this_is_for": "For anyone told they are a thalassemia carrier (thalassemia minor or trait), and couples planning a baby who want to know what it means for their child.",
   "specialty": "Haematology / Genetic Counselling",
   "reviewer_specialty_required": "Genetic Counselling",
   "reviewed_by": null,
@@ -19,7 +19,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "thalassemia-couple-check",
-  "download": null,
+  "download": "thalassemia-partner-test-guide",
   "consult": {
     "specialty": "genetic-counselling",
     "mode": "callback"
@@ -33,7 +33,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Is my low haemoglobin from thalassemia trait, low iron, or both?",
+    "Should my partner get an HbA2 test by HPLC, and when?",
+    "If we are both carriers, what are our options before and during pregnancy?",
+    "Do I need iron tablets, or only if my iron is actually low?",
+    "Should I take folic acid before trying, and at what dose?",
+    "Should my brothers, sisters or other family members be tested too?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "Is thalassemia minor a disease?",
+      "a": "No. It means you carry one changed gene for making haemoglobin. Most carriers feel well and need no treatment. You may have mild anaemia that shows up on a blood test."
+    },
+    {
+      "q": "What happens if both partners are carriers?",
+      "a": "Then in each pregnancy there is a chance the baby inherits a changed gene from both of you and has thalassemia major, which needs lifelong care. Couples in this situation can see a genetic counsellor about testing the baby early in pregnancy. Your doctor decides with you which test fits and when."
+    },
+    {
+      "q": "Which test shows if I am a carrier?",
+      "a": "Most Indian labs start with a CBC, then confirm with a test called HbA2 by HPLC, sometimes listed as haemoglobin variant analysis. Low iron can change the result, so your doctor may check iron levels too. Testing before marriage or before pregnancy gives you the most time to plan."
+    },
+    {
+      "q": "Can I take iron tablets if I am a carrier?",
+      "a": "Only if your iron is actually low. Carrier anaemia is not caused by a lack of iron, so extra iron does not fix it. Your doctor will check your iron studies and decide."
+    },
+    {
+      "q": "Is it safe for a carrier to get pregnant?",
+      "a": "Yes. Being a carrier on its own does not usually make pregnancy risky for you. Your doctor may watch your haemoglobin a little more closely. The key step is testing your partner."
+    }
+  ]
 }

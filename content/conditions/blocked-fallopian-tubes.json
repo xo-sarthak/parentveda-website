@@ -9,17 +9,21 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A blocked tube is a common finding, and there are clear ways forward. Here is what your HSG or scan report means and what doctors usually do next.",
+  "who_this_is_for": "For women told that one or both fallopian tubes are blocked, or that they have a hydrosalpinx. It helps you read the report and prepare for your next visit.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "A positive pregnancy test with pain on one side of the lower belly: see a doctor today.",
+    "Pregnancy bleeding with shoulder tip pain, feeling faint or very dizzy: go to hospital now.",
+    "Sudden, severe belly pain with fever after an HSG or tube procedure: see a doctor today."
+  ],
   "red_flags_reviewed": false,
   "tool": "fertility-specialist-check",
-  "download": null,
+  "download": "fertility-specialist-checklist",
   "consult": {
     "specialty": "fertility-specialist",
     "mode": "callback"
@@ -36,7 +40,35 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Is one tube blocked or both, and where is the block?",
+    "How sure are we of this result, and do I need another test to confirm it?",
+    "Is there fluid in the tube (a hydrosalpinx), and does it need treatment before IVF?",
+    "What might have caused this, and do I need tests for infection or TB?",
+    "Can we still try naturally, or would you suggest IUI or IVF?",
+    "If surgery is suggested, what does it involve and how long is recovery?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "How do doctors check if the tubes are open?",
+      "a": "The common tests in India are an HSG, an X-ray with dye, and a HyCoSy, an ultrasound with a special fluid. Sometimes a laparoscopy is done, which also lets the doctor see the tubes directly. A tube can sometimes look blocked on an HSG because of a spasm, so your doctor may want to confirm the result."
+    },
+    {
+      "q": "Can I get pregnant with one tube open?",
+      "a": "Yes, it is possible. The open tube can still pick up an egg from either ovary in many cases. Your doctor will look at your age, your partner's report and how long you have been trying before suggesting what to do."
+    },
+    {
+      "q": "What is a hydrosalpinx?",
+      "a": "It is a blocked tube that has filled with fluid. This fluid can make it harder for an embryo to settle in the womb during IVF. So doctors often suggest removing or clipping that tube before IVF."
+    },
+    {
+      "q": "What causes blocked tubes?",
+      "a": "Common causes include past pelvic infections, including some sexually transmitted infections, genital TB, endometriosis and earlier surgery in the belly. Often a woman had no symptoms at the time. It is not something you did wrong."
+    },
+    {
+      "q": "Does a blocked tube mean IVF is the only way?",
+      "a": "Not always. If one tube is open, trying naturally or IUI may be suggested. If both tubes are blocked, IVF is usually the main option, because it does not need the tubes. Your doctor decides with you."
+    }
+  ]
 }

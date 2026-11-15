@@ -7,17 +7,23 @@
   "stage": "Pregnancy",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A high-risk label or screening result means extra care, not that something is wrong. Here is what it means and what comes next.",
+  "who_this_is_for": "For anyone told their pregnancy is high risk, or whose double marker, NT scan or quadruple marker result came back as high risk.",
   "specialty": "Fetal Medicine",
   "reviewer_specialty_required": "Fetal Medicine",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Bleeding from your vagina",
+    "Severe headache, blurred vision or sudden swelling of face or hands",
+    "Your baby moving less than usual",
+    "Leaking fluid from your vagina",
+    "Severe pain in your tummy"
+  ],
   "red_flags_reviewed": false,
   "tool": "screening-result-explainer",
-  "download": null,
+  "download": "high-risk-pregnancy-visit-plan",
   "consult": {
     "specialty": "fetal-medicine",
     "mode": "callback"
@@ -33,7 +39,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What exactly makes my pregnancy high risk?",
+    "Is my result from a screening test or a diagnostic test?",
+    "Would NIPT, CVS or amniocentesis help, and what are their risks?",
+    "Should I see a fetal medicine specialist?",
+    "How often will I need check-ups and scans now?",
+    "Should I check anything at home, like my BP or sugar?",
+    "Which hospital should I plan to deliver in?"
+  ],
+  "track": {
+    "label": "Get to know your baby's movement pattern in the third trimester",
+    "app_feature": "Kick counter"
+  },
+  "faq": [
+    {
+      "q": "What does a high-risk screening result mean?",
+      "a": "Screening tests like the double marker with NT scan (the combined test) or the quadruple marker estimate likelihood. They do not diagnose anything. A high-risk result means your doctor will offer more tests to get a clearer answer."
+    },
+    {
+      "q": "What is the difference between screening and diagnostic tests?",
+      "a": "Screening tests, like the combined test or NIPT, sort pregnancies into lower and higher likelihood. Diagnostic tests, like CVS or amniocentesis, look at the baby's chromosomes directly and give a clear answer. Diagnostic tests carry a small risk of miscarriage, so your doctor talks it through with you first."
+    },
+    {
+      "q": "What makes a pregnancy high risk?",
+      "a": "Common reasons include high BP, diabetes, thyroid problems, being over 35, twins, a previous caesarean or early birth, or a screening result that needs follow-up. Each reason calls for different care. The label simply means your team will watch more closely."
+    },
+    {
+      "q": "Why have I been sent to a fetal medicine specialist?",
+      "a": "Your gynaecologist may refer you for detailed scans or tests. This is routine after a high-risk screening result. It is a step towards answers, not a sign that something is wrong."
+    },
+    {
+      "q": "Can I still have a normal delivery?",
+      "a": "Often, yes. A high-risk label does not by itself mean a caesarean. Your doctor decides the safest way to deliver closer to the time."
+    }
+  ]
 }

@@ -18,8 +18,8 @@ export const TOOL_CONSULT: Record<string, string> = {
   "thalassemia-couple-check": "genetic-counselling",
   "screening-result-explainer": "fetal-medicine",
   "afi-reader": "fetal-medicine",
-  "bp-log": "gynaecologist",
-  "pregnancy-sugar-targets": "gynaecologist",
+  "bp-log": "obstetrician",
+  "pregnancy-sugar-targets": "obstetrician",
 };
 
 export function toolConsult(slug: string) {

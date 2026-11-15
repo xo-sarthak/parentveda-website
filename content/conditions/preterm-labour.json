@@ -9,19 +9,26 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Knowing the early signs of labour gives you and your doctor time to act. Here is what preterm labour and early waters breaking look like.",
+  "who_this_is_for": "For anyone worried about labour before 37 weeks, whose waters have broken early (PPROM), or who had an early birth before.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Regular tightenings or period-like cramps before 37 weeks",
+    "A gush or trickle of fluid from your vagina",
+    "Bleeding from your vagina",
+    "Pressure in your pelvis, or a new low backache that comes and goes",
+    "Your baby moving less than usual",
+    "Fever, chills or smelly discharge"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -35,7 +42,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Am I more likely to have preterm labour, and why?",
+    "Should my cervix be measured on a scan?",
+    "Do I need progesterone or a cervical stitch?",
+    "If labour starts early, will I get steroid injections for my baby's lungs?",
+    "Which hospital near me has a NICU for an early baby?",
+    "If my waters break early, what happens next?",
+    "Which signs mean I should come in straight away?"
+  ],
+  "track": {
+    "label": "Time tightenings so you can tell your doctor how often they come",
+    "app_feature": "Contraction timer"
+  },
+  "faq": [
+    {
+      "q": "What is preterm labour?",
+      "a": "Preterm labour is labour that starts before 37 weeks of pregnancy. Signs include regular tightenings, period-like cramps, low backache, pressure in the pelvis, or a change in discharge. Some tightenings are normal, so if you are unsure, call your doctor and let them check."
+    },
+    {
+      "q": "What is PPROM?",
+      "a": "PPROM means your waters break before labour starts and before 37 weeks. You might feel a gush or a steady trickle of fluid. Go to hospital, because there is a risk of infection, and your doctor will usually start antibiotics."
+    },
+    {
+      "q": "What can doctors do if labour starts early?",
+      "a": "Depending on how many weeks you are, your doctor may give steroid injections to help your baby's lungs, magnesium sulphate to protect your baby's brain, and medicine to slow contractions for a short time. They may also move you to a hospital with a NICU. Each step is chosen for your situation."
+    },
+    {
+      "q": "Can preterm labour be prevented?",
+      "a": "Not always. For some women, such as those with a short cervix or a past early birth, progesterone or a cervical stitch may help. Going to every check-up, getting urine infections treated and not smoking are worth doing for everyone."
+    },
+    {
+      "q": "Is it something I did?",
+      "a": "Usually, no. Preterm labour often has no clear cause. Normal work, sex and daily activity do not cause it in a healthy pregnancy."
+    }
+  ]
 }

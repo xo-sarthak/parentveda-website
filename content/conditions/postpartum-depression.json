@@ -8,14 +8,18 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "If you have felt low, numb or anxious since your baby came, you are not alone and it is not your fault. It is treatable.",
+  "who_this_is_for": "Mothers who feel low, anxious or not themselves after birth, and partners and families who are worried about them.",
   "specialty": "Perinatal Mental Health",
   "reviewer_specialty_required": "Perinatal Mental Health",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Thoughts of harming yourself or your baby: call 108 or Tele-MANAS 14416 now",
+    "Seeing or hearing things others do not, or feeling very confused",
+    "Feeling you cannot keep yourself or your baby safe: get help today"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -34,7 +38,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Could what I am feeling be postpartum depression or anxiety?",
+    "What kinds of treatment are there, and what do you suggest for me?",
+    "Can I keep breastfeeding if I need medicine?",
+    "Can you refer me to a counsellor, psychologist or psychiatrist?",
+    "Could a health problem, such as thyroid or low iron, be playing a part?",
+    "What can my family do to help me day to day?",
+    "Who do I call if I feel worse at night or on a weekend?"
+  ],
+  "track": {
+    "label": "How you are feeling, day by day, to share with your doctor",
+    "app_feature": "Journal"
+  },
+  "faq": [
+    {
+      "q": "Is this just the baby blues?",
+      "a": "Baby blues are common in the first two weeks: tearful, up and down, and they pass on their own. If low mood, worry or numbness lasts longer than two weeks, or makes daily life hard, it may be postpartum depression. Talk to your doctor."
+    },
+    {
+      "q": "When can postpartum depression start?",
+      "a": "It can start in pregnancy or any time in the first year after birth. It can happen after a first baby or a later one. It is a health condition, not a sign of weakness or a lack of love."
+    },
+    {
+      "q": "How is it treated?",
+      "a": "Talking therapy, support at home and, for some mothers, medicine all help. Some medicines can be taken while breastfeeding. Your doctor decides what suits you."
+    },
+    {
+      "q": "Where can I get help in India?",
+      "a": "Start with your gynaecologist, paediatrician or family doctor. Tele-MANAS, the government's free mental health helpline, answers on 14416 in many Indian languages. Telling one trusted person how you really feel is a strong first step."
+    },
+    {
+      "q": "Can fathers feel this too?",
+      "a": "Yes. Partners can also feel low or anxious after a baby arrives. The same help is there for them."
+    }
+  ]
 }

@@ -9,19 +9,26 @@
   "stage": "Pregnancy",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "High BP in pregnancy is common and treatable when found early. Regular BP checks and knowing the warning signs help keep you and your baby safe.",
+  "who_this_is_for": "For anyone told their BP is high in pregnancy, diagnosed with preeclampsia, or who had it in an earlier pregnancy.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Severe headache that does not go away with rest",
+    "Blurred vision, flashing lights or spots in front of your eyes",
+    "Pain under your ribs on the right side, or vomiting",
+    "Sudden swelling of your face, hands or feet",
+    "A fit, or feeling very confused or drowsy",
+    "Your baby moving less than usual"
+  ],
   "red_flags_reviewed": false,
   "tool": "bp-log",
-  "download": null,
+  "download": "bp-log-sheet",
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -36,7 +43,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What BP reading should make me call you?",
+    "Should I check my BP at home, and how often?",
+    "Do I need low-dose aspirin?",
+    "Which blood and urine tests will you do, and how often?",
+    "How will you check how my baby is growing?",
+    "Is my BP medicine safe for my baby?",
+    "When and how do you think I should deliver?"
+  ],
+  "track": {
+    "label": "Log your BP readings to show your doctor at each visit",
+    "tool": "bp-log"
+  },
+  "faq": [
+    {
+      "q": "What is preeclampsia?",
+      "a": "Preeclampsia is high BP that starts after 20 weeks of pregnancy, along with signs that it is affecting the body, such as protein in the urine or changes in blood tests. It can affect the placenta, so your doctor watches both you and your baby. It often has no symptoms at first, which is why every BP check matters."
+    },
+    {
+      "q": "Who is advised low-dose aspirin?",
+      "a": "Women more likely to get preeclampsia, for example those who had it before or who have long-term high BP, diabetes or kidney disease, are often advised low-dose aspirin from early in pregnancy. Do not start it on your own. Your doctor decides if it suits you and what dose to take."
+    },
+    {
+      "q": "Should I check my BP at home?",
+      "a": "Many doctors find home readings useful between visits. Use an automatic upper arm machine, sit quietly for five minutes first, and write down each reading. Bring your readings to every check-up."
+    },
+    {
+      "q": "Does preeclampsia go away after delivery?",
+      "a": "Delivering the baby and placenta is what ends preeclampsia, though BP can stay high for some days or weeks, and rarely it starts after birth. Keep getting BP checks after delivery as your doctor advises. Having had it also means a yearly BP check is worth doing in future."
+    },
+    {
+      "q": "Will cutting salt prevent it?",
+      "a": "Cutting salt has not been shown to prevent preeclampsia, so eat a normal balanced diet. Calcium tablets are a routine part of antenatal care in India, and they matter more if your diet is low in calcium. Take them as your doctor advises."
+    }
+  ]
 }

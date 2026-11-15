@@ -7,14 +7,20 @@
   "stage": "Parenting 0-5",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Worrying about having enough milk is very common. Most mothers can make more with frequent feeds, a good latch and the right support.",
+  "who_this_is_for": "Breastfeeding mothers who worry their baby is not getting enough milk, and families who want to help them.",
   "specialty": "Lactation",
   "reviewer_specialty_required": "Lactation",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "low",
-  "red_flags": [],
+  "red_flags": [
+    "Very few wet nappies, or dark yellow urine after the first week",
+    "Baby very sleepy, hard to wake or too tired to feed",
+    "Dry mouth, or a sunken soft spot on the head",
+    "Yellow skin that is spreading or getting deeper",
+    "Fever with a red, hot, painful breast in the mother"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -32,7 +38,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Is my baby gaining weight well for their age?",
+    "Can someone watch a feed and check my baby's latch?",
+    "How many wet nappies should I expect each day?",
+    "Could tongue tie or anything else be making feeding harder?",
+    "Is there a health reason, such as thyroid, affecting my supply?",
+    "Should I express milk, and how often?",
+    "If my baby needs top ups, how should I give them and keep breastfeeding?"
+  ],
+  "track": {
+    "label": "Feeds and wet nappies, to share with your doctor",
+    "app_feature": "Feeding log"
+  },
+  "faq": [
+    {
+      "q": "How do I know my baby is getting enough milk?",
+      "a": "Steady weight gain, plenty of wet nappies and a baby who seems content after most feeds are good signs. After the first week, most babies have at least six heavy wet nappies a day. Your doctor will check your baby's weight at visits."
+    },
+    {
+      "q": "Is it normal for my baby to feed very often?",
+      "a": "Yes. Newborns usually feed 8 to 12 times in 24 hours, and some evenings they feed again and again. This cluster feeding is normal and helps build your supply."
+    },
+    {
+      "q": "How can I make more milk?",
+      "a": "Milk is made on demand: the more milk is removed, the more your body makes. Feed often, check the latch, offer both breasts and keep your baby skin to skin. A lactation consultant can help."
+    },
+    {
+      "q": "Do special foods or herbs increase milk?",
+      "a": "Eating well and drinking to thirst are good for you, but no single food is a sure answer. Check with your doctor before taking any herb or medicine for milk supply. Frequent, effective feeding matters most."
+    },
+    {
+      "q": "Who can help in India?",
+      "a": "Ask your paediatrician or gynaecologist for a lactation consultant. Many hospitals have one, and your local ASHA or ANM worker can also support you at home."
+    }
+  ]
 }

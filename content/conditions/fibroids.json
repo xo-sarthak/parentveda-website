@@ -8,14 +8,18 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Fibroids are very common and almost never cancer, and many need no treatment at all. Here is when they matter for getting pregnant.",
+  "who_this_is_for": "For women told they have fibroids on an ultrasound, especially those who are trying to conceive or are planning a pregnancy.",
   "specialty": "Gynaecology",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "low",
-  "red_flags": [],
+  "red_flags": [
+    "Bleeding so heavy you soak through a pad every hour for a few hours: see a doctor today.",
+    "Heavy bleeding with feeling faint, dizzy or breathless: go to hospital now.",
+    "Sudden, severe belly pain with fever: see a doctor today."
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -32,7 +36,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "How many fibroids do I have, how big are they, and where exactly are they?",
+    "Is any fibroid pressing into the lining of the womb?",
+    "Are they likely to affect conceiving or a pregnancy?",
+    "Do they need treatment now, or can we watch them?",
+    "If surgery is suggested, which type, and how long should I wait before trying after it?",
+    "Do I need a blood test for anaemia?"
+  ],
+  "track": {
+    "label": "How heavy your periods are and how long they last, cycle by cycle",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What are fibroids?",
+      "a": "Fibroids are growths of muscle in the wall of the womb. They are very common and are almost always not cancer. Many women have them without any symptoms."
+    },
+    {
+      "q": "Do fibroids stop you getting pregnant?",
+      "a": "Most do not. Fibroids that bulge into the inside of the womb are the type most likely to affect fertility. Fibroids on the outside of the womb usually do not. Your doctor will look at where yours are."
+    },
+    {
+      "q": "Do all fibroids need surgery?",
+      "a": "No. Small fibroids that cause no symptoms are often just watched with scans. Treatment is considered when they cause heavy bleeding, pain or pressure, or when their position may affect pregnancy."
+    },
+    {
+      "q": "What kinds of surgery are there?",
+      "a": "A fibroid inside the womb can often be removed through a hysteroscopy, without any cut on the belly. Larger fibroids in the wall may need a myomectomy by laparoscopy or open surgery. After a myomectomy, your doctor may advise waiting a few months before trying, and may plan a caesarean for the birth."
+    },
+    {
+      "q": "What happens to fibroids in pregnancy?",
+      "a": "Most pregnancies with fibroids go well. Fibroids can sometimes grow or cause pain, so your doctor will keep an eye on them during your scans. Tell your doctor about any new or strong pain."
+    }
+  ]
 }

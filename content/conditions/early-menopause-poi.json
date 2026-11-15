@@ -9,8 +9,8 @@
   "stage": "TTC",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Hearing your ovaries have slowed down early is hard. Here is what POI and early menopause mean, how they are treated, and the paths to a family.",
+  "who_this_is_for": "For women under 45 whose periods have become irregular or stopped and who have been told they have premature ovarian insufficiency (POI) or early menopause.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -34,7 +34,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "How was the diagnosis made, and do the tests need to be repeated?",
+    "What might have caused it, and do I need genetic or thyroid tests?",
+    "Should I take hormone therapy, and for how long?",
+    "How can I protect my bones and heart from now on?",
+    "Could I still conceive with my own eggs?",
+    "What are our options for having a child, including donor eggs?"
+  ],
+  "track": {
+    "label": "Your period dates and gaps, and any hot flushes or night sweats",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What is the difference between POI and early menopause?",
+      "a": "POI means the ovaries stop working normally before the age of 40. Early menopause usually means periods stop between 40 and 45. With POI, the ovaries may still work now and then, so periods can come and go."
+    },
+    {
+      "q": "How is POI diagnosed?",
+      "a": "Doctors look at missed or irregular periods over some months together with FSH blood tests, often repeated a few weeks apart. AMH may also be checked. Your doctor may suggest tests to look for a cause, such as thyroid tests or a karyotype."
+    },
+    {
+      "q": "Why is hormone therapy usually advised?",
+      "a": "Oestrogen protects your bones, heart and brain. When the ovaries stop early, doctors usually suggest hormone therapy until around the usual age of menopause to replace it. It also eases hot flushes and dryness. Your doctor will choose the right type and dose for you."
+    },
+    {
+      "q": "Can I still get pregnant?",
+      "a": "With POI, the ovaries sometimes release an egg, so a natural pregnancy is possible but uncommon. If you do not want to get pregnant, ask your doctor about contraception. Many women with POI build their families with donor eggs, and your doctor can talk you through this."
+    },
+    {
+      "q": "What can I do for my health day to day?",
+      "a": "Eating enough calcium, getting some sunlight or vitamin D, staying active with weight bearing exercise and not smoking are all worth doing. Your doctor may suggest a bone density scan. Looking after your mood matters too, as this news can feel heavy."
+    }
+  ]
 }

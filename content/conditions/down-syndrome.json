@@ -7,8 +7,8 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Whether you have a screening result or a diagnosis, you are not alone. Here is what the tests mean, and what support looks like in India.",
+  "who_this_is_for": "For parents with a high-risk screening result for Down syndrome, a confirmed diagnosis in pregnancy, or a newborn diagnosed after birth.",
   "specialty": "Fetal Medicine / Developmental Paediatrics",
   "reviewer_specialty_required": "Fetal Medicine",
   "reviewed_by": null,
@@ -31,7 +31,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Is my result from a screening test or a diagnostic test?",
+    "Would NIPT, CVS or amniocentesis give us a clearer answer?",
+    "Can we meet a fetal medicine specialist and a genetic counsellor?",
+    "Does our baby need a fetal echo to check the heart?",
+    "Which hospital with a neonatal unit should we plan to deliver in?",
+    "Which specialists will our baby need after birth?",
+    "Are there parent support groups or early intervention centres near us?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is Down syndrome?",
+      "a": "Down syndrome happens when a baby has an extra copy of chromosome 21. It happens by chance at conception and is not caused by anything the parents did. Children with Down syndrome have some learning disability and certain health needs, and each child is different."
+    },
+    {
+      "q": "How is it found in pregnancy?",
+      "a": "Screening tests such as the NT scan with double marker, the quadruple marker or NIPT show whether the likelihood is low or high. Only a diagnostic test, CVS or amniocentesis, can confirm it. Your doctor explains the choices, and you decide which tests to have."
+    },
+    {
+      "q": "Does a high-risk screening result mean my baby has Down syndrome?",
+      "a": "No. Many babies with a high-risk screening result do not have Down syndrome. That is why the next step is a talk with your doctor about further testing."
+    },
+    {
+      "q": "What health checks will a baby with Down syndrome need?",
+      "a": "Babies with Down syndrome are checked for heart conditions, usually with an echo, and have their hearing, vision and thyroid checked. Regular follow-up with a paediatrician helps catch anything early."
+    },
+    {
+      "q": "What helps a child with Down syndrome grow?",
+      "a": "Early intervention, like physiotherapy, speech therapy and occupational therapy, gives children room to grow at their own pace. Many go to school, make friends and enjoy full lives. Support from other parents can help a great deal too."
+    }
+  ]
 }

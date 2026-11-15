@@ -5,8 +5,8 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "When every test comes back normal and you are still waiting, it is not your fault. Here is what unexplained infertility means and what comes next.",
+  "who_this_is_for": "For couples who have been trying for a year or more and were told all the basic tests are normal. It helps you understand the term and the usual next steps.",
   "specialty": "Reproductive Medicine",
   "reviewer_specialty_required": "Reproductive Medicine",
   "reviewed_by": null,
@@ -15,7 +15,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "fertility-specialist-check",
-  "download": null,
+  "download": "fertility-specialist-checklist",
   "consult": {
     "specialty": "fertility-specialist",
     "mode": "callback"
@@ -29,7 +29,34 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Which tests have been done for both of us, and is anything still left to check?",
+    "Were my tubes checked, and with which test?",
+    "Given my age, how long would you suggest we keep trying naturally?",
+    "What are the options from here, such as IUI or IVF, and why would you choose one?",
+    "Is there anything in our daily lives worth changing now?",
+    "When should we come back for a review if nothing changes?"
+  ],
+  "track": {
+    "label": "Your cycle, so your doctor can see your pattern at a glance",
+    "app_feature": "Cycle calendar"
+  },
+  "faq": [
+    {
+      "q": "What does unexplained infertility actually mean?",
+      "a": "It means the standard tests have not found a clear cause. These usually check whether you ovulate, whether your tubes are open, and your partner's semen report. It does not mean nothing can be done, and many couples in this situation go on to conceive."
+    },
+    {
+      "q": "Which tests are usually done before this label is given?",
+      "a": "Most doctors check ovulation through blood tests or a follicular study, look at the tubes with an HSG or HyCoSy, and do a semen analysis for the partner. Thyroid and prolactin tests and a pelvic ultrasound are common too. Ask your doctor which of these you have had."
+    },
+    {
+      "q": "Should we start IVF straight away?",
+      "a": "Not always. Depending on your age and how long you have been trying, doctors may suggest more time trying naturally, IUI with medicines, or IVF. Your doctor decides with you, based on your own situation."
+    },
+    {
+      "q": "Is stress the cause?",
+      "a": "Stress is a very common feeling while trying, and it is real. It is not usually the reason a couple does not conceive. Looking after your mind is still worth doing, for both of you, and talking to a counsellor can help."
+    }
+  ]
 }

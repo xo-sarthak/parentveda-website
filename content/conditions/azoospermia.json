@@ -8,8 +8,8 @@
   "stage": "TTC",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A nil sperm report is a shock, but it is the start of finding out why, not the end. Here is what azoospermia means and what doctors check next.",
+  "who_this_is_for": "For men told their semen report shows no sperm, and for their partners. It explains the term, the tests that follow and the options doctors discuss.",
   "specialty": "Andrology",
   "reviewer_specialty_required": "Andrology/Urology",
   "reviewed_by": null,
@@ -18,7 +18,7 @@
   "red_flags": [],
   "red_flags_reviewed": false,
   "tool": "semen-report-reader",
-  "download": null,
+  "download": "semen-report-guide",
   "consult": {
     "specialty": "male-fertility",
     "mode": "callback"
@@ -33,7 +33,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Has the result been confirmed on a second sample, checked after spinning it down?",
+    "Do you think this is due to a blockage or to low sperm production?",
+    "Which hormone, genetic or scan tests do I need?",
+    "Could a sperm retrieval procedure be an option for me, and which one?",
+    "Should I see a urologist or andrologist as well?",
+    "If sperm cannot be found, what other paths to parenthood can we talk about?"
+  ],
+  "track": {
+    "label": "Your semen and hormone reports, kept in one place for each visit",
+    "app_feature": "Attachments"
+  },
+  "faq": [
+    {
+      "q": "Is azoospermia always permanent?",
+      "a": "Not always. Sometimes the cause is a blockage, a hormone problem or a recent illness, and some of these can be treated. A repeat test is usually done first to confirm the result. Your doctor will explain what your tests suggest."
+    },
+    {
+      "q": "What are the two main types?",
+      "a": "Obstructive azoospermia means sperm are made but a blockage stops them from coming out. Non-obstructive azoospermia means the testes are making very few or no sperm. Hormone tests, a physical exam and sometimes a scan help tell the two apart."
+    },
+    {
+      "q": "What tests will I need?",
+      "a": "Common tests include FSH, LH and testosterone levels, a scrotal ultrasound, and genetic tests such as a karyotype and a Y chromosome microdeletion test. These help your doctor understand the cause and plan the next step."
+    },
+    {
+      "q": "Can sperm be taken directly from the testis?",
+      "a": "Yes, in many men. Procedures such as PESA, TESA or micro-TESE collect sperm directly so they can be used in IVF with ICSI. Whether sperm are found depends on the cause, and your doctor will talk you through what is realistic."
+    },
+    {
+      "q": "How do we cope with this news as a couple?",
+      "a": "It is normal to feel shock, grief or guilt. This is a medical condition, not anyone's fault. Talking openly with each other, and with a counsellor if you can, often helps you make decisions together."
+    }
+  ]
 }

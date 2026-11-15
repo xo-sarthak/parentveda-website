@@ -7,19 +7,25 @@
   "stage": "Pregnancy",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "An ectopic pregnancy is not your fault, and it can be treated. Knowing the warning signs and getting care early keeps you safe.",
+  "who_this_is_for": "For anyone with a positive pregnancy test and pain or bleeding, anyone diagnosed with an ectopic pregnancy, and those trying again after one.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Sharp or one-sided pain low in your tummy that keeps getting worse",
+    "Pain at the tip of your shoulder",
+    "Feeling faint or dizzy, or fainting",
+    "Heavy bleeding from your vagina",
+    "Pain when you pass urine or stool"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -31,7 +37,36 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Where is the pregnancy, and how sure are you from the scan?",
+    "Which treatment do you advise: medicine, surgery or waiting?",
+    "If I have methotrexate, how often do I need beta hCG tests?",
+    "Will my tube be removed, and what does that mean for future pregnancies?",
+    "What is my blood group, and do I need anti-D?",
+    "How long should we wait before trying again?",
+    "Will I get an early scan in my next pregnancy?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is an ectopic pregnancy?",
+      "a": "It is a pregnancy that grows outside the womb, most often in a fallopian tube. It cannot continue safely, because there is no room for it to grow there. Early treatment protects your health."
+    },
+    {
+      "q": "How is it diagnosed?",
+      "a": "Your doctor uses a transvaginal scan and serum beta hCG blood tests, often repeated after 48 hours. Sometimes the pregnancy is too early to see, and you will be asked to come back for more tests. The waiting is hard, but it helps your doctor be sure."
+    },
+    {
+      "q": "How is it treated?",
+      "a": "Options include a methotrexate injection, keyhole surgery (laparoscopy), or in some cases watching closely while hCG falls on its own. The choice depends on your scan, your blood tests and how you feel. Your doctor decides with you."
+    },
+    {
+      "q": "Did I cause it?",
+      "a": "No. Nothing you did, like lifting, working or having sex, caused it. Things like a past pelvic infection or tube surgery make it more likely, but often there is no clear reason."
+    },
+    {
+      "q": "Can I get pregnant again?",
+      "a": "Yes, many women go on to have a healthy pregnancy, even with one tube. Ask for an early scan in your next pregnancy to check where it is. If you had methotrexate, your doctor will tell you how long to wait before trying."
+    }
+  ]
 }

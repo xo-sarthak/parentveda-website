@@ -7,14 +7,16 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Every child grows at their own pace. If something feels off, a gentle check now is the kindest step, and early support helps.",
+  "who_this_is_for": "Parents who have a feeling their child is not yet doing what other children their age do, or whose doctor has suggested a closer look.",
   "specialty": "Developmental Paediatrics",
   "reviewer_specialty_required": "Developmental Paediatrics",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Losing skills your child already had, such as words, sitting or walking"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -33,7 +35,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Which areas of development would you like to look at more closely?",
+    "Should we check my child's hearing and eyesight?",
+    "Are any blood tests or other checks needed?",
+    "Should we see a developmental paediatrician or a therapist?",
+    "Is there a District Early Intervention Centre near us?",
+    "What can we practise at home through play and daily routines?",
+    "My child was born early. Should we use corrected age?"
+  ],
+  "track": {
+    "label": "Milestones, noted as they come, to share with your doctor",
+    "app_feature": "Milestones"
+  },
+  "faq": [
+    {
+      "q": "What does developmental delay mean?",
+      "a": "It means a child is reaching some milestones, such as sitting, walking, talking or playing, later than most children their age. It describes where a child is today, not who they will become. There can be many different causes, and some children simply need more time."
+    },
+    {
+      "q": "What happens at an assessment?",
+      "a": "A doctor or therapist watches your child play, asks about daily life and may check hearing and eyesight. Sometimes blood tests or other checks are suggested. Your doctor decides what is needed."
+    },
+    {
+      "q": "Where can we get help in India?",
+      "a": "The RBSK programme screens children for developmental concerns, and District Early Intervention Centres (DEICs) offer assessment and therapy, often at the district hospital. Your paediatrician can also refer you to a developmental paediatrician or therapist."
+    },
+    {
+      "q": "My baby was premature. Does that change things?",
+      "a": "Yes. For babies born early, milestones are usually measured by corrected age, counted from the due date, until about two years. Your doctor can tell you how to work it out for your child."
+    },
+    {
+      "q": "Is it better to wait and see?",
+      "a": "If you are worried, ask now. Support that starts early gives a child more room to grow, and a check that finds nothing is still reassuring."
+    }
+  ]
 }

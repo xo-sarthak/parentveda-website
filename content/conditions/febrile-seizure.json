@@ -7,14 +7,21 @@
   "stage": "Parenting 0-5",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "A fever fit is terrifying to watch, but most are short and do not harm a child's brain. Here is what to do and when to get help.",
+  "who_this_is_for": "Parents whose young child has had a seizure with a fever, or who want to know what to do if it ever happens.",
   "specialty": "Paediatrics",
   "reviewer_specialty_required": "Paediatrics",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "A seizure lasting more than 5 minutes: call 108",
+    "Struggling to breathe, or blue lips during or after the seizure",
+    "Not waking up fully, or very confused, after the seizure stops",
+    "A second seizure in the same illness",
+    "Stiff neck, a rash that does not fade, or repeated vomiting",
+    "This is your child's first seizure: see a doctor the same day"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -32,7 +39,38 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "Was this a simple febrile seizure, or do we need more tests?",
+    "What caused the fever, and does it need treatment?",
+    "How likely is it to happen again, and what should we do if it does?",
+    "Should we have any emergency medicine at home?",
+    "When should we call an ambulance next time?",
+    "Is it safe to keep giving my child all their vaccines?"
+  ],
+  "track": {
+    "label": "Fevers and any seizure: date, temperature and how long it lasted",
+    "app_feature": "Health records"
+  },
+  "faq": [
+    {
+      "q": "What is a febrile seizure?",
+      "a": "It is a fit that happens with a fever, usually in children between six months and five years. The child may go stiff, jerk, roll their eyes or become unresponsive. Most last a minute or two and stop on their own."
+    },
+    {
+      "q": "What should I do during a seizure?",
+      "a": "Stay calm and lay your child on their side on a safe surface. Do not put anything in their mouth and do not hold them down. Note the time it started, and call 108 if it lasts more than 5 minutes."
+    },
+    {
+      "q": "Does a febrile seizure cause brain damage or epilepsy?",
+      "a": "Simple febrile seizures do not damage the brain. Most children who have them do not go on to have epilepsy. Your doctor will tell you if your child needs more checks."
+    },
+    {
+      "q": "Can fever medicine prevent another seizure?",
+      "a": "Fever medicine can make your child more comfortable, but it does not prevent febrile seizures. Use it as your doctor advises. Some children have another seizure with a later fever, and most grow out of them."
+    },
+    {
+      "q": "Should my child see a doctor after a seizure?",
+      "a": "Yes. Always get your child checked after a first seizure, and to find the cause of the fever."
+    }
+  ]
 }

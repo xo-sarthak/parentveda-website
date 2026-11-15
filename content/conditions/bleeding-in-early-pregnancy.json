@@ -7,19 +7,25 @@
   "stage": "Pregnancy",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Bleeding in early pregnancy is common, and many pregnancies carry on well. Here is what to watch for, and when to call your doctor.",
+  "who_this_is_for": "For anyone in the first three months of pregnancy who has noticed spotting or bleeding, and the partner sitting beside them.",
   "specialty": "Obstetrics",
   "reviewer_specialty_required": "Obstetrics & Gynaecology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Heavy bleeding that soaks a pad in an hour, or passing large clots",
+    "Strong pain in your tummy, especially on one side",
+    "Pain at the tip of your shoulder",
+    "Feeling faint, dizzy or very weak",
+    "Fever or smelly discharge along with bleeding"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
   "consult": {
-    "specialty": "gynaecologist",
+    "specialty": "obstetrician",
     "mode": "callback"
   },
   "article_match": {
@@ -32,7 +38,43 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What do you think is causing my bleeding?",
+    "Do I need an ultrasound, and will it be a transvaginal scan?",
+    "Should I get a beta hCG blood test, and repeat it after 48 hours?",
+    "What is my blood group, and do I need an anti-D injection?",
+    "Should I avoid travel, exercise or sex for now?",
+    "Is there any medicine I need, or anything I should stop taking?",
+    "Which signs mean I should come to the hospital straight away?"
+  ],
+  "track": {
+    "label": "Note when bleeding starts, its colour and how many pads you use, to tell your doctor",
+    "app_feature": "Symptom log"
+  },
+  "faq": [
+    {
+      "q": "Is spotting in early pregnancy normal?",
+      "a": "Light spotting is common in the first trimester and often settles on its own. It can come from implantation, a sensitive cervix after an internal exam or sex, or other early changes. Still, tell your doctor about any bleeding so they can check."
+    },
+    {
+      "q": "What tests will my doctor do?",
+      "a": "Usually an ultrasound, often a transvaginal scan in the early weeks, to see where the pregnancy is and whether there is a heartbeat. Your doctor may also order a serum beta hCG, sometimes repeated after two days, and check your blood group. What they do depends on how many weeks you are and how much you are bleeding."
+    },
+    {
+      "q": "Why does my blood group matter?",
+      "a": "If you are Rh negative, your doctor may advise an anti-D injection after bleeding in pregnancy. This protects future pregnancies. Your doctor decides if and when you need it."
+    },
+    {
+      "q": "Does bed rest help?",
+      "a": "There is no good evidence that strict bed rest prevents miscarriage. Resting when you feel tired is fine. Follow what your doctor advises for your situation."
+    },
+    {
+      "q": "Could bleeding mean an ectopic pregnancy?",
+      "a": "Sometimes. That is one reason your doctor wants a scan to see where the pregnancy is. One-sided pain, pain at the tip of your shoulder, or feeling faint along with bleeding needs urgent care."
+    },
+    {
+      "q": "Did I cause this?",
+      "a": "No. Most early bleeding and early pregnancy loss happen for reasons no one could prevent, such as chromosome changes in the pregnancy. Normal work, sex and everyday activity do not cause it."
+    }
+  ]
 }

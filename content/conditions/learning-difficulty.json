@@ -8,8 +8,8 @@
   "stage": "Child",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Some bright children find reading, writing or numbers hard. Knowing how your child learns opens up the right support at school.",
+  "who_this_is_for": "Parents whose child finds reading, spelling, writing or maths much harder than other schoolwork, despite real effort.",
   "specialty": "Child Psychology",
   "reviewer_specialty_required": "Child Psychology",
   "reviewed_by": null,
@@ -33,7 +33,31 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Should we check my child's eyesight and hearing first?",
+    "Who can do a learning assessment, and where?",
+    "Could attention, sleep or another health issue be playing a part?",
+    "What support can we ask the school for?",
+    "How do we get a certificate for exam accommodations?",
+    "What can we do at home to help without adding pressure?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "What is a specific learning disability?",
+      "a": "It is a difference in how the brain handles reading, writing or maths. Dyslexia (reading), dysgraphia (writing) and dyscalculia (maths) are the common types. It has nothing to do with how clever or hardworking a child is."
+    },
+    {
+      "q": "When can it be identified?",
+      "a": "It usually becomes clear after a child has had a couple of years of reading and maths teaching at school. Teachers are often the first to notice. A clinical psychologist or a team at a government hospital usually does the assessment."
+    },
+    {
+      "q": "What support can schools give?",
+      "a": "Learning disabilities are recognised under the Rights of Persons with Disabilities Act, 2016. CBSE and many state boards allow accommodations such as extra time or a scribe in exams, with a certificate from a recognised authority. Ask your school about its process."
+    },
+    {
+      "q": "How can I help at home?",
+      "a": "Short, regular practice in a calm mood is worth more than long sessions. Praise effort, not marks, and build on what your child enjoys. A special educator can suggest methods that suit your child."
+    }
+  ]
 }

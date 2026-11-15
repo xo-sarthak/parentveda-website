@@ -8,14 +8,16 @@
   "stage": "Parenting 0-5",
   "tier": "P1",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Noticing your child does things differently is worth a calm look. An early check opens the door to support, whatever the answer.",
+  "who_this_is_for": "Parents who are wondering about autism in a child under five, waiting for an assessment, or have just heard the word from a doctor.",
   "specialty": "Developmental Paediatrics",
   "reviewer_specialty_required": "Developmental Paediatrics",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "high",
-  "red_flags": [],
+  "red_flags": [
+    "Losing words, babble or social skills your child already had, at any age"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -33,7 +35,39 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
-  "track": null,
-  "faq": []
+  "doctor_questions": [
+    "What have you noticed in my child that made you want to look further?",
+    "Should we check my child's hearing before anything else?",
+    "Who will do the full assessment, and how long might we wait?",
+    "Can we start therapy or home activities while we wait for an assessment?",
+    "Is there a District Early Intervention Centre near us that can help?",
+    "What can we do at home every day to support communication and play?",
+    "When should we come back, and what should we watch for until then?"
+  ],
+  "track": {
+    "label": "Milestones, noted as they come, to share with your doctor",
+    "app_feature": "Milestones"
+  },
+  "faq": [
+    {
+      "q": "What is autism?",
+      "a": "Autism is a different way the brain develops, which shapes how a child communicates, plays and takes in the world around them. Every autistic child is different. It is not caused by anything a parent did."
+    },
+    {
+      "q": "When can autism be identified?",
+      "a": "Signs often show between one and three years, and many paediatricians use a short checklist at the 18 and 24 month visits. A full assessment is done by a developmental paediatrician or a team. Your doctor decides when it is the right time."
+    },
+    {
+      "q": "Do vaccines cause autism?",
+      "a": "No. Large studies over many years have found no link between vaccines, including MMR, and autism. Keeping to the vaccine schedule protects your child from serious illness."
+    },
+    {
+      "q": "Where can we get help in India?",
+      "a": "District Early Intervention Centres (DEICs) under the RBSK programme offer screening and therapy for young children, often at the district hospital. Developmental paediatricians, speech therapists and occupational therapists in your city can also help. Ask your paediatrician for a referral."
+    },
+    {
+      "q": "Should we wait and see?",
+      "a": "If you are worried, it is worth asking now rather than waiting. Support that starts early gives your child more room to grow, and a check that finds nothing is still good news."
+    }
+  ]
 }

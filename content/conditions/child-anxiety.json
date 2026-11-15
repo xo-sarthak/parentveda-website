@@ -7,14 +7,17 @@
   "stage": "Child",
   "tier": "P2",
   "published": false,
-  "one_line": "",
-  "who_this_is_for": "",
+  "one_line": "Every child worries sometimes. When worry starts getting in the way, there is real help, and you can be your child's calm anchor.",
+  "who_this_is_for": "Parents of children whose fears or worries feel bigger than usual, or who avoid school, friends or new things because of them.",
   "specialty": "Child Psychology",
   "reviewer_specialty_required": "Child Psychology",
   "reviewed_by": null,
   "reviewed_at": null,
   "sensitivity": "medium",
-  "red_flags": [],
+  "red_flags": [
+    "Your child talks about hurting themselves or not wanting to live: get help now",
+    "For urgent help call Tele-MANAS 14416, or 108 in an emergency"
+  ],
   "red_flags_reviewed": false,
   "tool": null,
   "download": null,
@@ -32,7 +35,32 @@
     ]
   },
   "hinglish_pair": null,
-  "doctor_questions": [],
+  "doctor_questions": [
+    "Is my child's worry within the usual range for their age?",
+    "Could a health problem be causing some of the symptoms, like stomach aches?",
+    "Should we see a child psychologist or counsellor?",
+    "What kind of therapy do you suggest?",
+    "How should I respond when my child is very anxious?",
+    "How can we work with the school?",
+    "What signs mean we should come back sooner?"
+  ],
   "track": null,
-  "faq": []
+  "faq": [
+    {
+      "q": "Is it normal for children to worry?",
+      "a": "Yes. Fears of the dark, strangers or being apart from parents are part of growing up. Worry becomes a concern when it lasts, feels very big, or stops a child from doing everyday things like going to school."
+    },
+    {
+      "q": "What can anxiety look like in children?",
+      "a": "Children may not say they are anxious. It can show as stomach aches or headaches, trouble sleeping, clinging, anger or avoiding places and people. Your doctor can check for other causes too."
+    },
+    {
+      "q": "How is it treated?",
+      "a": "Talking therapy, especially cognitive behavioural therapy, is the main help, and parents are often part of it. Some children also need medicine, and your doctor decides. Calm routines, sleep and gentle encouragement to face small fears help at home."
+    },
+    {
+      "q": "Where can we get help in India?",
+      "a": "Your paediatrician can refer you to a child psychologist or psychiatrist. The school counsellor can also help. Tele-MANAS, the government's free mental health helpline on 14416, can guide you to support near you."
+    }
+  ]
 }
