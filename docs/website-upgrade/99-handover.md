@@ -32,7 +32,7 @@ Drafted since (15 Nov 2026), all still behind the review gate:
 
 Still needed from the team:
 
-1. **Webhook URLs** for consult requests and download leads (Google Sheet script in `02-phase-2.md`). Then set `CONSULT_WEBHOOK_URL`, `LEADS_WEBHOOK_URL` and optionally `OPS_EMAIL` in Vercel.
+1. **Turn on the forms (Supabase + Directus, chosen 15 Nov 2026).** Run `supabase/website_leads.sql` once in the Supabase SQL editor, start managing `website_leads` in Directus (steps at the end of that file), then set `LEADS_ENABLED=1` (and optionally `OPS_EMAIL`) in Vercel. No Google Sheet or webhook needed; `CONSULT_WEBHOOK_URL` and `LEADS_WEBHOOK_URL` are now optional extra copies.
 2. **Each expert's registration number**, and whether they take consults, which consult, and which conditions they cover (`lib/authors.ts`).
 3. **Consult prices** beyond fertility specialist ₹899, gynaecologist ₹599 and male fertility ₹599. The app has genetic counselling at ₹999; confirm before it is added.
 4. **Legal and founder review** of the three trust pages and the privacy policy addition (`02-phase-2.md`).

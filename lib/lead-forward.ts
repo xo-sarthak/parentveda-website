@@ -1,12 +1,12 @@
 /* ============================================================
    Server side of the consult and download forms: spam guards, a rate limit,
-   forwarding to the team's webhook, and the ops email. Server-only.
+   an optional webhook copy and the ops email. Server-only. The requests
+   themselves are stored by lib/lead-store.ts (Supabase website_leads).
 
-   Webhooks (set in Vercel; nothing renders until they are set):
+   Optional webhooks, a second copy of each request (e.g. a CRM):
      CONSULT_WEBHOOK_URL  consult requests
      LEADS_WEBHOOK_URL    download leads
-   Either can be a Google Apps Script web app that appends a row to a Sheet, a
-   CRM or an email service. The body is JSON (see docs/website-upgrade/02-phase-2.md).
+   The body is JSON (see docs/website-upgrade/02-phase-2.md).
 
    Ops email: OPS_EMAIL (default hello@parentveda.in), sent through Resend with
    the RESEND_API_KEY and CONTACT_FROM_EMAIL the contact form already uses.
@@ -83,7 +83,7 @@ export async function emailOps(subject: string, rows: [string, string | undefine
         subject,
         html: `<div style="font-family:system-ui,sans-serif;font-size:15px"><h2 style="margin:0 0 12px">${esc(subject)}</h2><table style="border-collapse:collapse">${shown
           .map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#6F6878">${esc(k)}</td><td>${esc(v!)}</td></tr>`)
-          .join("")}</table><p style="color:#6F6878;font-size:13px">Sent from parentveda.in. Full record is in the team sheet.</p></div>`,
+          .join("")}</table><p style="color:#6F6878;font-size:13px">Sent from parentveda.in. Full record is in Directus, under website_leads.</p></div>`,
         text: `${subject}\n\n${shown.map(([k, v]) => `${k}: ${v}`).join("\n")}`,
       }),
       signal: AbortSignal.timeout(10_000),

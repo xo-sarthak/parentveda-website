@@ -6,7 +6,7 @@
      content/downloads/src by `node content/downloads/src/render.mjs`);
    - it is medically reviewed (`reviewed: true`), or this deploy shows
      unreviewed drafts (preview, dev; see lib/review-gate.ts);
-   - the lead form has somewhere to send to (LEADS_WEBHOOK_URL).
+   - the lead form has somewhere to send to (LEADS_ENABLED=1, lib/lead-store.ts).
 
    The PDFs are not in /public: app/downloads/[slug]/route.ts serves each one
    under the same review gate, so a draft is never reachable on the live site.
@@ -16,6 +16,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import DATA from "@/content/downloads.json";
 import { canShow } from "@/lib/review-gate";
+import { leadsEnabled } from "@/lib/lead-store";
 
 export type Download = {
   slug: string;
@@ -35,7 +36,7 @@ export const DOWNLOADS: Download[] = Object.entries(DATA as Record<string, Omit<
 );
 
 export function downloadsEnabled(): boolean {
-  return Boolean(process.env.LEADS_WEBHOOK_URL);
+  return leadsEnabled();
 }
 
 export function pdfPath(slug: string): string {

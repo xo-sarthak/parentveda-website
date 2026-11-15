@@ -15,7 +15,7 @@ export type ConsultView = {
 };
 
 /* "Talk to a specialist". The server decides whether to render this at all
-   (lib/consults.ts: only when CONSULT_WEBHOOK_URL is set).
+   (lib/consults.ts: only when LEADS_ENABLED=1).
 
    mode "callback" (today): a short form; the team calls back.
    mode "book": the integration point for paid booking. Pass `onBook` once a

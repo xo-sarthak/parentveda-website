@@ -10,7 +10,7 @@ export type DownloadView = { slug: string; title: string; value: string; gate: "
 
 /* A free PDF behind a short form (name, WhatsApp number or email, consent).
    The server decides whether to render it (lib/downloads.ts: only when the
-   PDF exists and LEADS_WEBHOOK_URL is set). After the form, the link shows,
+   PDF exists, is reviewed and LEADS_ENABLED=1). After the form, the link shows,
    with an offer to send it on WhatsApp too; that request is only recorded,
    and the team sends it. */
 export default function DownloadCard({ download, condition }: { download: DownloadView; condition?: string }) {

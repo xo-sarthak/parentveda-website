@@ -41,7 +41,11 @@ Before any hub is published, its JSON needs `one_line`, `who_this_is_for`, `faq`
 4. **The Medical Review Policy draft describes specialty matching.** The reviewer report shows 76 of 78 articles do not match yet. That page must not go live until practice matches it.
 5. **UTM tags** go only on the Play Store link (`appLink()` in `lib/site.ts`). Before launch, "Get the app" goes to the site's own `/download/` page, and tagging an internal link would start a new GA4 session and lose where the visitor came from.
 
-## Setting up the two Google Sheets
+## Where requests go: Supabase, worked in Directus (decided 15 Nov 2026)
+
+Requests are stored in the Supabase table `website_leads` (`supabase/website_leads.sql`) and the team works them in Directus: read everything, change only `status`, `assigned_to` and `team_notes`. Turn on with `LEADS_ENABLED=1`. The Google Sheet below is no longer needed; it stays documented as an optional extra copy through `CONSULT_WEBHOOK_URL` / `LEADS_WEBHOOK_URL`.
+
+## Setting up the two Google Sheets (optional)
 
 1. Create a Sheet (one for consults, one for downloads, or two tabs in one).
 2. Extensions → Apps Script, paste the script below, and save.
@@ -72,7 +76,7 @@ The Sheet will hold names, phone numbers and the condition a person was reading 
 
 The live policy says: "we do not ask for your name, your phone number or your due date to sign up". That stays true for signing up, but the new forms ask for a name and phone number and record which condition page the request came from. Suggested addition for legal review. I have not changed the live page.
 
-> **When you ask us to call you, or ask for a download.** If you use a "Talk to a specialist" or "free download" form, we collect your name, your mobile or WhatsApp number (or email), the time you would like a call, any short note you add, and the page you were on, which can show the health topic you were reading about. We use this only to contact you about that request and to arrange the session or send the download. It is kept in a sheet only our care team can open, is never used for advertising, and is deleted [after N months]. You can ask us to delete it sooner at privacy@parentveda.in.
+> **When you ask us to call you, or ask for a download.** If you use a "Talk to a specialist" or "free download" form, we collect your name, your mobile or WhatsApp number (or email), the time you would like a call, any short note you add, and the page you were on, which can show the health topic you were reading about. We use this only to contact you about that request and to arrange the session or send the download. It is kept in our own secure database, which only our care team can open, is never used for advertising, and is deleted [after N months]. You can ask us to delete it sooner at privacy@parentveda.in.
 
 ## Inputs still needed
 

@@ -6,11 +6,13 @@
    gynaecologist, male fertility); the rest wait for the team.
 
    A consult card or block shows only when the form has somewhere to send to:
-   CONSULT_WEBHOOK_URL must be set. Until then nothing about consults renders,
-   so no one fills in a form that goes nowhere.
+   LEADS_ENABLED=1 (requests are stored in Supabase, see lib/lead-store.ts).
+   Until then nothing about consults renders, so no one fills in a form that
+   goes nowhere.
    ============================================================ */
 
 import DATA from "@/content/consults.json";
+import { leadsEnabled } from "@/lib/lead-store";
 
 export type ConsultMode = "book" | "callback";
 
@@ -34,7 +36,7 @@ export const CONSULTS: Consult[] = Object.entries(DATA as Record<string, Omit<Co
 );
 
 export function consultsEnabled(): boolean {
-  return Boolean(process.env.CONSULT_WEBHOOK_URL);
+  return leadsEnabled();
 }
 
 /** The consult for a specialty, or undefined when unknown or consults are off. */

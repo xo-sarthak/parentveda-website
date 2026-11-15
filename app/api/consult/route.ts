@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { cleanPath, normalisePhone, SLOTS, validateConsult, type ConsultPayload } from "@/lib/leads";
 import { emailOps, forward, looksLikeBot, newRef, rateLimited } from "@/lib/lead-forward";
 import { findConsult } from "@/lib/consults";
+import { storeLead } from "@/lib/lead-store";
 import { getCondition } from "@/lib/conditions";
 
 // POST /api/consult/: a "Talk to a specialist" callback request.
-// Forwards to CONSULT_WEBHOOK_URL and emails OPS_EMAIL. See lib/lead-forward.ts.
+// Stored in Supabase (website_leads, lib/lead-store.ts), optionally copied to
+// CONSULT_WEBHOOK_URL, and emailed to OPS_EMAIL. See lib/lead-forward.ts.
 
 export const runtime = "nodejs";
 
@@ -45,9 +47,25 @@ export async function POST(req: Request) {
     consent_text: "Contact on WhatsApp or phone about this request; read the Privacy Policy.",
   };
 
-  const result = await forward(process.env.CONSULT_WEBHOOK_URL, record);
+  const result = await storeLead({
+    ref,
+    kind: "consult_request",
+    name: record.name,
+    phone: record.phone,
+    email: null,
+    specialty: record.specialty,
+    price_inr: record.price_inr,
+    best_time: record.slot,
+    note: record.note || null,
+    condition: record.condition || null,
+    page: record.page || null,
+    consent: true,
+    consent_text: record.consent_text,
+  });
   if (result === "not_configured") return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
   if (result === "failed") return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+  // Optional copy to a webhook; the request is already safe in the table.
+  if (process.env.CONSULT_WEBHOOK_URL) await forward(process.env.CONSULT_WEBHOOK_URL, record);
 
   await emailOps(`Consult request: ${consult!.label}`, [
     ["Reference", ref],
