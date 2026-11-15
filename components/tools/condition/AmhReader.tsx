@@ -5,9 +5,10 @@ import REF from "@/lib/tools-reference/amh-reader.json";
 import { Answer, Choice, NumberField } from "../ui";
 import { Card, Outro, num, useToolTracking, type ToolProps } from "./kit";
 
-/* AMH result reader. The age table in lib/tools-reference/amh-reader.json is
-   left for a reproductive specialist to fill; until it is, the tool says so and
-   compares nothing. 1 ng/mL = 7.14 pmol/L. */
+/* AMH result reader. The age table in lib/tools-reference/amh-reader.json holds
+   10th and 90th centiles from an Indian study, waiting for a reproductive
+   specialist's sign-off (reviewed: false keeps the tool off in production).
+   With no bands, the tool says so and compares nothing. 1 ng/mL = 7.14 pmol/L. */
 
 type Band = { min_age: number; max_age: number; low_below_ng_ml: number; high_above_ng_ml: number };
 const BANDS = REF.bands as unknown as Band[];
@@ -54,8 +55,26 @@ export default function AmhReader({ consult, condition }: ToolProps) {
         <Answer
           eyebrow="Your AMH for your age"
           empty="Add your age and AMH result to see how it compares."
-          value={valid ? (reading ? `${reading[0].toUpperCase()}${reading.slice(1)} than usual for your age` : "Reference ranges are being added") : undefined}
-          sub={valid ? (reading ? `${ng!.toFixed(2)} ng/mL (${(ng! * REF.pmol_per_ng).toFixed(1)} pmol/L)` : "Our fertility specialist is adding the ranges by age. Until then, please read your result with your doctor.") : undefined}
+          value={
+            valid
+              ? reading
+                ? reading === "typical"
+                  ? "In the usual range for your age"
+                  : `${reading[0].toUpperCase()}${reading.slice(1)} than usual for your age`
+                : BANDS.length
+                  ? "No range for this age"
+                  : "Reference ranges are being added"
+              : undefined
+          }
+          sub={
+            valid
+              ? reading
+                ? `${ng!.toFixed(2)} ng/mL (${(ng! * REF.pmol_per_ng).toFixed(1)} pmol/L)`
+                : BANDS.length
+                  ? `The ranges we use cover ages ${BANDS[0].min_age} to ${BANDS[BANDS.length - 1].max_age}. Please read your result with your doctor.`
+                  : "Our fertility specialist is adding the ranges by age. Until then, please read your result with your doctor."
+              : undefined
+          }
         />
       </div>
       {valid ? (
@@ -70,6 +89,7 @@ export default function AmhReader({ consult, condition }: ToolProps) {
                 ))}
                 {num(afc) !== null ? <li>Your doctor reads AMH together with the antral follicle count from your scan.</li> : null}
               </ul>
+              {reading && REF.source ? <p className="ctool__src">{REF.source}</p> : null}
             </Card>
           }
           questions={[

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cleanPath, normalisePhone, validateLead, type LeadPayload } from "@/lib/leads";
 import { emailOps, forward, looksLikeBot, newRef, rateLimited } from "@/lib/lead-forward";
-import { findDownload } from "@/lib/downloads";
+import { servableDownload } from "@/lib/downloads";
 import { getCondition } from "@/lib/conditions";
 
 // POST /api/leads/: a download request, and its optional second step,
@@ -21,8 +21,8 @@ export async function POST(req: Request) {
   if (rateLimited(req, "leads")) return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
 
   const errors = validateLead(body);
-  const download = findDownload(body.download);
-  if (!download?.file) errors.download = "Something went wrong. Please reload the page.";
+  const download = servableDownload(body.download);
+  if (!download) errors.download = "Something went wrong. Please reload the page.";
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, error: "invalid", errors }, { status: 422 });
 
   const ref = body.sendToWhatsapp && body.ref && /^[a-f0-9]{8}$/.test(body.ref) ? body.ref : newRef();

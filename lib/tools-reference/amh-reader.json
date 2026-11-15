@@ -1,13 +1,14 @@
 {
-  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a specialist signs it off. The age bands are left empty on purpose: a reproductive specialist fills them.",
+  "_note": "MEDICAL-REVIEW: every value in this file. Set reviewed to true only after a reproductive specialist signs it off. Bands are the 10th (low_below) and 90th (high_above) centiles from Gunasheela D et al., J Hum Reprod Sci 2021;14(4):372-379 (PMC8812401): 5,525 Indian women tested for infertility, Beckman Coulter Access AMH Gen II assay. Medians are kept for reference only. Ages under 20 or over 44 have no band in that study, so the tool compares nothing for them.",
   "reviewed": false,
   "reviewer_specialty": "Reproductive Medicine",
   "pmol_per_ng": 7.14,
-  "bands": [],
-  "band_shape_example": {
-    "min_age": 30,
-    "max_age": 34,
-    "low_below_ng_ml": null,
-    "high_above_ng_ml": null
-  }
+  "source": "Ranges from a study of 5,525 Indian women tested for fertility (Gunasheela and others, 2021). Labs and test kits differ a little, so your doctor reads your result against your own lab's range.",
+  "bands": [
+    { "min_age": 20, "max_age": 24, "low_below_ng_ml": 1.34, "high_above_ng_ml": 9.77, "median_ng_ml": 4.23 },
+    { "min_age": 25, "max_age": 29, "low_below_ng_ml": 1.12, "high_above_ng_ml": 8.21, "median_ng_ml": 3.48 },
+    { "min_age": 30, "max_age": 34, "low_below_ng_ml": 0.63, "high_above_ng_ml": 6.88, "median_ng_ml": 2.43 },
+    { "min_age": 35, "max_age": 39, "low_below_ng_ml": 0.2, "high_above_ng_ml": 4.2, "median_ng_ml": 1.28 },
+    { "min_age": 40, "max_age": 44, "low_below_ng_ml": 0.04, "high_above_ng_ml": 2.62, "median_ng_ml": 0.52 }
+  ]
 }

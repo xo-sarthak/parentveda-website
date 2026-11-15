@@ -3,6 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: { formats: ["image/avif", "image/webp"] },
 
+  /* The condition PDFs live in content/downloads (not /public, so a draft is
+     never reachable on the live site); the route that serves them reads them
+     from disk, so they must ship with it. */
+  outputFileTracingIncludes: {
+    "/downloads/[slug]": ["./content/downloads/*.pdf"],
+    "/api/leads": ["./content/downloads/*.pdf"],
+    "/conditions/[slug]": ["./content/downloads/*.pdf"],
+  },
+
   /* Every URL ends in a slash — the old site's shape, and the one Google has
      indexed (parentveda.in/reads/articles/<slug>/). Matching it byte for byte
      means the switch changes no indexed address. */

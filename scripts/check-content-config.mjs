@@ -67,7 +67,12 @@ for (const c of conditions) {
   if (!specialties.includes(c.reviewer_specialty_required)) bad(`condition ${c.slug}: unknown specialty ${c.reviewer_specialty_required}`);
   if (!SENS.has(c.sensitivity)) bad(`condition ${c.slug}: unknown sensitivity ${c.sensitivity}`);
 }
-for (const [slug, d] of Object.entries(downloads)) for (const c of d.conditions) if (!conditionSlugs.has(c)) bad(`download ${slug}: unknown condition ${c}`);
+for (const [slug, d] of Object.entries(downloads)) {
+  for (const c of d.conditions) if (!conditionSlugs.has(c)) bad(`download ${slug}: unknown condition ${c}`);
+  if (typeof d.reviewed !== "boolean") bad(`download ${slug}: reviewed must be true or false`);
+  if (d.file && d.file !== `/downloads/${slug}/`) bad(`download ${slug}: file should be /downloads/${slug}/`);
+  if (d.file && !fs.existsSync(`content/downloads/${slug}.pdf`)) console.warn(`  note: content/downloads/${slug}.pdf not rendered yet`);
+}
 
 const DASH = /[–—]/;
 for (const f of ["content/clusters.json", "content/article-meta.json", "content/consults.json", "content/downloads.json", ...conditionFiles.map((f) => `content/conditions/${f}`)]) {
