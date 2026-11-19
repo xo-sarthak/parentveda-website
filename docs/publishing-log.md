@@ -6,6 +6,24 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 19 Nov 2026: Kamini's new images for rows 67, 71, 72, 116, 119, 122 and 137
+
+Kamini updated the sheet and shared the two Drive files that were "not found". Every live and scheduled article now has a cover and an in-article image (`npm run audit:images`: 0 blocked). All new files carry `drive:<id> role row` in Directus.
+
+| # | Row | What changed | Status |
+|---|---|---|---|
+| 1 | 67 `newborn-jaundice` (live today) | New cover: baby on its back, yellow skin, with a normal-skin inset. Safe-sleep problem gone. It is portrait (1199×1312), so the header shows only its middle band and cuts the inset. Padding it to landscape was tried and looked pasted on, so not used. | Open: Kamini to send a landscape version (1536×1024, inset inside the middle band) |
+| 2 | 71 `postpartum-hair-loss` | New cover: mother with hair in her comb, baby on its back in a cot with a fitted sheet and nothing loose. | Solved |
+| 3 | 119 `golden-hour-after-birth` | New cover: skin to skin in a hospital bed, baby's face clear. | Solved |
+| 4 | 122 `pineapple-during-pregnancy` | New cover (pineapple still life); the old file stays in the body. | Solved |
+| 5 | 137 `calcium-in-pregnancy` (1 Dec) | New in-article infographic ("How 1,000 mg of calcium can add up", totals check: 980 mg) put after "Best vegetarian calcium sources in India". The sheet's new cover is portrait and the header would cut off the woman's head, so the earlier landscape cover (ragi dosa) stays until a landscape version arrives. | Open: Kamini to send a landscape cover |
+| 6 | 72 `4-months-pregnant` | In-article "How Your Baby Grows: Weeks 13 to 16" put after "How your baby grows from weeks 13 to 16". | Solved |
+| 7 | 116 `baby-constipation` | In-article "Safe Relief for Baby Constipation, by Age" put after "How can you relieve it safely at home?". Content in line with NHS/AAP (no extra water under 6 months breastfed, no honey under 1, urgent signs). | Solved |
+| 8 | Render's Directus hung the admin tab again. | `/server/ping` took about 55 s to wake it; a fresh admin tab worked. | Known (12 of 16 Nov) |
+| 9 | Portrait covers were not caught by anything. | `npm run audit:images` now reads each cover's size from its file header and notes a portrait one. | Solved |
+
+---
+
 ## 18 Nov 2026: vaccination chart cover swapped with its infographic; breast milk cover added
 
 Reported by Kamini on WhatsApp after she corrected the sheet.
