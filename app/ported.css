@@ -419,7 +419,7 @@
   font-size: 20px;
 }
 /* the section you are in, in the contents list */
-.rtoc a.is-active {
+.rtoc ol a.is-active {
   color: var(--ink);
   font-weight: 700;
   border-left-color: var(--purple);

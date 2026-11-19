@@ -35,12 +35,16 @@ import { SITEMAP_PATHS } from "@/lib/sitemap-paths";
 import { CONTENT_TAG } from "@/lib/supabase";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { pingIndexNow, recentlyChangedUrls } from "@/lib/indexnow";
+import { checkImages } from "@/lib/image-guard";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 /** Most articles one run may publish. A missed day catches up 3 at a time, not all at once. */
 const RELEASE_LIMIT = 3;
+
+/** Extra due rows read past the limit, so rows held by the image guard do not starve the queue. */
+const HOLD_LOOKAHEAD = 10;
 
 /** India has no daylight saving, so a fixed offset is exact. */
 const IST_OFFSET_MS = (5 * 60 + 30) * 60_000;
@@ -74,22 +78,38 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "SUPABASE_SERVICE_ROLE_KEY is not set." }, { status: 503 });
   }
 
+  /* Read more than RELEASE_LIMIT: a held row stays due (and first in line), so
+     it must not use up a slot that a clean row behind it could take. */
   const due = await db
     .from("content_posts")
-    .select("id, slug, published_at")
+    .select("id, slug, published_at, body, og_image, og_image_file, og_image_alt")
     .eq("status", "scheduled")
     .lt("published_at", endOfTodayIST())
     .order("published_at", { ascending: true })
     .order("created_at", { ascending: true })
-    .limit(RELEASE_LIMIT);
+    .limit(RELEASE_LIMIT + HOLD_LOOKAHEAD);
 
   if (due.error) {
     console.error("[release] could not read the queue:", due.error.message);
     return NextResponse.json({ ok: false, error: "Could not read the queue." }, { status: 500 });
   }
-  if (!due.data.length) {
-    console.log("[release] nothing due today");
-    return NextResponse.json({ ok: true, released: [] });
+
+  /* The image guard (lib/image-guard.ts). A blocked row is left `scheduled`,
+     not set to draft: it stays visible in the queue and is reported again on
+     every run until someone fixes the images. The trade-off is a late article
+     rather than a live one with an infographic as its cover. */
+  const held: { slug: string; reasons: string[] }[] = [];
+  const ready: typeof due.data = [];
+  for (const row of due.data) {
+    const { blocking } = checkImages(row);
+    if (blocking.length) held.push({ slug: row.slug, reasons: blocking });
+    else if (ready.length < RELEASE_LIMIT) ready.push(row);
+  }
+  for (const h of held) console.warn(`[release] held ${h.slug}: ${h.reasons.join("; ")}`);
+
+  if (!ready.length) {
+    console.log("[release] nothing to release today");
+    return NextResponse.json({ ok: true, released: [], held });
   }
 
   /* `status = 'scheduled'` again in the update, so a row someone set back to
@@ -97,7 +117,7 @@ export async function GET(request: NextRequest) {
   const released = await db
     .from("content_posts")
     .update({ status: "published", published_at: new Date().toISOString() })
-    .in("id", due.data.map((r) => r.id))
+    .in("id", ready.map((r) => r.id))
     .eq("status", "scheduled")
     .select("slug");
 
@@ -119,5 +139,5 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  return NextResponse.json({ ok: true, released: slugs, at: new Date().toISOString() });
+  return NextResponse.json({ ok: true, released: slugs, held, at: new Date().toISOString() });
 }

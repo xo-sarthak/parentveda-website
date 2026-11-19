@@ -6,6 +6,141 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 18 Nov 2026: vaccination chart cover swapped with its infographic; breast milk cover added
+
+Reported by Kamini on WhatsApp after she corrected the sheet.
+
+| # | Problem | How it was solved | Status |
+|---|---|---|---|
+| 1 | Row 54 `vaccination-chart-india` went live with the in-article infographic ("Government vs IAP Schedule") as its cover and no image in the body. | Sheet column Y's cover (Drive `10w-RaIp…`, mother and baby with a vaccine chart) uploaded to R2 through Directus and set as the cover with new alt text. The infographic (file `a8edfd7d…`) put in the body after "Why does India have two vaccination schedules?". Checked live. | Solved |
+| 2 | Row 49 `breast-milk` had no cover (open item 2 of 15 Nov: the sheet then had only the infographic). | The sheet now has a cover (Drive `1SE4qyD0…`); uploaded and set. Checked live. | Solved |
+| 3 | Nothing could catch a cover and an in-article image swapped: Directus keeps no record of which Drive file or column a picture came from. | `lib/image-guard.ts`, run by `/api/release` (holds the row) and `npm run audit:images` (report). Upload rule added to `CLAUDE.md`: file description `drive:<id> role:cover|inline row:<n>`. The four files above carry it. | Solved |
+| 4 | The share buttons and the free-tool card in the article rail rendered as clipped block links: `.rtoc a` (contents list) also matched them and outranked their own rules. | Scoped to `.rtoc ol a` in `app/articles.css` and `app/ported.css`. | Solved |
+| 5 | All other queued and live posts checked against the sheet and the guard: no other cover is an in-article image. Still owed from earlier batches: new covers for 67 and 71 (unsafe sleep), 119 (nappy bag), 122 and 137 (one image only); in-article files for 72 and 116 are not shared with us. | Asked Kamini (owner forwarded the message, 19 Nov). | Open |
+
+---
+
+## 16 Nov 2026: row 55 and rows 103 to 140, queued for 22 Nov to 2 Dec
+
+**Queued** (status `scheduled`, writer Sarthak Thakur, reviewer Dr. Mahender Singh)
+
+| Release | Sheet rows | Addresses under `/reads/articles/` |
+|---|---|---|
+| 22 Nov | 55, 103 (with 76 from the last batch) | `male-fertility`, `ovulation-discharge` |
+| 23 Nov | 104, 105, 107 | `swollen-feet-ankles-pregnancy`, `pregnant-right-after-period`, `pregnancy-fatigue` |
+| 24 Nov | 109, 110, 112 | `back-pain-during-pregnancy`, `baby-hiccups-in-womb`, `is-sex-safe-during-pregnancy` |
+| 25 Nov | 114, 115, 116 | `cradle-cap`, `baby-hiccups`, `baby-constipation` |
+| 26 Nov | 117, 118, 119 | `dengue-typhoid-malaria-children`, `breastfeeding-premature-baby`, `golden-hour-after-birth` |
+| 27 Nov | 120, 121, 122 | `watermelon-during-pregnancy`, `prawns-during-pregnancy`, `pineapple-during-pregnancy` |
+| 28 Nov | 128, 123, 124 | `pcos-stress-sleep`, `pcos-weight-loss`, `fruits-during-pregnancy` |
+| 29 Nov | 125, 126, 127 | `fetal-doppler-at-home`, `saffron-kesar-pregnancy-baby-fair`, `ghee-during-pregnancy` |
+| 30 Nov | 129, 130, 131 | `thyroid-in-pregnancy`, `loose-motion-babies`, `reduce-fever-in-baby` |
+| 1 Dec | 135, 136, 137 | `coconut-water-during-pregnancy`, `folic-acid-foods-pregnancy`, `calcium-in-pregnancy` |
+| 2 Dec | 140 | `baby-sleep-regression-by-age` (two free slots) |
+
+Slugs are the ones other sheet rows link to; 129 and 135 had none, so `thyroid-in-pregnancy` (the doc's own) and `coconut-water-during-pregnancy`. 128 goes out before 123 on 28 Nov because 123 links to it. Row 55 went on 22 Nov so row 76's link to it could go back in: the paragraph was re-added to the `sperm-motility` item.
+
+### Held (not queued)
+
+| Row | Problem | What to do |
+|---|---|---|
+| 55 (now queued) | The doc's own gate (duplicate check against two older drafts) is moot: neither draft is live. Title kept as "Male Fertility…", as in the H1 and the sheet; the change log's "Male Infertility…" was never applied. | Done. |
+| 56 Preeclampsia Symptoms | Drive has no preeclampsia-symptoms doc; the only one is the BP article. | Writer to send it. The BP doc could go out under its own slug `high-blood-pressure-in-pregnancy` if wanted. |
+| 60 Varicocele | Still no "written" or plagiarism mark (sheet unchanged since 13 Nov). | Wait. |
+| 62 How to Increase Breast Milk Supply | No supply doc in Drive. An unlinked "Breast Milk Supply Infographic.png" exists, so the doc may be missing rather than unwritten. | Writer to send it. |
+| 74 Spotting in Pregnancy | Triage still too soft (see 15 Nov). Not changed: it would put new medical wording under Dr. Singh's credit. | Writer: bleeding after about 20 weeks to "go now"; reduced movements to "call the maternity unit immediately"; update the infographic. |
+| 75 → `best-time-to-conceive` | The doc is the Best Time to Conceive article. It says "more than eight in ten couples conceive within a year" without NICE's "if the woman is under 40", and does not say women over 40 should be seen straight away. Its Note says fertility-specialist review is in progress. | Writer or owner to approve the two wording changes; then queue as `best-time-to-conceive` (remove the two sentences pointing to unwritten guides). |
+| 108 Forgetfulness in Pregnancy | Pre-eclampsia signs and "fainting, breathlessness at rest or chest pain" are "get checked the same day"; NHS says call immediately. | Writer to fix the table. |
+| 111 Round Ligament Pain | One "call your doctor" tier: sharp one-sided first-trimester pain (possible ectopic) gets "mention it to your doctor". The doc is a revision log with no references of its own (the helper used Part B's) and no disclaimer. | Writer. |
+| 113 Baby Colic | The doc is in another Google account and is not shared with us; the cover shows a crying baby on soft bedding. | Share the doc. |
+| 134 Baby Sleep Hours | Breathing pauses, turning blue and a floppy newborn are "same day"; NHS and AAP say emergency. Cover shows a baby on a pillow and soft bedding. The doc marks its sleep-syrup FAQ as a blocker. | Writer, and a new cover. 140 and 141 linked to it; 140's link was removed. |
+| 139 Pregnancy Snacks | "Steam sprouts lightly"; NHS says cook sprouts until steaming hot. The infographic lists raw sprouts as a treat. | Writer, and the image. |
+| 141 Baby Not Sleeping at Night | One "speak to a doctor promptly" tier holds a floppy, hard-to-wake baby, breathing pauses and fever under 3 months; the infographic repeats it. | Writer. |
+| 132, 133, 138, 142 | No plagiarism mark. | Wait. |
+
+### Open
+
+| # | Problem | What to do |
+|---|---|---|
+| 1 | Triage wording accepted but softer than NHS: 104 and 137 ("contact … promptly" for pre-eclampsia signs; NHS says immediately), 112 ("promptly, or go to hospital" for bleeding), 128 (self-harm thoughts get "prompt professional support" with no helpline), 131 ("book a visit soon" for fever over 5 days), 140 ("book a routine visit" for fever with poor sleep). | Writer to tighten on the next pass. |
+| 2 | No references: 112, 115, 116. No disclaimer: 112, 116. | Writer. |
+| 3 | No cover: 119 (sheet cover was a nappy bag with feeding bottles, wrong for a skin-to-skin article) and 122 (one image, used inline). No inline: 116 (the Drive file is not shared with us) and 137 (one image, used as cover). | New images if wanted. |
+| 4 | Many docs keep the writer's "specialist review is in progress" line in the Note (103, 104, 105, 107, 109, 110, 124). Kept as written. | Remove when done. |
+| 5 | Sheet India angles often missing (104, 107, 114, 116, 120, 121, 125, 128, 129). | Writer. |
+| 6 | 121's infographic labels a tight O shape "overcooked, safe"; the article says shape is not proof. 123's infographic says "PCOs". | Minor; fix if the images are redone. |
+| 7 | Links removed because the target is not written: 103 and 105 to `fertile-window`; 103 to a fertility-specialist guide; 109 to walking, yoga, sleeping-position, pillow, UTI and Braxton Hicks guides; 114 to baby eczema (row 133); 118 to low milk supply and formula feeding; 122 to bleeding in early pregnancy; 125 to quickening and reduced fetal movement; 140 to `baby-sleep-hours-age` (held). | Re-add as each goes live. |
+
+### Solved
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 8 | 136 and 137 linked to `iron-rich-foods-pregnancy` (404). | Pointed to `iron-rich-foods-during-pregnancy`. |
+| 9 | 125 linked to `/pregnancy-symptoms/` (404). | Pointed to `pregnancy-symptoms-month-by-month`. |
+| 10 | Dead references: ACOG "Your Menstrual Cycle" (103, 105), Evidence Based Birth (122, now redirects to a login page), the FDA leaflet copy and HSE leaflet (125). | ACOG swapped for its Fertility Awareness-Based Methods FAQ, which carries the same claims; 122's and 125's HSE entry removed; 125's FDA entry kept as a plain citation. |
+| 11 | Bylines naming Dr. Singh as reviewer (several docs, including 121 and 139). | Removed; the reviewer field carries the credit. |
+| 12 | Directus on Render's free plan sleeps after idle and the admin tab hangs on "Loading". | Wake it with a request to `/server/ping`, then open a second admin tab. |
+
+---
+
+## 15 Nov 2026: rows 49 to 76, queued for 16 to 22 Nov
+
+**Queued** (status `scheduled`, released by `/api/release` at about 9am IST, three a day)
+
+| Release | Sheet rows | Addresses under `/reads/articles/` |
+|---|---|---|
+| 16 Nov | 49, 50, 52 | `breast-milk`, `period-delay-reasons`, `colostrum` |
+| 17 Nov | 53, 54, 57 | `anemia-in-pregnancy`, `vaccination-chart-india`, `common-baby-illnesses` |
+| 18 Nov | 58, 59, 63 | `gestational-diabetes`, `hand-foot-mouth-disease`, `labour-stages` |
+| 19 Nov | 64, 66, 67 | `types-baby-rashes`, `contractions-feel-how-to-time`, `newborn-jaundice` |
+| 20 Nov | 68, 69, 70 | `uti-in-pregnancy`, `first-period-after-delivery`, `postpartum-body-changes` |
+| 21 Nov | 71, 72, 73 | `postpartum-hair-loss`, `4-months-pregnant`, `induced-labour` |
+| 22 Nov | 76 | `sperm-motility` (the next batch fills the other two slots) |
+
+All 19 have writer Sarthak Thakur and reviewer Dr. Mahender Singh, as the owner confirmed for all sheet rows. Slugs are the ones other sheet rows link to (row 52 had none, so `colostrum`). Images went to R2 through Directus as JPEG q85. Every internal link points to a live page or one released the same day or earlier.
+
+### Held (not queued)
+
+| Row | Problem | What to do |
+|---|---|---|
+| 55 Male Fertility | The doc says it "should stay unpublished" until a duplicate check against two older drafts decides merge, differentiate or retire. Its change log says the title became "Male Infertility…" at the owner's instruction, but the H1 and sheet still say "Male Fertility". | Owner to decide the duplicate check and the title. Row 76 had its link to it removed; re-add when live. |
+| 56 Preeclampsia Symptoms | The doc is a different article ("High Blood Pressure in Pregnancy: What to Track…") that links to "our full guide to preeclampsia". | Ask the writer for the preeclampsia-symptoms doc. |
+| 60 Varicocele | Sheet has no "written" or plagiarism-check mark. | Wait for both. |
+| 61 | Same doc as row 46. | Skip. |
+| 62 How to Increase Breast Milk Supply | The doc is a second "Foods to Increase Breast Milk" article, largely repeating live row 47. | Ask the writer for the supply article (latch, frequency, pumping, IBCLC). |
+| 74 Spotting in Pregnancy | Its triage is softer than NHS and than our live `low-lying-placenta`: any bleeding is "report and get advice", and reduced movements later in pregnancy is "same day", not straight away. Its infographic repeats the same table. | Writer to fix the urgency advice and the image, then queue. |
+| 75 Fertile Window | The doc is the "Best Time to Conceive" article (its own SEO pack gives that slug; sheet row 487). | Ask the writer for the fertile-window pillar; keep this doc for row 487. |
+
+### Open
+
+| # | Problem | Effect | What to do |
+|---|---|---|---|
+| 1 | Row 67's cover shows two newborns in one hanging cradle, each with a pillow. Row 71's cover shows a baby alone on an adult bed with a pillow and soft toy while the mother faces away. | Unsafe sleep and fall risk, so both go out with no cover (the page renders without a hero). Not uploaded. | Regenerate both covers and set them in Directus. |
+| 2 | Row 49 had only a portrait infographic. | Used inline after the composition table; no cover. | Make a cover if wanted. |
+| 3 | Rows 54, 58, 64, 70 and 71 have no or thin references (58, 64 and 70 have none). Several miss the sheet's India angle (58: DIPSI and an Indian plate; 64: haldi and oiling; 68: Indian ANC culture; 70: belts and binding). | Weaker sourcing. | Ask the writers. |
+| 4 | Several docs carry the writer's own disclaimer that a paediatrician reviewed it and an OB-GYN, lactation or fertility review is "in progress" (49, 50, 66, 69, 72). Kept as written. | Goes out of date once done. | Remove then. |
+| 5 | Row 54 has no closing disclaimer or FAQ. Its flu price is for a quadrivalent brand while IAP 2025 advises trivalent, and "HPV 9 to 14 years" is "9 up to 15" in IAP 2025. Its MoHFW schedule link was dead; the NHM copy used is older and lacks fIPV-3. | Minor accuracy points. | Writer to update. |
+| 6 | Row 59 says "ibuprofen for older babies" with no age. | Readers may give it too young. | Writer to add the age (IAP: over 3 months, or as advised). |
+| 7 | Row 72 calls month 4 weeks 13 to 16; our hub `/pregnancy/4th-month/` uses weeks 14 to 17. The article also competes with that hub and does not link it. | Inconsistent; two pages for one search. | Decide whether to link or merge. |
+| 9 | Several H1s differ from sheet column C (58, 59, 63, 64, 68, 73). | The H1 is the writer's; the sheet title is used as the title for Google. | Accepted unless the owner prefers the sheet's. |
+| 10 | Column S asks for links to these articles from older pages. | Not added, so no live page points to a page that is not out yet. | Add after each release. |
+| 11 | Links removed because their target is not written yet: row 70 to `stretch-marks-after-pregnancy`; row 73 to `water-breaking-what-to-do`, `hospital-bag-checklist-delivery`, `painless-delivery-epidural`, `c-section-vs-normal-delivery`, `normal-delivery-after-c-section`; row 76 to `male-fertility`. | | Re-add as each goes live. |
+| 12 | Not opened (bot walls or timeouts): FOGSI, NICE, Mayo, CDC and ScienceDirect links in several rows; rchiips.org (NFHS-5) gave a certificate error. | A broken one would be a dead reference. | Open in a browser. |
+
+### Solved
+
+| # | Problem | How it was solved |
+|---|---|---|
+| 13 | Row 50's cover and inline images were swapped in the sheet. | Swapped back. |
+| 14 | Row 50 linked to `/irregular-periods/` and row 72 to `/pregnancy-symptoms/`, neither of which exists. | Pointed them to `irregular-periods-explained` and `pregnancy-symptoms-month-by-month`. |
+| 15 | Rows 64 and 76 pointed to guides that do not exist ("our guides on managing baby eczema…", "our guide on when to see a fertility specialist"). | Removed those sentences, as with row 47. |
+| 16 | Row 57's hospital box was headed "See a doctor now" under "Go to the hospital now". | Removed the label; the next sentence says go to hospital or call 108. |
+| 17 | Rows 58 and 59 put the disclaimer at the top; row 63 put references after the FAQ. | Moved to the house order. |
+| 18 | Bylines naming Dr. Singh, SEO packs, Part B notes, validation tables and change logs. | Left out. |
+| 19 | Dead reference links: MoHFW SBA guideline (66), WHO birth spacing (69), ICMR-NIN (72), a WHO annex DOI (76). Wrong author on row 63's ref 5. | Replaced with the official copies; author corrected from Crossref. |
+| 20 | Row 53's ACOG Practice Bulletin 233 link went to a third-party copy (opqic.org). | Pointed to its PubMed record, 34293770. |
+
+---
+
 ## 14 Nov 2026: rows 46, 47 and 48 (first batch through the daily release)
 
 **Published**
@@ -45,7 +180,7 @@ Created in Directus as `scheduled` with `published_at` set to the planned day, t
 |---|---|---|
 | 12 | The Google Drive connector timed out for hours. | Waited; reading as text (`read_file_content`) worked first, downloads after. |
 | 13 | Chrome actions went to a second connected browser (a Mac) that was not signed in to Directus. | Selected the Windows browser with `select_browser`. |
-| 14 | Directus on Render's free plan sleeps and signs everyone out on wake. | Release runs from Vercel, not a Directus Flow. Setting a fixed `SECRET` on Render should keep logins (not yet done). |
+| 14 | Directus on Render's free plan sleeps and signs everyone out on wake. | Release runs from Vercel, not a Directus Flow. Render already sets a fixed `SECRET`, so a restart is not the cause; the sign-outs fit Directus's default 1-day session (`SESSION_COOKIE_TTL`), and one was Chrome acting in the other browser (item 13). |
 | 15 | Directus's database user cannot change column defaults. | The owner ran the default-to-draft SQL in Supabase. |
 | 16 | A page fetched while still unpublished served a cached 404 once after release. | Cleared on the next request. Avoid fetching scheduled pages before release. |
 

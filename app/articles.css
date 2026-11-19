@@ -230,7 +230,10 @@
   gap: 2px;
   border-left: 1px solid var(--hair);
 }
-.rtoc a {
+/* Scoped to the contents list: the share buttons and the tool card also sit
+   inside .rtoc, and a bare `.rtoc a` (class + tag) outranked their own class
+   rules, so they rendered as clipped block links (18 Nov). */
+.rtoc ol a {
   display: block;
   padding: 7px 0 7px 14px;
   margin-left: -1px;
@@ -240,7 +243,7 @@
   font-size: 14.5px;
   line-height: 1.4;
 }
-.rtoc a:hover {
+.rtoc ol a:hover {
   color: var(--ink);
   border-left-color: var(--ink);
 }
