@@ -33,6 +33,7 @@ import { NextResponse, after, type NextRequest } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { SITEMAP_PATHS } from "@/lib/sitemap-paths";
 import { CONTENT_TAG } from "@/lib/supabase";
+import { postPath } from "@/lib/guides";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { pingIndexNow, recentlyChangedUrls } from "@/lib/indexnow";
 import { checkImages } from "@/lib/image-guard";
@@ -82,7 +83,7 @@ export async function GET(request: NextRequest) {
      it must not use up a slot that a clean row behind it could take. */
   const due = await db
     .from("content_posts")
-    .select("id, slug, published_at, body, og_image, og_image_file, og_image_alt")
+    .select("id, slug, category, published_at, body, og_image, og_image_file, og_image_alt")
     .eq("status", "scheduled")
     .lt("published_at", endOfTodayIST())
     .order("published_at", { ascending: true })
@@ -119,7 +120,7 @@ export async function GET(request: NextRequest) {
     .update({ status: "published", published_at: new Date().toISOString() })
     .in("id", ready.map((r) => r.id))
     .eq("status", "scheduled")
-    .select("slug");
+    .select("slug, category");
 
   if (released.error) {
     console.error("[release] publish failed:", released.error.message);
@@ -134,6 +135,10 @@ export async function GET(request: NextRequest) {
     // The sitemaps are cached as their own routes. After a publish they kept serving
     // the old list for minutes (14 Nov), so rebuild them explicitly on the next visit.
     for (const p of SITEMAP_PATHS) revalidatePath(p);
+    // A page requested while it was still scheduled is cached as a 404, and the tag
+    // above did not clear it: the first visit after release got the 404 (16 Nov).
+    // IndexNow sends crawlers here within minutes, so drop each page's entry too.
+    for (const r of released.data) revalidatePath(postPath(r.category, r.slug));
     after(async () => {
       await pingIndexNow(await recentlyChangedUrls());
     });

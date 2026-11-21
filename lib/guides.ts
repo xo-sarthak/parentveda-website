@@ -202,7 +202,12 @@ function toPost(r: PostRow): GuidePost {
     description: r.description ?? "",
     excerpt: r.excerpt ?? "",
     date: toDate(r.published_at),
-    updated: r.updated_at ? toDate(r.updated_at) : undefined,
+    /* A queued article is written days before /api/release publishes it, and the
+       release moves published_at, not updated_at. Left alone, the sitemap lastmod
+       and JSON-LD dateModified would predate datePublished (every Read released
+       16-20 Nov said "modified 15 Nov, published 16-20 Nov"). Nothing can change
+       before it is published, so the modified date is never earlier. */
+    updated: r.updated_at ? [toDate(r.updated_at), toDate(r.published_at)].sort().at(-1) : undefined,
     readingTime: r.reading_time ?? "",
     author: r.author ?? "Team ParentVeda",
     ...peopleOf(r),
