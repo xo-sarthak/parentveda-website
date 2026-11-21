@@ -6,6 +6,19 @@ Status: **Solved**, **Open** (still needs action) or **Accepted** (known and lef
 
 ---
 
+## 21 Nov 2026: release check for 16 to 20 Nov; two dating and caching fixes
+
+All 15 Reads due 16 to 20 Nov are live, in the sitemap, credited to Sarthak Thakur and Dr. Mahender Singh, with title matching H1 and every image loading. Directus: 93 published, 34 scheduled (3 a day 21 Nov to 1 Dec, 1 on 2 Dec), no gaps, duplicates or overdue rows. `npm run audit:images`: 0 blocked.
+
+| # | Problem | How it was solved | Status |
+|---|---|---|---|
+| 1 | Queued Reads kept `updated_at` from the day they were created, and the release moves only `published_at`. Every Read released 16 to 20 Nov had sitemap `lastmod` and JSON-LD `dateModified` of 15 Nov, before its `datePublished`. | `toPost` in `lib/guides.ts` never reports a modified date earlier than the published date. | Solved |
+| 2 | A scheduled page fetched before release stays a cached 404 for the first visit after release (16 Nov, #16), and the IndexNow ping sends crawlers within minutes. | `/api/release` also revalidates each released article's own path. | Solved |
+| 3 | 57 images in the 16 Nov batch (and 4 in the 15 Nov batch going out 21 Nov) have no `drive:<id> role row` description. | Backfill needs the sheet's X and Y links per row and a look at each image; no effect on the site. | Open |
+| 4 | Vercel lists the cron as "Legacy" (deprecated, move to Schedules) and Hobby keeps no run history or logs past a short window. | Still runs daily. | Accepted |
+
+---
+
 ## 19 Nov 2026: Kamini's new images for rows 67, 71, 72, 116, 119, 122 and 137
 
 Kamini updated the sheet and shared the two Drive files that were "not found". Every live and scheduled article now has a cover and an in-article image (`npm run audit:images`: 0 blocked). All new files carry `drive:<id> role row` in Directus.
